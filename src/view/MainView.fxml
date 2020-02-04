@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="root" prefHeight="401.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
+   <children>
+      <SplitPane dividerPositions="0.5357798165137615" prefHeight="403.0" prefWidth="547.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="444.0" prefWidth="356.0">
+               <children>
+                  <Button layoutX="47.0" layoutY="286.0" mnemonicParsing="false" text="Run Simulation" />
+                  <ChoiceBox layoutX="24.0" layoutY="243.0" prefHeight="23.0" prefWidth="186.0" />
+                  <Label layoutX="24.0" layoutY="228.0" text="Select policy" />
+                  <TextField fx:id="DEBBPath" layoutX="22.0" layoutY="67.0" prefHeight="23.0" prefWidth="186.0" />
+                  <TextField layoutX="22.0" layoutY="142.0" prefHeight="23.0" prefWidth="186.0" />
+                  <Label layoutX="24.0" layoutY="52.0" text="Load DEBB config" />
+                  <Label layoutX="24.0" layoutY="127.0" text="Select workload" />
+                  <Button fx:id="DEBBButton" layoutX="220.0" layoutY="67.0" mnemonicParsing="false" onAction="#DEBBChooseClick" text="Choose" />
+                  <Button fx:id="swfButton" layoutX="220.0" layoutY="142.0" mnemonicParsing="false" text="Choose" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="415.0" prefWidth="256.0">
+               <children>
+                  <TextArea layoutX="10.0" layoutY="47.0" prefHeight="296.0" prefWidth="235.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="47.0" />
+                  <Label layoutX="14.0" layoutY="32.0" text="Console" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
