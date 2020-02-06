@@ -1,10 +1,11 @@
-package schedframe.scheduling.manager.resources;
+package model.scheduling.manager.resources;
 
 import java.util.ArrayList;
 
-import schedframe.resources.ResourceType;
-import schedframe.resources.StandardResourceType;
-import schedframe.resources.computing.ComputingResource;
+import model.resources.ResourceType;
+import model.resources.StandardResourceType;
+import model.resources.computing.ComputingResource;
+
 
 public class ManagedComputingResources extends ArrayList<ComputingResource>{
 	

@@ -21,19 +21,13 @@ import org.joda.time.DateTimeUtilsExt;
 import org.qcg.broker.schemas.jobdesc.QcgJob;
 
 import app.ConfigurationOptions;
-import schedframe.Initializable;
-import schedframe.ResourceController;
-import simulator.reader.ResourceReader;
+import controller.resource.ResourceReader;
 import controller.simulator.stats.AccumulatedStatistics;
-import simulator.stats.implementation.DCWormsStatistics;
 import controller.simulator.utils.LogErrStream;
-import simulator.workload.WorkloadLoader;
 import controller.workload.WorkloadLoader;
 import controller.workload.QcgSWFJobReader;
 import gridsim.GridSimWrapper;
-import simulator.workload.reader.archive.WAReader;
-import simulator.workload.reader.xmlJob.QcgXmlJobReader;
-import simulator.workload.reader.xmlJob.XMLJobReader;
+import model.Initializable;
 import cern.jet.random.Uniform;
 import cern.jet.random.engine.MersenneTwister64;
 

@@ -1,5 +1,6 @@
 package model.resources.computing;
 
+import gridsim.DCWormsTags;
 import gridsim.GridSimTags;
 
 import java.util.ArrayList;
@@ -16,7 +17,6 @@ import model.events.scheduling.SchedulingEvent;
 import model.events.scheduling.SchedulingEventCommand;
 import model.exceptions.ResourceException;
 import model.resources.Resource;
-import model.resources.ResourceCharacteristics;
 import model.resources.ResourceStatus;
 import model.resources.ResourceType;
 import model.resources.computing.description.ComputingResourceDescription;
@@ -27,9 +27,7 @@ import model.resources.computing.extensions.ExtensionType;
 import model.resources.computing.profiles.energy.EnergyEvent;
 import model.resources.computing.profiles.energy.EnergyEventType;
 import model.resources.computing.profiles.energy.EnergyExtension;
-import model.resources.computing.profiles.energy.airthroughput.ui.AirThroughputInterface;
 import model.resources.computing.profiles.energy.power.ui.PowerInterface;
-import model.resources.computing.profiles.energy.thermal.ui.ThermalInterface;
 import model.resources.computing.properties.DefaultPropertiesBuilder;
 import model.resources.computing.properties.PropertiesDirector;
 import model.resources.computing.validator.ResourceNameValidator;
@@ -68,7 +66,7 @@ public class ComputingResource implements Resource, Initializable{
 		this.status = ResourceStatus.FREE;
 		this.extensionList = new ExtensionListImpl(1);
 		initCharacteristics(resDesc);
-		accept(new EnergyExtension(this, resDesc.getPowerProfile(), resDesc.getAirThroughputProfile(), resDesc.getThermalProfile()));	
+		accept(new EnergyExtension(this, resDesc.getPowerProfile()));	
 		addFakeProcessors();
 	}
 
@@ -246,23 +244,7 @@ public class ComputingResource implements Resource, Initializable{
 		return null;
 	}
 	
-	public AirThroughputInterface getAirThroughputInterface(){
-		Extension extension = getExtension(ExtensionType.ENERGY_EXTENSION);
-		if(extension != null){
-			EnergyExtension ee = (EnergyExtension)extension;
-			return ee.getAirThroughputInterface();
-		}
-		return null;
-	}
 	
-	public ThermalInterface getThermalInterface(){
-		Extension extension = getExtension(ExtensionType.ENERGY_EXTENSION);
-		if(extension != null){
-			EnergyExtension ee = (EnergyExtension)extension;
-			return ee.getThermalInterface();
-		}
-		return null;
-	}
 
 	private Extension getExtension(ExtensionType type){
 		if (extensionList != null) {

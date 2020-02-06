@@ -1,4 +1,4 @@
-package model.resources;
+package model.resources.computing;
 
 import java.util.ArrayList;
 import java.util.HashMap;

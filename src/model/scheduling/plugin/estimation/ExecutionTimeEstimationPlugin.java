@@ -5,7 +5,7 @@ import java.util.Map;
 
 import gridsim.schedframe.ExecTask;
 import model.Plugin;
-import model.SchedulingEvent;
+import model.events.scheduling.SchedulingEvent;
 import model.resources.units.ResourceUnit;
 import model.resources.units.ResourceUnitName;
 

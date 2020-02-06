@@ -1,11 +1,11 @@
-package schedframe.scheduling.manager.resources;
+package model.scheduling.manager.resources;
 
 import java.util.List;
 import java.util.Map;
 
-import schedframe.resources.computing.ComputingResource;
-import schedframe.resources.units.ResourceUnit;
-import schedframe.resources.units.ResourceUnitName;
+import model.resources.computing.ComputingResource;
+import model.resources.units.ResourceUnit;
+import model.resources.units.ResourceUnitName;
 
 public class ManagedResources {
 	

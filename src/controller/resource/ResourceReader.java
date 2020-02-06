@@ -18,15 +18,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.exolab.castor.types.AnyNode;
 import org.exolab.castor.xml.MarshalException;
 import org.exolab.castor.xml.ValidationException;
 import org.qcg.broker.schemas.exception.UnknownParameter;
 
+import app.ConfigurationOptions;
+import controller.ResourceController;
+import controller.simulator.utils.InstanceFactory;
 import model.Initializable;
 import model.Parameter;
 import model.Parameters;
-import model.ResourceController;
 import model.exceptions.ResourceException;
 import model.resources.Resource;
 import model.resources.StandardResourceType;
@@ -45,8 +46,6 @@ import model.scheduling.queue.TaskQueueList;
 import schemas.Environment;
 import schemas.ManagedComputingResources;
 import schemas.StringValueWithUnit;
-import simulator.ConfigurationOptions;
-import simulator.utils.InstanceFactory;
 
 public class ResourceReader {
 	

@@ -1,6 +1,6 @@
-package schedframe.events;
+package model.events;
 
-import schedframe.resources.computing.ComputingResource;
+import model.resources.computing.ComputingResource;
 
 public class ResourceEventCommand implements EventCommand {
 

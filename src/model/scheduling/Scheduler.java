@@ -3,6 +3,7 @@ package model.scheduling;
 import eduni.simjava.Sim_event;
 import eduni.simjava.Sim_port;
 import eduni.simjava.Sim_system;
+import gridsim.DCWormsTags;
 import gridsim.GridSim;
 import gridsim.GridSimCore;
 import gridsim.GridSimTags;
