@@ -1,31 +1,27 @@
 package controller.simulator;
 
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.security.InvalidParameterException;
 import java.text.NumberFormat;
 import java.util.Calendar;
 import java.util.Date;
-
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileFilter;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.exolab.castor.xml.MarshalException;
 import org.exolab.castor.xml.ValidationException;
 import org.joda.time.DateTimeUtilsExt;
-import org.qcg.broker.schemas.jobdesc.QcgJob;
 
 import app.ConfigurationOptions;
+import controller.ResourceController;
 import controller.resource.ResourceReader;
 import controller.simulator.stats.AccumulatedStatistics;
+import controller.simulator.stats.implementation.DCWormsStatistics;
 import controller.simulator.utils.LogErrStream;
 import controller.workload.WorkloadLoader;
 import controller.workload.QcgSWFJobReader;
+import gridsim.DCWormsUsers;
 import gridsim.GridSimWrapper;
 import model.Initializable;
 import cern.jet.random.Uniform;
@@ -59,16 +55,13 @@ public class DataCenterWorkloadSimulator {
 		if (log.isInfoEnabled())
 			log.info(":: Starting simulation ::");
 
-		File outputDir = null;
-
 		try {
-			outputDir = prepareDirecotry(configurationOptions);
+			prepareDirecotry(configurationOptions);
 		} catch (Exception e) {
 			if (log.isErrorEnabled())
 				log.error("FAILED to create the output path", e);
 			return;
 		}
-
 		accumulatedStatistics = new AccumulatedStatistics(1);
 
 		try {
@@ -203,60 +196,6 @@ public class DataCenterWorkloadSimulator {
 		return statsOutputPathFile;
 	}
 
-	/**
-	 * Removes the given directory no matter if it is empty or non empty. If the given parameter represents a file, it is not deleted. See the description of the return statement.
-	 * 
-	 * @param dirPath the file representing the directory to be deleted.
-	 * @return true, if the given directory with all its contents have been remove; false if deletion of any of files ended with error (all other files are possibly also deleted)
-	 */
-	private static boolean deleteDirectory(File dirPath) {
-		if (dirPath.exists() && dirPath.isDirectory()) {
-			boolean result = true;
-			File[] files = dirPath.listFiles();
-			for (File file : files) {
-				if (file.isFile())
-					result |= file.delete();
-				else
-					result |= deleteDirectory(file);
-			}
-			result |= dirPath.delete();
-			return result;
-		}
-		return false; // it is not a directory
-	}
-
-	/**
-	 * Static method to move a file from given "from" location to "to" location
-	 * 
-	 * @param from from location
-	 * @param to to location
-	 * @return true if the operation succeeded, false otherwise
-	 */
-	private static boolean moveFile(String from, String to) {
-		File fromFile = new File(from);
-		File toFile = new File(to);
-		if (toFile.exists()) {
-			if (!toFile.delete())
-				return false;
-		}
-		if (!fromFile.renameTo(toFile)) {
-			return false;
-		}
-		return true;
-	}
-
-	private void copyFile(File inputFile, File outputFile) throws IOException {
-
-		FileReader in = new FileReader(inputFile);
-		FileWriter out = new FileWriter(outputFile);
-		int c;
-
-		while ((c = in.read()) != -1)
-			out.write(c);
-
-		in.close();
-		out.close();
-	}
 
 	/**
 	 * Returns the accumulated simulation statistics from the last run of the simulator

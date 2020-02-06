@@ -20,5 +20,8 @@
 	<classpathentry kind="lib" path="lib/commons-lang-2.6.jar"/>
 	<classpathentry kind="lib" path="lib/qcg-broker_schemas.jar"/>
 	<classpathentry kind="lib" path="lib/qcg_schemas_tools.jar"/>
+	<classpathentry kind="lib" path="lib/jfreechart-1.0.6.jar"/>
+	<classpathentry kind="lib" path="lib/jcommon-1.0.10.jar"/>
+	<classpathentry kind="lib" path="lib/TimetableChart.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

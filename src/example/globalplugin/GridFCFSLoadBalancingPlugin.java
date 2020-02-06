@@ -7,22 +7,22 @@ import java.util.Properties;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import schedframe.events.scheduling.SchedulingEvent;
-import schedframe.scheduling.SchedulerDescription;
-import schedframe.scheduling.manager.resources.ResourceManager;
-import schedframe.scheduling.manager.tasks.JobRegistry;
-import schedframe.scheduling.plan.SchedulingPlanInterface;
-import schedframe.scheduling.plan.impl.Allocation;
-import schedframe.scheduling.plan.impl.ScheduledTask;
-import schedframe.scheduling.plan.impl.SchedulingPlan;
-import schedframe.scheduling.plugin.grid.Module;
-import schedframe.scheduling.plugin.grid.ModuleList;
-import schedframe.scheduling.plugin.grid.ResourceDiscovery;
-import schedframe.scheduling.queue.QueueDescription;
-import schedframe.scheduling.queue.TaskQueue;
-import schedframe.scheduling.queue.TaskQueueList;
-import schedframe.scheduling.tasks.TaskInterface;
-import schedframe.scheduling.tasks.WorkloadUnit;
+import model.events.scheduling.SchedulingEvent;
+import model.scheduling.SchedulerDescription;
+import model.scheduling.manager.resources.ResourceManager;
+import model.scheduling.manager.tasks.JobRegistry;
+import model.scheduling.plan.SchedulingPlanInterface;
+import model.scheduling.plan.impl.Allocation;
+import model.scheduling.plan.impl.ScheduledTask;
+import model.scheduling.plan.impl.SchedulingPlan;
+import model.scheduling.plugin.grid.Module;
+import model.scheduling.plugin.grid.ModuleList;
+import model.scheduling.plugin.grid.ResourceDiscovery;
+import model.scheduling.queue.QueueDescription;
+import model.scheduling.queue.TaskQueue;
+import model.scheduling.queue.TaskQueueList;
+import model.scheduling.tasks.TaskInterface;
+import model.scheduling.tasks.WorkloadUnit;
 
 public class GridFCFSLoadBalancingPlugin extends BaseGlobalPlugin {
 

@@ -1,16 +1,16 @@
 package example.globalplugin;
 
-import schedframe.Parameters;
-import schedframe.PluginConfiguration;
-import schedframe.events.scheduling.SchedulingEventType;
-import schedframe.scheduling.TaskList;
-import schedframe.scheduling.manager.resources.ResourceManager;
-import schedframe.scheduling.plugin.SchedulingPluginConfiguration;
-import schedframe.scheduling.plugin.grid.GlobalSchedulingPlugin;
-import schedframe.scheduling.plugin.grid.ModuleList;
-import schedframe.scheduling.queue.TaskQueue;
-import schedframe.scheduling.queue.TaskQueueList;
-import schedframe.scheduling.tasks.TaskInterface;
+import model.Parameters;
+import model.PluginConfiguration;
+import model.events.scheduling.SchedulingEventType;
+import model.scheduling.TaskList;
+import model.scheduling.manager.resources.ResourceManager;
+import model.scheduling.plugin.SchedulingPluginConfiguration;
+import model.scheduling.plugin.grid.GlobalSchedulingPlugin;
+import model.scheduling.plugin.grid.ModuleList;
+import model.scheduling.queue.TaskQueue;
+import model.scheduling.queue.TaskQueueList;
+import model.scheduling.tasks.TaskInterface;
 import schemas.StringValueWithUnit;
 
 public abstract class BaseGlobalPlugin implements GlobalSchedulingPlugin {
