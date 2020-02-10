@@ -5,12 +5,17 @@ import eduni.simjava.Sim_system;
 import gridsim.GridSim;
 import gridsim.GridSimRandom;
 import gridsim.GridSimShutdown;
-
+import model.scheduling.policy.local.LocalManagementSystem;
 
 import java.util.Calendar;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 public class GridSimWrapper extends GridSim {
 
+	private static Log log = LogFactory.getLog(GridSimWrapper.class);
+	
 	protected GridSimWrapper(String name) throws Exception {
 		super(name);
 
@@ -43,7 +48,7 @@ public class GridSimWrapper extends GridSim {
 
     public static void startSimulation() throws NullPointerException
     {
-        System.out.println("Starting GridSim version 4.0");
+        log.info("Starting GridSim version 4.0");
         try {
             Sim_system.run();
         }

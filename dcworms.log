@@ -1,0 +1,116 @@
+0    [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - :: Starting simulation ::
+6    [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - READING SCENARIO ::
+13   [JavaFX Application Thread] DEBUG controller.simulator.DataCenterWorkloadSimulator  - Shuffled initial seed: 2005770669
+23   [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - :: Starting simulation run: "Simulation 1" ::
+23   [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - :: In the the mode of 
+222  [JavaFX Application Thread] DEBUG org.joda.time.VCMilisProvider  - Cut start time milliseconds Mon Nov 03 07:00:00 CST 2008 (1225666800000) to Mon Nov 03 07:00:00 CST 2008 (1225666800000)
+222  [JavaFX Application Thread] INFO  org.joda.time.DateTimeUtilsExt  - org.joda.time PACKAGE IS USING SIMJAVA VIRTUAL CLOCK TO DETERMINE CURRENT TIME.
+366  [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - started creating environment description
+370  [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - finished creating environment description
+370  [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - started creating resources
+385  [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - finished creating resource
+385  [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - started creating schedulers
+405  [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - finished creating schedulers
+409  [JavaFX Application Thread] INFO  gridsim.GridSimWrapper  - Starting GridSim version 4.0
+613  [Thread-12] ERROR controller.simulator.DataCenterWorkloadSimulator  - Warning: Could not get charToByteConverterClass!
+613  [Thread-12] ERROR controller.simulator.DataCenterWorkloadSimulator  - 
+
+727  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 1 at 2008-11-03T07:00:00.000+08:00
+729  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 2 at 2008-11-03T07:00:00.000+08:00
+729  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 3 at 2008-11-03T07:00:00.000+08:00
+730  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 4 at 2008-11-03T07:00:00.000+08:00
+730  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 5 at 2008-11-03T07:00:00.000+08:00
+730  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 6 at 2008-11-03T07:00:00.000+08:00
+730  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 7 at 2008-11-03T07:00:00.000+08:00
+730  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 8 at 2008-11-03T07:00:00.000+08:00
+738  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 1_1 starts executing on 2008-11-03T07:00:00.000+08:00 will finish after 7200
+741  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.16666666666666666
+741  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 2_2 starts executing on 2008-11-03T07:00:00.000+08:00 will finish after 7200
+742  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.3333333333333333
+742  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 3_3 starts executing on 2008-11-03T07:00:00.000+08:00 will finish after 7200
+743  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.5
+743  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 4_4 starts executing on 2008-11-03T07:00:00.000+08:00 will finish after 7200
+743  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.6666666666666666
+743  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 5_5 starts executing on 2008-11-03T07:00:00.000+08:00 will finish after 7200
+744  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.8333333333333334
+744  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 6_6 starts executing on 2008-11-03T07:00:00.000+08:00 will finish after 10800
+745  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 1.0
+745  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Task 7_7 requires more resources than is available at this moment.
+745  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Task 7_7 requires more resources than is available at this moment.
+745  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Task 8_8 requires more resources than is available at this moment.
+746  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 9 at 2008-11-03T08:00:00.000+08:00
+746  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Task 7_7 requires more resources than is available at this moment.
+746  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Task 8_8 requires more resources than is available at this moment.
+746  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Task 9_9 requires more resources than is available at this moment.
+747  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 1_1 finished execution on 2008-11-03T09:00:00.000+08:00
+747  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.8333333333333334
+747  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 7_7 starts executing on 2008-11-03T09:00:00.000+08:00 will finish after 14400
+748  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 1.0
+748  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Task 8_8 requires more resources than is available at this moment.
+748  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Task 9_9 requires more resources than is available at this moment.
+748  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 2_2 finished execution on 2008-11-03T09:00:00.000+08:00
+748  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.8333333333333334
+748  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 8_8 starts executing on 2008-11-03T09:00:00.000+08:00 will finish after 28800
+749  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 1.0
+749  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Task 9_9 requires more resources than is available at this moment.
+749  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 3_3 finished execution on 2008-11-03T09:00:00.000+08:00
+749  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.8333333333333334
+749  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 9_9 starts executing on 2008-11-03T09:00:00.000+08:00 will finish after 7200
+750  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 1.0
+750  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 4_4 finished execution on 2008-11-03T09:00:00.000+08:00
+750  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.8333333333333334
+750  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 5_5 finished execution on 2008-11-03T09:00:00.000+08:00
+750  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.6666666666666666
+751  [Thread-12] INFO  gridsim.DCWormsUsers  - 7% 
+751  [Thread-12] INFO  gridsim.DCWormsUsers  - 15% 
+751  [Thread-12] INFO  gridsim.DCWormsUsers  - 23% 
+751  [Thread-12] INFO  gridsim.DCWormsUsers  - 30% 
+751  [Thread-12] INFO  gridsim.DCWormsUsers  - 38% 
+752  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 6_6 finished execution on 2008-11-03T10:00:00.000+08:00
+752  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.5
+752  [Thread-12] INFO  gridsim.DCWormsUsers  - 46% 
+753  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 9_9 finished execution on 2008-11-03T11:00:00.000+08:00
+753  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.3333333333333333
+753  [Thread-12] INFO  gridsim.DCWormsUsers  - 53% 
+754  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 10 at 2008-11-03T13:00:00.000+08:00
+754  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 7_7 finished execution on 2008-11-03T13:00:00.000+08:00
+754  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.16666666666666666
+754  [Thread-12] INFO  gridsim.DCWormsUsers  - 61% 
+754  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 10_10 starts executing on 2008-11-03T13:00:00.000+08:00 will finish after 21600
+755  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.3333333333333333
+755  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 11 at 2008-11-03T14:00:00.000+08:00
+756  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 11_11 starts executing on 2008-11-03T14:00:00.000+08:00 will finish after 25200
+756  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.5
+757  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 8_8 finished execution on 2008-11-03T17:00:00.000+08:00
+757  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.3333333333333333
+757  [Thread-12] INFO  gridsim.DCWormsUsers  - 69% 
+758  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 12 at 2008-11-03T18:00:00.000+08:00
+758  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 12_12 starts executing on 2008-11-03T18:00:00.000+08:00 will finish after 14400
+758  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.5
+759  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 10_10 finished execution on 2008-11-03T19:00:00.000+08:00
+759  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.3333333333333333
+759  [Thread-12] INFO  gridsim.DCWormsUsers  - 76% 
+760  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 13 at 2008-11-03T20:00:00.000+08:00
+760  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 13_13 starts executing on 2008-11-03T20:00:00.000+08:00 will finish after 10800
+760  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.5
+761  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 11_11 finished execution on 2008-11-03T21:00:00.000+08:00
+761  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.3333333333333333
+761  [Thread-12] INFO  gridsim.DCWormsUsers  - 84% 
+761  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 12_12 finished execution on 2008-11-03T22:00:00.000+08:00
+761  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.16666666666666666
+762  [Thread-12] INFO  gridsim.DCWormsUsers  - 92% 
+762  [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 13_13 finished execution on 2008-11-03T23:00:00.000+08:00
+762  [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+762  [Thread-12] INFO  gridsim.DCWormsUsers  - 100% 
+762  [Thread-12] INFO  gridsim.DCWormsUsers  - Users: Received all 13 jobs and 13 tasks
+762  [Thread-12] INFO  gridsim.DCWormsUsers  - Missing tasks: 
+770  [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - Generating statistics...
+770  [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - gatherResourceStatistics
+773  [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - time in sec: 0
+773  [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - gatherTaskStatistics
+784  [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - time in sec: 0
+784  [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - saveSimulationStatistics
+784  [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - time in sec: 0
+784  [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - The simulation run took 0 seconds
+784  [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - :: Finished simulation run: "Simulation 1" ::
+784  [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - Done :: Simulation has finished 1 simulation runs ::

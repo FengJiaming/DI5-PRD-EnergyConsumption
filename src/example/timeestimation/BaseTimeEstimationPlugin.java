@@ -1,8 +1,8 @@
 package example.timeestimation;
 
-import schedframe.Parameters;
-import schedframe.PluginConfiguration;
-import schedframe.scheduling.plugin.estimation.ExecutionTimeEstimationPlugin;
+import model.Parameters;
+import model.PluginConfiguration;
+import model.scheduling.plugin.estimation.ExecutionTimeEstimationPlugin;
 
 public abstract class BaseTimeEstimationPlugin implements ExecutionTimeEstimationPlugin{
 	

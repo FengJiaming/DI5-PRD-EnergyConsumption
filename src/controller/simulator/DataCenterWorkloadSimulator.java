@@ -49,12 +49,11 @@ public class DataCenterWorkloadSimulator {
 
 	public void run(ConfigurationOptions configurationOptions) {
 		System.setErr(new PrintStream(new LogErrStream(log)));
-
 		int noOfSimulations = 1; // default value is one
 
 		if (log.isInfoEnabled())
 			log.info(":: Starting simulation ::");
-
+		System.out.println("Starting simulation");
 		try {
 			prepareDirecotry(configurationOptions);
 		} catch (Exception e) {
@@ -70,11 +69,13 @@ public class DataCenterWorkloadSimulator {
 		} catch (Exception e) {
 			if (log.isErrorEnabled())
 				log.error("ERROR in simulation run \""  + "\":", e);
+			System.out.println("ERROR in simulation run :" + e.getMessage());
+			e.printStackTrace();
 		}
 
 		if (log.isInfoEnabled())
 			log.info("Done :: Simulation has finished " + noOfSimulations + " simulation runs ::");
-
+		System.out.println("Simulation has finished");
 		System.out.flush();
 		System.err.flush();
 	}
@@ -143,7 +144,7 @@ public class DataCenterWorkloadSimulator {
 		long duration = (stopSimulation - startSimulation) / 1000;
 		if (log.isInfoEnabled())
 			log.info("The simulation run took " + duration + " seconds");
-
+		
 		// if necessary generate gifs from sjvg - need to rewrite the SJVG
 		// classes for public methods
 		if (log.isInfoEnabled())

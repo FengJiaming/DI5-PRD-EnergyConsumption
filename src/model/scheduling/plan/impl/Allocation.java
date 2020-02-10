@@ -3,6 +3,8 @@ package model.scheduling.plan.impl;
 import org.qcg.broker.schemas.schedulingplan.AllocationChoice;
 import org.qcg.broker.schemas.schedulingplan.Node;
 
+import controller.simulator.utils.ResourceManagerUtils;
+
 import java.io.StringWriter;
 import java.util.List;
 import java.util.Map;

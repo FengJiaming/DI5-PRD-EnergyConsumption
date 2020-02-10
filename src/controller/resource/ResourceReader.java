@@ -1,5 +1,6 @@
 package controller.resource;
 
+import gridsim.DCWormsConstants;
 import gridsim.ResourceCalendar;
 
 import java.io.File;
@@ -18,6 +19,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.exolab.castor.xml.MarshalException;
 import org.exolab.castor.xml.ValidationException;
 import org.qcg.broker.schemas.exception.UnknownParameter;
@@ -41,6 +44,7 @@ import model.scheduling.Scheduler;
 import model.scheduling.manager.resources.ManagedResources;
 import model.scheduling.plugin.SchedulingPlugin;
 import model.scheduling.plugin.estimation.ExecutionTimeEstimationPlugin;
+import model.scheduling.policy.local.LocalManagementSystem;
 import model.scheduling.queue.TaskQueue;
 import model.scheduling.queue.TaskQueueList;
 import schemas.Environment;
@@ -48,6 +52,8 @@ import schemas.ManagedComputingResources;
 import schemas.StringValueWithUnit;
 
 public class ResourceReader {
+	
+	private Log log = LogFactory.getLog(ResourceReader.class);
 	
 	protected String resDescFileName;
 
@@ -73,17 +79,17 @@ public class ResourceReader {
 		File file = new File(resDescFileName);
 		Environment env = Environment.unmarshal(new FileReader(file));
 		
-		System.out.println("started creating environment description");
+		log.info("started creating environment description");
 		List<ComputingResourceDescription> mainCompResDescList = createEnvironmentDescription(env);
-		System.out.println("finished creating environment description");
+		log.info("finished creating environment description");
 
-		System.out.println("started creating resources");
+		log.info("started creating resources");
 		List<ComputingResource> computingResources = createResources(mainCompResDescList);
-		System.out.println("finished creating resource");
+		log.info("finished creating resource");
 
-		System.out.println("started creating schedulers");
+		log.info("started creating schedulers");
 		Scheduler mainScheduler = createSchedulers(env.getResources().getScheduler(), computingResources);
-		System.out.println("finished creating schedulers");
+		log.info("finished creating schedulers");
 
 		ResourceController rc = new ResourceController(mainScheduler, computingResources);
 		Collections.sort(toInit, new ResourceTypeComparator(new ArrayList<String>(compResLayers)));

@@ -1,4 +1,4 @@
-package schedframe.scheduling.plan.impl;
+package model.scheduling.plan.impl;
 
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import org.exolab.castor.xml.MarshalException;
 import org.exolab.castor.xml.ValidationException;
 
-import schedframe.scheduling.plan.ScheduledTaskInterface;
-import schedframe.scheduling.plan.SchedulingPlanInterface;
+import model.scheduling.plan.ScheduledTaskInterface;
+import model.scheduling.plan.SchedulingPlanInterface;
 
 
 public class SchedulingPlan implements SchedulingPlanInterface<org.qcg.broker.schemas.schedulingplan.SchedulingPlan> {

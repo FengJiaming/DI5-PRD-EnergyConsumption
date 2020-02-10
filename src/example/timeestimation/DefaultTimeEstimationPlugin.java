@@ -3,20 +3,14 @@ package example.timeestimation;
 
 import java.util.Map;
 
-import dcworms.schedframe.scheduling.ExecTask;
+import gridsim.schedframe.ExecTask;
+import model.events.scheduling.SchedulingEvent;
+import model.resources.units.PEUnit;
+import model.resources.units.ResourceUnit;
+import model.resources.units.ResourceUnitName;
+import model.resources.units.StandardResourceUnitName;
 
-import schedframe.events.scheduling.SchedulingEvent;
-import schedframe.resources.units.PEUnit;
-import schedframe.resources.units.ResourceUnit;
-import schedframe.resources.units.ResourceUnitName;
-import schedframe.resources.units.StandardResourceUnitName;
 
-
-/**
- * 
- * @author Marcin Krystek && Wojciech Piatek
- *
- */
 
 public class DefaultTimeEstimationPlugin extends BaseTimeEstimationPlugin{
 

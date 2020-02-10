@@ -1,0 +1,5 @@
+<hostParameters xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:noNamespaceSchemaLocation="/Users/marcin/workspace/brain/symulator/gssim_current/simulator/schemas/grms3/GrmsHostParametersSchema.xsd">
+	<resources>
+RESOURCES_DETAILS	</resources>
+</hostParameters>

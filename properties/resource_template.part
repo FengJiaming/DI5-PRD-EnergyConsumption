@@ -1,0 +1,13 @@
+		<computingResource  resourceId="RESOURCE_ID">
+			<machineParameters>
+				<hostParameter name="cpucount">
+					<paramValue>128</paramValue>
+				</hostParameter>
+				<hostParameter name="cpuspeed">
+					<paramValue>1</paramValue>
+				</hostParameter>
+				<otherParameter name="reservation">
+					<paramValue>true</paramValue>
+				</otherParameter>
+			</machineParameters>
+		</computingResource>

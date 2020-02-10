@@ -252,6 +252,7 @@ public class SWFParser extends RandomAccessFile {
 	public String getFileName(){
 		return this.fileName;
 	}
+	
 	public String[] readTask(String id) throws IOException{
 		String fields[] = null;
 		boolean found = false;

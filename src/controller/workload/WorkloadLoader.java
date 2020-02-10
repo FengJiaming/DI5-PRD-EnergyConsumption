@@ -13,6 +13,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathExpressionException;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.exolab.castor.xml.MarshalException;
@@ -47,6 +50,13 @@ public class WorkloadLoader {
 		this.generatedJobsCnt = 0;
 		this.generatedTasksCnt = 0;
 		this.jobGridletsMap = new TreeMap<String, JobDescription>();
+		try {
+			this.xsltTransformation = new XsltTransformations();
+		} catch (XPathExpressionException e) {
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		}
 	}
 
 	protected JobDescription createJobDescription(String jobDesc, long puSpeed) throws IOException {
@@ -109,7 +119,7 @@ public class WorkloadLoader {
 	public boolean load() throws IOException, MarshalException, ValidationException {
 
 		// prepare local swf parser
-		this.localWAParser = this.waReader.getParser();
+		this.localWAParser = new SWFParser(this.waReader.getParser().getFileName());
 		this.localWAParser.loadHeader();
 
 		long puSpeed = getPUSpeed();

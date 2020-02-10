@@ -1,8 +1,8 @@
 package model.scheduling.plan.impl;
 
 import model.scheduling.plan.ComputingResourceParameterTypeInterface;
-import schedframe.scheduling.plan.ComputingResourceTypeItemInterface;
-import schedframe.scheduling.plan.OtherParameterTypeInterface;
+import model.scheduling.plan.ComputingResourceTypeItemInterface;
+import model.scheduling.plan.OtherParameterTypeInterface;
 
 public class ComputingResourceTypeItem 
 			implements ComputingResourceTypeItemInterface <org.qcg.broker.schemas.schedulingplan.ComputingResourceTypeItem> {
@@ -32,12 +32,12 @@ public class ComputingResourceTypeItem
 
 	@SuppressWarnings("unchecked")
 	public ComputingResourceParameterTypeInterface<org.qcg.broker.schemas.schedulingplan.ComputingResourceParameterType> getHostParameter() {
-		return new schedframe.scheduling.plan.impl.ComputingResourceParameterType(ti.getHostParameter());
+		return new model.scheduling.plan.impl.ComputingResourceParameterType(ti.getHostParameter());
 	}
 
 	@SuppressWarnings("unchecked")
 	public OtherParameterTypeInterface<org.qcg.broker.schemas.schedulingplan.OtherParameterType> getOtherParameter() {
-		return new schedframe.scheduling.plan.impl.OtherParameterType(ti.getOtherParameter());
+		return new model.scheduling.plan.impl.OtherParameterType(ti.getOtherParameter());
 	}
 
 	public <ComputingResourceParameterType_> void setHostParameter(

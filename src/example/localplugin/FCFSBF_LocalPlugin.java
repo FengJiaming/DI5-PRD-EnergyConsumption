@@ -1,14 +1,14 @@
 package example.localplugin;
 
-import gridsim.dcworms.DCWormsTags;
-import schedframe.events.scheduling.SchedulingEvent;
-import schedframe.scheduling.manager.resources.ResourceManager;
-import schedframe.scheduling.manager.tasks.JobRegistry;
-import schedframe.scheduling.plan.impl.SchedulingPlan;
-import schedframe.scheduling.plugin.grid.ModuleList;
-import schedframe.scheduling.queue.TaskQueue;
-import schedframe.scheduling.queue.TaskQueueList;
-import schedframe.scheduling.tasks.TaskInterface;
+import gridsim.DCWormsTags;
+import model.events.scheduling.SchedulingEvent;
+import model.scheduling.manager.resources.ResourceManager;
+import model.scheduling.manager.tasks.JobRegistry;
+import model.scheduling.plan.impl.SchedulingPlan;
+import model.scheduling.plugin.grid.ModuleList;
+import model.scheduling.queue.TaskQueue;
+import model.scheduling.queue.TaskQueueList;
+import model.scheduling.tasks.TaskInterface;
 
 public class FCFSBF_LocalPlugin extends BaseLocalSchedulingPlugin {
 

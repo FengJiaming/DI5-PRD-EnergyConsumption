@@ -15,7 +15,6 @@ public class mainApplication extends Application {
 
     private Stage primaryStage;
     private AnchorPane mainLayout;
-    private MainViewController mainViewController = new MainViewController();
     
     @FXML
     private TextField DEBBPath;
@@ -42,6 +41,8 @@ public class mainApplication extends Application {
             Scene scene = new Scene(mainLayout);
             
             primaryStage.setScene(scene);
+            MainViewController controller = loader.getController();
+            controller.init();
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();

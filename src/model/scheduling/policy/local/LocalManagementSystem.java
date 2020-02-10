@@ -135,6 +135,7 @@ public class LocalManagementSystem extends AbstractManagementSystem {
 				sendFinishedWorkloadUnit(execTask);
 				log.debug(execTask.getJobId() + "_" + execTask.getId() + " finished execution on " + new DateTime());
 				log.info(DCWormsConstants.USAGE_MEASURE_NAME + ": " + calculateTotalLoad(jobRegistry.getRunningTasks().size()));
+				System.out.println(DCWormsConstants.USAGE_MEASURE_NAME + ": " + calculateTotalLoad(jobRegistry.getRunningTasks().size()));
 				if (pluginSupportsEvent(tag)) {
 					SchedulingEvent event = new TaskFinishedEvent(execTask.getJobId(), execTask.getId());
 					SchedulingPlanInterface<?> decision = schedulingPlugin.schedule(event,
@@ -228,7 +229,8 @@ public class LocalManagementSystem extends AbstractManagementSystem {
 				execTimeEstimationPlugin.execTimeEstimation(event, task, choosenResources, exec.getCompletionPercentage())).intValue();
 		log.debug(task.getJobId() + "_" + task.getId() + " starts executing on " + new DateTime()
 				+ " will finish after " + time);
-
+		System.out.println(task.getJobId() + "_" + task.getId() + " starts executing on " + new DateTime()
+				+ " will finish after " + time);
 		if (time < 0.0)
 			return;
 

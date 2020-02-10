@@ -1,0 +1,31 @@
+<tns:WorkloadConfiguration 
+	xmlns:tns="http://www.man.poznan.pl/WorkloadSchema" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ 	xsi:noNameSpaceSchemaLocation="/Users/marcin/workspace/brain/symulator/gssim/simulator/schemas/WorkloadSchema3g.xsd">
+ 	
+ 	 	
+  	<SimulationStartTime>1970-01-01T01:00:00</SimulationStartTime>
+ 
+	<JobCount avg="MAX_TASKS_NO" distribution="constant" seed="21"/>
+ 
+	<TaskCount avg="1" distribution="constant" seed="21"/>
+ 
+	<TaskLength id="tl" avg="1200" min="100" max="1800" stdev="2000.0" distribution="normal" seed="21"/>
+ 
+	<JobPackageLength avg="2" min="1" max="10" stdev="5" distribution="normal" seed="21"/>
+ 
+	<JobInterval avg="600" min="0" max="1200" stdev="1000" distribution="normal" seed="21"/>
+ 
+ 
+	<ComputingResourceHostParameter metric="cpucount">
+		<value id="cpucnt" avg="6" min="1" max="12" stdev="10.0" distribution="normal" seed="21"/>
+	</ComputingResourceHostParameter>
+  
+  	<ExecutionTime>
+  		<execDuration id="exec_duration" refElementId="tl"  expr="x"/>
+  		<periodStart avg="600" min="0" max="1200" stdev="2000" distribution="normal" seed="21"/>
+  		<periodEnd id="period_duration" refElementId="exec_duration"
+  					avg="900" min="700" max="1200" stdev="250" distribution="normal" expr="x" seed="17"/>
+  	</ExecutionTime>
+	 
+</tns:WorkloadConfiguration>

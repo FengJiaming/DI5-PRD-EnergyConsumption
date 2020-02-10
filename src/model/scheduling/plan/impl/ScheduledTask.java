@@ -1,4 +1,4 @@
-package schedframe.scheduling.plan.impl;
+package model.scheduling.plan.impl;
 
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -7,10 +7,10 @@ import org.exolab.castor.xml.MarshalException;
 import org.exolab.castor.xml.ValidationException;
 import org.qcg.broker.schemas.schedulingplan.types.AllocationStatus;
 
-import schedframe.scheduling.plan.AllocationInterface;
-import schedframe.scheduling.plan.ScheduledTaskInterface;
-import schedframe.scheduling.plan.ScheduledTimeInterface;
-import schedframe.scheduling.tasks.TaskInterface;
+import model.scheduling.plan.AllocationInterface;
+import model.scheduling.plan.ScheduledTaskInterface;
+import model.scheduling.plan.ScheduledTimeInterface;
+import model.scheduling.tasks.TaskInterface;
 
 public class ScheduledTask implements ScheduledTaskInterface<org.qcg.broker.schemas.schedulingplan.Task> {
 
@@ -64,7 +64,7 @@ public class ScheduledTask implements ScheduledTaskInterface<org.qcg.broker.sche
 	@SuppressWarnings("unchecked")
 	public AllocationInterface<org.qcg.broker.schemas.schedulingplan.Allocation> getAllocation(int index)
 			throws IndexOutOfBoundsException {
-		return new schedframe.scheduling.plan.impl.Allocation(t.getAllocation(index));
+		return new model.scheduling.plan.impl.Allocation(t.getAllocation(index));
 	}
 
 	@SuppressWarnings("unchecked")
@@ -72,9 +72,9 @@ public class ScheduledTask implements ScheduledTaskInterface<org.qcg.broker.sche
 		org.qcg.broker.schemas.schedulingplan.Allocation tab[] = t.getAllocation();
 		if(tab == null) return null;
 		
-		schedframe.scheduling.plan.impl.Allocation ret[] = new schedframe.scheduling.plan.impl.Allocation[tab.length];
+		model.scheduling.plan.impl.Allocation ret[] = new model.scheduling.plan.impl.Allocation[tab.length];
 		for(int i = 0; i < tab.length; i++){
-			ret[i] = new schedframe.scheduling.plan.impl.Allocation(tab[i]);
+			ret[i] = new model.scheduling.plan.impl.Allocation(tab[i]);
 		}
 		return ret;
 	}
@@ -118,7 +118,7 @@ public class ScheduledTask implements ScheduledTaskInterface<org.qcg.broker.sche
 
 	@SuppressWarnings("unchecked")
 	public AllocationInterface<org.qcg.broker.schemas.schedulingplan.Allocation> removeAllocationAt(int index) {
-		return new schedframe.scheduling.plan.impl.Allocation(t.removeAllocationAt(index));
+		return new model.scheduling.plan.impl.Allocation(t.removeAllocationAt(index));
 	}
 
 	public <Allocation_> void setAllocation(int index,
