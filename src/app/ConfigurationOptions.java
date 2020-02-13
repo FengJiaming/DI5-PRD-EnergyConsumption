@@ -8,13 +8,6 @@ import java.util.MissingResourceException;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
-/**
- * This aim of this class is to store all the configuration options passed to the program to steer its functionality. <br>
- * As a general contract of this class, all fields, that store a path name to a folder will always be terminated with {@link File#separator} string.
- * 
- * @author Stanislaw Szczepanowski
- * 
- */
 public class ConfigurationOptions {
 
 	public String statsOutputSubfolderNameCreate = null;
@@ -40,9 +33,8 @@ public class ConfigurationOptions {
 
 		co.inputWorkloadFileName = workloadPath;
 		
-		co.outputFolder = "../../result";
-
-		co.statsOutputSubfolderNameCreate = "../../result/stats";
+//		co.outputFolder = "../result";
+		co.statsOutputSubfolderNameCreate ="/result/stats";
 		co.createjobsstatistics = true;
 		co.createsimulationstatistics = true;
 		co.numberOfSimulations = 1;

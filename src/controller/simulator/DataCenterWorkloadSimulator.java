@@ -171,7 +171,11 @@ public class DataCenterWorkloadSimulator {
 		if (log.isInfoEnabled())
 			log.info("READING SCENARIO ::");
 		String prefix = null;
-		prefix = System.getProperty("user.dir");
+		if (options.inputWorkloadFileName != null) {
+			prefix = new File(options.inputWorkloadFileName).getParent();
+		} else {
+			prefix = System.getProperty("user.dir");
+		}
 		statsOutputPath = prefix + File.separator + options.statsOutputSubfolderNameCreate;
 		statsOutputPath += File.separator;
 

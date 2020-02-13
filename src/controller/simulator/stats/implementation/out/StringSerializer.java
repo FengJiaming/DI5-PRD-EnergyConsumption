@@ -56,10 +56,6 @@ public class StringSerializer extends AbstractStringSerializer {
 		buffer.append(fieldSeparator);
 		buffer.append(taskStats.getTaskID());
 		buffer.append(fieldSeparator);
-		buffer.append(taskStats.getUserDN());
-		buffer.append(fieldSeparator);
-		buffer.append(taskStats.getResName());
-		buffer.append(fieldSeparator);
 		buffer.append(taskStats.getCpuCnt());
 		buffer.append(fieldSeparator);
 		buffer.append(Double.valueOf(taskStats.getExecStartDate()).longValue());
@@ -67,10 +63,6 @@ public class StringSerializer extends AbstractStringSerializer {
 		buffer.append(Double.valueOf(taskStats.getExecFinishDate()).longValue());
 		buffer.append(fieldSeparator);
 		buffer.append(Double.valueOf(taskStats.getExecEndDate()).longValue());
-		buffer.append(fieldSeparator);
-		buffer.append(Double.valueOf(taskStats.getGB_SubDate()).longValue());
-		buffer.append(fieldSeparator);
-		buffer.append(Double.valueOf(taskStats.getLB_SubDate()).longValue());
 		buffer.append(fieldSeparator);
 		if (this.useExtended) {
 			buffer.append(Double.valueOf(taskStats.getCompletionTime())
@@ -87,19 +79,6 @@ public class StringSerializer extends AbstractStringSerializer {
 			buffer.append(Double.valueOf(taskStats.getFlowTime()).longValue());
 			buffer.append(fieldSeparator);
 			buffer.append(Double.valueOf(taskStats.getWaitingTime()).longValue());
-			buffer.append(fieldSeparator);
-			buffer.append(Double.valueOf(taskStats.getGQ_WaitingTime())
-					.longValue());
-			buffer.append(fieldSeparator);
-			buffer.append(Double.valueOf(taskStats.getLateness()).longValue());
-			buffer.append(fieldSeparator);
-			buffer.append(Double.valueOf(taskStats.getTardiness()).longValue());
-			buffer.append(fieldSeparator);
-			buffer.append(Double.valueOf(taskStats.getReservationStartDate())
-					.longValue());
-			buffer.append(fieldSeparator);
-			buffer.append(Double.valueOf(taskStats.getReservationFinishDate())
-					.longValue());
 			buffer.append(fieldSeparator);
 			buffer.append(taskStats.getProcessorsName());
 			buffer.append(fieldSeparator);

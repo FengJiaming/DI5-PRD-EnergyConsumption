@@ -25,11 +25,11 @@
                   <ComboBox layoutX="24.0" layoutY="233.0" prefHeight="23.0" prefWidth="206.0">
                   	<items>
         				<FXCollections fx:factory="observableArrayList">
-            				<String fx:value="FCFS_LoadBalancing" />
+            				<String fx:value="FCFS" />
         				</FXCollections>
     				</items>
     				<value>
-   						<String fx:value="FCFS_LoadBalancing" />
+   						<String fx:value="FCFS" />
    					</value>
     			  </ComboBox>
                </children>

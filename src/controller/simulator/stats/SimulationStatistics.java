@@ -35,12 +35,6 @@ public interface SimulationStatistics {
 	
 	public void gatherTaskStatistics();
 	
-
-	
-	public void saveSimulationStatistics();
-	
-
-
 	public String getOutputFolderName();
 
 	public GSSAccumulator getStats(String resourcesTotalLoad);

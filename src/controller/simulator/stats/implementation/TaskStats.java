@@ -15,12 +15,10 @@ public class TaskStats implements StatsInterface {
 	protected Executable task;
 	protected long startSimulationTimeSek;
 	
-	private String headers[] = { "JobID", "TaskID", "UserDN", "ResName", "CpuCnt",
-			"ExecStartDate", "ExecFinishDate", "ExecEndDate", "GB_SubDate",
-			"LB_SubDate", "CompletionTime", "ExecStartTime",
+	private String headers[] = { "JobID", "TaskID", "CpuCnt",
+			"ExecStartDate", "ExecFinishDate", "ExecEndDate", "CompletionTime", "ExecStartTime",
 			"ExecutionTime", "ReadyTime", "StartTime", "FlowTime",
-			"WaitingTime", "GQ_WaitingTime", "Lateness", "Tardiness",
-			"ReservStartDate", "ReservFinishDate", "ProcessorName", "Energy"};
+			"WaitingTime", "ProcessorName"};
 
 	public TaskStats(Executable task, long startSimulationTime) {
 		this.task = task;

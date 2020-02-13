@@ -243,7 +243,7 @@ public class ResourceReader {
 				}
 			}
 			//necessary if children list isn't initialized in Scheduler
-			//parentScheduler.init();
+//			parentScheduler.init();
 		}
 
 		//TODO - refactor (remove - create scheduler on the basis of resource description)
@@ -264,7 +264,7 @@ public class ResourceReader {
 				mainScheduler.addChild(lr);
 			}
 			//necessary if children list isn't initialized in Scheduler
-			//mainScheduler.init();
+//			mainScheduler.init(managedResources);
 		}
 		return mainScheduler;
 	}

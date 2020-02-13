@@ -70,7 +70,7 @@ public class DCWormsStatistics implements SimulationStatistics {
 
 	protected static final String STATS_FILE_NAME_PREFIX = "Stats_";
 
-	protected static final String TASK_SEPARATOR = ";";
+	protected static final String TASK_SEPARATOR = "	";
 	protected static final String JOB_SEPARATOR = ";";
 
 	protected String outputFolderName;
@@ -142,11 +142,6 @@ public class DCWormsStatistics implements SimulationStatistics {
 		e = System.currentTimeMillis();
 		log.info("time in sec: " + ((e - s) / MILLI_SEC));
 
-		log.info("saveSimulationStatistics");
-		s = System.currentTimeMillis();
-		saveSimulationStatistics();
-		e = System.currentTimeMillis();
-		log.info("time in sec: " + ((e - s) / MILLI_SEC));
 	}
 
 
@@ -160,32 +155,18 @@ public class DCWormsStatistics implements SimulationStatistics {
 		statsData = new HashMap<String, GSSAccumulator>();
 	}
 
-	public void saveSimulationStatistics() {
-		PrintStream simulationStatsFile = null;
-		if (configuration.createsimulationstatistics) {
-			try {
-				File file = new File(outputFolderName + STATS_FILE_NAME_PREFIX + simulationIdentifier + "_"
-						+ SIMULATION_STATISTICS_OUTPUT_FILE_NAME);
-				simulationStatsFile = new PrintStream(new FileOutputStream(file));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		if (simulationStatsFile != null) {
-			Object txt = accStats.serialize(this.serializer);
-			simulationStatsFile.println(txt);
-		}
-
-		if (simulationStatsFile != null) {
-			simulationStatsFile.close();
-		}
-	}
 
 	/************* RESOURCE STATISTICS SECTION **************/
 	private void gatherResourceStatistics() {
 		
 		HashMap<String, List<Stats>> type_stats = new HashMap<String, List<Stats>>();
 		
+		for(String resourceName: resourceController.getComputingResourceLayers()){
+			List<Stats> cStats = new ArrayList<Stats>();
+			cStats.add(Stats.textLoad);
+			cStats.add(Stats.textEnergy);
+			type_stats.put(resourceName, cStats);
+		}		
 		PrintStream resourceLoadStatsFile = null;
 		try {
 			File file = new File(outputFolderName + STATS_FILE_NAME_PREFIX
@@ -542,18 +523,11 @@ public class DCWormsStatistics implements SimulationStatistics {
 	
 	
 
-	
-	
-	
-	
-
-
 	/************* TASK STATISTICS SECTION **************/
 	public void gatherTaskStatistics() {
 
 		List<JobInterface<?>> jobs = users.getAllReceivedJobs();
 		Collections.sort(jobs, new JobIdComparator());
-
 
 		PrintStream taskStatsFile = null;
 		try {
@@ -564,16 +538,6 @@ public class DCWormsStatistics implements SimulationStatistics {
 			taskStatsFile = null;
 		}
 
-		PrintStream jobStatsFile = null;
-		if (configuration.createjobsstatistics) {
-			try {
-				File file = new File(outputFolderName + STATS_FILE_NAME_PREFIX + simulationIdentifier + "_"
-						+ JOBS_STATISTICS_OUTPUT_FILE_NAME);
-				jobStatsFile = new PrintStream(new FileOutputStream(file));
-			} catch (IOException e) {
-				jobStatsFile = null;
-			}
-		}
 
 		for (int i = 0; i < jobs.size(); i++) {
 			Job job = (Job) jobs.get(i);
@@ -600,15 +564,6 @@ public class DCWormsStatistics implements SimulationStatistics {
 					taskStatsList.add(taskStats);
 				}
 			}
-			if (configuration.createjobsstatistics && taskStatsList.size() > 0) {
-
-				this.serializer.setFieldSeparator(JOB_SEPARATOR);
-				JobStats jobStats = createJobStats(taskStatsList);
-				if (jobStatsFile != null) {
-					Object txt = jobStats.serialize(serializer);
-					jobStatsFile.println(txt);
-				}
-			}
 		}
 
 		if (configuration.createsimulationstatistics) {
@@ -627,9 +582,6 @@ public class DCWormsStatistics implements SimulationStatistics {
 
 		if (taskStatsFile != null) {
 			taskStatsFile.close();
-		}
-		if (jobStatsFile != null) {
-			jobStatsFile.close();
 		}
 	}
 

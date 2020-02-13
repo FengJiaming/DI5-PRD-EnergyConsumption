@@ -10,7 +10,7 @@ import model.scheduling.queue.TaskQueue;
 import model.scheduling.queue.TaskQueueList;
 import model.scheduling.tasks.TaskInterface;
 
-public class FCFSBF_LocalPlugin extends BaseLocalSchedulingPlugin {
+public class FCFS_LocalPlugin extends BaseLocalSchedulingPlugin {
 
 	public SchedulingPlan schedule(SchedulingEvent event, TaskQueueList queues, JobRegistry jobRegistry,
 			 ResourceManager resManager, ModuleList modules) {

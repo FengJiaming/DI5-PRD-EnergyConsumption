@@ -1,0 +1,50 @@
+resourceName;timestamp;utilization;
+myDataCenter;0;1;
+myDataCenter;7200000;0.667;
+myDataCenter;10800000;0.5;
+myDataCenter;14400000;0.333;
+myDataCenter;21600000;0.333;
+myDataCenter;25200000;0.5;
+myDataCenter;36000000;0.333;
+myDataCenter;39600000;0.5;
+myDataCenter;43200000;0.333;
+myDataCenter;46800000;0.5;
+myDataCenter;50400000;0.333;
+myDataCenter;54000000;0.167;
+myDataCenter;57600000;0;
+mean: 0.488734835355286
+
+Processor_0;0;1;
+Processor_0;7200000;1;
+Processor_0;21600000;1;
+Processor_0;43200000;0;
+Processor_0;46800000;1;
+Processor_0;57600000;0;
+mean: 0.9358752166377816
+
+Processor_1;0;1;
+Processor_1;7200000;1;
+Processor_1;36000000;0;
+Processor_1;39600000;1;
+Processor_1;54000000;0;
+mean: 0.8734835355285963
+
+Processor_2;0;1;
+Processor_2;7200000;1;
+Processor_2;14400000;0;
+Processor_2;25200000;1;
+Processor_2;50400000;0;
+mean: 0.6863084922010398
+
+Processor_3;0;1;
+Processor_3;7200000;0;
+mean: 0.12478336221837089
+
+Processor_4;0;1;
+Processor_4;7200000;0;
+mean: 0.12478336221837089
+
+Processor_5;0;1;
+Processor_5;10800000;0;
+mean: 0.18717504332755633
+

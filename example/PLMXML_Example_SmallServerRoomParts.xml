@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PLMXML xmlns="http://www.plmxml.org/Schemas/PLMXMLSchema"
+	xmlns:vis="PLMXMLTcVisSchema" schemaVersion="6" date="2012-07-16" time="11:30:47"
+	author="HLRS 0.1.0">
+	<ProductDef id="id1" defaultProductViewRef="id3720">
+
+		<InstanceGraph id="id2" rootRefs="inst35833">
+
+			<ProductRevisionView id="id05" name="RackNECWC">
+				<UserData id="id191">
+					<UserValue value="Rack" title="DEBBLevel"></UserValue>
+					<UserValue value="NECWaterCooledRack" title="DEBBComponentId"></UserValue>
+				</UserData>
+				<!--Representation id="id100" format="STL" location=".\RackNECWC.stl"></Representation -->
+				<Representation id="id1005" format="VRML" unit="m"
+					location=".\objects\05.WRL"></Representation>
+			</ProductRevisionView>
+			<ProductInstance id="inst05_1" name="Rack05" partRef="#id05">
+				<Transform id="id05_1">-1 0 0 0 0 -1 0 0 0 0 1 0 9.822 3.006 0. 1
+				</Transform>
+			</ProductInstance>
+
+<!-- ... -->
+
+			<ProductRevisionView id="id71_01_1" name="NodeGeometry">
+				<Representation id="id1071_01_1" format="VRML" unit="m"
+					location=".\objects\NodeBoard.wrl"></Representation>
+				<UserData id="71_01_1_1">
+					<UserValue value="Node" title="DEBBLevel"></UserValue>
+					<UserValue value="node_Core2Duo" title="DEBBComponentId"></UserValue>
+				</UserData>
+			</ProductRevisionView>
+			<ProductInstance id="inst71_01_1" name="Node1"
+				partRef="#id71_01_1">
+				<UserData id="71_01_1_2">
+					<UserValue value="n001" title="hostname"></UserValue>
+				</UserData>
+				<Transform id="id11_1">0 1 0 0 -1 0 0 0 0 0 1 0 0.175 0.084 0.005 1
+				</Transform>
+			</ProductInstance>
+
+<!-- ... -->
+
+			<ProductRevisionView id="id71_02_1" name="SensorGeometry">
+				<Representation id="id1071_02_1" format="VRML" unit="m"
+					location=".\objects\Sensor.wrl"></Representation>
+				<UserData id="71_02_1_1">
+					<UserValue value="node_Core2Duo_temp" title="DEBBComponentId"></UserValue>
+				</UserData>
+			</ProductRevisionView>
+			<ProductInstance id="inst71_02_1" name="Sensor1"
+				partRef="#id71_02_1">
+				<Transform id="id11_1">1 0 0 0 0 1 0 0 0 0 1 0 -0.021 0.136 0.0 1
+				</Transform>
+			</ProductInstance>
+
+<!-- ... -->
+
+			<ProductRevisionView id="id71" name="DefRack71"
+				instanceRefs="inst71_01_1 inst71_01_2 inst71_01_3 inst71_01_4 inst71_01_5 inst71_01_6 inst71_01_7 inst71_01_8 inst71_01_9 inst71_01_10 inst71_01_11 inst71_01_12 inst71_01_13 inst71_01_14 inst71_01_15 inst71_01_16 inst71_01_17 inst71_01_18 inst71_02_1 inst71_02_2 inst71_02_3 inst71_02_4 inst71_02_5 inst71_02_6 inst71_02_7 inst71_02_8 inst71_02_9 inst71_02_10 inst71_02_11 inst71_02_12 inst71_02_13 inst71_02_14 inst71_02_15 inst71_02_16 inst71_02_17 inst71_02_18"
+				type="assembly">
+				<Representation id="id1071" format="VRML" unit="m"
+					location=".\objects\recscase.wrl"></Representation>
+				<UserData id="71_1">
+					<UserValue value="NodeGroup" title="DEBBLevel"></UserValue>
+					<UserValue value="RECS_Sirius" title="DEBBComponentId"></UserValue>
+				</UserData>
+			</ProductRevisionView>
+			<ProductInstance id="inst71_1" name="Rack71" partRef="#id71">
+				<UserData id="71_2">
+					<UserValue value="gamescontroller.hlrs.de" title="hostname"></UserValue>
+				</UserData>
+				<Transform id="id71_1">1 0 0 0 0 1 0 0 0 0 1 0 0.075 -0.317 1.003 1
+				</Transform>
+			</ProductInstance>
+
+<!-- ... -->
+
+			<ProductRevisionView id="id11" name="DefRack11" instanceRefs="inst70_1 inst71_1 inst72_1 inst73_1 inst74_1" type="assembly">
+				<Representation id="id1011" format="VRML" unit="m" location=".\objects\rack.WRL"></Representation>
+				<UserData id="11_1">
+					<UserValue value="ComputeBox1" title="DEBBLevel"></UserValue>
+					<UserValue value="gamesRack" title="DEBBComponentId"></UserValue>
+				</UserData>
+			</ProductRevisionView>
+			<ProductInstance id="inst11_1" name="Rack11" partRef="#id11">
+				<Transform id="id11_1">1 0 0 0 0 1 0 0 0 0 1 0 10.977 4.35 0. 1
+				</Transform>
+			</ProductInstance>
+
+			<ProductRevisionView id="id4" name="HLRS_SmallServerRoom" instanceRefs="inst01_1 inst02_1 inst02_2 inst03_1 inst05_1 inst05_2 inst05_3 inst05_4 inst09_1 inst10_1 inst11_1 inst12_1 inst13_1 inst13_2 inst13_3 inst13_4 inst13_5 inst13_6 inst13_7 inst13_8 inst15_1 inst16_1 inst17_1 inst17_2 inst17_3 inst17_4 inst17_5 inst22_1 inst23_1 inst26_1 inst29_1 inst29_2 inst29_3 inst29_4 inst29_5 inst29_6 inst29_7 inst29_8 inst39_1 inst40_1 inst40_2 inst40_3 inst43_1 inst44_1 inst45_1 inst46_1 inst47_1 inst48_1 inst49_1 inst49_2 inst51_1" type="assembly">
+				<Bound id="id5" values="0 0 0 16.0 9.6 3.3"></Bound>
+				<Representation id="id6" format="VRML" unit="m" location=".\objects\serverroom.wrl">
+				</Representation>
+				<UserData id="4_1">
+					<UserValue value="ComputeBox2" title="DEBBLevel"></UserValue>
+					<UserValue value="hlrs_smallServerRoom" title="DEBBComponentId"></UserValue>
+				</UserData>
+			</ProductRevisionView>
+			<ProductInstance id="inst35833" name="HLRS_SmallServerRoom" partRef="#id4"></ProductInstance>
+		</InstanceGraph>
+
+	</ProductDef>
+</PLMXML>

@@ -1,13 +1,13 @@
-u: Input_GridInformationService at 0.0: waiting for an event
 u: Output_Users at 0.0: waiting for an event
-u: Input_Users at 0.0: waiting for an event
-u: Output_GridInformationService at 0.0: waiting for an event
-u: GridSimShutdown at 0.0: waiting for an event
-u: Input_cluster at 0.0: waiting for an event
 u: Output_cluster at 0.0: waiting for an event
+u: GridSimShutdown at 0.0: waiting for an event
 u: GridInformationService at 0.0: waiting for an event
-u: GridStatistics at 0.0: waiting for an event
+u: Input_Users at 0.0: waiting for an event
 u: cluster at 0.0: waiting for an event
+u: GridStatistics at 0.0: waiting for an event
+u: Input_GridInformationService at 0.0: waiting for an event
+u: Output_GridInformationService at 0.0: waiting for an event
+u: Input_cluster at 0.0: waiting for an event
 u: Users at 0.0: scheduling event type 21 for cluster with delay 0.0
 u: Users at 0.0: scheduling event type 21 for cluster with delay 0.0
 u: Users at 0.0: scheduling event type 21 for cluster with delay 0.0
@@ -204,9 +204,9 @@ u: cluster at 57600.0: selected event type 606 (event time was 57600.0)
 u: cluster at 57600.0: waiting for an event
 u: Users at 57600.0: scheduling event type -1 for GridStatistics with delay 0.0
 u: Users at 57600.0: scheduling event type -1 for Input_Users with delay 0.0
+u: cluster at 57600.0: waiting for an event
 u: Users at 57600.0: scheduling event type -1 for Output_Users with delay 0.0
 u: Users at 57600.0: scheduling event type -1 for GridSimShutdown with delay 0.0
-u: cluster at 57600.0: waiting for an event
 u: GridSimShutdown at 57600.0: scheduling event type -1 for GridInformationService with delay 0.0
 u: GridSimShutdown at 57600.0: start pausing
 u: GridInformationService at 57600.0: scheduling event type -1 for cluster with delay 0.0
