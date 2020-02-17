@@ -3,19 +3,21 @@ package app;
 import java.io.IOException;
 
 import controller.MainViewController;
+import controller.WorkGenViewController;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class mainApplication extends Application {
 
     private Stage primaryStage;
     private AnchorPane mainLayout;
-    
+    private AnchorPane workLayout;
     @FXML
     private TextField DEBBPath;
     
@@ -33,17 +35,30 @@ public class mainApplication extends Application {
     public void initMainLayout() {
         try {
             // Load main layout from fxml file.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(mainApplication.class.getResource("/view/MainView.fxml"));
-            mainLayout = (AnchorPane) loader.load();
+        	Object[] functionList = new Object[7];
+            FXMLLoader loader1 = new FXMLLoader();
+            loader1.setLocation(mainApplication.class.getResource("/view/MainView.fxml"));
+            mainLayout = (AnchorPane) loader1.load();
+            MainViewController mainViewController = loader1.getController();
+            mainViewController.init(functionList);
+            functionList[0] = mainLayout;
             
+            FXMLLoader loader2 = new FXMLLoader();
+            loader2.setLocation(mainApplication.class.getResource("/view/WorkGenView.fxml"));
+            workLayout = (AnchorPane) loader2.load();
+            WorkGenViewController workGenViewController = loader2.getController();
+            workGenViewController.init(functionList);
+            workLayout.setVisible(false);
+            functionList[1] = workLayout;
+            
+    		StackPane mainStackPane = new StackPane();
+    		mainStackPane.getChildren().add(mainLayout);//登陆面板，可见
+    		mainStackPane.getChildren().add(workLayout);//主页，不可见
             // Show the scene containing the main layout.
-            Scene scene = new Scene(mainLayout);
-            
+            Scene scene = new Scene(mainStackPane);
             primaryStage.setScene(scene);
-            MainViewController controller = loader.getController();
-            controller.init();
             primaryStage.show();
+            
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,4 +1,4 @@
-package controller.workload;
+package controller.workload.loader;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -7,6 +7,7 @@ import java.util.HashMap;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import controller.workload.SWFFields;
 import model.exceptions.NoSuchCommentException;
 
 

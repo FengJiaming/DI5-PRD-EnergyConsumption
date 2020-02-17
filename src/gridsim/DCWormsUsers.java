@@ -20,7 +20,7 @@ import org.apache.commons.logging.LogFactory;
 import org.joda.time.DateTime;
 
 import controller.simulator.utils.XsltTransformations;
-import controller.workload.WorkloadLoader;
+import controller.workload.loader.WorkloadLoader;
 import qcg.shared.constants.BrokerConstants;
 import model.JobDescription;
 import model.TaskDescription;

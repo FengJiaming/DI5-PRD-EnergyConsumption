@@ -1,4 +1,4 @@
-package controller.workload;
+package controller.workload.loader;
 
 import org.qcg.broker.schemas.jobdesc.QcgJob;
 

@@ -1,4 +1,4 @@
-package controller.workload;
+package controller.workload.loader;
 
 import org.qcg.broker.schemas.jobdesc.ComputingResourceBaseTypeChoice;
 import org.qcg.broker.schemas.jobdesc.ComputingResourceType;
@@ -13,6 +13,7 @@ import org.qcg.broker.schemas.jobdesc.Value;
 import org.qcg.broker.schemas.jobdesc.RequirementsType;
 import org.qcg.broker.schemas.jobdesc.types.ComputingParameterName;
 
+import controller.workload.SWFFields;
 import model.exceptions.NoSuchCommentException;
 
 import org.qcg.broker.schemas.jobdesc.Task;

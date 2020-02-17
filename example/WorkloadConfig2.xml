@@ -1,0 +1,31 @@
+<tns:WorkloadConfiguration 
+	xmlns:tns="http://www.man.poznan.pl/WorkloadSchema" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ 
+  	<SimulationStartTime>2009-01-15T10:00:00</SimulationStartTime>
+ 
+	<JobCount avg="100" distribution="constant"/>
+ 
+	<TaskCount avg="1" distribution="constant"/>
+	
+	<JobPackageLength avg="1.0" min="1.0" max="1.0" stdev="0.0" distribution="constant"/>
+	
+	<JobInterval avg="50" min="0" max="100" stdev="30" distribution="poisson" seed="21"/>
+ 
+ 	<TaskLength avg="14400" stdev="3600.0" distribution="normal">  		
+		<PeriodicValidValues avg="7200" stdev="1800" distribution="normal">
+     			<BeginValidTime>2009-01-15T11:00:00</BeginValidTime>
+     			<EndValidTime>2009-01-15T14:00:00</EndValidTime>
+   		</PeriodicValidValues>
+	</TaskLength>
+ 
+	<ComputingResourceHostParameter metric="cpucount">
+		<value id="cpucnt">
+	  		<MultiDistribution>
+      			<dist avg="1" min="1" max="1" stdev="0" distribution="uniform">0.95</dist>
+     		 	<dist avg="4" min="4" max="4" stdev="0" distribution="uniform">0.05</dist>
+   			</MultiDistribution>
+   		</value>	
+	</ComputingResourceHostParameter>
+ 
+</tns:WorkloadConfiguration>

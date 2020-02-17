@@ -3,6 +3,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<accessrules>
 			<accessrule kind="accessible" pattern="javafx/**"/>
+			<accessrule kind="accessible" pattern="com.sun.org.apache.xml.internal"/>
 		</accessrules>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
@@ -26,5 +27,7 @@
 	<classpathentry kind="lib" path="properties"/>
 	<classpathentry kind="lib" path="lib/xalan-2.6.jar"/>
 	<classpathentry kind="lib" path="lib/castor-xml-1.2.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/gssim_workload3g.jar"/>
+	<classpathentry kind="lib" path="lib/bsh-2.0b4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
