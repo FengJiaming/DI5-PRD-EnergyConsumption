@@ -204,7 +204,12 @@ public class RandomNumbers {
 	
 	public double getLastGeneratedRandomValue(String parameterName) throws IllegalAccessException{
 		List<AbstractSpecificGenerator> list = rndGenerators.get(parameterName);
-		AbstractSpecificGenerator asg = list.get(0);
+		AbstractSpecificGenerator asg = null;
+		for (int i = 0; i < list.size(); i++) {
+			asg = list.get(i);
+			if(asg.getLastGenerated() == true)
+				break;
+		}
 		return asg.getLastGeneratedValue();
 	}
 	

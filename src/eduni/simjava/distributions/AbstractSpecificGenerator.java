@@ -8,6 +8,8 @@ public abstract class AbstractSpecificGenerator implements Comparable<AbstractSp
 	
 	protected double lastGeneraterdValue;
 	
+	protected boolean lastGenerated;
+	
 	public AbstractSpecificGenerator(AbstractDistribution generator){
 		this.generator = generator;
 		this.lastGeneraterdValue = generator.nextDouble();
@@ -27,5 +29,13 @@ public abstract class AbstractSpecificGenerator implements Comparable<AbstractSp
 	
 	public int compareTo(AbstractSpecificGenerator o){
 		return -1;
+	}
+
+	public boolean getLastGenerated( ) {
+		return lastGenerated;
+	}
+	
+	public void setLastGenerated(boolean flag) {
+		this.lastGenerated = flag;
 	}
 }
