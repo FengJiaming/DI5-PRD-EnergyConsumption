@@ -19,8 +19,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import simulator.workload.generator.configuration.ComputingResourceHostParameter;
 import simulator.workload.generator.configuration.JobCount;
+import simulator.workload.generator.configuration.JobInterval;
+import simulator.workload.generator.configuration.JobPackageLength;
 import simulator.workload.generator.configuration.TaskCount;
+import simulator.workload.generator.configuration.TaskLength;
+import simulator.workload.generator.configuration.Value;
 import simulator.workload.generator.configuration.WorkloadConfiguration;
 import simulator.workload.generator.configuration.WorkloadConfigurationChoice;
 import simulator.workload.generator.configuration.types.ParameterAttributesDistributionType;
@@ -361,7 +366,24 @@ public class WorkGenViewController {
 		this.simulationStartTime.setText("2009-01-15_10:00:00");
 		this.jobCount.setText("100");
 		this.taskCountAvg.setText("1");
-
+		
+		this.taskLengthAvg.setText("14400");
+		this.taskLengthMax.setText("18000");
+		this.taskLengthMin.setText("10800");
+		this.taskLengthStdev.setText("3600.0");
+		
+		this.jobPackLenAvg.setText("1.0");
+		
+		this.jobIntervalAvg.setText("50");
+		this.jobIntervalMax.setText("100");
+		this.jobIntervalMin.setText("0.0");
+		this.jobIntervalSeed.setText("21");
+		
+		this.cpucntAvg.setText("1");
+		this.memoryAvg.setText("1024");
+		
+		initNodeStatus();
+		
 		EventHandler<ActionEvent> eventHandler = new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -370,7 +392,9 @@ public class WorkGenViewController {
 					switch (checkbox.getId()) {
 					case "taskCountRefCheck":
 						if (checkbox.isSelected()) {
+							taskCountRefLabel.setDisable(false);
 							taskCountRefBox.setDisable(false);
+							taskCountExprLabel.setDisable(false);
 							taskCountExprText.setDisable(false);
 
 							taskCountDistLabel.setDisable(true);
@@ -394,26 +418,23 @@ public class WorkGenViewController {
 							taskCountPeriodBox.setDisable(true);
 							taskCountPeriodButton.setDisable(true);
 						} else {
+							
+							changeTaskCountNodeStatus();
+							
+							taskCountRefBox.setDisable(true);
+							taskCountExprLabel.setDisable(true);
+							taskCountExprText.setDisable(true);
+							
 							taskCountDistLabel.setDisable(false);
 							taskCountDistribution.setDisable(false);
-							taskCountAvgLabel.setDisable(false);
-							taskCountAvg.setDisable(false);
-							taskCountStdevLabel.setDisable(false);
-							taskCountStdev.setDisable(false);
-							taskCountMaxLabel.setDisable(false);
-							taskCountMax.setDisable(false);
-							taskCountMinLabel.setDisable(false);
-							taskCountMin.setDisable(false);
-							taskCountSeedLabel.setDisable(false);
-							taskCountSeed.setDisable(false);
 
 							taskCountMDCheck.setDisable(false);
-							taskCountMDBox.setDisable(false);
-							taskCountMDButton.setDisable(false);
+							taskCountMDBox.setDisable(true);
+							taskCountMDButton.setDisable(true);
 
 							taskCountPeriodCheck.setDisable(false);
-							taskCountPeriodBox.setDisable(false);
-							taskCountPeriodButton.setDisable(false);
+							taskCountPeriodBox.setDisable(true);
+							taskCountPeriodButton.setDisable(true);
 						}
 						break;
 					case "taskCountMDCheck":
@@ -436,33 +457,23 @@ public class WorkGenViewController {
 							taskCountMin.setDisable(true);
 							taskCountSeedLabel.setDisable(true);
 							taskCountSeed.setDisable(true);
-
+							
+							taskCountMDBox.setDisable(false);
+							taskCountMDButton.setDisable(false);
+							
 							taskCountPeriodCheck.setDisable(true);
 							taskCountPeriodBox.setDisable(true);
 							taskCountPeriodButton.setDisable(true);
 						} else {
+							changeTaskCountNodeStatus();
 							taskCountRefCheck.setDisable(false);
-							taskCountRefLabel.setDisable(false);
-							taskCountRefBox.setDisable(false);
-							taskCountExprLabel.setDisable(false);
-							taskCountExprText.setDisable(false);
 
 							taskCountDistLabel.setDisable(false);
 							taskCountDistribution.setDisable(false);
-							taskCountAvgLabel.setDisable(false);
-							taskCountAvg.setDisable(false);
-							taskCountStdevLabel.setDisable(false);
-							taskCountStdev.setDisable(false);
-							taskCountMaxLabel.setDisable(false);
-							taskCountMax.setDisable(false);
-							taskCountMinLabel.setDisable(false);
-							taskCountMin.setDisable(false);
-							taskCountSeedLabel.setDisable(false);
-							taskCountSeed.setDisable(false);
-
+							
+							taskCountMDBox.setDisable(true);
+							taskCountMDButton.setDisable(true);
 							taskCountPeriodCheck.setDisable(false);
-							taskCountPeriodBox.setDisable(false);
-							taskCountPeriodButton.setDisable(false);
 						}
 						break;
 					case "taskCountPeriodCheck":
@@ -476,16 +487,16 @@ public class WorkGenViewController {
 							taskCountMDCheck.setDisable(true);
 							taskCountMDBox.setDisable(true);
 							taskCountMDButton.setDisable(true);
+							
+							taskCountPeriodBox.setDisable(false);
+							taskCountPeriodButton.setDisable(false);
 						} else {
+							changeTaskCountNodeStatus();
 							taskCountRefCheck.setDisable(false);
-							taskCountRefLabel.setDisable(false);
-							taskCountRefBox.setDisable(false);
-							taskCountExprLabel.setDisable(false);
-							taskCountExprText.setDisable(false);
-
 							taskCountMDCheck.setDisable(false);
-							taskCountMDBox.setDisable(false);
-							taskCountMDButton.setDisable(false);
+							taskCountPeriodBox.setDisable(true);
+							taskCountPeriodButton.setDisable(true);
+							
 						}
 						break;
 					case "taskLengthRefCheck":
@@ -1095,197 +1106,318 @@ public class WorkGenViewController {
 					if ("taskCountDistribution".equals(combobox.getId())) {
 						switch (combobox.getValue().toString()) {
 						case "constant":
+							taskCountAvgLabel.setDisable(false);
 							taskCountAvg.setDisable(false);
+							taskCountStdevLabel.setDisable(true);
 							taskCountStdev.setDisable(true);
+							taskCountMaxLabel.setDisable(true);
 							taskCountMax.setDisable(true);
+							taskCountMinLabel.setDisable(true);
 							taskCountMin.setDisable(true);
+							taskCountSeedLabel.setDisable(true);
 							taskCountSeed.setDisable(true);
 							break;
 						case "normal":
+							taskCountAvgLabel.setDisable(false);
 							taskCountAvg.setDisable(false);
+							taskCountStdevLabel.setDisable(false);
 							taskCountStdev.setDisable(false);
+							taskCountMaxLabel.setDisable(false);
 							taskCountMax.setDisable(false);
+							taskCountMinLabel.setDisable(false);
 							taskCountMin.setDisable(false);
+							taskCountSeedLabel.setDisable(false);
 							taskCountSeed.setDisable(false);
 							break;
 						case "poisson":
+							taskCountAvgLabel.setDisable(false);
 							taskCountAvg.setDisable(false);
+							taskCountStdevLabel.setDisable(true);
 							taskCountStdev.setDisable(true);
+							taskCountMaxLabel.setDisable(false);
 							taskCountMax.setDisable(false);
+							taskCountMinLabel.setDisable(false);
 							taskCountMin.setDisable(false);
+							taskCountSeedLabel.setDisable(false);
 							taskCountSeed.setDisable(false);
 							break;
 						case "uniform":
+							taskCountAvgLabel.setDisable(true);
 							taskCountAvg.setDisable(true);
+							taskCountStdevLabel.setDisable(true);
 							taskCountStdev.setDisable(true);
+							taskCountMaxLabel.setDisable(false);
 							taskCountMax.setDisable(false);
+							taskCountMinLabel.setDisable(false);
 							taskCountMin.setDisable(false);
+							taskCountSeedLabel.setDisable(false);
 							taskCountSeed.setDisable(false);
 							break;
 						}
 					} else if ("taskLengthDistribution".equals(combobox.getId())) {
 						switch (combobox.getValue().toString()) {
 						case "constant":
+							taskLengthAvgLabel.setDisable(false);
 							taskLengthAvg.setDisable(false);
+							taskLengthStdevLabel.setDisable(true);
 							taskLengthStdev.setDisable(true);
+							taskLengthMaxLabel.setDisable(true);
 							taskLengthMax.setDisable(true);
+							taskLengthMinLabel.setDisable(true);
 							taskLengthMin.setDisable(true);
+							taskLengthSeedLabel.setDisable(true);
 							taskLengthSeed.setDisable(true);
 							break;
 						case "normal":
+							taskLengthAvgLabel.setDisable(false);
 							taskLengthAvg.setDisable(false);
+							taskLengthStdevLabel.setDisable(false);
 							taskLengthStdev.setDisable(false);
+							taskLengthMaxLabel.setDisable(false);
 							taskLengthMax.setDisable(false);
+							taskLengthMinLabel.setDisable(false);
 							taskLengthMin.setDisable(false);
+							taskLengthSeedLabel.setDisable(false);
 							taskLengthSeed.setDisable(false);
 							break;
 						case "poisson":
+							taskLengthAvgLabel.setDisable(false);
 							taskLengthAvg.setDisable(false);
+							taskLengthStdevLabel.setDisable(true);
 							taskLengthStdev.setDisable(true);
+							taskLengthMaxLabel.setDisable(false);
 							taskLengthMax.setDisable(false);
+							taskLengthMinLabel.setDisable(false);
 							taskLengthMin.setDisable(false);
+							taskLengthSeedLabel.setDisable(false);
 							taskLengthSeed.setDisable(false);
 							break;
 						case "uniform":
+							taskLengthAvgLabel.setDisable(true);
 							taskLengthAvg.setDisable(true);
+							taskLengthStdevLabel.setDisable(true);
 							taskLengthStdev.setDisable(true);
+							taskLengthMaxLabel.setDisable(false);
 							taskLengthMax.setDisable(false);
+							taskLengthMinLabel.setDisable(false);
 							taskLengthMin.setDisable(false);
+							taskLengthSeedLabel.setDisable(false);
 							taskLengthSeed.setDisable(false);
 							break;
 						}
 					} else if ("jobPackLenDistribution".equals(combobox.getId())) {
 						switch (combobox.getValue().toString()) {
 						case "constant":
+							jobPackLenAvgLabel.setDisable(false);
 							jobPackLenAvg.setDisable(false);
+							jobPackLenStdevLabel.setDisable(true);
 							jobPackLenStdev.setDisable(true);
+							jobPackLenMaxLabel.setDisable(true);
 							jobPackLenMax.setDisable(true);
+							jobPackLenMinLabel.setDisable(true);
 							jobPackLenMin.setDisable(true);
+							jobPackLenSeedLabel.setDisable(true);
 							jobPackLenSeed.setDisable(true);
 							break;
 						case "normal":
+							jobPackLenAvgLabel.setDisable(false);
 							jobPackLenAvg.setDisable(false);
+							jobPackLenStdevLabel.setDisable(false);
 							jobPackLenStdev.setDisable(false);
+							jobPackLenMaxLabel.setDisable(false);
 							jobPackLenMax.setDisable(false);
+							jobPackLenMinLabel.setDisable(false);
 							jobPackLenMin.setDisable(false);
+							jobPackLenSeedLabel.setDisable(false);
 							jobPackLenSeed.setDisable(false);
 							break;
 						case "poisson":
+							jobPackLenAvgLabel.setDisable(false);
 							jobPackLenAvg.setDisable(false);
+							jobPackLenStdevLabel.setDisable(true);
 							jobPackLenStdev.setDisable(true);
+							jobPackLenMaxLabel.setDisable(false);
 							jobPackLenMax.setDisable(false);
+							jobPackLenMinLabel.setDisable(false);
 							jobPackLenMin.setDisable(false);
+							jobPackLenSeedLabel.setDisable(false);
 							jobPackLenSeed.setDisable(false);
 							break;
 						case "uniform":
+							jobPackLenAvgLabel.setDisable(true);
 							jobPackLenAvg.setDisable(true);
+							jobPackLenStdevLabel.setDisable(true);
 							jobPackLenStdev.setDisable(true);
+							jobPackLenMaxLabel.setDisable(false);
 							jobPackLenMax.setDisable(false);
+							jobPackLenMinLabel.setDisable(false);
 							jobPackLenMin.setDisable(false);
+							jobPackLenSeedLabel.setDisable(false);
 							jobPackLenSeed.setDisable(false);
 							break;
 						}
-					} else if ("cpucntDistribution".equals(combobox.getId())) {
+					} else if ("jobIntervalDistribution".equals(combobox.getId())) {
 						switch (combobox.getValue().toString()) {
 						case "constant":
-							cpucntAvg.setDisable(false);
-							cpucntStdev.setDisable(true);
-							cpucntMax.setDisable(true);
-							cpucntMin.setDisable(true);
-							cpucntSeed.setDisable(true);
+							jobIntervalAvgLabel.setDisable(false);
+							jobIntervalAvg.setDisable(false);
+							jobIntervalStdevLabel.setDisable(true);
+							jobIntervalStdev.setDisable(true);
+							jobIntervalMaxLabel.setDisable(true);
+							jobIntervalMax.setDisable(true);
+							jobIntervalMinLabel.setDisable(true);
+							jobIntervalMin.setDisable(true);
+							jobIntervalSeedLabel.setDisable(true);
+							jobIntervalSeed.setDisable(true);
 							break;
 						case "normal":
-							cpucntAvg.setDisable(false);
-							cpucntStdev.setDisable(false);
-							cpucntMax.setDisable(false);
-							cpucntMin.setDisable(false);
-							cpucntSeed.setDisable(false);
+							jobIntervalAvgLabel.setDisable(false);
+							jobIntervalAvg.setDisable(false);
+							jobIntervalStdevLabel.setDisable(false);
+							jobIntervalStdev.setDisable(false);
+							jobIntervalMaxLabel.setDisable(false);
+							jobIntervalMax.setDisable(false);
+							jobIntervalMinLabel.setDisable(false);
+							jobIntervalMin.setDisable(false);
+							jobIntervalSeedLabel.setDisable(false);
+							jobIntervalSeed.setDisable(false);
 							break;
 						case "poisson":
-							cpucntAvg.setDisable(false);
-							cpucntStdev.setDisable(true);
-							cpucntMax.setDisable(false);
-							cpucntMin.setDisable(false);
-							cpucntSeed.setDisable(false);
+							jobIntervalAvgLabel.setDisable(false);
+							jobIntervalAvg.setDisable(false);
+							jobIntervalStdevLabel.setDisable(true);
+							jobIntervalStdev.setDisable(true);
+							jobIntervalMaxLabel.setDisable(false);
+							jobIntervalMax.setDisable(false);
+							jobIntervalMinLabel.setDisable(false);
+							jobIntervalMin.setDisable(false);
+							jobIntervalSeedLabel.setDisable(false);
+							jobIntervalSeed.setDisable(false);
 							break;
 						case "uniform":
-							cpucntAvg.setDisable(true);
-							cpucntStdev.setDisable(true);
-							cpucntMax.setDisable(false);
-							cpucntMin.setDisable(false);
-							cpucntSeed.setDisable(false);
+							jobIntervalAvgLabel.setDisable(true);
+							jobIntervalAvg.setDisable(true);
+							jobIntervalStdevLabel.setDisable(true);
+							jobIntervalStdev.setDisable(true);
+							jobIntervalMaxLabel.setDisable(false);
+							jobIntervalMax.setDisable(false);
+							jobIntervalMinLabel.setDisable(false);
+							jobIntervalMin.setDisable(false);
+							jobIntervalSeedLabel.setDisable(false);
+							jobIntervalSeed.setDisable(false);
 							break;
 						}
 					} else if ("cpucntDistribution".equals(combobox.getId())) {
 						switch (combobox.getValue().toString()) {
 						case "constant":
+							cpucntAvgLabel.setDisable(false);
 							cpucntAvg.setDisable(false);
+							cpucntStdevLabel.setDisable(true);
 							cpucntStdev.setDisable(true);
+							cpucntMaxLabel.setDisable(true);
 							cpucntMax.setDisable(true);
+							cpucntMinLabel.setDisable(true);
 							cpucntMin.setDisable(true);
+							cpucntSeedLabel.setDisable(true);
 							cpucntSeed.setDisable(true);
 							break;
 						case "normal":
+							cpucntAvgLabel.setDisable(false);
 							cpucntAvg.setDisable(false);
+							cpucntStdevLabel.setDisable(false);
 							cpucntStdev.setDisable(false);
+							cpucntMaxLabel.setDisable(false);
 							cpucntMax.setDisable(false);
+							cpucntMinLabel.setDisable(false);
 							cpucntMin.setDisable(false);
+							cpucntSeedLabel.setDisable(false);
 							cpucntSeed.setDisable(false);
 							break;
 						case "poisson":
+							cpucntAvgLabel.setDisable(false);
 							cpucntAvg.setDisable(false);
+							cpucntStdevLabel.setDisable(true);
 							cpucntStdev.setDisable(true);
+							cpucntMaxLabel.setDisable(false);
 							cpucntMax.setDisable(false);
+							cpucntMinLabel.setDisable(false);
 							cpucntMin.setDisable(false);
+							cpucntSeedLabel.setDisable(false);
 							cpucntSeed.setDisable(false);
 							break;
 						case "uniform":
+							cpucntAvgLabel.setDisable(true);
 							cpucntAvg.setDisable(true);
+							cpucntStdevLabel.setDisable(true);
 							cpucntStdev.setDisable(true);
+							cpucntMaxLabel.setDisable(false);
 							cpucntMax.setDisable(false);
+							cpucntMinLabel.setDisable(false);
 							cpucntMin.setDisable(false);
+							cpucntSeedLabel.setDisable(false);
 							cpucntSeed.setDisable(false);
 							break;
 						}
 					} else if ("memoryDistribution".equals(combobox.getId())) {
 						switch (combobox.getValue().toString()) {
 						case "constant":
+							memoryAvgLabel.setDisable(false);
 							memoryAvg.setDisable(false);
+							memoryStdevLabel.setDisable(true);
 							memoryStdev.setDisable(true);
+							memoryMaxLabel.setDisable(true);
 							memoryMax.setDisable(true);
+							memoryMinLabel.setDisable(true);
 							memoryMin.setDisable(true);
+							memorySeedLabel.setDisable(true);
 							memorySeed.setDisable(true);
 							break;
 						case "normal":
+							memoryAvgLabel.setDisable(false);
 							memoryAvg.setDisable(false);
+							memoryStdevLabel.setDisable(false);
 							memoryStdev.setDisable(false);
+							memoryMaxLabel.setDisable(false);
 							memoryMax.setDisable(false);
+							memoryMinLabel.setDisable(false);
 							memoryMin.setDisable(false);
+							memorySeedLabel.setDisable(false);
 							memorySeed.setDisable(false);
 							break;
 						case "poisson":
+							memoryAvgLabel.setDisable(false);
 							memoryAvg.setDisable(false);
+							memoryStdevLabel.setDisable(true);
 							memoryStdev.setDisable(true);
+							memoryMaxLabel.setDisable(false);
 							memoryMax.setDisable(false);
+							memoryMinLabel.setDisable(false);
 							memoryMin.setDisable(false);
+							memorySeedLabel.setDisable(false);
 							memorySeed.setDisable(false);
 							break;
 						case "uniform":
+							memoryAvgLabel.setDisable(true);
 							memoryAvg.setDisable(true);
+							memoryStdevLabel.setDisable(true);
 							memoryStdev.setDisable(true);
+							memoryMaxLabel.setDisable(false);
 							memoryMax.setDisable(false);
+							memoryMinLabel.setDisable(false);
 							memoryMin.setDisable(false);
+							memorySeedLabel.setDisable(false);
 							memorySeed.setDisable(false);
 							break;
 						}
 					}
 				}
 			}
+
 		};
 		this.taskCountDistribution.setOnAction(eventHandler);
 		this.taskLengthDistribution.setOnAction(eventHandler);
 		this.jobPackLenDistribution.setOnAction(eventHandler);
-		this.cpucntDistribution.setOnAction(eventHandler);
+		this.jobIntervalDistribution.setOnAction(eventHandler);
 		this.cpucntDistribution.setOnAction(eventHandler);
 		this.memoryDistribution.setOnAction(eventHandler);
 		
@@ -1300,7 +1432,11 @@ public class WorkGenViewController {
 		this.jobPackLenRefCheck.setOnAction(eventHandler);
 		this.jobPackLenMDCheck.setOnAction(eventHandler);
 		this.jobPackLenPeriodCheck.setOnAction(eventHandler);
-
+		
+		this.jobIntervalRefCheck.setOnAction(eventHandler);
+		this.jobIntervalMDCheck.setOnAction(eventHandler);
+		this.jobIntervalPeriodCheck.setOnAction(eventHandler);
+		
 		this.cpucntRefCheck.setOnAction(eventHandler);
 		this.cpucntMDCheck.setOnAction(eventHandler);
 		this.cpucntPeriodCheck.setOnAction(eventHandler);
@@ -1309,7 +1445,168 @@ public class WorkGenViewController {
 		this.memoryMDCheck.setOnAction(eventHandler);
 		this.memoryPeriodCheck.setOnAction(eventHandler);
 	}
-
+	
+	public void initNodeStatus() {
+		/** TaskCount*/
+		this.taskCountRefLabel.setDisable(true);
+		this.taskCountRefBox.setDisable(true);
+		this.taskCountExprLabel.setDisable(true);
+		this.taskCountExprText.setDisable(true);
+		
+		this.taskCountMaxLabel.setDisable(true);
+		this.taskCountMax.setDisable(true);
+		this.taskCountMinLabel.setDisable(true);
+		this.taskCountMin.setDisable(true);
+		this.taskCountStdevLabel.setDisable(true);
+		this.taskCountStdev.setDisable(true);
+		this.taskCountSeedLabel.setDisable(true);
+		this.taskCountSeed.setDisable(true);
+		
+		this.taskCountMDBox.setDisable(true);
+		this.taskCountMDButton.setDisable(true);
+		this.taskCountPeriodBox.setDisable(true);
+		this.taskCountPeriodButton.setDisable(true);
+		
+		/** TaskLength	*/
+		this.taskLengthRefLabel.setDisable(true);
+		this.taskLengthRefBox.setDisable(true);
+		this.taskLengthExprLabel.setDisable(true);
+		this.taskLengthExprText.setDisable(true);
+		
+		this.taskLengthMaxLabel.setDisable(true);
+		this.taskLengthMax.setDisable(true);
+		this.taskLengthMinLabel.setDisable(true);
+		this.taskLengthMin.setDisable(true);
+		this.taskLengthStdevLabel.setDisable(true);
+		this.taskLengthStdev.setDisable(true);
+		this.taskLengthSeedLabel.setDisable(true);
+		this.taskLengthSeed.setDisable(true);
+		
+		this.taskLengthMDBox.setDisable(true);
+		this.taskLengthMDButton.setDisable(true);
+		this.taskLengthPeriodBox.setDisable(true);
+		this.taskLengthPeriodButton.setDisable(true);
+		
+		/** JobPackageLength	*/
+		this.jobPackLenRefLabel.setDisable(true);
+		this.jobPackLenRefBox.setDisable(true);
+		this.jobPackLenExprLabel.setDisable(true);
+		this.jobPackLenExprText.setDisable(true);
+		
+		this.jobPackLenMaxLabel.setDisable(true);
+		this.jobPackLenMax.setDisable(true);
+		this.jobPackLenMinLabel.setDisable(true);
+		this.jobPackLenMin.setDisable(true);
+		this.jobPackLenStdevLabel.setDisable(true);
+		this.jobPackLenStdev.setDisable(true);
+		this.jobPackLenSeedLabel.setDisable(true);
+		this.jobPackLenSeed.setDisable(true);
+		
+		this.jobPackLenMDBox.setDisable(true);
+		this.jobPackLenMDButton.setDisable(true);
+		this.jobPackLenPeriodBox.setDisable(true);
+		this.jobPackLenPeriodButton.setDisable(true);
+		
+		/** JobInterval	*/
+		this.jobIntervalRefLabel.setDisable(true);
+		this.jobIntervalRefBox.setDisable(true);
+		this.jobIntervalExprLabel.setDisable(true);
+		this.jobIntervalExprText.setDisable(true);
+		
+		this.jobIntervalMaxLabel.setDisable(true);
+		this.jobIntervalMax.setDisable(true);
+		this.jobIntervalMinLabel.setDisable(true);
+		this.jobIntervalMin.setDisable(true);
+		this.jobIntervalStdevLabel.setDisable(true);
+		this.jobIntervalStdev.setDisable(true);
+		this.jobIntervalSeedLabel.setDisable(true);
+		this.jobIntervalSeed.setDisable(true);
+		
+		this.jobIntervalMDBox.setDisable(true);
+		this.jobIntervalMDButton.setDisable(true);
+		this.jobIntervalPeriodBox.setDisable(true);
+		this.jobIntervalPeriodButton.setDisable(true);
+		
+		/** CpuCount	*/
+		this.cpucntRefLabel.setDisable(true);
+		this.cpucntRefBox.setDisable(true);
+		this.cpucntExprLabel.setDisable(true);
+		this.cpucntExprText.setDisable(true);
+		
+		this.cpucntMaxLabel.setDisable(true);
+		this.cpucntMax.setDisable(true);
+		this.cpucntMinLabel.setDisable(true);
+		this.cpucntMin.setDisable(true);
+		this.cpucntStdevLabel.setDisable(true);
+		this.cpucntStdev.setDisable(true);
+		this.cpucntSeedLabel.setDisable(true);
+		this.cpucntSeed.setDisable(true);
+		
+		this.cpucntMDBox.setDisable(true);
+		this.cpucntMDButton.setDisable(true);
+		this.cpucntPeriodBox.setDisable(true);
+		this.cpucntPeriodButton.setDisable(true);
+		
+		/** Memory	*/
+		this.memoryRefLabel.setDisable(true);
+		this.memoryRefBox.setDisable(true);
+		this.memoryExprLabel.setDisable(true);
+		this.memoryExprText.setDisable(true);
+		
+		this.memoryMaxLabel.setDisable(true);
+		this.memoryMax.setDisable(true);
+		this.memoryMinLabel.setDisable(true);
+		this.memoryMin.setDisable(true);
+		this.memoryStdevLabel.setDisable(true);
+		this.memoryStdev.setDisable(true);
+		this.memorySeedLabel.setDisable(true);
+		this.memorySeed.setDisable(true);
+		
+		this.memoryMDBox.setDisable(true);
+		this.memoryMDButton.setDisable(true);
+		this.memoryPeriodBox.setDisable(true);
+		this.memoryPeriodButton.setDisable(true);
+	}
+	
+	public void changeTaskCountNodeStatus() {
+		switch(taskCountDistribution.getValue().toString()) {
+		case "constant":
+			taskCountAvgLabel.setDisable(false);
+			taskCountAvg.setDisable(false);
+			break;
+		case "normal":
+			taskCountAvgLabel.setDisable(false);
+			taskCountAvg.setDisable(false);
+			taskCountStdevLabel.setDisable(false);
+			taskCountStdev.setDisable(false);
+			taskCountMaxLabel.setDisable(false);
+			taskCountMax.setDisable(false);
+			taskCountMinLabel.setDisable(false);
+			taskCountMin.setDisable(false);
+			taskCountSeedLabel.setDisable(false);
+			taskCountSeed.setDisable(false);
+			break;
+		case "poisson":
+			taskCountAvgLabel.setDisable(false);
+			taskCountAvg.setDisable(false);
+			taskCountMaxLabel.setDisable(false);
+			taskCountMax.setDisable(false);
+			taskCountMinLabel.setDisable(false);
+			taskCountMin.setDisable(false);
+			taskCountSeedLabel.setDisable(false);
+			taskCountSeed.setDisable(false);
+			break;
+		case "uniform":
+			taskCountMaxLabel.setDisable(false);
+			taskCountMax.setDisable(false);
+			taskCountMinLabel.setDisable(false);
+			taskCountMin.setDisable(false);
+			taskCountSeedLabel.setDisable(false);
+			taskCountSeed.setDisable(false);
+			break;
+		}
+	}
+	
 	@FXML
 	void gotoSimulationWindow(ActionEvent event) {
 		((AnchorPane) functionList[0]).setVisible(true);
@@ -1319,46 +1616,6 @@ public class WorkGenViewController {
 	@FXML
 	void gotoWorkGenWindow(ActionEvent event) {
 
-	}
-
-	@FXML
-	void taskCountRefCheckListener(ActionEvent event) {
-		System.out.println("hello");
-		if (this.taskCountRefCheck.isSelected()) {
-			this.taskCountAvg.setDisable(false);
-		} else {
-			this.taskCountAvg.setDisable(true);
-		}
-	}
-
-	// MyCheckBoxListener.java´úÂëÆ¬¶Î
-	public class MyCheckBoxListener implements ChangeListener {
-
-		TextField textfield = new TextField();
-		Button button = new Button();
-		CheckBox checkBox;
-
-		public MyCheckBoxListener() {
-
-		}
-
-		public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-			boolean select = checkBox.isSelected();
-			// logger.info("checkbox newValue:" + newValue +",oldValue:"+oldValue);
-			if (!select) {
-				textfield.setDisable(true);
-				button.setDisable(true);
-			} else {
-				textfield.setDisable(false);
-				button.setDisable(false);
-			}
-		}
-
-		@Override
-		public void stateChanged(ChangeEvent e) {
-			// TODO Auto-generated method stub
-
-		}
 	}
 
 	@FXML
@@ -1389,12 +1646,103 @@ public class WorkGenViewController {
 
 		// TaskCount
 		TaskCount taskCount = new TaskCount();
-		taskCount.setAvg(Double.parseDouble(this.taskCountAvg.getText()));
 		taskCount.setDistribution(
 				ParameterAttributesDistributionType.valueOf(this.taskCountDistribution.getValue().toString()));
-		taskCount.setMax(Double.parseDouble(this.taskCountMax.getText()));
+		taskCount.setAvg(Double.parseDouble(this.taskCountAvg.getText()));
+		if(this.taskCountStdev.getText()!=null && !this.taskCountStdev.getText().equals(""))
+			taskCount.setStdev(Double.parseDouble(this.taskCountStdev.getText()));
+		if(this.taskCountMax.getText()!=null && !this.taskCountMax.getText().equals(""))	
+			taskCount.setMax(Double.parseDouble(this.taskCountMax.getText()));
+		if(this.taskCountMin.getText()!=null && !this.taskCountMin.getText().equals(""))
+			taskCount.setMin(Double.parseDouble(this.taskCountMin.getText()));
+		if(this.taskCountSeed.getText()!=null && !this.taskCountSeed.getText().equals(""))
+			taskCount.setSeed(Long.parseLong(this.taskCountSeed.getText()));
 //		taskCount.setExpr(expr);
-
+		
+		// TaskLength
+		TaskLength taskLength = new TaskLength();
+		taskLength.setDistribution(
+				ParameterAttributesDistributionType.valueOf(this.taskLengthDistribution.getValue().toString()));
+		if(this.taskLengthAvg.getText()!=null && !this.taskLengthAvg.getText().equals(""))
+			taskLength.setAvg(Double.parseDouble(this.taskLengthAvg.getText()));
+		if(this.taskLengthStdev.getText()!=null && !this.taskLengthStdev.getText().equals(""))
+			taskLength.setStdev(Double.parseDouble(this.taskLengthStdev.getText()));
+		if(this.taskLengthMax.getText()!=null && !this.taskLengthMax.getText().equals(""))
+			taskLength.setMax(Double.parseDouble(this.taskLengthMax.getText()));
+		if(this.taskLengthMin.getText()!=null && !this.taskLengthMin.getText().equals(""))	
+			taskLength.setMin(Double.parseDouble(this.taskLengthMin.getText()));
+		if(this.taskLengthSeed.getText()!=null && !this.taskLengthSeed.getText().equals(""))
+			taskLength.setSeed(Long.parseLong(this.taskLengthSeed.getText()));
+		
+		// JobPackageLength
+		JobPackageLength jobPackLen = new JobPackageLength();
+		jobPackLen.setDistribution(
+				ParameterAttributesDistributionType.valueOf(this.jobPackLenDistribution.getValue().toString()));
+		if(this.jobPackLenAvg.getText()!=null && !this.jobPackLenAvg.getText().equals(""))
+			jobPackLen.setAvg(Double.parseDouble(this.jobPackLenAvg.getText()));
+		if(this.jobPackLenStdev.getText()!=null && !this.jobPackLenStdev.getText().equals(""))
+			jobPackLen.setStdev(Double.parseDouble(this.jobPackLenStdev.getText()));
+		if(this.jobPackLenMax.getText()!=null && !this.jobPackLenMax.getText().equals(""))
+			jobPackLen.setMax(Double.parseDouble(this.jobPackLenMax.getText()));
+		if(this.jobPackLenMin.getText()!=null && !this.jobPackLenMin.getText().equals(""))
+			jobPackLen.setMin(Double.parseDouble(this.jobPackLenMin.getText()));
+		if(this.jobPackLenSeed.getText()!=null && !this.jobPackLenSeed.getText().equals(""))
+			jobPackLen.setSeed(Long.parseLong(this.jobPackLenSeed.getText()));
+		
+		// JobInterval
+		JobInterval jobInterval = new JobInterval();
+		jobInterval.setDistribution(
+				ParameterAttributesDistributionType.valueOf(this.jobIntervalDistribution.getValue().toString()));
+		if(this.jobIntervalAvg.getText()!=null && !this.jobIntervalAvg.getText().equals(""))
+			jobInterval.setAvg(Double.parseDouble(this.jobIntervalAvg.getText()));
+		if(this.jobIntervalStdev.getText()!=null && !this.jobIntervalStdev.getText().equals(""))
+			jobInterval.setStdev(Double.parseDouble(this.jobIntervalStdev.getText()));
+		if(this.jobIntervalMax.getText()!=null && !this.jobIntervalMax.getText().equals(""))
+			jobInterval.setMax(Double.parseDouble(this.jobIntervalMax.getText()));
+		if(this.jobIntervalMin.getText()!=null && !this.jobIntervalMin.getText().equals(""))
+			jobInterval.setMin(Double.parseDouble(this.jobIntervalMin.getText()));
+		if(this.jobIntervalSeed.getText()!=null && !this.jobIntervalSeed.getText().equals(""))
+			jobInterval.setSeed(Long.parseLong(this.jobIntervalSeed.getText()));
+		
+		// ComputingResourceHostParameter
+		// cpucount
+		ComputingResourceHostParameter cpucnt = new ComputingResourceHostParameter();
+		cpucnt.setMetric("cpucount");
+		Value cpucntValue = new Value();
+		cpucntValue.setId("cpucnt");
+		cpucntValue.setDistribution(ParameterAttributesDistributionType.valueOf(this.cpucntDistribution.getValue().toString()));
+		if(this.cpucntAvg.getText()!=null && !this.cpucntAvg.getText().equals(""))
+			cpucntValue.setAvg(Double.parseDouble(this.cpucntAvg.getText()));
+		if(this.cpucntStdev.getText()!=null && !this.cpucntStdev.getText().equals(""))
+			cpucntValue.setStdev(Double.parseDouble(this.cpucntStdev.getText()));
+		if(this.cpucntMax.getText()!=null && !this.cpucntMax.getText().equals(""))
+			cpucntValue.setMax(Double.parseDouble(this.cpucntMax.getText()));
+		if(this.cpucntMin.getText()!=null && !this.cpucntMin.getText().equals(""))
+			cpucntValue.setMin(Double.parseDouble(this.cpucntMin.getText()));
+		if(this.cpucntSeed.getText()!=null && !this.cpucntSeed.getText().equals(""))
+			cpucntValue.setSeed(Long.parseLong(this.cpucntSeed.getText()));
+		
+		cpucnt.addValue(cpucntValue);
+		
+		// memory
+		ComputingResourceHostParameter memory = new ComputingResourceHostParameter();
+		memory.setMetric("memory");
+		Value memoryValue = new Value();
+		memoryValue.setId("memory");
+		memoryValue.setDistribution(ParameterAttributesDistributionType.valueOf(this.cpucntDistribution.getValue().toString()));
+		if(this.memoryAvg.getText()!=null && !this.memoryAvg.getText().equals(""))
+			memoryValue.setAvg(Double.parseDouble(this.memoryAvg.getText()));
+		if(this.memoryStdev.getText()!=null && !this.memoryStdev.getText().equals(""))
+			memoryValue.setStdev(Double.parseDouble(this.memoryStdev.getText()));
+		if(this.memoryMax.getText()!=null && !this.memoryMax.getText().equals(""))
+			memoryValue.setMax(Double.parseDouble(this.memoryMax.getText()));
+		if(this.memoryMin.getText()!=null && !this.memoryMin.getText().equals(""))
+			memoryValue.setMin(Double.parseDouble(this.memoryMin.getText()));
+		if(this.memorySeed.getText()!=null && !this.memorySeed.getText().equals(""))
+			memoryValue.setSeed(Long.parseLong(this.memorySeed.getText()));
+		
+		memory.addValue(memoryValue);
+		
 		/** WorkloadConfiguration */
 		WorkloadConfiguration workload = new WorkloadConfiguration();
 		workload.setSimulationStartTime(simulationStartTime);
@@ -1404,7 +1752,13 @@ public class WorkGenViewController {
 		workload.setWorkloadConfigurationChoice(workloadConfigurationChoice);
 
 		workload.setTaskCount(taskCount);
-
+		workload.setTaskLength(taskLength);
+		workload.setJobPackageLength(jobPackLen);
+		workload.setJobInterval(jobInterval);
+		
+		workload.addComputingResourceHostParameter(cpucnt);
+		workload.addComputingResourceHostParameter(memory);
+		
 		return workload;
 
 	}
