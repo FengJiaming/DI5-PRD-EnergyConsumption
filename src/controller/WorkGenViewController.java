@@ -3,6 +3,7 @@ package controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -19,6 +20,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import simulator.workload.generator.configuration.MultiDistribution;
 import simulator.workload.generator.configuration.ComputingResourceHostParameter;
 import simulator.workload.generator.configuration.JobCount;
 import simulator.workload.generator.configuration.JobInterval;
@@ -29,9 +32,14 @@ import simulator.workload.generator.configuration.Value;
 import simulator.workload.generator.configuration.WorkloadConfiguration;
 import simulator.workload.generator.configuration.WorkloadConfigurationChoice;
 import simulator.workload.generator.configuration.types.ParameterAttributesDistributionType;
+import view.MultiDistributionWindow;
+import view.PeriodDistributionWindow;
 
 public class WorkGenViewController {
 
+	@FXML
+	private AnchorPane root;
+	
 	@FXML
 	private TextField workloadFilename;
 	@FXML
@@ -43,316 +51,318 @@ public class WorkGenViewController {
 
 	/** TaskCount **/
 	@FXML
-	private CheckBox taskCountRefCheck;
+	protected CheckBox taskCountRefCheck;
 	@FXML
-	private Label taskCountRefLabel;
+	protected Label taskCountRefLabel;
 	@FXML
-	private ComboBox<?> taskCountRefBox;
+	protected ComboBox<?> taskCountRefBox;
 
 	@FXML
-	private Label taskCountExprLabel;
+	protected Label taskCountExprLabel;
 	@FXML
-	private TextField taskCountExprText;
+	protected TextField taskCountExprText;
 
 	@FXML
-	private Label taskCountDistLabel;
+	protected Label taskCountDistLabel;
 	@FXML
-	private ComboBox<?> taskCountDistribution;
+	protected ComboBox<?> taskCountDistribution;
 	@FXML
-	private Label taskCountAvgLabel;
+	protected Label taskCountAvgLabel;
 	@FXML
-	private TextField taskCountAvg;
+	protected TextField taskCountAvg;
 
 	@FXML
-	private Label taskCountStdevLabel;
+	protected Label taskCountStdevLabel;
 	@FXML
-	private TextField taskCountStdev;
+	protected TextField taskCountStdev;
 
 	@FXML
-	private Label taskCountMaxLabel;
+	protected Label taskCountMaxLabel;
 	@FXML
-	private TextField taskCountMax;
+	protected TextField taskCountMax;
 	@FXML
-	private Label taskCountMinLabel;
+	protected Label taskCountMinLabel;
 	@FXML
-	private TextField taskCountMin;
+	protected TextField taskCountMin;
 	@FXML
-	private Label taskCountSeedLabel;
+	protected Label taskCountSeedLabel;
 	@FXML
-	private TextField taskCountSeed;
+	protected TextField taskCountSeed;
 	@FXML
-	private CheckBox taskCountMDCheck;
+	protected CheckBox taskCountMDCheck;
 	@FXML
-	private ComboBox<?> taskCountMDBox;
+	protected ComboBox<?> taskCountMDBox;
 	@FXML
-	private Button taskCountMDButton;
+	protected Button taskCountMDButton;
 	@FXML
-	private CheckBox taskCountPeriodCheck;
+	protected CheckBox taskCountPeriodCheck;
 	@FXML
-	private ComboBox<?> taskCountPeriodBox;
+	protected ComboBox<?> taskCountPeriodBox;
 	@FXML
-	private Button taskCountPeriodButton;
+	protected Button taskCountPeriodButton;
+	
+	private List<MultiDistribution> taskCountListMD;
 	/** --------------------------------------------------------- */
 
 	/** TaskLength */
 	@FXML
-	private CheckBox taskLengthRefCheck;
+	protected CheckBox taskLengthRefCheck;
 	@FXML
-	private Label taskLengthRefLabel;
+	protected Label taskLengthRefLabel;
 	@FXML
-	private ComboBox<?> taskLengthRefBox;
+	protected ComboBox<?> taskLengthRefBox;
 
 	@FXML
-	private Label taskLengthExprLabel;
+	protected Label taskLengthExprLabel;
 	@FXML
-	private TextField taskLengthExprText;
+	protected TextField taskLengthExprText;
 
 	@FXML
-	private Label taskLengthDistLabel;
+	protected Label taskLengthDistLabel;
 	@FXML
-	private ComboBox<?> taskLengthDistribution;
+	protected ComboBox<?> taskLengthDistribution;
 	@FXML
-	private Label taskLengthAvgLabel;
+	protected Label taskLengthAvgLabel;
 	@FXML
-	private TextField taskLengthAvg;
+	protected TextField taskLengthAvg;
 
 	@FXML
-	private Label taskLengthStdevLabel;
+	protected Label taskLengthStdevLabel;
 	@FXML
-	private TextField taskLengthStdev;
+	protected TextField taskLengthStdev;
 
 	@FXML
-	private Label taskLengthMaxLabel;
+	protected Label taskLengthMaxLabel;
 	@FXML
-	private TextField taskLengthMax;
+	protected TextField taskLengthMax;
 	@FXML
-	private Label taskLengthMinLabel;
+	protected Label taskLengthMinLabel;
 	@FXML
-	private TextField taskLengthMin;
+	protected TextField taskLengthMin;
 	@FXML
-	private Label taskLengthSeedLabel;
+	protected Label taskLengthSeedLabel;
 	@FXML
-	private TextField taskLengthSeed;
+	protected TextField taskLengthSeed;
 	@FXML
-	private CheckBox taskLengthMDCheck;
+	protected CheckBox taskLengthMDCheck;
 	@FXML
-	private ComboBox<?> taskLengthMDBox;
+	protected ComboBox<?> taskLengthMDBox;
 	@FXML
-	private Button taskLengthMDButton;
+	protected Button taskLengthMDButton;
 	@FXML
-	private CheckBox taskLengthPeriodCheck;
+	protected CheckBox taskLengthPeriodCheck;
 	@FXML
-	private ComboBox<?> taskLengthPeriodBox;
+	protected ComboBox<?> taskLengthPeriodBox;
 	@FXML
-	private Button taskLengthPeriodButton;
+	protected Button taskLengthPeriodButton;
 	/*** ---------------------------------------------------- */
 	/** JobPackageLength */
 	@FXML
-	private CheckBox jobPackLenRefCheck;
+	protected CheckBox jobPackLenRefCheck;
 	@FXML
-	private Label jobPackLenRefLabel;
+	protected Label jobPackLenRefLabel;
 	@FXML
-	private ComboBox<?> jobPackLenRefBox;
+	protected ComboBox<?> jobPackLenRefBox;
 
 	@FXML
-	private Label jobPackLenExprLabel;
+	protected Label jobPackLenExprLabel;
 	@FXML
-	private TextField jobPackLenExprText;
+	protected TextField jobPackLenExprText;
 
 	@FXML
-	private Label jobPackLenDistLabel;
+	protected Label jobPackLenDistLabel;
 	@FXML
-	private ComboBox<?> jobPackLenDistribution;
+	protected ComboBox<?> jobPackLenDistribution;
 	@FXML
-	private Label jobPackLenAvgLabel;
+	protected Label jobPackLenAvgLabel;
 	@FXML
-	private TextField jobPackLenAvg;
+	protected TextField jobPackLenAvg;
 
 	@FXML
-	private Label jobPackLenStdevLabel;
+	protected Label jobPackLenStdevLabel;
 	@FXML
-	private TextField jobPackLenStdev;
+	protected TextField jobPackLenStdev;
 
 	@FXML
-	private Label jobPackLenMaxLabel;
+	protected Label jobPackLenMaxLabel;
 	@FXML
-	private TextField jobPackLenMax;
+	protected TextField jobPackLenMax;
 	@FXML
-	private Label jobPackLenMinLabel;
+	protected Label jobPackLenMinLabel;
 	@FXML
-	private TextField jobPackLenMin;
+	protected TextField jobPackLenMin;
 	@FXML
-	private Label jobPackLenSeedLabel;
+	protected Label jobPackLenSeedLabel;
 	@FXML
-	private TextField jobPackLenSeed;
+	protected TextField jobPackLenSeed;
 	@FXML
-	private CheckBox jobPackLenMDCheck;
+	protected CheckBox jobPackLenMDCheck;
 	@FXML
-	private ComboBox<?> jobPackLenMDBox;
+	protected ComboBox<?> jobPackLenMDBox;
 	@FXML
-	private Button jobPackLenMDButton;
+	protected Button jobPackLenMDButton;
 	@FXML
-	private CheckBox jobPackLenPeriodCheck;
+	protected CheckBox jobPackLenPeriodCheck;
 	@FXML
-	private ComboBox<?> jobPackLenPeriodBox;
+	protected ComboBox<?> jobPackLenPeriodBox;
 	@FXML
-	private Button jobPackLenPeriodButton;
+	protected Button jobPackLenPeriodButton;
 	/** ------------------------------------------------- */
 	/** JoaInterval */
 	@FXML
-	private CheckBox jobIntervalRefCheck;
+	protected CheckBox jobIntervalRefCheck;
 	@FXML
-	private Label jobIntervalRefLabel;
+	protected Label jobIntervalRefLabel;
 	@FXML
-	private ComboBox<?> jobIntervalRefBox;
+	protected ComboBox<?> jobIntervalRefBox;
 
 	@FXML
-	private Label jobIntervalExprLabel;
+	protected Label jobIntervalExprLabel;
 	@FXML
-	private TextField jobIntervalExprText;
+	protected TextField jobIntervalExprText;
 
 	@FXML
-	private Label jobIntervalDistLabel;
+	protected Label jobIntervalDistLabel;
 	@FXML
-	private ComboBox<?> jobIntervalDistribution;
+	protected ComboBox<?> jobIntervalDistribution;
 	@FXML
-	private Label jobIntervalAvgLabel;
+	protected Label jobIntervalAvgLabel;
 	@FXML
-	private TextField jobIntervalAvg;
+	protected TextField jobIntervalAvg;
 
 	@FXML
-	private Label jobIntervalStdevLabel;
+	protected Label jobIntervalStdevLabel;
 	@FXML
-	private TextField jobIntervalStdev;
+	protected TextField jobIntervalStdev;
 
 	@FXML
-	private Label jobIntervalMaxLabel;
+	protected Label jobIntervalMaxLabel;
 	@FXML
-	private TextField jobIntervalMax;
+	protected TextField jobIntervalMax;
 	@FXML
-	private Label jobIntervalMinLabel;
+	protected Label jobIntervalMinLabel;
 	@FXML
-	private TextField jobIntervalMin;
+	protected TextField jobIntervalMin;
 	@FXML
-	private Label jobIntervalSeedLabel;
+	protected Label jobIntervalSeedLabel;
 	@FXML
-	private TextField jobIntervalSeed;
+	protected TextField jobIntervalSeed;
 	@FXML
-	private CheckBox jobIntervalMDCheck;
+	protected CheckBox jobIntervalMDCheck;
 	@FXML
-	private ComboBox<?> jobIntervalMDBox;
+	protected ComboBox<?> jobIntervalMDBox;
 	@FXML
-	private Button jobIntervalMDButton;
+	protected Button jobIntervalMDButton;
 	@FXML
-	private CheckBox jobIntervalPeriodCheck;
+	protected CheckBox jobIntervalPeriodCheck;
 	@FXML
-	private ComboBox<?> jobIntervalPeriodBox;
+	protected ComboBox<?> jobIntervalPeriodBox;
 	@FXML
-	private Button jobIntervalPeriodButton;
+	protected Button jobIntervalPeriodButton;
 	/** ------------------------------------------------- */
 	/** CpuCount */
 	@FXML
-	private CheckBox cpucntRefCheck;
+	protected CheckBox cpucntRefCheck;
 	@FXML
-	private Label cpucntRefLabel;
+	protected Label cpucntRefLabel;
 	@FXML
-	private ComboBox<?> cpucntRefBox;
+	protected ComboBox<?> cpucntRefBox;
 
 	@FXML
-	private Label cpucntExprLabel;
+	protected Label cpucntExprLabel;
 	@FXML
-	private TextField cpucntExprText;
+	protected TextField cpucntExprText;
 
 	@FXML
-	private Label cpucntDistLabel;
+	protected Label cpucntDistLabel;
 	@FXML
-	private ComboBox<?> cpucntDistribution;
+	protected ComboBox<?> cpucntDistribution;
 	@FXML
-	private Label cpucntAvgLabel;
+	protected Label cpucntAvgLabel;
 	@FXML
-	private TextField cpucntAvg;
+	protected TextField cpucntAvg;
 
 	@FXML
-	private Label cpucntStdevLabel;
+	protected Label cpucntStdevLabel;
 	@FXML
-	private TextField cpucntStdev;
+	protected TextField cpucntStdev;
 
 	@FXML
-	private Label cpucntMaxLabel;
+	protected Label cpucntMaxLabel;
 	@FXML
-	private TextField cpucntMax;
+	protected TextField cpucntMax;
 	@FXML
-	private Label cpucntMinLabel;
+	protected Label cpucntMinLabel;
 	@FXML
-	private TextField cpucntMin;
+	protected TextField cpucntMin;
 	@FXML
-	private Label cpucntSeedLabel;
+	protected Label cpucntSeedLabel;
 	@FXML
-	private TextField cpucntSeed;
+	protected TextField cpucntSeed;
 	@FXML
-	private CheckBox cpucntMDCheck;
+	protected CheckBox cpucntMDCheck;
 	@FXML
-	private ComboBox<?> cpucntMDBox;
+	protected ComboBox<?> cpucntMDBox;
 	@FXML
-	private Button cpucntMDButton;
+	protected Button cpucntMDButton;
 	@FXML
-	private CheckBox cpucntPeriodCheck;
+	protected CheckBox cpucntPeriodCheck;
 	@FXML
-	private ComboBox<?> cpucntPeriodBox;
+	protected ComboBox<?> cpucntPeriodBox;
 	@FXML
-	private Button cpucntPeriodButton;
+	protected Button cpucntPeriodButton;
 	/** ------------------------------------------------- */
 	/** Memory */
 	@FXML
-	private CheckBox memoryRefCheck;
+	protected CheckBox memoryRefCheck;
 	@FXML
-	private Label memoryRefLabel;
+	protected Label memoryRefLabel;
 	@FXML
-	private ComboBox<?> memoryRefBox;
+	protected ComboBox<?> memoryRefBox;
 
 	@FXML
-	private Label memoryExprLabel;
+	protected Label memoryExprLabel;
 	@FXML
-	private TextField memoryExprText;
+	protected TextField memoryExprText;
 
 	@FXML
-	private Label memoryDistLabel;
+	protected Label memoryDistLabel;
 	@FXML
-	private ComboBox<?> memoryDistribution;
+	protected ComboBox<?> memoryDistribution;
 	@FXML
-	private Label memoryAvgLabel;
+	protected Label memoryAvgLabel;
 	@FXML
-	private TextField memoryAvg;
+	protected TextField memoryAvg;
 
 	@FXML
-	private Label memoryStdevLabel;
+	protected Label memoryStdevLabel;
 	@FXML
-	private TextField memoryStdev;
+	protected TextField memoryStdev;
 
 	@FXML
-	private Label memoryMaxLabel;
+	protected Label memoryMaxLabel;
 	@FXML
-	private TextField memoryMax;
+	protected TextField memoryMax;
 	@FXML
-	private Label memoryMinLabel;
+	protected Label memoryMinLabel;
 	@FXML
-	private TextField memoryMin;
+	protected TextField memoryMin;
 	@FXML
-	private Label memorySeedLabel;
+	protected Label memorySeedLabel;
 	@FXML
-	private TextField memorySeed;
+	protected TextField memorySeed;
 	@FXML
-	private CheckBox memoryMDCheck;
+	protected CheckBox memoryMDCheck;
 	@FXML
-	private ComboBox<?> memoryMDBox;
+	protected ComboBox<?> memoryMDBox;
 	@FXML
-	private Button memoryMDButton;
+	protected Button memoryMDButton;
 	@FXML
-	private CheckBox memoryPeriodCheck;
+	protected CheckBox memoryPeriodCheck;
 	@FXML
-	private ComboBox<?> memoryPeriodBox;
+	protected ComboBox<?> memoryPeriodBox;
 	@FXML
-	private Button memoryPeriodButton;
+	protected Button memoryPeriodButton;
 	/** ------------------------------------------------- */
 	
 	private Object[] functionList;
@@ -383,6 +393,8 @@ public class WorkGenViewController {
 		this.memoryAvg.setText("1024");
 		
 		initNodeStatus();
+		
+//		InterfaceEventHandler eventHandler = new InterfaceEventHandler();
 		
 		EventHandler<ActionEvent> eventHandler = new EventHandler<ActionEvent>() {
 			@Override
@@ -1627,6 +1639,22 @@ public class WorkGenViewController {
 		generator.run(configurationOptions, workloadWrapper());
 	}
 
+	@FXML
+    void taskCountMDAddClick(ActionEvent event) throws Exception {
+		MultiDistributionWindow MDWindow = new MultiDistributionWindow();
+		Stage MDStage = new Stage();
+		MDStage.setTitle("MultiDistribution Settings");
+		MDWindow.start(MDStage);
+    }
+	
+	@FXML
+    void taskCountPeriodAddClick(ActionEvent event) throws Exception {
+		PeriodDistributionWindow periodWindow = new PeriodDistributionWindow();
+		Stage periodStage = new Stage();
+		periodStage.setTitle("PeriodDistribution Settings");
+		periodWindow.start(periodStage);
+    }
+	
 	private WorkloadConfiguration workloadWrapper() {
 
 		// SimulationStartTime

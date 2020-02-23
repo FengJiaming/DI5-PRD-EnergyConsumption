@@ -46,10 +46,10 @@
                   <ComboBox fx:id="taskCountRefBox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                   <Label fx:id="taskCountExprLabel" text=" Expr" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                   <TextField fx:id="taskCountExprText" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                  <Button fx:id="taskCountMDButton" mnemonicParsing="false" text="Add" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                  <Button fx:id="taskCountMDButton" mnemonicParsing="false" onAction="#taskCountMDAddClick" text="Add" GridPane.columnIndex="4" GridPane.rowIndex="4" />
                   <CheckBox fx:id="taskCountPeriodCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="154.0" text="PeriodValue" GridPane.columnSpan="2" GridPane.rowIndex="5" />
                   <ComboBox fx:id="taskCountPeriodBox" prefHeight="23.0" prefWidth="152.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="5" />
-                  <Button fx:id="taskCountPeriodButton" mnemonicParsing="false" text="Add" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                  <Button fx:id="taskCountPeriodButton" mnemonicParsing="false" onAction="#taskCountPeriodAddClick" text="Add" GridPane.columnIndex="4" GridPane.rowIndex="5" />
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="69.0" />

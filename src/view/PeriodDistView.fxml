@@ -8,22 +8,22 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.collections.FXCollections?>
 
-<AnchorPane fx:id="root" prefHeight="223.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WorkGenViewController">
+<AnchorPane fx:id="root" prefHeight="223.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PeriodDistViewController">
    <children>
       <GridPane layoutX="65.0" layoutY="37.0" prefHeight="129.0" prefWidth="381.0">
          <children>
-            <Label fx:id="taskCountAvgLabel" prefHeight="15.0" prefWidth="35.0" text=" Avg" GridPane.columnIndex="2" />
-            <TextField fx:id="taskCountAvg" prefHeight="23.0" prefWidth="71.0" GridPane.columnIndex="3" />
-            <TextField fx:id="taskCountMin" prefHeight="23.0" prefWidth="89.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Label fx:id="taskCountMinLabel" prefHeight="15.0" prefWidth="38.0" text=" Min" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Label fx:id="taskCountStdevLabel" text=" Stdev" GridPane.columnIndex="4" />
-            <TextField fx:id="taskCountStdev" prefHeight="23.0" prefWidth="107.0" GridPane.columnIndex="5" />
-            <Label fx:id="taskCountMaxLabel" text="Max" GridPane.rowIndex="1" />
-            <Label fx:id="taskCountDistLabel" text="distribution" />
-            <Label fx:id="taskCountSeedLabel" text=" seed" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <TextField fx:id="taskCountMax" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="taskCountSeed" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <ComboBox fx:id="taskCountDistribution" prefWidth="150.0" GridPane.columnIndex="1">
+            <Label fx:id="AvgLabel" prefHeight="15.0" prefWidth="35.0" text=" Avg" GridPane.columnIndex="2" />
+            <TextField fx:id="Avg" prefHeight="23.0" prefWidth="71.0" GridPane.columnIndex="3" />
+            <TextField fx:id="Min" prefHeight="23.0" prefWidth="89.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Label fx:id="MinLabel" prefHeight="15.0" prefWidth="38.0" text=" Min" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label fx:id="StdevLabel" text=" Stdev" GridPane.columnIndex="4" />
+            <TextField fx:id="Stdev" prefHeight="23.0" prefWidth="107.0" GridPane.columnIndex="5" />
+            <Label fx:id="MaxLabel" text="Max" GridPane.rowIndex="1" />
+            <Label fx:id="DistLabel" text="distribution" />
+            <Label fx:id="SeedLabel" text=" seed" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <TextField fx:id="Max" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="Seed" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <ComboBox fx:id="Distribution" prefWidth="150.0" GridPane.columnIndex="1">
             	<items>
   				<FXCollections fx:factory="observableArrayList">
       				<String fx:value="constant" />
@@ -56,8 +56,8 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <Button layoutX="184.0" layoutY="178.0" mnemonicParsing="false" text="Save" />
-      <Button layoutX="308.0" layoutY="178.0" mnemonicParsing="false" text="Cancel" />
-      <Button layoutX="239.0" layoutY="178.0" mnemonicParsing="false" text="Delete" />
+      <Button fx:id="Save" layoutX="184.0" layoutY="178.0" mnemonicParsing="false" onAction="#saveButtonClick" text="Save" />
+      <Button fx:id="Cancel" layoutX="308.0" layoutY="178.0" mnemonicParsing="false" onAction="#cancelButtonClick" text="Cancel" />
+      <Button fx:id="Delete" layoutX="239.0" layoutY="178.0" mnemonicParsing="false" onAction="#deleteButtonClick" text="Delete" />
    </children>
 </AnchorPane>
