@@ -6,7 +6,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 
 import app.ConfigurationOptions;
-import app.mainApplication;
+import app.MainApplication;
 import controller.simulator.DataCenterWorkloadSimulator;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;

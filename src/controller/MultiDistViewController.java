@@ -10,6 +10,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import simulator.workload.generator.configuration.Dist;
+import simulator.workload.generator.configuration.MultiDistribution;
+import simulator.workload.generator.configuration.types.ParameterAttributesDistributionType;
 
 public class MultiDistViewController {
 
@@ -61,7 +64,23 @@ public class MultiDistViewController {
     @FXML
     private Button Cancel;
     
-	public void init() {
+    @FXML
+    private Label DistributionRatioLabel;
+    
+    @FXML
+    private TextField DistributionRatio;
+    
+    private WorkGenViewController workGenViewController;
+    
+    
+	public void init(WorkGenViewController controller) {
+		
+		
+		this.workGenViewController = controller;
+		/*****************************/
+		if(workGenViewController.taskCountDistribution.getValue()!=null) {
+			
+		}
 		
 		this.MaxLabel.setDisable(true);
 		this.Max.setDisable(true);
@@ -135,7 +154,26 @@ public class MultiDistViewController {
 	
 	@FXML
 	public void saveButtonClick() {
+		Dist dist = new Dist();
+		dist.setContent(DistributionRatio.getText());
+		dist.setDistribution(ParameterAttributesDistributionType.valueOf(Distribution.getValue().toString()));
+		dist.setAvg(Double.parseDouble(Avg.getText()));
+		if(this.Stdev.getText()!=null && !this.Stdev.getText().equals(""))
+			dist.setStdev(Double.parseDouble(this.Stdev.getText()));
+		if(this.Max.getText()!=null && !this.Max.getText().equals(""))	
+			dist.setMax(Double.parseDouble(this.Max.getText()));
+		if(this.Min.getText()!=null && !this.Min.getText().equals(""))
+			dist.setMin(Double.parseDouble(this.Min.getText()));
+		if(this.Seed.getText()!=null && !this.Seed.getText().equals(""))
+			dist.setSeed(Long.parseLong(this.Seed.getText()));
 		
+		workGenViewController.taskCountListMD.addDist(dist);
+		String valueString = "Dist-" + workGenViewController.taskCountMDBox.getItems().size();
+		workGenViewController.taskCountMDBox.getItems().add(valueString);
+		workGenViewController.taskCountMDBox.setValue(valueString);
+		
+	    Stage stage = (Stage)Save.getScene().getWindow();
+	    stage.close();
 	}
 	
 	@FXML

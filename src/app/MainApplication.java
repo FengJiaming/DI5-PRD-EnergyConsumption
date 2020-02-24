@@ -13,7 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class mainApplication extends Application {
+public class MainApplication extends Application {
 
     private Stage primaryStage;
     private AnchorPane mainLayout;
@@ -37,14 +37,14 @@ public class mainApplication extends Application {
             // Load main layout from fxml file.
         	Object[] functionList = new Object[7];
             FXMLLoader loader1 = new FXMLLoader();
-            loader1.setLocation(mainApplication.class.getResource("/view/MainView.fxml"));
+            loader1.setLocation(MainApplication.class.getResource("/view/MainView.fxml"));
             mainLayout = (AnchorPane) loader1.load();
             MainViewController mainViewController = loader1.getController();
             mainViewController.init(functionList);
             functionList[0] = mainLayout;
             
             FXMLLoader loader2 = new FXMLLoader();
-            loader2.setLocation(mainApplication.class.getResource("/view/WorkGenView.fxml"));
+            loader2.setLocation(MainApplication.class.getResource("/view/WorkGenView.fxml"));
             workLayout = (AnchorPane) loader2.load();
             WorkGenViewController workGenViewController = loader2.getController();
             workGenViewController.init(functionList);

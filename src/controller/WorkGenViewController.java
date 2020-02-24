@@ -1,25 +1,26 @@
 package controller;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 import app.ConfigurationOptions;
+import app.MainApplication;
 import controller.workload.generator.WorkloadGenerator;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import simulator.workload.generator.configuration.MultiDistribution;
 import simulator.workload.generator.configuration.ComputingResourceHostParameter;
@@ -32,8 +33,6 @@ import simulator.workload.generator.configuration.Value;
 import simulator.workload.generator.configuration.WorkloadConfiguration;
 import simulator.workload.generator.configuration.WorkloadConfigurationChoice;
 import simulator.workload.generator.configuration.types.ParameterAttributesDistributionType;
-import view.MultiDistributionWindow;
-import view.PeriodDistributionWindow;
 
 public class WorkGenViewController {
 
@@ -91,7 +90,7 @@ public class WorkGenViewController {
 	@FXML
 	protected CheckBox taskCountMDCheck;
 	@FXML
-	protected ComboBox<?> taskCountMDBox;
+	protected ComboBox<String> taskCountMDBox;
 	@FXML
 	protected Button taskCountMDButton;
 	@FXML
@@ -101,7 +100,7 @@ public class WorkGenViewController {
 	@FXML
 	protected Button taskCountPeriodButton;
 	
-	private List<MultiDistribution> taskCountListMD;
+	public MultiDistribution taskCountListMD;
 	/** --------------------------------------------------------- */
 
 	/** TaskLength */
@@ -369,6 +368,8 @@ public class WorkGenViewController {
 
 	public void init(Object[] functionList) {
 		this.functionList = functionList;
+		
+		this.taskCountListMD = new MultiDistribution();
 		/** for debug */
 		this.outputFolder.setText("example/workload");
 		this.workloadFilename.setText("workload.swf");
@@ -1635,25 +1636,50 @@ public class WorkGenViewController {
 		WorkloadGenerator generator = new WorkloadGenerator();
 		ConfigurationOptions configurationOptions = ConfigurationOptions.getConfiguration(workloadFilename.getText(),
 				outputFolder.getText());
-
 		generator.run(configurationOptions, workloadWrapper());
 	}
 
 	@FXML
     void taskCountMDAddClick(ActionEvent event) throws Exception {
-		MultiDistributionWindow MDWindow = new MultiDistributionWindow();
-		Stage MDStage = new Stage();
+
+        // Show the scene containing the main layout.
+        Scene scene = new Scene(loadMultiDistViewFXML());
+        Stage MDStage = new Stage();
 		MDStage.setTitle("MultiDistribution Settings");
-		MDWindow.start(MDStage);
+        MDStage.setScene(scene);
+        MDStage.initModality(Modality.APPLICATION_MODAL);
+        MDStage.show();
     }
 	
 	@FXML
-    void taskCountPeriodAddClick(ActionEvent event) throws Exception {
-		PeriodDistributionWindow periodWindow = new PeriodDistributionWindow();
+    void taskCountPeriodAddClick(ActionEvent event) throws IOException {
+        
+        // Show the scene containing the main layout.
+        Scene scene = new Scene(loadPeriodDistViewFXML());
 		Stage periodStage = new Stage();
 		periodStage.setTitle("PeriodDistribution Settings");
-		periodWindow.start(periodStage);
+        periodStage.setScene(scene);
+        periodStage.initModality(Modality.APPLICATION_MODAL);
+        periodStage.show();
     }
+	
+	private AnchorPane loadMultiDistViewFXML() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MainApplication.class.getResource("/view/MultiDistributionView.fxml"));
+        AnchorPane mainLayout = (AnchorPane) loader.load();
+        MultiDistViewController multiDistController = loader.getController();
+        multiDistController.init(this);
+        return mainLayout;
+	}
+	
+	private AnchorPane loadPeriodDistViewFXML() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MainApplication.class.getResource("/view/PeriodDistView.fxml"));
+        AnchorPane mainLayout = (AnchorPane) loader.load();
+        PeriodDistViewController periodDistViewController = loader.getController();
+        periodDistViewController.init(this);
+        return mainLayout;
+	}
 	
 	private WorkloadConfiguration workloadWrapper() {
 
@@ -1685,6 +1711,9 @@ public class WorkGenViewController {
 			taskCount.setMin(Double.parseDouble(this.taskCountMin.getText()));
 		if(this.taskCountSeed.getText()!=null && !this.taskCountSeed.getText().equals(""))
 			taskCount.setSeed(Long.parseLong(this.taskCountSeed.getText()));
+		if(this.taskCountMDCheck.isSelected() && taskCountListMD!= null) {
+			taskCount.setMultiDistribution(taskCountListMD);
+		}
 //		taskCount.setExpr(expr);
 		
 		// TaskLength

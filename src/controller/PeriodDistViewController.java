@@ -60,7 +60,16 @@ public class PeriodDistViewController {
 	    @FXML
 	    private Button Cancel;
 	    
-		public void init() {
+	    private WorkGenViewController workGenViewController;
+	    
+		public void init(WorkGenViewController controller) {
+			
+			this.workGenViewController = controller;
+			/*****************************/
+			if(workGenViewController.taskCountDistribution.getValue()!=null) {
+				
+			}
+			
 			
 			this.MaxLabel.setDisable(true);
 			this.Max.setDisable(true);
