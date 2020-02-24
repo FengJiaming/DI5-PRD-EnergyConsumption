@@ -19,12 +19,12 @@
                   <TextField fx:id="taskCountMin" prefHeight="23.0" prefWidth="89.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                   <Label fx:id="taskCountMinLabel" prefHeight="15.0" prefWidth="38.0" text=" Min" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                   <Label fx:id="taskCountStdevLabel" text=" Stdev" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                  <TextField fx:id="taskCountStdev" prefHeight="23.0" prefWidth="79.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                  <TextField fx:id="taskCountStdev" prefHeight="23.0" prefWidth="79.0" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="2" />
                   <Label fx:id="taskCountMaxLabel" text="Max" GridPane.rowIndex="3" />
                   <Label fx:id="taskCountDistLabel" text="distribution" GridPane.rowIndex="2" />
                   <Label fx:id="taskCountSeedLabel" text=" seed" GridPane.columnIndex="4" GridPane.rowIndex="3" />
                   <TextField fx:id="taskCountMax" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="taskCountSeed" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                  <TextField fx:id="taskCountSeed" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="3" />
                   <ComboBox fx:id="taskCountDistribution" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                   	<items>
         				<FXCollections fx:factory="observableArrayList">
@@ -45,19 +45,24 @@
                   <Label fx:id="taskCountRefLabel" text=" RefElement" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                   <ComboBox fx:id="taskCountRefBox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                   <Label fx:id="taskCountExprLabel" text=" Expr" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                  <TextField fx:id="taskCountExprText" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                  <Button fx:id="taskCountMDButton" mnemonicParsing="false" onAction="#taskCountMDAddClick" text="Add" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                  <TextField fx:id="taskCountExprText" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <Button fx:id="taskCountMDAdd" mnemonicParsing="false" onAction="#taskCountMDAddClick" text="Add" GridPane.columnIndex="4" GridPane.rowIndex="4" />
                   <CheckBox fx:id="taskCountPeriodCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="154.0" text="PeriodValue" GridPane.columnSpan="2" GridPane.rowIndex="5" />
                   <ComboBox fx:id="taskCountPeriodBox" prefHeight="23.0" prefWidth="152.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="5" />
-                  <Button fx:id="taskCountPeriodButton" mnemonicParsing="false" onAction="#taskCountPeriodAddClick" text="Add" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                  <Button fx:id="taskCountPeriodAdd" mnemonicParsing="false" onAction="#taskCountPeriodAddClick" text="Add" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                  <Button fx:id="taskCountMDEdit" mnemonicParsing="false" onAction="#taskCountMDEditClick" text="Edit" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                  <Button fx:id="taskCountPeriodEdit" mnemonicParsing="false" onAction="#taskCountPeriodEditClick" text="Edit" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                  <Button fx:id="taskCountMDDelete" mnemonicParsing="false" onAction="#taskCountMDDeleteClick" text="Delete" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                  <Button fx:id="taskCountPeriodDelete" mnemonicParsing="false" onAction="#taskCountPeriodDeleteClick" text="Delete" GridPane.columnIndex="6" GridPane.rowIndex="5" />
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="69.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="92.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="10.0" prefWidth="79.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="87.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="40.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="87.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="96.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="10.0" prefWidth="73.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="88.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="46.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="43.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="55.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />

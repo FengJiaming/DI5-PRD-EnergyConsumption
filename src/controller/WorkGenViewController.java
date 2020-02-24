@@ -92,13 +92,21 @@ public class WorkGenViewController {
 	@FXML
 	protected ComboBox<String> taskCountMDBox;
 	@FXML
-	protected Button taskCountMDButton;
+	protected Button taskCountMDAdd;
+	@FXML
+	protected Button taskCountMDEdit;
+	@FXML
+	protected Button taskCountMDDelete;
 	@FXML
 	protected CheckBox taskCountPeriodCheck;
 	@FXML
 	protected ComboBox<?> taskCountPeriodBox;
 	@FXML
-	protected Button taskCountPeriodButton;
+	protected Button taskCountPeriodAdd;
+	@FXML
+	protected Button taskCountPeriodEdit;
+	@FXML
+	protected Button taskCountPeriodDelete;
 	
 	public MultiDistribution taskCountListMD;
 	/** --------------------------------------------------------- */
@@ -364,6 +372,10 @@ public class WorkGenViewController {
 	protected Button memoryPeriodButton;
 	/** ------------------------------------------------- */
 	
+	private MultiDistViewController multiDistController;
+	
+	private PeriodDistViewController periodDistController;
+	
 	private Object[] functionList;
 
 	public void init(Object[] functionList) {
@@ -425,11 +437,15 @@ public class WorkGenViewController {
 
 							taskCountMDCheck.setDisable(true);
 							taskCountMDBox.setDisable(true);
-							taskCountMDButton.setDisable(true);
-
+							taskCountMDAdd.setDisable(true);
+							taskCountMDEdit.setDisable(true);
+							taskCountMDDelete.setDisable(true);
+							
 							taskCountPeriodCheck.setDisable(true);
 							taskCountPeriodBox.setDisable(true);
-							taskCountPeriodButton.setDisable(true);
+							taskCountPeriodAdd.setDisable(true);
+							taskCountPeriodEdit.setDisable(true);
+							taskCountPeriodDelete.setDisable(true);
 						} else {
 							
 							changeTaskCountNodeStatus();
@@ -443,11 +459,15 @@ public class WorkGenViewController {
 
 							taskCountMDCheck.setDisable(false);
 							taskCountMDBox.setDisable(true);
-							taskCountMDButton.setDisable(true);
+							taskCountMDAdd.setDisable(true);
+							taskCountMDEdit.setDisable(true);
+							taskCountMDDelete.setDisable(true);
 
 							taskCountPeriodCheck.setDisable(false);
 							taskCountPeriodBox.setDisable(true);
-							taskCountPeriodButton.setDisable(true);
+							taskCountPeriodAdd.setDisable(true);
+							taskCountPeriodEdit.setDisable(true);
+							taskCountPeriodDelete.setDisable(true);
 						}
 						break;
 					case "taskCountMDCheck":
@@ -472,11 +492,21 @@ public class WorkGenViewController {
 							taskCountSeed.setDisable(true);
 							
 							taskCountMDBox.setDisable(false);
-							taskCountMDButton.setDisable(false);
+							taskCountMDAdd.setDisable(false);
+							if(taskCountMDBox.getValue()!=null) {
+								taskCountMDEdit.setDisable(false);
+								taskCountMDDelete.setDisable(false);
+							} else {
+								taskCountMDEdit.setDisable(true);
+								taskCountMDDelete.setDisable(true);
+							}
 							
 							taskCountPeriodCheck.setDisable(true);
 							taskCountPeriodBox.setDisable(true);
-							taskCountPeriodButton.setDisable(true);
+							taskCountPeriodAdd.setDisable(true);
+							
+							taskCountPeriodEdit.setDisable(true);
+							taskCountPeriodDelete.setDisable(true);
 						} else {
 							changeTaskCountNodeStatus();
 							taskCountRefCheck.setDisable(false);
@@ -485,7 +515,9 @@ public class WorkGenViewController {
 							taskCountDistribution.setDisable(false);
 							
 							taskCountMDBox.setDisable(true);
-							taskCountMDButton.setDisable(true);
+							taskCountMDAdd.setDisable(true);
+							taskCountMDEdit.setDisable(true);
+							taskCountMDDelete.setDisable(true);
 							taskCountPeriodCheck.setDisable(false);
 						}
 						break;
@@ -499,16 +531,27 @@ public class WorkGenViewController {
 
 							taskCountMDCheck.setDisable(true);
 							taskCountMDBox.setDisable(true);
-							taskCountMDButton.setDisable(true);
+							taskCountMDAdd.setDisable(true);
+							taskCountMDEdit.setDisable(true);
+							taskCountMDDelete.setDisable(true);
 							
 							taskCountPeriodBox.setDisable(false);
-							taskCountPeriodButton.setDisable(false);
+							taskCountPeriodAdd.setDisable(false);
+							if(taskCountPeriodBox.getValue()!=null) {
+								taskCountPeriodEdit.setDisable(false);
+								taskCountPeriodDelete.setDisable(false);
+							} else {
+								taskCountPeriodEdit.setDisable(true);
+								taskCountPeriodDelete.setDisable(true);
+							}
 						} else {
 							changeTaskCountNodeStatus();
 							taskCountRefCheck.setDisable(false);
 							taskCountMDCheck.setDisable(false);
 							taskCountPeriodBox.setDisable(true);
-							taskCountPeriodButton.setDisable(true);
+							taskCountPeriodAdd.setDisable(true);
+							taskCountPeriodEdit.setDisable(true);
+							taskCountPeriodDelete.setDisable(true);
 							
 						}
 						break;
@@ -1476,9 +1519,13 @@ public class WorkGenViewController {
 		this.taskCountSeed.setDisable(true);
 		
 		this.taskCountMDBox.setDisable(true);
-		this.taskCountMDButton.setDisable(true);
+		taskCountMDAdd.setDisable(true);
+		taskCountMDEdit.setDisable(true);
+		taskCountMDDelete.setDisable(true);
 		this.taskCountPeriodBox.setDisable(true);
-		this.taskCountPeriodButton.setDisable(true);
+		taskCountPeriodAdd.setDisable(true);
+		taskCountPeriodEdit.setDisable(true);
+		taskCountPeriodDelete.setDisable(true);
 		
 		/** TaskLength	*/
 		this.taskLengthRefLabel.setDisable(true);
@@ -1644,11 +1691,35 @@ public class WorkGenViewController {
 
         // Show the scene containing the main layout.
         Scene scene = new Scene(loadMultiDistViewFXML());
+        
+        multiDistController.setFlag("ADD");
+        
         Stage MDStage = new Stage();
 		MDStage.setTitle("MultiDistribution Settings");
         MDStage.setScene(scene);
         MDStage.initModality(Modality.APPLICATION_MODAL);
         MDStage.show();
+    }
+	
+	@FXML
+    void taskCountMDEditClick(ActionEvent event) throws Exception {
+
+        // Show the scene containing the main layout.
+        Scene scene = new Scene(loadMultiDistViewFXML());
+        
+        multiDistController.setFlag("EDIT");
+        int index = Integer.parseInt(this.taskCountMDBox.getValue().split("-")[1]);
+        multiDistController.loadDistributionData(index);
+        
+        Stage MDStage = new Stage();
+		MDStage.setTitle("MultiDistribution Settings");
+        MDStage.setScene(scene);
+        MDStage.initModality(Modality.APPLICATION_MODAL);
+        MDStage.show();
+    }
+	
+	@FXML
+    void taskCountMDDeleteClick(ActionEvent event) throws Exception {
     }
 	
 	@FXML
@@ -1663,11 +1734,32 @@ public class WorkGenViewController {
         periodStage.show();
     }
 	
+	@FXML
+    void taskCountPeriodEditClick(ActionEvent event) throws IOException {
+        
+        // Show the scene containing the main layout.
+        Scene scene = new Scene(loadPeriodDistViewFXML());
+        
+//        int index = Integer.parseInt(this.taskCountMDBox.getValue().split("-")[1]);
+//        periodDistController.loadDistributionData(this.taskCountListMD.getDist(index));
+        
+		Stage periodStage = new Stage();
+		periodStage.setTitle("PeriodDistribution Settings");
+        periodStage.setScene(scene);
+        periodStage.initModality(Modality.APPLICATION_MODAL);
+        periodStage.show();
+    }
+	
+	@FXML
+    void taskCountPeriodDeleteClick(ActionEvent event) throws IOException {
+        
+    }
+	
 	private AnchorPane loadMultiDistViewFXML() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
         loader.setLocation(MainApplication.class.getResource("/view/MultiDistributionView.fxml"));
         AnchorPane mainLayout = (AnchorPane) loader.load();
-        MultiDistViewController multiDistController = loader.getController();
+        multiDistController = loader.getController();
         multiDistController.init(this);
         return mainLayout;
 	}
@@ -1712,6 +1804,9 @@ public class WorkGenViewController {
 		if(this.taskCountSeed.getText()!=null && !this.taskCountSeed.getText().equals(""))
 			taskCount.setSeed(Long.parseLong(this.taskCountSeed.getText()));
 		if(this.taskCountMDCheck.isSelected() && taskCountListMD!= null) {
+			taskCount.setMultiDistribution(taskCountListMD);
+		}
+		if(this.taskCountListMD.getDist().length!=0 && this.taskCountMDCheck.isSelected()) {
 			taskCount.setMultiDistribution(taskCountListMD);
 		}
 //		taskCount.setExpr(expr);

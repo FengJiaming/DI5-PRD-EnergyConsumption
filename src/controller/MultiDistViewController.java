@@ -32,7 +32,7 @@ public class MultiDistViewController {
     private Label SeedLabel;
 
     @FXML
-    private ComboBox<?> Distribution;
+    private ComboBox<String> Distribution;
 
     @FXML
     private TextField Stdev;
@@ -72,6 +72,9 @@ public class MultiDistViewController {
     
     private WorkGenViewController workGenViewController;
     
+    private String windowFlag;
+    
+    private int indexDist;
     
 	public void init(WorkGenViewController controller) {
 		
@@ -152,9 +155,73 @@ public class MultiDistViewController {
 		this.Distribution.setOnAction(eventHandler);
 	}
 	
+	public void loadDistributionData(int index) {
+		this.indexDist = index;
+		Dist dist = workGenViewController.taskCountListMD.getDist(index);
+		Avg.setText(String.valueOf(dist.getAvg()));
+		Stdev.setText(String.valueOf(dist.getStdev()));
+		Max.setText(String.valueOf(dist.getMax()));
+		Min.setText(String.valueOf(dist.getMin()));
+		Distribution.setValue(dist.getDistribution().toString());
+		Seed.setText(String.valueOf(dist.getSeed()));
+		DistributionRatio.setText(dist.getContent());
+		
+		switch (Distribution.getValue().toString()) {
+			case "constant":
+				AvgLabel.setDisable(false);
+				Avg.setDisable(false);
+				StdevLabel.setDisable(true);
+				Stdev.setDisable(true);
+				MaxLabel.setDisable(true);
+				Max.setDisable(true);
+				MinLabel.setDisable(true);
+				Min.setDisable(true);
+				SeedLabel.setDisable(true);
+				Seed.setDisable(true);
+				break;
+			case "normal":
+				AvgLabel.setDisable(false);
+				Avg.setDisable(false);
+				StdevLabel.setDisable(false);
+				Stdev.setDisable(false);
+				MaxLabel.setDisable(false);
+				Max.setDisable(false);
+				MinLabel.setDisable(false);
+				Min.setDisable(false);
+				SeedLabel.setDisable(false);
+				Seed.setDisable(false);
+				break;
+			case "poisson":
+				AvgLabel.setDisable(false);
+				Avg.setDisable(false);
+				StdevLabel.setDisable(true);
+				Stdev.setDisable(true);
+				MaxLabel.setDisable(false);
+				Max.setDisable(false);
+				MinLabel.setDisable(false);
+				Min.setDisable(false);
+				SeedLabel.setDisable(false);
+				Seed.setDisable(false);
+				break;
+			case "uniform":
+				AvgLabel.setDisable(true);
+				Avg.setDisable(true);
+				StdevLabel.setDisable(true);
+				Stdev.setDisable(true);
+				MaxLabel.setDisable(false);
+				Max.setDisable(false);
+				MinLabel.setDisable(false);
+				Min.setDisable(false);
+				SeedLabel.setDisable(false);
+				Seed.setDisable(false);
+				break;
+			}
+	}
+	
 	@FXML
 	public void saveButtonClick() {
 		Dist dist = new Dist();
+		
 		dist.setContent(DistributionRatio.getText());
 		dist.setDistribution(ParameterAttributesDistributionType.valueOf(Distribution.getValue().toString()));
 		dist.setAvg(Double.parseDouble(Avg.getText()));
@@ -167,10 +234,22 @@ public class MultiDistViewController {
 		if(this.Seed.getText()!=null && !this.Seed.getText().equals(""))
 			dist.setSeed(Long.parseLong(this.Seed.getText()));
 		
-		workGenViewController.taskCountListMD.addDist(dist);
-		String valueString = "Dist-" + workGenViewController.taskCountMDBox.getItems().size();
-		workGenViewController.taskCountMDBox.getItems().add(valueString);
-		workGenViewController.taskCountMDBox.setValue(valueString);
+		if("ADD".equals(this.windowFlag)) {
+			
+			workGenViewController.taskCountListMD.addDist(dist);
+			
+			String valueString = "Dist-" + workGenViewController.taskCountMDBox.getItems().size();
+			workGenViewController.taskCountMDBox.getItems().add(valueString);
+			workGenViewController.taskCountMDBox.setValue(valueString);
+			
+		} else if ("EDIT".equals(this.windowFlag)) {
+			
+			workGenViewController.taskCountListMD.setDist(this.indexDist,dist);
+		}
+		
+		
+		workGenViewController.taskCountMDEdit.setDisable(false);
+		workGenViewController.taskCountMDDelete.setDisable(false);
 		
 	    Stage stage = (Stage)Save.getScene().getWindow();
 	    stage.close();
@@ -179,6 +258,8 @@ public class MultiDistViewController {
 	@FXML
 	public void deleteButtonClick() {
 		
+		Stage stage = (Stage)Save.getScene().getWindow();
+	    stage.close();
 	}
 	
 	@FXML
@@ -186,4 +267,10 @@ public class MultiDistViewController {
 	    Stage stage = (Stage)Cancel.getScene().getWindow();
 	    stage.close();
 	}
+
+	public void setFlag(String flag) {
+		this.windowFlag = flag;
+	}
+
+
 }

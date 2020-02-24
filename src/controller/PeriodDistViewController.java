@@ -141,6 +141,10 @@ public class PeriodDistViewController {
 			this.Distribution.setOnAction(eventHandler);
 		}
 
+		public void loadDistributionData() {
+			
+		}
+		
 		@FXML
 		public void saveButtonClick() {
 			
