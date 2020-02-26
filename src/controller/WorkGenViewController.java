@@ -9,11 +9,15 @@ import java.util.List;
 import app.ConfigurationOptions;
 import app.MainApplication;
 import controller.workload.generator.WorkloadGenerator;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -23,6 +27,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import simulator.workload.generator.configuration.MultiDistribution;
+import simulator.workload.generator.configuration.RandParamsSequence;
 import simulator.workload.generator.configuration.ComputingResourceHostParameter;
 import simulator.workload.generator.configuration.JobCount;
 import simulator.workload.generator.configuration.JobInterval;
@@ -54,7 +59,7 @@ public class WorkGenViewController {
 	@FXML
 	protected Label taskCountRefLabel;
 	@FXML
-	protected ComboBox<?> taskCountRefBox;
+	protected ComboBox<String> taskCountRefBox;
 
 	@FXML
 	protected Label taskCountExprLabel;
@@ -100,7 +105,7 @@ public class WorkGenViewController {
 	@FXML
 	protected CheckBox taskCountPeriodCheck;
 	@FXML
-	protected ComboBox<?> taskCountPeriodBox;
+	protected ComboBox<String> taskCountPeriodBox;
 	@FXML
 	protected Button taskCountPeriodAdd;
 	@FXML
@@ -109,6 +114,8 @@ public class WorkGenViewController {
 	protected Button taskCountPeriodDelete;
 	
 	public MultiDistribution taskCountListMD;
+	
+	public RandParamsSequence taskCountListRP;
 	/** --------------------------------------------------------- */
 
 	/** TaskLength */
@@ -117,7 +124,7 @@ public class WorkGenViewController {
 	@FXML
 	protected Label taskLengthRefLabel;
 	@FXML
-	protected ComboBox<?> taskLengthRefBox;
+	protected ComboBox<String> taskLengthRefBox;
 
 	@FXML
 	protected Label taskLengthExprLabel;
@@ -155,13 +162,13 @@ public class WorkGenViewController {
 	@FXML
 	protected ComboBox<?> taskLengthMDBox;
 	@FXML
-	protected Button taskLengthMDButton;
+	protected Button taskLengthMDAdd;
 	@FXML
 	protected CheckBox taskLengthPeriodCheck;
 	@FXML
 	protected ComboBox<?> taskLengthPeriodBox;
 	@FXML
-	protected Button taskLengthPeriodButton;
+	protected Button taskLengthPeriodAdd;
 	/*** ---------------------------------------------------- */
 	/** JobPackageLength */
 	@FXML
@@ -169,7 +176,7 @@ public class WorkGenViewController {
 	@FXML
 	protected Label jobPackLenRefLabel;
 	@FXML
-	protected ComboBox<?> jobPackLenRefBox;
+	protected ComboBox<String> jobPackLenRefBox;
 
 	@FXML
 	protected Label jobPackLenExprLabel;
@@ -205,13 +212,13 @@ public class WorkGenViewController {
 	@FXML
 	protected CheckBox jobPackLenMDCheck;
 	@FXML
-	protected ComboBox<?> jobPackLenMDBox;
+	protected ComboBox<String> jobPackLenMDBox;
 	@FXML
 	protected Button jobPackLenMDButton;
 	@FXML
 	protected CheckBox jobPackLenPeriodCheck;
 	@FXML
-	protected ComboBox<?> jobPackLenPeriodBox;
+	protected ComboBox<String> jobPackLenPeriodBox;
 	@FXML
 	protected Button jobPackLenPeriodButton;
 	/** ------------------------------------------------- */
@@ -221,7 +228,7 @@ public class WorkGenViewController {
 	@FXML
 	protected Label jobIntervalRefLabel;
 	@FXML
-	protected ComboBox<?> jobIntervalRefBox;
+	protected ComboBox<String> jobIntervalRefBox;
 
 	@FXML
 	protected Label jobIntervalExprLabel;
@@ -257,13 +264,13 @@ public class WorkGenViewController {
 	@FXML
 	protected CheckBox jobIntervalMDCheck;
 	@FXML
-	protected ComboBox<?> jobIntervalMDBox;
+	protected ComboBox<String> jobIntervalMDBox;
 	@FXML
 	protected Button jobIntervalMDButton;
 	@FXML
 	protected CheckBox jobIntervalPeriodCheck;
 	@FXML
-	protected ComboBox<?> jobIntervalPeriodBox;
+	protected ComboBox<String> jobIntervalPeriodBox;
 	@FXML
 	protected Button jobIntervalPeriodButton;
 	/** ------------------------------------------------- */
@@ -273,7 +280,7 @@ public class WorkGenViewController {
 	@FXML
 	protected Label cpucntRefLabel;
 	@FXML
-	protected ComboBox<?> cpucntRefBox;
+	protected ComboBox<String> cpucntRefBox;
 
 	@FXML
 	protected Label cpucntExprLabel;
@@ -309,13 +316,13 @@ public class WorkGenViewController {
 	@FXML
 	protected CheckBox cpucntMDCheck;
 	@FXML
-	protected ComboBox<?> cpucntMDBox;
+	protected ComboBox<String> cpucntMDBox;
 	@FXML
 	protected Button cpucntMDButton;
 	@FXML
 	protected CheckBox cpucntPeriodCheck;
 	@FXML
-	protected ComboBox<?> cpucntPeriodBox;
+	protected ComboBox<String> cpucntPeriodBox;
 	@FXML
 	protected Button cpucntPeriodButton;
 	/** ------------------------------------------------- */
@@ -325,7 +332,7 @@ public class WorkGenViewController {
 	@FXML
 	protected Label memoryRefLabel;
 	@FXML
-	protected ComboBox<?> memoryRefBox;
+	protected ComboBox<String> memoryRefBox;
 
 	@FXML
 	protected Label memoryExprLabel;
@@ -361,13 +368,13 @@ public class WorkGenViewController {
 	@FXML
 	protected CheckBox memoryMDCheck;
 	@FXML
-	protected ComboBox<?> memoryMDBox;
+	protected ComboBox<String> memoryMDBox;
 	@FXML
 	protected Button memoryMDButton;
 	@FXML
 	protected CheckBox memoryPeriodCheck;
 	@FXML
-	protected ComboBox<?> memoryPeriodBox;
+	protected ComboBox<String> memoryPeriodBox;
 	@FXML
 	protected Button memoryPeriodButton;
 	/** ------------------------------------------------- */
@@ -382,6 +389,7 @@ public class WorkGenViewController {
 		this.functionList = functionList;
 		
 		this.taskCountListMD = new MultiDistribution();
+		this.taskCountListRP = new RandParamsSequence();
 		/** for debug */
 		this.outputFolder.setText("example/workload");
 		this.workloadFilename.setText("workload.swf");
@@ -405,8 +413,9 @@ public class WorkGenViewController {
 		this.cpucntAvg.setText("1");
 		this.memoryAvg.setText("1024");
 		
-		initNodeStatus();
+		initComponentStatus();
 		
+		initRefCombobox();
 //		InterfaceEventHandler eventHandler = new InterfaceEventHandler();
 		
 		EventHandler<ActionEvent> eventHandler = new EventHandler<ActionEvent>() {
@@ -493,13 +502,8 @@ public class WorkGenViewController {
 							
 							taskCountMDBox.setDisable(false);
 							taskCountMDAdd.setDisable(false);
-							if(taskCountMDBox.getValue()!=null) {
-								taskCountMDEdit.setDisable(false);
-								taskCountMDDelete.setDisable(false);
-							} else {
-								taskCountMDEdit.setDisable(true);
-								taskCountMDDelete.setDisable(true);
-							}
+							
+							checkTaskCountMDBoxStatus();
 							
 							taskCountPeriodCheck.setDisable(true);
 							taskCountPeriodBox.setDisable(true);
@@ -575,11 +579,11 @@ public class WorkGenViewController {
 
 							taskLengthMDCheck.setDisable(true);
 							taskLengthMDBox.setDisable(true);
-							taskLengthMDButton.setDisable(true);
+							taskLengthMDAdd.setDisable(true);
 
 							taskLengthPeriodCheck.setDisable(true);
 							taskLengthPeriodBox.setDisable(true);
-							taskLengthPeriodButton.setDisable(true);
+							taskLengthPeriodAdd.setDisable(true);
 						} else {
 							taskLengthDistLabel.setDisable(false);
 							taskLengthDistribution.setDisable(false);
@@ -596,11 +600,11 @@ public class WorkGenViewController {
 
 							taskLengthMDCheck.setDisable(false);
 							taskLengthMDBox.setDisable(false);
-							taskLengthMDButton.setDisable(false);
+							taskLengthMDAdd.setDisable(false);
 
 							taskLengthPeriodCheck.setDisable(false);
 							taskLengthPeriodBox.setDisable(false);
-							taskLengthPeriodButton.setDisable(false);
+							taskLengthPeriodAdd.setDisable(false);
 						}
 						break;
 					case "taskLengthMDCheck":
@@ -626,7 +630,7 @@ public class WorkGenViewController {
 
 							taskLengthPeriodCheck.setDisable(true);
 							taskLengthPeriodBox.setDisable(true);
-							taskLengthPeriodButton.setDisable(true);
+							taskLengthPeriodAdd.setDisable(true);
 						} else {
 							taskLengthRefCheck.setDisable(false);
 							taskLengthRefLabel.setDisable(false);
@@ -649,7 +653,7 @@ public class WorkGenViewController {
 
 							taskLengthPeriodCheck.setDisable(false);
 							taskLengthPeriodBox.setDisable(false);
-							taskLengthPeriodButton.setDisable(false);
+							taskLengthPeriodAdd.setDisable(false);
 						}
 						break;
 					case "taskLengthPeriodCheck":
@@ -662,7 +666,7 @@ public class WorkGenViewController {
 
 							taskLengthMDCheck.setDisable(true);
 							taskLengthMDBox.setDisable(true);
-							taskLengthMDButton.setDisable(true);
+							taskLengthMDAdd.setDisable(true);
 						} else {
 							taskLengthRefCheck.setDisable(false);
 							taskLengthRefLabel.setDisable(false);
@@ -672,7 +676,7 @@ public class WorkGenViewController {
 
 							taskLengthMDCheck.setDisable(false);
 							taskLengthMDBox.setDisable(false);
-							taskLengthMDButton.setDisable(false);
+							taskLengthMDAdd.setDisable(false);
 						}
 						break;
 					case "jobPackLenRefCheck":
@@ -1158,7 +1162,7 @@ public class WorkGenViewController {
 					}
 				}
 				if (event.getSource() instanceof ComboBox) {
-					ComboBox<?> combobox = (ComboBox<?>) event.getSource();
+					ComboBox<String> combobox = (ComboBox<String>) event.getSource();
 					if ("taskCountDistribution".equals(combobox.getId())) {
 						switch (combobox.getValue().toString()) {
 						case "constant":
@@ -1502,7 +1506,23 @@ public class WorkGenViewController {
 		this.memoryPeriodCheck.setOnAction(eventHandler);
 	}
 	
-	public void initNodeStatus() {
+	private void initRefCombobox() {
+		ObservableList<String> options = FXCollections.observableArrayList(
+			        "TaskLength",
+			        "JobPackageLength",
+			        "JobInterval",
+			        "CpuCount",
+			        "Memory"
+			    );
+		taskCountRefBox.setItems(options);
+		taskLengthRefBox.setItems(options);
+		jobPackLenRefBox.setItems(options);
+		jobIntervalRefBox.setItems(options);
+		cpucntRefBox.setItems(options);
+		memoryRefBox.setItems(options);
+	}
+
+	public void initComponentStatus() {
 		/** TaskCount*/
 		this.taskCountRefLabel.setDisable(true);
 		this.taskCountRefBox.setDisable(true);
@@ -1543,9 +1563,9 @@ public class WorkGenViewController {
 		this.taskLengthSeed.setDisable(true);
 		
 		this.taskLengthMDBox.setDisable(true);
-		this.taskLengthMDButton.setDisable(true);
+		this.taskLengthMDAdd.setDisable(true);
 		this.taskLengthPeriodBox.setDisable(true);
-		this.taskLengthPeriodButton.setDisable(true);
+		this.taskLengthPeriodAdd.setDisable(true);
 		
 		/** JobPackageLength	*/
 		this.jobPackLenRefLabel.setDisable(true);
@@ -1675,7 +1695,6 @@ public class WorkGenViewController {
 
 	@FXML
 	void gotoWorkGenWindow(ActionEvent event) {
-
 	}
 
 	@FXML
@@ -1683,7 +1702,26 @@ public class WorkGenViewController {
 		WorkloadGenerator generator = new WorkloadGenerator();
 		ConfigurationOptions configurationOptions = ConfigurationOptions.getConfiguration(workloadFilename.getText(),
 				outputFolder.getText());
-		generator.run(configurationOptions, workloadWrapper());
+		if(checkWorkGenValue())
+			generator.run(configurationOptions, workloadWrapper());
+	}
+
+	private boolean checkWorkGenValue() {
+		if(taskCountMDCheck.isSelected() && taskCountMDBox.getValue()==null) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+            alert.titleProperty().set("Warning");
+            alert.headerTextProperty().set("MultiDistribution can not be null!");
+            alert.showAndWait();
+            return false;
+		}
+		if(taskCountPeriodCheck.isSelected() && taskCountPeriodBox.getValue()==null) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+            alert.titleProperty().set("Warning");
+            alert.headerTextProperty().set("PeriodDistribution can not be null!");
+            alert.showAndWait();
+            return false;
+		}
+		return true;
 	}
 
 	@FXML
@@ -1708,8 +1746,8 @@ public class WorkGenViewController {
         Scene scene = new Scene(loadMultiDistViewFXML());
         
         multiDistController.setFlag("EDIT");
-        int index = Integer.parseInt(this.taskCountMDBox.getValue().split("-")[1]);
-        multiDistController.loadDistributionData(index);
+        
+        multiDistController.loadDistributionData(this.getMDBoxIndex());
         
         Stage MDStage = new Stage();
 		MDStage.setTitle("MultiDistribution Settings");
@@ -1720,13 +1758,40 @@ public class WorkGenViewController {
 	
 	@FXML
     void taskCountMDDeleteClick(ActionEvent event) throws Exception {
+		taskCountListMD.removeDistAt(this.getMDBoxIndex());
+		taskCountMDBox.getItems().remove(this.getMDBoxIndex());
+		checkTaskCountMDBoxStatus();
     }
+	
+	public int getMDBoxIndex() {
+        int index = 0;
+        for (int i = 0; i < taskCountMDBox.getItems().size();i++) {
+        	if(this.taskCountMDBox.getValue().equals(taskCountMDBox.getItems().get(i))) {
+        		index = i;
+        		break;
+        	}
+        }
+        return index;
+	}
+
+	public void checkTaskCountMDBoxStatus() {
+		if(taskCountMDBox.getItems().size() > 0) {
+			taskCountMDEdit.setDisable(false);
+			taskCountMDDelete.setDisable(false);
+		} else {
+			taskCountMDEdit.setDisable(true);
+			taskCountMDDelete.setDisable(true);
+		}
+	}
 	
 	@FXML
     void taskCountPeriodAddClick(ActionEvent event) throws IOException {
         
         // Show the scene containing the main layout.
         Scene scene = new Scene(loadPeriodDistViewFXML());
+        
+        periodDistController.setFlag("ADD");
+        
 		Stage periodStage = new Stage();
 		periodStage.setTitle("PeriodDistribution Settings");
         periodStage.setScene(scene);
@@ -1739,9 +1804,10 @@ public class WorkGenViewController {
         
         // Show the scene containing the main layout.
         Scene scene = new Scene(loadPeriodDistViewFXML());
+        // Show the scene containing the main layout.
+        periodDistController.setFlag("EDIT");
         
-//        int index = Integer.parseInt(this.taskCountMDBox.getValue().split("-")[1]);
-//        periodDistController.loadDistributionData(this.taskCountListMD.getDist(index));
+        periodDistController.loadDistributionData(this.getPeriodBoxIndex());
         
 		Stage periodStage = new Stage();
 		periodStage.setTitle("PeriodDistribution Settings");
@@ -1752,8 +1818,110 @@ public class WorkGenViewController {
 	
 	@FXML
     void taskCountPeriodDeleteClick(ActionEvent event) throws IOException {
-        
+		taskCountListRP.removePeriodicValidValuesAt(this.getPeriodBoxIndex());
+		taskCountPeriodBox.getItems().remove(this.getMDBoxIndex());
+		checkTaskCountPeriodBoxStatus();
     }
+	
+	@FXML
+    void taskLengthMDAddClick(ActionEvent event) throws Exception {
+
+        // Show the scene containing the main layout.
+        Scene scene = new Scene(loadMultiDistViewFXML());
+        
+        multiDistController.setFlag("ADD");
+        
+        Stage MDStage = new Stage();
+		MDStage.setTitle("MultiDistribution Settings");
+        MDStage.setScene(scene);
+        MDStage.initModality(Modality.APPLICATION_MODAL);
+        MDStage.show();
+    }
+	
+	@FXML
+    void taskLengthMDEditClick(ActionEvent event) throws Exception {
+
+        // Show the scene containing the main layout.
+        Scene scene = new Scene(loadMultiDistViewFXML());
+        
+        multiDistController.setFlag("EDIT");
+        
+        multiDistController.loadDistributionData(this.getMDBoxIndex());
+        
+        Stage MDStage = new Stage();
+		MDStage.setTitle("MultiDistribution Settings");
+        MDStage.setScene(scene);
+        MDStage.initModality(Modality.APPLICATION_MODAL);
+        MDStage.show();
+    }
+	
+	@FXML
+    void taskLengthMDDeleteClick(ActionEvent event) throws Exception {
+		taskCountListMD.removeDistAt(this.getMDBoxIndex());
+		taskCountMDBox.getItems().remove(this.getMDBoxIndex());
+		checkTaskCountMDBoxStatus();
+    }
+	
+	@FXML
+    void taskLengthPeriodAddClick(ActionEvent event) throws IOException {
+        
+        // Show the scene containing the main layout.
+        Scene scene = new Scene(loadPeriodDistViewFXML());
+        
+        periodDistController.setFlag("ADD");
+        
+		Stage periodStage = new Stage();
+		periodStage.setTitle("PeriodDistribution Settings");
+        periodStage.setScene(scene);
+        periodStage.initModality(Modality.APPLICATION_MODAL);
+        periodStage.show();
+    }
+	
+	@FXML
+    void taskLengthPeriodEditClick(ActionEvent event) throws IOException {
+        
+        // Show the scene containing the main layout.
+        Scene scene = new Scene(loadPeriodDistViewFXML());
+        // Show the scene containing the main layout.
+        periodDistController.setFlag("EDIT");
+        
+        periodDistController.loadDistributionData(this.getPeriodBoxIndex());
+        
+		Stage periodStage = new Stage();
+		periodStage.setTitle("PeriodDistribution Settings");
+        periodStage.setScene(scene);
+        periodStage.initModality(Modality.APPLICATION_MODAL);
+        periodStage.show();
+    }
+	
+	@FXML
+    void taskLengthPeriodDeleteClick(ActionEvent event) throws IOException {
+		taskCountListRP.removePeriodicValidValuesAt(this.getPeriodBoxIndex());
+		taskCountPeriodBox.getItems().remove(this.getMDBoxIndex());
+		checkTaskCountPeriodBoxStatus();
+    }
+	
+	
+	public int getPeriodBoxIndex() {
+        int index = 0;
+        for (int i = 0; i < taskCountPeriodBox.getItems().size();i++) {
+        	if(this.taskCountPeriodBox.getValue().equals(taskCountPeriodBox.getItems().get(i))) {
+        		index = i;
+        		break;
+        	}
+        }
+        return index;
+	}
+
+	public void checkTaskCountPeriodBoxStatus() {
+		if(taskCountPeriodBox.getItems().size() > 0) {
+			taskCountPeriodEdit.setDisable(false);
+			taskCountPeriodDelete.setDisable(false);
+		} else {
+			taskCountPeriodEdit.setDisable(true);
+			taskCountPeriodDelete.setDisable(true);
+		}
+	}
 	
 	private AnchorPane loadMultiDistViewFXML() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
@@ -1766,10 +1934,10 @@ public class WorkGenViewController {
 	
 	private AnchorPane loadPeriodDistViewFXML() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(MainApplication.class.getResource("/view/PeriodDistView.fxml"));
+        loader.setLocation(MainApplication.class.getResource("/view/PeriodDistributionView.fxml"));
         AnchorPane mainLayout = (AnchorPane) loader.load();
-        PeriodDistViewController periodDistViewController = loader.getController();
-        periodDistViewController.init(this);
+        periodDistController = loader.getController();
+        periodDistController.init(this);
         return mainLayout;
 	}
 	
@@ -1808,6 +1976,9 @@ public class WorkGenViewController {
 		}
 		if(this.taskCountListMD.getDist().length!=0 && this.taskCountMDCheck.isSelected()) {
 			taskCount.setMultiDistribution(taskCountListMD);
+		}
+		if(this.taskCountListRP.getPeriodicValidValues().length!=0 && this.taskCountPeriodCheck.isSelected()) {
+			taskCount.setRandParamsSequence(taskCountListRP);
 		}
 //		taskCount.setExpr(expr);
 		
