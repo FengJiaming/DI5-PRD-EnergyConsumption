@@ -78,6 +78,7 @@ import simulator.workload.generator.configuration.types.PreferencesPreferenceTyp
 import controller.simulator.utils.GSSimXML;
 import controller.simulator.utils.XsltTransformations;
 import controller.workload.SWFFields;
+import controller.workload.generator.Dependency;
 import controller.workload.generator.JobGenerator;
 import controller.workload.generator.fileFilters.QcgJobFileNameFilter;
 import controller.workload.generator.writer.QcgSWFJobWriter;
@@ -190,7 +191,7 @@ public class QcgJobGenerator extends AbstractJobGenerator implements JobGenerato
 	
 	public void generateWorkload(WorkloadConfiguration workload,
 			String outputDirectoryName, boolean overwriteExistingFiles,
-			String outputWorkloadFileName) throws FileNotFoundException, IOException {
+			String outputWorkloadFileName, Dependency dependencies) throws FileNotFoundException, IOException {
 		
 		if(log.isInfoEnabled())
 			log.info("Generate workload - start");
@@ -201,11 +202,11 @@ public class QcgJobGenerator extends AbstractJobGenerator implements JobGenerato
 		SWFJobWriter<QcgJob> swfJobWriter = new QcgSWFJobWriter(outputDirectoryName, outputWorkloadFileName);
 		swfJobWriter.writeFieldDescriptionHeader();
 		
-//		try {
-//			randomNumbersWrapper.findDependencies(workloadConfigFileName);
-//		} catch (Exception e2) {
-//			e2.printStackTrace();
-//		}
+		try {
+			randomNumbersWrapper.findDependencies(dependencies);
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
 
 		// load workload configuration from xml file
 //		try {

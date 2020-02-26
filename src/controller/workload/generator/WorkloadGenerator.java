@@ -15,7 +15,7 @@ public class WorkloadGenerator {
 	
 	private Log log = LogFactory.getLog(WorkloadGenerator.class);
 	
-	public void run(ConfigurationOptions configurationOptions, WorkloadConfiguration workload){
+	public void run(ConfigurationOptions configurationOptions, WorkloadConfiguration workload, Dependency dependencies){
 		log.info("Start workload generator.");
 		
 		
@@ -26,7 +26,7 @@ public class WorkloadGenerator {
 		try {
 			
 			log.info("Generating workload.");
-			jobGenerator.generateWorkload(workload, co.outputFolder, true, co.outputWorkloadFileName);
+			jobGenerator.generateWorkload(workload, co.outputFolder, true, co.outputWorkloadFileName, dependencies);
 			
 			log.info("Performing postprocessing.");
 //			jobGenerator.performPostprocessing(co.resdescFileName, co.outputFolder, co.outputWorkloadFileName);

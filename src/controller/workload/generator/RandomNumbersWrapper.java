@@ -387,6 +387,11 @@ public class RandomNumbersWrapper {
 		return genOrderList;
 	}
 	
+	public void findDependencies(Dependency dependencies) throws Exception{
+		this.idExpMap = dependencies.idExpMap;
+		this.idDep = dependencies.idDep;
+	}
+	
 	protected boolean isExternalFileDependent(String idName){
 		if(idName.startsWith("swf."))
 			return true;

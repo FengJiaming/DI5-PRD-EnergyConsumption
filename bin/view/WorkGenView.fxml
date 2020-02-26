@@ -12,7 +12,278 @@
    <children>
       <Pane layoutX="565.0" layoutY="20.0" prefHeight="803.0" prefWidth="525.0">
          <children>
-            <GridPane layoutX="11.0" layoutY="26.0" prefHeight="171.0" prefWidth="496.0">
+            <GridPane layoutX="11.0" layoutY="23.0" prefHeight="171.0" prefWidth="496.0">
+               <children>
+                  <Label fx:id="jobPackLenAvgLabel" prefHeight="15.0" prefWidth="35.0" text=" Avg" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <TextField fx:id="jobPackLenAvg" prefHeight="23.0" prefWidth="107.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                  <TextField fx:id="jobPackLenMin" prefHeight="23.0" prefWidth="107.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                  <Label fx:id="jobPackLenMinLabel" prefHeight="15.0" prefWidth="38.0" text=" Min" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <Label fx:id="jobPackLenStdevLabel" text=" Stdev" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                  <TextField fx:id="jobPackLenStdev" prefHeight="23.0" prefWidth="79.0" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                  <Label fx:id="jobPackLenMaxLabel" text="Max" GridPane.rowIndex="3" />
+                  <Label fx:id="jobPackLenDistLabel" text="distribution" GridPane.rowIndex="2" />
+                  <Label fx:id="jobPackLenSeedLabel" text=" seed" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                  <TextField fx:id="jobPackLenMax" prefHeight="23.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                  <TextField fx:id="jobPackLenSeed" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                  <ComboBox fx:id="jobPackLenDistribution" prefWidth="150.0" value="constant" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="constant" />
+                           <String fx:value="normal" />
+                           <String fx:value="poisson" />
+                           <String fx:value="uniform" />
+                        </FXCollections>
+                     </items>
+                  </ComboBox>
+                  <CheckBox fx:id="jobPackLenRefCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="123.0" text="Dependency" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <Label prefHeight="15.0" prefWidth="121.0" text="JobPackageLength" GridPane.columnSpan="3" />
+                  <CheckBox fx:id="jobPackLenMDCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="146.0" text="MultiDistribution" GridPane.columnSpan="3" GridPane.rowIndex="4" />
+                  <ComboBox fx:id="jobPackLenMDBox" prefHeight="23.0" prefWidth="181.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="4" />
+                  <Label fx:id="jobPackLenRefLabel" text=" Ref" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="jobPackLenRefBox" prefHeight="23.0" prefWidth="174.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <Label fx:id="jobPackLenExprLabel" text=" Expr" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                  <TextField fx:id="jobPackLenExprText" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <Button fx:id="jobPackLenMDAdd" mnemonicParsing="false" onAction="#jobPackLenMDAddClick" text="Add" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                  <CheckBox fx:id="jobPackLenPeriodCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="154.0" text="PeriodValue" GridPane.columnSpan="3" GridPane.rowIndex="5" />
+                  <ComboBox fx:id="jobPackLenPeriodBox" prefHeight="23.0" prefWidth="181.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="5" />
+                  <Button fx:id="jobPackLenPeriodAdd" mnemonicParsing="false" onAction="#jobPackLenPeriodAddClick" text="Add" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+                  <Button fx:id="jobPackLenMDEdit" mnemonicParsing="false" onAction="#jobPackLenMDEditClick" text="Edit" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+                  <Button fx:id="jobPackLenPeriodEdit" mnemonicParsing="false" onAction="#jobPackLenPeriodEditClick" text="Edit" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+                  <Button fx:id="jobPackLenMDDelete" mnemonicParsing="false" onAction="#jobPackLenMDDeleteClick" text="Delete" GridPane.columnIndex="8" GridPane.rowIndex="4" />
+                  <Button fx:id="jobPackLenPeriodDelete" mnemonicParsing="false" onAction="#jobPackLenPeriodDeleteClick" text="Delete" GridPane.columnIndex="8" GridPane.rowIndex="5" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="71.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="44.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="49.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="10.0" prefWidth="31.0" />
+                  <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="67.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="103.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="41.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="38.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="54.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <GridPane layoutX="11.0" layoutY="206.0" prefHeight="171.0" prefWidth="496.0">
+               <children>
+                  <Label fx:id="jobIntervalAvgLabel" prefHeight="15.0" prefWidth="35.0" text=" Avg" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <TextField fx:id="jobIntervalAvg" prefHeight="23.0" prefWidth="107.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                  <TextField fx:id="jobIntervalMin" prefHeight="23.0" prefWidth="107.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                  <Label fx:id="jobIntervalMinLabel" prefHeight="15.0" prefWidth="38.0" text=" Min" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <Label fx:id="jobIntervalStdevLabel" text=" Stdev" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                  <TextField fx:id="jobIntervalStdev" prefHeight="23.0" prefWidth="79.0" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                  <Label fx:id="jobIntervalMaxLabel" text="Max" GridPane.rowIndex="3" />
+                  <Label fx:id="jobIntervalDistLabel" text="distribution" GridPane.rowIndex="2" />
+                  <Label fx:id="jobIntervalSeedLabel" text=" seed" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                  <TextField fx:id="jobIntervalMax" prefHeight="23.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                  <TextField fx:id="jobIntervalSeed" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                  <ComboBox fx:id="jobIntervalDistribution" prefWidth="150.0" value="constant" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="constant" />
+                           <String fx:value="normal" />
+                           <String fx:value="poisson" />
+                           <String fx:value="uniform" />
+                        </FXCollections>
+                     </items>
+                  </ComboBox>
+                  <CheckBox fx:id="jobIntervalRefCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="123.0" text="Dependency" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <Label prefHeight="15.0" prefWidth="71.0" text="JobInterval" GridPane.columnSpan="2" />
+                  <CheckBox fx:id="jobIntervalMDCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="146.0" text="MultiDistribution" GridPane.columnSpan="3" GridPane.rowIndex="4" />
+                  <ComboBox fx:id="jobIntervalMDBox" prefHeight="23.0" prefWidth="181.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="4" />
+                  <Label fx:id="jobIntervalRefLabel" text=" Ref" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="jobIntervalRefBox" prefHeight="23.0" prefWidth="174.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <Label fx:id="jobIntervalExprLabel" text=" Expr" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                  <TextField fx:id="jobIntervalExprText" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <Button fx:id="jobIntervalMDAdd" mnemonicParsing="false" onAction="#jobIntervalMDAddClick" text="Add" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                  <CheckBox fx:id="jobIntervalPeriodCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="154.0" text="PeriodValue" GridPane.columnSpan="3" GridPane.rowIndex="5" />
+                  <ComboBox fx:id="jobIntervalPeriodBox" prefHeight="23.0" prefWidth="181.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="5" />
+                  <Button fx:id="jobIntervalPeriodAdd" mnemonicParsing="false" onAction="#jobIntervalPeriodAddClick" text="Add" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+                  <Button fx:id="jobIntervalMDEdit" mnemonicParsing="false" onAction="#jobIntervalMDEditClick" text="Edit" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+                  <Button fx:id="jobIntervalPeriodEdit" mnemonicParsing="false" onAction="#jobIntervalPeriodEditClick" text="Edit" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+                  <Button fx:id="jobIntervalMDDelete" mnemonicParsing="false" onAction="#jobIntervalMDDeleteClick" text="Delete" GridPane.columnIndex="8" GridPane.rowIndex="4" />
+                  <Button fx:id="jobIntervalPeriodDelete" mnemonicParsing="false" onAction="#jobIntervalPeriodDeleteClick" text="Delete" GridPane.columnIndex="8" GridPane.rowIndex="5" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="71.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="44.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="49.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="10.0" prefWidth="31.0" />
+                  <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="67.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="103.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="41.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="38.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="54.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <GridPane layoutX="11.0" layoutY="391.0" prefHeight="171.0" prefWidth="496.0">
+               <children>
+                  <Label fx:id="cpucntAvgLabel" prefHeight="15.0" prefWidth="35.0" text=" Avg" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <TextField fx:id="cpucntAvg" prefHeight="23.0" prefWidth="107.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                  <TextField fx:id="cpucntMin" prefHeight="23.0" prefWidth="107.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                  <Label fx:id="cpucntMinLabel" prefHeight="15.0" prefWidth="38.0" text=" Min" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <Label fx:id="cpucntStdevLabel" text=" Stdev" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                  <TextField fx:id="cpucntStdev" prefHeight="23.0" prefWidth="79.0" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                  <Label fx:id="cpucntMaxLabel" text="Max" GridPane.rowIndex="3" />
+                  <Label fx:id="cpucntDistLabel" text="distribution" GridPane.rowIndex="2" />
+                  <Label fx:id="cpucntSeedLabel" text=" seed" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                  <TextField fx:id="cpucntMax" prefHeight="23.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                  <TextField fx:id="cpucntSeed" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                  <ComboBox fx:id="cpucntDistribution" prefWidth="150.0" value="constant" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="constant" />
+                           <String fx:value="normal" />
+                           <String fx:value="poisson" />
+                           <String fx:value="uniform" />
+                        </FXCollections>
+                     </items>
+                  </ComboBox>
+                  <CheckBox fx:id="cpucntRefCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="123.0" text="Dependency" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <Label prefHeight="15.0" prefWidth="71.0" text="CpuCount" GridPane.columnSpan="2" />
+                  <CheckBox fx:id="cpucntMDCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="146.0" text="MultiDistribution" GridPane.columnSpan="3" GridPane.rowIndex="4" />
+                  <ComboBox fx:id="cpucntMDBox" prefHeight="23.0" prefWidth="181.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="4" />
+                  <Label fx:id="cpucntRefLabel" text=" Ref" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="cpucntRefBox" prefHeight="23.0" prefWidth="174.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <Label fx:id="cpucntExprLabel" text=" Expr" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                  <TextField fx:id="cpucntExprText" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <Button fx:id="cpucntMDAdd" mnemonicParsing="false" onAction="#cpucntMDAddClick" text="Add" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                  <CheckBox fx:id="cpucntPeriodCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="154.0" text="PeriodValue" GridPane.columnSpan="3" GridPane.rowIndex="5" />
+                  <ComboBox fx:id="cpucntPeriodBox" prefHeight="23.0" prefWidth="181.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="5" />
+                  <Button fx:id="cpucntPeriodAdd" mnemonicParsing="false" onAction="#cpucntPeriodAddClick" text="Add" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+                  <Button fx:id="cpucntMDEdit" mnemonicParsing="false" onAction="#cpucntMDEditClick" text="Edit" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+                  <Button fx:id="cpucntPeriodEdit" mnemonicParsing="false" onAction="#cpucntPeriodEditClick" text="Edit" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+                  <Button fx:id="cpucntMDDelete" mnemonicParsing="false" onAction="#cpucntMDDeleteClick" text="Delete" GridPane.columnIndex="8" GridPane.rowIndex="4" />
+                  <Button fx:id="cpucntPeriodDelete" mnemonicParsing="false" onAction="#cpucntPeriodDeleteClick" text="Delete" GridPane.columnIndex="8" GridPane.rowIndex="5" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="71.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="44.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="49.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="10.0" prefWidth="31.0" />
+                  <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="67.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="103.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="41.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="38.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="54.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <GridPane layoutX="11.0" layoutY="575.0" prefHeight="171.0" prefWidth="496.0">
+               <children>
+                  <Label fx:id="memoryAvgLabel" prefHeight="15.0" prefWidth="35.0" text=" Avg" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <TextField fx:id="memoryAvg" prefHeight="23.0" prefWidth="107.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                  <TextField fx:id="memoryMin" prefHeight="23.0" prefWidth="107.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                  <Label fx:id="memoryMinLabel" prefHeight="15.0" prefWidth="38.0" text=" Min" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <Label fx:id="memoryStdevLabel" text=" Stdev" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                  <TextField fx:id="memoryStdev" prefHeight="23.0" prefWidth="79.0" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                  <Label fx:id="memoryMaxLabel" text="Max" GridPane.rowIndex="3" />
+                  <Label fx:id="memoryDistLabel" text="distribution" GridPane.rowIndex="2" />
+                  <Label fx:id="memorySeedLabel" text=" seed" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                  <TextField fx:id="memoryMax" prefHeight="23.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                  <TextField fx:id="memorySeed" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                  <ComboBox fx:id="memoryDistribution" prefWidth="150.0" value="constant" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="constant" />
+                           <String fx:value="normal" />
+                           <String fx:value="poisson" />
+                           <String fx:value="uniform" />
+                        </FXCollections>
+                     </items>
+                  </ComboBox>
+                  <CheckBox fx:id="memoryRefCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="123.0" text="Dependency" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <Label prefHeight="15.0" prefWidth="71.0" text="Memory" GridPane.columnSpan="2" />
+                  <CheckBox fx:id="memoryMDCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="146.0" text="MultiDistribution" GridPane.columnSpan="3" GridPane.rowIndex="4" />
+                  <ComboBox fx:id="memoryMDBox" prefHeight="23.0" prefWidth="181.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="4" />
+                  <Label fx:id="memoryRefLabel" text=" Ref" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="memoryRefBox" prefHeight="23.0" prefWidth="174.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <Label fx:id="memoryExprLabel" text=" Expr" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                  <TextField fx:id="memoryExprText" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <Button fx:id="memoryMDAdd" mnemonicParsing="false" onAction="#memoryMDAddClick" text="Add" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                  <CheckBox fx:id="memoryPeriodCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="154.0" text="PeriodValue" GridPane.columnSpan="3" GridPane.rowIndex="5" />
+                  <ComboBox fx:id="memoryPeriodBox" prefHeight="23.0" prefWidth="181.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="5" />
+                  <Button fx:id="memoryPeriodAdd" mnemonicParsing="false" onAction="#memoryPeriodAddClick" text="Add" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+                  <Button fx:id="memoryMDEdit" mnemonicParsing="false" onAction="#memoryMDEditClick" text="Edit" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+                  <Button fx:id="memoryPeriodEdit" mnemonicParsing="false" onAction="#memoryPeriodEditClick" text="Edit" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+                  <Button fx:id="memoryMDDelete" mnemonicParsing="false" onAction="#memoryMDDeleteClick" text="Delete" GridPane.columnIndex="8" GridPane.rowIndex="4" />
+                  <Button fx:id="memoryPeriodDelete" mnemonicParsing="false" onAction="#memoryPeriodDeleteClick" text="Delete" GridPane.columnIndex="8" GridPane.rowIndex="5" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="71.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="44.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="49.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="10.0" prefWidth="31.0" />
+                  <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="67.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="103.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="41.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="38.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="54.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </children>
+      </Pane>
+      <Pane layoutX="25.0" layoutY="45.0" prefHeight="768.0" prefWidth="525.0">
+         <children>
+            <TextArea layoutX="15.0" layoutY="581.0" prefHeight="150.0" prefWidth="496.0" />
+            <Label layoutX="14.0" layoutY="566.0" text="Console" />
+            <GridPane fx:id="gridpane1" layoutX="41.0" layoutY="46.0" prefHeight="128.0" prefWidth="413.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.0" minWidth="10.0" prefWidth="123.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="196.0" />
+                  <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="81.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="JobCount" GridPane.rowIndex="3" />
+                  <TextField fx:id="jobCount" prefHeight="23.0" prefWidth="71.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label text="SimulationStartTime" GridPane.rowIndex="2" />
+                  <TextField fx:id="simulationStartTime" prefHeight="23.0" prefWidth="216.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label prefHeight="15.0" prefWidth="151.0" text="workloadfilename" />
+                  <TextField fx:id="workloadFilename" prefHeight="23.0" prefWidth="194.0" GridPane.columnIndex="1" />
+                  <Label prefHeight="15.0" prefWidth="78.0" text="outputfolder" GridPane.rowIndex="1" />
+                  <TextField fx:id="outputFolder" prefHeight="23.0" prefWidth="194.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="60.0" text="Select" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+            <Button fx:id="generateButton" layoutX="213.0" layoutY="743.0" mnemonicParsing="false" onAction="#generateButtonClick" text="Generate" />
+            <GridPane layoutX="15.0" layoutY="174.0" prefHeight="171.0" prefWidth="496.0">
                <children>
                   <Label fx:id="taskCountAvgLabel" prefHeight="15.0" prefWidth="35.0" text=" Avg" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                   <TextField fx:id="taskCountAvg" prefHeight="23.0" prefWidth="107.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="2" />
@@ -75,20 +346,20 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
             </GridPane>
-            <GridPane layoutX="15.0" layoutY="402.0" prefHeight="171.0" prefWidth="466.0">
+            <GridPane layoutX="15.0" layoutY="373.0" prefHeight="171.0" prefWidth="496.0">
                <children>
-                  <Label fx:id="jobPackLenAvgLabel" prefHeight="15.0" prefWidth="35.0" text=" Avg" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <TextField fx:id="jobPackLenAvg" prefHeight="23.0" prefWidth="71.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                  <TextField fx:id="jobPackLenMin" prefHeight="23.0" prefWidth="89.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                  <Label fx:id="jobPackLenMinLabel" prefHeight="15.0" prefWidth="38.0" text=" Min" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <Label fx:id="jobPackLenStdevLabel" text=" Stdev" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                  <TextField fx:id="jobPackLenStdev" prefHeight="23.0" prefWidth="79.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                  <Label fx:id="jobPackLenMaxLabel" text="Max" GridPane.rowIndex="3" />
-                  <Label fx:id="jobPackLenDistLabel" text="distribution" GridPane.rowIndex="2" />
-                  <Label fx:id="jobPackLenSeedLabel" text=" seed" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                  <TextField fx:id="jobPackLenMax" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="jobPackLenSeed" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                  <ComboBox fx:id="jobPackLenDistribution" prefWidth="150.0" value="constant" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Label fx:id="taskLengthAvgLabel" prefHeight="15.0" prefWidth="35.0" text=" Avg" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <TextField fx:id="taskLengthAvg" prefHeight="23.0" prefWidth="107.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                  <TextField fx:id="taskLengthMin" prefHeight="23.0" prefWidth="107.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                  <Label fx:id="taskLengthMinLabel" prefHeight="15.0" prefWidth="38.0" text=" Min" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <Label fx:id="taskLengthStdevLabel" text=" Stdev" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                  <TextField fx:id="taskLengthStdev" prefHeight="23.0" prefWidth="79.0" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                  <Label fx:id="taskLengthMaxLabel" text="Max" GridPane.rowIndex="3" />
+                  <Label fx:id="taskLengthDistLabel" text="distribution" GridPane.rowIndex="2" />
+                  <Label fx:id="taskLengthSeedLabel" text=" seed" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                  <TextField fx:id="taskLengthMax" prefHeight="23.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                  <TextField fx:id="taskLengthSeed" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                  <ComboBox fx:id="taskLengthDistribution" prefWidth="150.0" value="constant" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
                      <items>
                         <FXCollections fx:factory="observableArrayList">
                            <String fx:value="constant" />
@@ -98,130 +369,22 @@
                         </FXCollections>
                      </items>
                   </ComboBox>
-                  <CheckBox fx:id="jobPackLenRefCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="140.0" text="Dependency" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                  <Label text="JobPackageLength" GridPane.columnSpan="2" />
-                  <CheckBox fx:id="jobPackLenMDCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="146.0" text="MultiDistribution" GridPane.columnSpan="2" GridPane.rowIndex="4" />
-                  <ComboBox fx:id="jobPackLenMDBox" prefHeight="23.0" prefWidth="152.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4" />
-                  <Label fx:id="jobPackLenRefLabel" text=" RefElement" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <ComboBox fx:id="jobPackLenRefBox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                  <Label fx:id="jobPackLenExprLabel" text=" Expr" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                  <TextField fx:id="jobPackLenExprText" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                  <Button fx:id="jobPackLenMDButton" mnemonicParsing="false" text="Add" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-                  <CheckBox fx:id="jobPackLenPeriodCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="154.0" text="PeriodValue" GridPane.columnSpan="2" GridPane.rowIndex="5" />
-                  <ComboBox fx:id="jobPackLenPeriodBox" prefHeight="23.0" prefWidth="152.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="5" />
-                  <Button fx:id="jobPackLenPeriodButton" mnemonicParsing="false" text="Add" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-               </children>
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="69.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="92.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="10.0" prefWidth="79.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="87.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="40.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="87.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-            </GridPane>
-            <GridPane layoutX="11.0" layoutY="597.0" prefHeight="171.0" prefWidth="466.0">
-               <children>
-                  <Label fx:id="jobIntervalAvgLabel" prefHeight="15.0" prefWidth="35.0" text=" Avg" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <TextField fx:id="jobIntervalAvg" prefHeight="23.0" prefWidth="71.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                  <TextField fx:id="jobIntervalMin" prefHeight="23.0" prefWidth="89.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                  <Label fx:id="jobIntervalMinLabel" prefHeight="15.0" prefWidth="38.0" text=" Min" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <Label fx:id="jobIntervalStdevLabel" text=" Stdev" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                  <TextField fx:id="jobIntervalStdev" prefHeight="23.0" prefWidth="79.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                  <Label fx:id="jobIntervalMaxLabel" text="Max" GridPane.rowIndex="3" />
-                  <Label fx:id="jobIntervalDistLabel" text="distribution" GridPane.rowIndex="2" />
-                  <Label fx:id="jobIntervalSeedLabel" text=" seed" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                  <TextField fx:id="jobIntervalMax" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="jobIntervalSeed" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                  <ComboBox fx:id="jobIntervalDistribution" prefWidth="150.0" value="constant" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <items>
-                        <FXCollections fx:factory="observableArrayList">
-                           <String fx:value="constant" />
-                           <String fx:value="normal" />
-                           <String fx:value="poisson" />
-                           <String fx:value="uniform" />
-                        </FXCollections>
-                     </items>
-                  </ComboBox>
-                  <CheckBox fx:id="jobIntervalRefCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="140.0" text="Dependency" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                  <Label text="JobInterval" GridPane.columnSpan="2" />
-                  <CheckBox fx:id="jobIntervalMDCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="146.0" text="MultiDistribution" GridPane.columnSpan="2" GridPane.rowIndex="4" />
-                  <ComboBox fx:id="jobIntervalMDBox" prefHeight="23.0" prefWidth="152.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4" />
-                  <Label fx:id="jobIntervalRefLabel" text=" RefElement" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <ComboBox fx:id="jobIntervalRefBox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                  <Label fx:id="jobIntervalExprLabel" text=" Expr" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                  <TextField fx:id="jobIntervalExprText" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                  <Button fx:id="jobIntervalMDButton" mnemonicParsing="false" text="Add" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-                  <CheckBox fx:id="jobIntervalPeriodCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="154.0" text="PeriodValue" GridPane.columnSpan="2" GridPane.rowIndex="5" />
-                  <ComboBox fx:id="jobIntervalPeriodBox" prefHeight="23.0" prefWidth="152.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="5" />
-                  <Button fx:id="jobIntervalPeriodButton" mnemonicParsing="false" text="Add" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-               </children>
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="69.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="92.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="10.0" prefWidth="79.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="87.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="40.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="87.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-            </GridPane>
-            <GridPane layoutX="15.0" layoutY="221.0" prefHeight="171.0" prefWidth="496.0">
-               <children>
-                  <Label fx:id="taskCountAvgLabel1" prefHeight="15.0" prefWidth="35.0" text=" Avg" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                  <TextField fx:id="taskCountAvg1" prefHeight="23.0" prefWidth="107.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-                  <TextField fx:id="taskCountMin1" prefHeight="23.0" prefWidth="107.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-                  <Label fx:id="taskCountMinLabel1" prefHeight="15.0" prefWidth="38.0" text=" Min" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                  <Label fx:id="taskCountStdevLabel1" text=" Stdev" GridPane.columnIndex="6" GridPane.rowIndex="2" />
-                  <TextField fx:id="taskCountStdev1" prefHeight="23.0" prefWidth="79.0" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-                  <Label fx:id="taskCountMaxLabel1" text="Max" GridPane.rowIndex="3" />
-                  <Label fx:id="taskCountDistLabel1" text="distribution" GridPane.rowIndex="2" />
-                  <Label fx:id="taskCountSeedLabel1" text=" seed" GridPane.columnIndex="6" GridPane.rowIndex="3" />
-                  <TextField fx:id="taskCountMax1" prefHeight="23.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-                  <TextField fx:id="taskCountSeed1" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-                  <ComboBox fx:id="taskCountDistribution1" prefWidth="150.0" value="constant" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
-                     <items>
-                        <FXCollections fx:factory="observableArrayList">
-                           <String fx:value="constant" />
-                           <String fx:value="normal" />
-                           <String fx:value="poisson" />
-                           <String fx:value="uniform" />
-                        </FXCollections>
-                     </items>
-                  </ComboBox>
-                  <CheckBox fx:id="taskCountRefCheck1" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="123.0" text="Dependency" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <CheckBox fx:id="taskLengthRefCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="123.0" text="Dependency" GridPane.columnSpan="2" GridPane.rowIndex="1" />
                   <Label prefHeight="15.0" prefWidth="71.0" text="TaskLength" GridPane.columnSpan="2" />
-                  <CheckBox fx:id="taskCountMDCheck1" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="146.0" text="MultiDistribution" GridPane.columnSpan="3" GridPane.rowIndex="4" />
-                  <ComboBox fx:id="taskCountMDBox1" prefHeight="23.0" prefWidth="181.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="4" />
-                  <Label fx:id="taskCountRefLabel1" text=" Ref" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                  <ComboBox fx:id="taskCountRefBox1" prefHeight="23.0" prefWidth="174.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                  <Label fx:id="taskCountExprLabel1" text=" Expr" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-                  <TextField fx:id="taskCountExprText1" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                  <Button fx:id="taskCountMDAdd1" mnemonicParsing="false" onAction="#taskCountMDAddClick" text="Add" GridPane.columnIndex="6" GridPane.rowIndex="4" />
-                  <CheckBox fx:id="taskCountPeriodCheck1" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="154.0" text="PeriodValue" GridPane.columnSpan="3" GridPane.rowIndex="5" />
-                  <ComboBox fx:id="taskCountPeriodBox1" prefHeight="23.0" prefWidth="181.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="5" />
-                  <Button fx:id="taskCountPeriodAdd1" mnemonicParsing="false" onAction="#taskCountPeriodAddClick" text="Add" GridPane.columnIndex="6" GridPane.rowIndex="5" />
-                  <Button fx:id="taskCountMDEdit1" mnemonicParsing="false" onAction="#taskCountMDEditClick" text="Edit" GridPane.columnIndex="7" GridPane.rowIndex="4" />
-                  <Button fx:id="taskCountPeriodEdit1" mnemonicParsing="false" onAction="#taskCountPeriodEditClick" text="Edit" GridPane.columnIndex="7" GridPane.rowIndex="5" />
-                  <Button fx:id="taskCountMDDelete1" mnemonicParsing="false" onAction="#taskCountMDDeleteClick" text="Delete" GridPane.columnIndex="8" GridPane.rowIndex="4" />
-                  <Button fx:id="taskCountPeriodDelete1" mnemonicParsing="false" onAction="#taskCountPeriodDeleteClick" text="Delete" GridPane.columnIndex="8" GridPane.rowIndex="5" />
+                  <CheckBox fx:id="taskLengthMDCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="146.0" text="MultiDistribution" GridPane.columnSpan="3" GridPane.rowIndex="4" />
+                  <ComboBox fx:id="taskLengthMDBox" prefHeight="23.0" prefWidth="181.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="4" />
+                  <Label fx:id="taskLengthRefLabel" text=" Ref" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="taskLengthRefBox" prefHeight="23.0" prefWidth="174.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <Label fx:id="taskLengthExprLabel" text=" Expr" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                  <TextField fx:id="taskLengthExprText" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <Button fx:id="taskLengthMDAdd" mnemonicParsing="false" onAction="#taskLengthMDAddClick" text="Add" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                  <CheckBox fx:id="taskLengthPeriodCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="154.0" text="PeriodValue" GridPane.columnSpan="3" GridPane.rowIndex="5" />
+                  <ComboBox fx:id="taskLengthPeriodBox" prefHeight="23.0" prefWidth="181.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="5" />
+                  <Button fx:id="taskLengthPeriodAdd" mnemonicParsing="false" onAction="#taskLengthPeriodAddClick" text="Add" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+                  <Button fx:id="taskLengthMDEdit" mnemonicParsing="false" onAction="#taskLengthMDEditClick" text="Edit" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+                  <Button fx:id="taskLengthPeriodEdit" mnemonicParsing="false" onAction="#taskLengthPeriodEditClick" text="Edit" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+                  <Button fx:id="taskLengthMDDelete" mnemonicParsing="false" onAction="#taskLengthMDDeleteClick" text="Delete" GridPane.columnIndex="8" GridPane.rowIndex="4" />
+                  <Button fx:id="taskLengthPeriodDelete" mnemonicParsing="false" onAction="#taskLengthPeriodDeleteClick" text="Delete" GridPane.columnIndex="8" GridPane.rowIndex="5" />
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="71.0" />
@@ -243,150 +406,12 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
             </GridPane>
+            <Button layoutX="157.0" layoutY="14.0" mnemonicParsing="false" text="Load Pattern" />
+            <Button layoutX="276.0" layoutY="14.0" mnemonicParsing="false" text="Help" />
          </children>
       </Pane>
-      <Pane layoutX="25.0" layoutY="45.0" prefHeight="768.0" prefWidth="525.0">
-         <children>
-            <TextArea layoutX="29.0" layoutY="580.0" prefHeight="128.0" prefWidth="466.0" />
-            <Label layoutX="36.0" layoutY="555.0" text="Console" />
-            <GridPane fx:id="gridpane1" layoutX="27.0" layoutY="21.0" prefHeight="128.0" prefWidth="413.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.0" minWidth="10.0" prefWidth="123.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="196.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="81.0" />
-              </columnConstraints>
-              <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label text="JobCount" GridPane.rowIndex="3" />
-                  <TextField fx:id="jobCount" prefHeight="23.0" prefWidth="71.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="SimulationStartTime" GridPane.rowIndex="2" />
-                  <TextField fx:id="simulationStartTime" prefHeight="23.0" prefWidth="216.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label prefHeight="15.0" prefWidth="151.0" text="workloadfilename" />
-                  <TextField fx:id="workloadFilename" prefHeight="23.0" prefWidth="194.0" GridPane.columnIndex="1" />
-                  <Label prefHeight="15.0" prefWidth="78.0" text="outputfolder" GridPane.rowIndex="1" />
-                  <TextField fx:id="outputFolder" prefHeight="23.0" prefWidth="194.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" />
-                  <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-               </children>
-            </GridPane>
-            <Button fx:id="generateButton" layoutX="213.0" layoutY="723.0" mnemonicParsing="false" onAction="#generateButtonClick" text="Generate" />
-            <GridPane layoutX="23.0" layoutY="167.0" prefHeight="171.0" prefWidth="483.0">
-               <children>
-                  <Label fx:id="cpucntAvgLabel" prefHeight="15.0" prefWidth="35.0" text=" Avg" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <TextField fx:id="cpucntAvg" prefHeight="23.0" prefWidth="71.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                  <TextField fx:id="cpucntMin" prefHeight="23.0" prefWidth="89.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                  <Label fx:id="cpucntMinLabel" prefHeight="15.0" prefWidth="38.0" text=" Min" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <Label fx:id="cpucntStdevLabel" text=" Stdev" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                  <TextField fx:id="cpucntStdev" prefHeight="23.0" prefWidth="79.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                  <Label fx:id="cpucntMaxLabel" text="Max" GridPane.rowIndex="3" />
-                  <Label fx:id="cpucntDistLabel" text="distribution" GridPane.rowIndex="2" />
-                  <Label fx:id="cpucntSeedLabel" text=" seed" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                  <TextField fx:id="cpucntMax" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="cpucntSeed" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                  <ComboBox fx:id="cpucntDistribution" prefWidth="150.0" value="constant" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <items>
-                        <FXCollections fx:factory="observableArrayList">
-                           <String fx:value="constant" />
-                           <String fx:value="normal" />
-                           <String fx:value="poisson" />
-                           <String fx:value="uniform" />
-                        </FXCollections>
-                     </items>
-                  </ComboBox>
-                  <CheckBox fx:id="cpucntRefCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="140.0" text="Dependency" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                  <Label text="CpuCount" GridPane.columnSpan="2" />
-                  <CheckBox fx:id="cpucntMDCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="146.0" text="MultiDistribution" GridPane.columnSpan="2" GridPane.rowIndex="4" />
-                  <ComboBox fx:id="cpucntMDBox" prefHeight="23.0" prefWidth="152.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4" />
-                  <Label fx:id="cpucntRefLabel" text=" RefElement" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <ComboBox fx:id="cpucntRefBox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                  <Label fx:id="cpucntExprLabel" text=" Expr" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                  <TextField fx:id="cpucntExprText" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                  <Button fx:id="cpucntMDButton" mnemonicParsing="false" text="Add" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-                  <CheckBox fx:id="cpucntPeriodCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="154.0" text="PeriodValue" GridPane.columnSpan="2" GridPane.rowIndex="5" />
-                  <ComboBox fx:id="cpucntPeriodBox" prefHeight="23.0" prefWidth="152.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="5" />
-                  <Button fx:id="cpucntPeriodButton" mnemonicParsing="false" text="Add" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-               </children>
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="69.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="92.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="10.0" prefWidth="79.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="87.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="40.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="87.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-            </GridPane>
-            <GridPane layoutX="23.0" layoutY="353.0" prefHeight="171.0" prefWidth="483.0">
-               <children>
-                  <Label fx:id="memoryAvgLabel" prefHeight="15.0" prefWidth="35.0" text=" Avg" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <TextField fx:id="memoryAvg" prefHeight="23.0" prefWidth="71.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                  <TextField fx:id="memoryMin" prefHeight="23.0" prefWidth="89.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                  <Label fx:id="memoryMinLabel" prefHeight="15.0" prefWidth="38.0" text=" Min" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <Label fx:id="memoryStdevLabel" text=" Stdev" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                  <TextField fx:id="memoryStdev" prefHeight="23.0" prefWidth="79.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                  <Label fx:id="memoryMaxLabel" text="Max" GridPane.rowIndex="3" />
-                  <Label fx:id="memoryDistLabel" text="distribution" GridPane.rowIndex="2" />
-                  <Label fx:id="memorySeedLabel" text=" seed" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                  <TextField fx:id="memoryMax" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="memorySeed" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                  <ComboBox fx:id="memoryDistribution" prefWidth="150.0" value="constant" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <items>
-                        <FXCollections fx:factory="observableArrayList">
-                           <String fx:value="constant" />
-                           <String fx:value="normal" />
-                           <String fx:value="poisson" />
-                           <String fx:value="uniform" />
-                        </FXCollections>
-                     </items>
-                  </ComboBox>
-                  <CheckBox fx:id="memoryRefCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="140.0" text="Dependency" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                  <Label text="Memory" GridPane.columnSpan="2" />
-                  <CheckBox fx:id="memoryMDCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="146.0" text="MultiDistribution" GridPane.columnSpan="2" GridPane.rowIndex="4" />
-                  <ComboBox fx:id="memoryMDBox" prefHeight="23.0" prefWidth="152.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4" />
-                  <Label fx:id="memoryRefLabel" text=" RefElement" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <ComboBox fx:id="memoryRefBox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                  <Label fx:id="memoryExprLabel" text=" Expr" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                  <TextField fx:id="memoryExprText" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                  <Button fx:id="memoryMDButton" mnemonicParsing="false" text="Add" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-                  <CheckBox fx:id="memoryPeriodCheck" alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="154.0" text="PeriodValue" GridPane.columnSpan="2" GridPane.rowIndex="5" />
-                  <ComboBox fx:id="memoryPeriodBox" prefHeight="23.0" prefWidth="152.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="5" />
-                  <Button fx:id="memoryPeriodButton" mnemonicParsing="false" text="Add" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-               </children>
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="69.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="92.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="10.0" prefWidth="79.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="87.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="40.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="87.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-            </GridPane>
-         </children>
-      </Pane>
-      <Button fx:id="mainViewButton" layoutX="51.0" layoutY="9.0" mnemonicParsing="false" onAction="#gotoSimulationWindow" prefHeight="23.0" prefWidth="174.0" text="Simulation Arrangement" />
-      <Button fx:id="workGenerator" layoutX="225.0" layoutY="9.0" mnemonicParsing="false" onAction="#gotoWorkGenWindow" text="Workload Generator" />
-      <Button layoutX="359.0" layoutY="9.0" mnemonicParsing="false" text="DEBB Configurator" />
+      <Button fx:id="mainViewButton" layoutX="40.0" layoutY="9.0" mnemonicParsing="false" onAction="#gotoSimulationWindow" prefHeight="23.0" prefWidth="174.0" text="Simulation Arrangement" />
+      <Button fx:id="workGenerator" layoutX="228.0" layoutY="9.0" mnemonicParsing="false" onAction="#gotoWorkGenWindow" text="Workload Generator" />
+      <Button layoutX="374.0" layoutY="9.0" mnemonicParsing="false" text="DEBB Configurator" />
    </children>
 </AnchorPane>

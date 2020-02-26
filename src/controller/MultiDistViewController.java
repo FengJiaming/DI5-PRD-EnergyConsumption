@@ -74,6 +74,8 @@ public class MultiDistViewController {
 
 	private String windowFlag;
 
+	private String fieldName;
+	
 	private int indexDist;
 
 	public void init(WorkGenViewController controller) {
@@ -108,7 +110,28 @@ public class MultiDistViewController {
 	public void loadDistributionData(int index) {
 		this.indexDist = index;
 
-		Dist dist = workGenViewController.taskCountListMD.getDist(index);
+		Dist dist = null;
+		
+		switch (this.fieldName) {
+		case "TaskCount":
+			dist = workGenViewController.taskCountListMD.getDist(index);
+			break;
+		case "TaskLength":
+			dist = workGenViewController.taskLengthListMD.getDist(index);
+			break;
+		case "JobPackageLength":
+			dist = workGenViewController.jobPackLenListMD.getDist(index);
+			break;
+		case "JobInterval":
+			dist = workGenViewController.jobIntervalListMD.getDist(index);
+			break;
+		case "CpuCount":
+			dist = workGenViewController.cpucntListMD.getDist(index);
+			break;
+		case "Memory":
+			dist = workGenViewController.memoryListMD.getDist(index);
+			break;
+		}
 		Avg.setText(String.valueOf(dist.getAvg()));
 		Stdev.setText(String.valueOf(dist.getStdev()));
 		Max.setText(String.valueOf(dist.getMax()));
@@ -189,22 +212,95 @@ public class MultiDistViewController {
 			dist.setMin(Double.parseDouble(this.Min.getText()));
 		if (this.Seed.getText() != null && !this.Seed.getText().equals(""))
 			dist.setSeed(Long.parseLong(this.Seed.getText()));
+		String valueString = "Dist-" + DistributionRatio.getText();
+		
+		switch (this.fieldName) {
+		case "TaskCount":
+			if ("ADD".equals(this.windowFlag)) {
+			
+				workGenViewController.taskCountListMD.addDist(dist);
+				workGenViewController.taskCountMDBox.getItems().add(valueString);
+				workGenViewController.taskCountMDBox.setValue(valueString);
 
-		if ("ADD".equals(this.windowFlag)) {
+			} else if ("EDIT".equals(this.windowFlag)) {
 
-			workGenViewController.taskCountListMD.addDist(dist);
+				workGenViewController.taskCountListMD.setDist(this.indexDist, dist);
+			}
+			workGenViewController.taskCountMDEdit.setDisable(false);
+			workGenViewController.taskCountMDDelete.setDisable(false);
+			break;
+		case "TaskLength":
+			if ("ADD".equals(this.windowFlag)) {
+				
+				workGenViewController.taskLengthListMD.addDist(dist);
+				workGenViewController.taskLengthMDBox.getItems().add(valueString);
+				workGenViewController.taskLengthMDBox.setValue(valueString);
 
-			String valueString = "Dist-" + DistributionRatio.getText();
-			workGenViewController.taskCountMDBox.getItems().add(valueString);
-			workGenViewController.taskCountMDBox.setValue(valueString);
+			} else if ("EDIT".equals(this.windowFlag)) {
 
-		} else if ("EDIT".equals(this.windowFlag)) {
+				workGenViewController.taskLengthListMD.setDist(this.indexDist, dist);
+			}
+			workGenViewController.taskLengthMDEdit.setDisable(false);
+			workGenViewController.taskLengthMDDelete.setDisable(false);
+			break;
+		case "JobPackageLength":
+			if ("ADD".equals(this.windowFlag)) {
+				
+				workGenViewController.jobPackLenListMD.addDist(dist);
+				workGenViewController.jobPackLenMDBox.getItems().add(valueString);
+				workGenViewController.jobPackLenMDBox.setValue(valueString);
 
-			workGenViewController.taskCountListMD.setDist(this.indexDist, dist);
+			} else if ("EDIT".equals(this.windowFlag)) {
+
+				workGenViewController.jobPackLenListMD.setDist(this.indexDist, dist);
+			}
+			workGenViewController.jobPackLenMDEdit.setDisable(false);
+			workGenViewController.jobPackLenMDDelete.setDisable(false);
+			break;
+		case "JobInterval":
+			if ("ADD".equals(this.windowFlag)) {
+				
+				workGenViewController.jobIntervalListMD.addDist(dist);
+				workGenViewController.jobIntervalMDBox.getItems().add(valueString);
+				workGenViewController.jobIntervalMDBox.setValue(valueString);
+
+			} else if ("EDIT".equals(this.windowFlag)) {
+
+				workGenViewController.jobIntervalListMD.setDist(this.indexDist, dist);
+			}
+			workGenViewController.jobIntervalMDEdit.setDisable(false);
+			workGenViewController.jobIntervalMDDelete.setDisable(false);
+			break;
+		case "CpuCount":
+			if ("ADD".equals(this.windowFlag)) {
+				
+				workGenViewController.cpucntListMD.addDist(dist);
+				workGenViewController.cpucntMDBox.getItems().add(valueString);
+				workGenViewController.cpucntMDBox.setValue(valueString);
+
+			} else if ("EDIT".equals(this.windowFlag)) {
+
+				workGenViewController.cpucntListMD.setDist(this.indexDist, dist);
+			}
+			workGenViewController.cpucntMDEdit.setDisable(false);
+			workGenViewController.cpucntMDDelete.setDisable(false);
+			break;
+		case "Memory":
+			if ("ADD".equals(this.windowFlag)) {
+				
+				workGenViewController.memoryListMD.addDist(dist);
+				workGenViewController.memoryMDBox.getItems().add(valueString);
+				workGenViewController.memoryMDBox.setValue(valueString);
+
+			} else if ("EDIT".equals(this.windowFlag)) {
+
+				workGenViewController.memoryListMD.setDist(this.indexDist, dist);
+			}
+			workGenViewController.memoryMDEdit.setDisable(false);
+			workGenViewController.memoryMDDelete.setDisable(false);
+			break;
 		}
 
-		workGenViewController.taskCountMDEdit.setDisable(false);
-		workGenViewController.taskCountMDDelete.setDisable(false);
 
 		Stage stage = (Stage) Save.getScene().getWindow();
 		stage.close();
@@ -212,10 +308,45 @@ public class MultiDistViewController {
 
 	@FXML
 	public void deleteButtonClick() {
-		workGenViewController.taskCountListMD.removeDistAt(workGenViewController.getMDBoxIndex());
-		workGenViewController.taskCountMDBox.getItems().remove(workGenViewController.getMDBoxIndex());
+		
+		switch (this.fieldName) {
+			case "TaskCount":
+				workGenViewController.taskCountListMD.removeDistAt(workGenViewController.getTaskCountMDBoxIndex());
+				workGenViewController.taskCountMDBox.getItems().remove(workGenViewController.getTaskCountMDBoxIndex());
 
-		workGenViewController.checkTaskCountMDBoxStatus();
+				workGenViewController.checkTaskCountMDBoxStatus();
+				break;
+			case "TaskLength":
+				workGenViewController.taskLengthListMD.removeDistAt(workGenViewController.getTaskLengthMDBoxIndex());
+				workGenViewController.taskLengthMDBox.getItems().remove(workGenViewController.getTaskLengthMDBoxIndex());
+
+				workGenViewController.checkTaskLengthMDBoxStatus();
+				break;
+			case "JobPackageLength":
+				workGenViewController.jobPackLenListMD.removeDistAt(workGenViewController.getJobPackLenMDBoxIndex());
+				workGenViewController.jobPackLenMDBox.getItems().remove(workGenViewController.getJobPackLenMDBoxIndex());
+
+				workGenViewController.checkJobPackLenMDBoxStatus();
+				break;
+			case "JobInterval":
+				workGenViewController.jobIntervalListMD.removeDistAt(workGenViewController.getJobIntervalMDBoxIndex());
+				workGenViewController.jobIntervalMDBox.getItems().remove(workGenViewController.getJobIntervalMDBoxIndex());
+
+				workGenViewController.checkJobIntervalMDBoxStatus();
+				break;
+			case "CpuCount":
+				workGenViewController.cpucntListMD.removeDistAt(workGenViewController.getCpucntMDBoxIndex());
+				workGenViewController.cpucntMDBox.getItems().remove(workGenViewController.getCpucntMDBoxIndex());
+
+				workGenViewController.checkCpucntMDBoxStatus();
+				break;
+			case "Memory":
+				workGenViewController.memoryListMD.removeDistAt(workGenViewController.getMemoryMDBoxIndex());
+				workGenViewController.memoryMDBox.getItems().remove(workGenViewController.getMemoryMDBoxIndex());
+
+				workGenViewController.checkMemoryMDBoxStatus();
+				break;
+		}
 		
 		Stage stage = (Stage) Save.getScene().getWindow();
 		stage.close();
@@ -227,8 +358,9 @@ public class MultiDistViewController {
 		stage.close();
 	}
 
-	public void setFlag(String flag) {
+	public void setFlag(String flag, String field) {
 		this.windowFlag = flag;
+		this.fieldName = field;
 		if ("ADD".equals(windowFlag)) {
 			Delete.setDisable(true);
 		} else if ("EDIT".equals(windowFlag)) {

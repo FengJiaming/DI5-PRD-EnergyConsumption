@@ -8,6 +8,7 @@ import java.util.List;
 
 import app.ConfigurationOptions;
 import app.MainApplication;
+import controller.workload.generator.Dependency;
 import controller.workload.generator.WorkloadGenerator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -160,15 +161,27 @@ public class WorkGenViewController {
 	@FXML
 	protected CheckBox taskLengthMDCheck;
 	@FXML
-	protected ComboBox<?> taskLengthMDBox;
+	protected ComboBox<String> taskLengthMDBox;
 	@FXML
 	protected Button taskLengthMDAdd;
 	@FXML
+	protected Button taskLengthMDEdit;
+	@FXML
+	protected Button taskLengthMDDelete;
+	@FXML
 	protected CheckBox taskLengthPeriodCheck;
 	@FXML
-	protected ComboBox<?> taskLengthPeriodBox;
+	protected ComboBox<String> taskLengthPeriodBox;
 	@FXML
 	protected Button taskLengthPeriodAdd;
+	@FXML
+	protected Button taskLengthPeriodEdit;
+	@FXML
+	protected Button taskLengthPeriodDelete;
+	
+	public MultiDistribution taskLengthListMD;
+	
+	public RandParamsSequence taskLengthListRP;
 	/*** ---------------------------------------------------- */
 	/** JobPackageLength */
 	@FXML
@@ -214,13 +227,25 @@ public class WorkGenViewController {
 	@FXML
 	protected ComboBox<String> jobPackLenMDBox;
 	@FXML
-	protected Button jobPackLenMDButton;
+	protected Button jobPackLenMDAdd;
+	@FXML
+	protected Button jobPackLenMDEdit;
+	@FXML
+	protected Button jobPackLenMDDelete;
 	@FXML
 	protected CheckBox jobPackLenPeriodCheck;
 	@FXML
 	protected ComboBox<String> jobPackLenPeriodBox;
 	@FXML
-	protected Button jobPackLenPeriodButton;
+	protected Button jobPackLenPeriodAdd;
+	@FXML
+	protected Button jobPackLenPeriodEdit;
+	@FXML
+	protected Button jobPackLenPeriodDelete;
+	
+	public MultiDistribution jobPackLenListMD;
+	
+	public RandParamsSequence jobPackLenListRP;
 	/** ------------------------------------------------- */
 	/** JoaInterval */
 	@FXML
@@ -266,13 +291,25 @@ public class WorkGenViewController {
 	@FXML
 	protected ComboBox<String> jobIntervalMDBox;
 	@FXML
-	protected Button jobIntervalMDButton;
+	protected Button jobIntervalMDAdd;
+	@FXML
+	protected Button jobIntervalMDEdit;
+	@FXML
+	protected Button jobIntervalMDDelete;
 	@FXML
 	protected CheckBox jobIntervalPeriodCheck;
 	@FXML
 	protected ComboBox<String> jobIntervalPeriodBox;
 	@FXML
-	protected Button jobIntervalPeriodButton;
+	protected Button jobIntervalPeriodAdd;
+	@FXML
+	protected Button jobIntervalPeriodEdit;
+	@FXML
+	protected Button jobIntervalPeriodDelete;
+	
+	public MultiDistribution jobIntervalListMD;
+	
+	public RandParamsSequence jobIntervalListRP;
 	/** ------------------------------------------------- */
 	/** CpuCount */
 	@FXML
@@ -318,13 +355,25 @@ public class WorkGenViewController {
 	@FXML
 	protected ComboBox<String> cpucntMDBox;
 	@FXML
-	protected Button cpucntMDButton;
+	protected Button cpucntMDAdd;
+	@FXML
+	protected Button cpucntMDEdit;
+	@FXML
+	protected Button cpucntMDDelete;
 	@FXML
 	protected CheckBox cpucntPeriodCheck;
 	@FXML
 	protected ComboBox<String> cpucntPeriodBox;
 	@FXML
-	protected Button cpucntPeriodButton;
+	protected Button cpucntPeriodAdd;
+	@FXML
+	protected Button cpucntPeriodEdit;
+	@FXML
+	protected Button cpucntPeriodDelete;
+	
+	public MultiDistribution cpucntListMD;
+	
+	public RandParamsSequence cpucntListRP;
 	/** ------------------------------------------------- */
 	/** Memory */
 	@FXML
@@ -370,13 +419,25 @@ public class WorkGenViewController {
 	@FXML
 	protected ComboBox<String> memoryMDBox;
 	@FXML
-	protected Button memoryMDButton;
+	protected Button memoryMDAdd;
+	@FXML
+	protected Button memoryMDEdit;
+	@FXML
+	protected Button memoryMDDelete;
 	@FXML
 	protected CheckBox memoryPeriodCheck;
 	@FXML
 	protected ComboBox<String> memoryPeriodBox;
 	@FXML
-	protected Button memoryPeriodButton;
+	protected Button memoryPeriodAdd;
+	@FXML
+	protected Button memoryPeriodEdit;
+	@FXML
+	protected Button memoryPeriodDelete;
+	
+	public MultiDistribution memoryListMD;
+	
+	public RandParamsSequence memoryListRP;
 	/** ------------------------------------------------- */
 	
 	private MultiDistViewController multiDistController;
@@ -390,6 +451,22 @@ public class WorkGenViewController {
 		
 		this.taskCountListMD = new MultiDistribution();
 		this.taskCountListRP = new RandParamsSequence();
+		
+		this.taskLengthListMD = new MultiDistribution();
+		this.taskLengthListRP = new RandParamsSequence();
+		
+		this.jobPackLenListMD = new MultiDistribution();
+		this.jobPackLenListRP = new RandParamsSequence();
+		
+		this.jobIntervalListMD = new MultiDistribution();
+		this.jobIntervalListRP = new RandParamsSequence();
+		
+		this.cpucntListMD = new MultiDistribution();
+		this.cpucntListRP = new RandParamsSequence();
+		
+		this.memoryListMD = new MultiDistribution();
+		this.memoryListRP = new RandParamsSequence();
+		
 		/** for debug */
 		this.outputFolder.setText("example/workload");
 		this.workloadFilename.setText("workload.swf");
@@ -561,7 +638,9 @@ public class WorkGenViewController {
 						break;
 					case "taskLengthRefCheck":
 						if (checkbox.isSelected()) {
+							taskLengthRefLabel.setDisable(false);
 							taskLengthRefBox.setDisable(false);
+							taskLengthExprLabel.setDisable(false);
 							taskLengthExprText.setDisable(false);
 
 							taskLengthDistLabel.setDisable(true);
@@ -580,31 +659,36 @@ public class WorkGenViewController {
 							taskLengthMDCheck.setDisable(true);
 							taskLengthMDBox.setDisable(true);
 							taskLengthMDAdd.setDisable(true);
-
+							taskLengthMDEdit.setDisable(true);
+							taskLengthMDDelete.setDisable(true);
+							
 							taskLengthPeriodCheck.setDisable(true);
 							taskLengthPeriodBox.setDisable(true);
 							taskLengthPeriodAdd.setDisable(true);
+							taskLengthPeriodEdit.setDisable(true);
+							taskLengthPeriodDelete.setDisable(true);
 						} else {
+							
+							changeTaskLengthNodeStatus();
+							
+							taskLengthRefBox.setDisable(true);
+							taskLengthExprLabel.setDisable(true);
+							taskLengthExprText.setDisable(true);
+							
 							taskLengthDistLabel.setDisable(false);
 							taskLengthDistribution.setDisable(false);
-							taskLengthAvgLabel.setDisable(false);
-							taskLengthAvg.setDisable(false);
-							taskLengthStdevLabel.setDisable(false);
-							taskLengthStdev.setDisable(false);
-							taskLengthMaxLabel.setDisable(false);
-							taskLengthMax.setDisable(false);
-							taskLengthMinLabel.setDisable(false);
-							taskLengthMin.setDisable(false);
-							taskLengthSeedLabel.setDisable(false);
-							taskLengthSeed.setDisable(false);
 
 							taskLengthMDCheck.setDisable(false);
-							taskLengthMDBox.setDisable(false);
-							taskLengthMDAdd.setDisable(false);
+							taskLengthMDBox.setDisable(true);
+							taskLengthMDAdd.setDisable(true);
+							taskLengthMDEdit.setDisable(true);
+							taskLengthMDDelete.setDisable(true);
 
 							taskLengthPeriodCheck.setDisable(false);
-							taskLengthPeriodBox.setDisable(false);
-							taskLengthPeriodAdd.setDisable(false);
+							taskLengthPeriodBox.setDisable(true);
+							taskLengthPeriodAdd.setDisable(true);
+							taskLengthPeriodEdit.setDisable(true);
+							taskLengthPeriodDelete.setDisable(true);
 						}
 						break;
 					case "taskLengthMDCheck":
@@ -627,33 +711,30 @@ public class WorkGenViewController {
 							taskLengthMin.setDisable(true);
 							taskLengthSeedLabel.setDisable(true);
 							taskLengthSeed.setDisable(true);
-
+							
+							taskLengthMDBox.setDisable(false);
+							taskLengthMDAdd.setDisable(false);
+							
+							checkTaskLengthMDBoxStatus();
+							
 							taskLengthPeriodCheck.setDisable(true);
 							taskLengthPeriodBox.setDisable(true);
 							taskLengthPeriodAdd.setDisable(true);
+							
+							taskLengthPeriodEdit.setDisable(true);
+							taskLengthPeriodDelete.setDisable(true);
 						} else {
+							changeTaskLengthNodeStatus();
 							taskLengthRefCheck.setDisable(false);
-							taskLengthRefLabel.setDisable(false);
-							taskLengthRefBox.setDisable(false);
-							taskLengthExprLabel.setDisable(false);
-							taskLengthExprText.setDisable(false);
 
 							taskLengthDistLabel.setDisable(false);
 							taskLengthDistribution.setDisable(false);
-							taskLengthAvgLabel.setDisable(false);
-							taskLengthAvg.setDisable(false);
-							taskLengthStdevLabel.setDisable(false);
-							taskLengthStdev.setDisable(false);
-							taskLengthMaxLabel.setDisable(false);
-							taskLengthMax.setDisable(false);
-							taskLengthMinLabel.setDisable(false);
-							taskLengthMin.setDisable(false);
-							taskLengthSeedLabel.setDisable(false);
-							taskLengthSeed.setDisable(false);
-
+							
+							taskLengthMDBox.setDisable(true);
+							taskLengthMDAdd.setDisable(true);
+							taskLengthMDEdit.setDisable(true);
+							taskLengthMDDelete.setDisable(true);
 							taskLengthPeriodCheck.setDisable(false);
-							taskLengthPeriodBox.setDisable(false);
-							taskLengthPeriodAdd.setDisable(false);
 						}
 						break;
 					case "taskLengthPeriodCheck":
@@ -667,21 +748,34 @@ public class WorkGenViewController {
 							taskLengthMDCheck.setDisable(true);
 							taskLengthMDBox.setDisable(true);
 							taskLengthMDAdd.setDisable(true);
+							taskLengthMDEdit.setDisable(true);
+							taskLengthMDDelete.setDisable(true);
+							
+							taskLengthPeriodBox.setDisable(false);
+							taskLengthPeriodAdd.setDisable(false);
+							if(taskLengthPeriodBox.getValue()!=null) {
+								taskLengthPeriodEdit.setDisable(false);
+								taskLengthPeriodDelete.setDisable(false);
+							} else {
+								taskLengthPeriodEdit.setDisable(true);
+								taskLengthPeriodDelete.setDisable(true);
+							}
 						} else {
+							changeTaskLengthNodeStatus();
 							taskLengthRefCheck.setDisable(false);
-							taskLengthRefLabel.setDisable(false);
-							taskLengthRefBox.setDisable(false);
-							taskLengthExprLabel.setDisable(false);
-							taskLengthExprText.setDisable(false);
-
 							taskLengthMDCheck.setDisable(false);
-							taskLengthMDBox.setDisable(false);
-							taskLengthMDAdd.setDisable(false);
+							taskLengthPeriodBox.setDisable(true);
+							taskLengthPeriodAdd.setDisable(true);
+							taskLengthPeriodEdit.setDisable(true);
+							taskLengthPeriodDelete.setDisable(true);
+							
 						}
 						break;
 					case "jobPackLenRefCheck":
 						if (checkbox.isSelected()) {
+							jobPackLenRefLabel.setDisable(false);
 							jobPackLenRefBox.setDisable(false);
+							jobPackLenExprLabel.setDisable(false);
 							jobPackLenExprText.setDisable(false);
 
 							jobPackLenDistLabel.setDisable(true);
@@ -699,32 +793,37 @@ public class WorkGenViewController {
 
 							jobPackLenMDCheck.setDisable(true);
 							jobPackLenMDBox.setDisable(true);
-							jobPackLenMDButton.setDisable(true);
-
+							jobPackLenMDAdd.setDisable(true);
+							jobPackLenMDEdit.setDisable(true);
+							jobPackLenMDDelete.setDisable(true);
+							
 							jobPackLenPeriodCheck.setDisable(true);
 							jobPackLenPeriodBox.setDisable(true);
-							jobPackLenPeriodButton.setDisable(true);
+							jobPackLenPeriodAdd.setDisable(true);
+							jobPackLenPeriodEdit.setDisable(true);
+							jobPackLenPeriodDelete.setDisable(true);
 						} else {
+							
+							changeJobPackLenNodeStatus();
+							
+							jobPackLenRefBox.setDisable(true);
+							jobPackLenExprLabel.setDisable(true);
+							jobPackLenExprText.setDisable(true);
+							
 							jobPackLenDistLabel.setDisable(false);
 							jobPackLenDistribution.setDisable(false);
-							jobPackLenAvgLabel.setDisable(false);
-							jobPackLenAvg.setDisable(false);
-							jobPackLenStdevLabel.setDisable(false);
-							jobPackLenStdev.setDisable(false);
-							jobPackLenMaxLabel.setDisable(false);
-							jobPackLenMax.setDisable(false);
-							jobPackLenMinLabel.setDisable(false);
-							jobPackLenMin.setDisable(false);
-							jobPackLenSeedLabel.setDisable(false);
-							jobPackLenSeed.setDisable(false);
 
 							jobPackLenMDCheck.setDisable(false);
-							jobPackLenMDBox.setDisable(false);
-							jobPackLenMDButton.setDisable(false);
+							jobPackLenMDBox.setDisable(true);
+							jobPackLenMDAdd.setDisable(true);
+							jobPackLenMDEdit.setDisable(true);
+							jobPackLenMDDelete.setDisable(true);
 
 							jobPackLenPeriodCheck.setDisable(false);
-							jobPackLenPeriodBox.setDisable(false);
-							jobPackLenPeriodButton.setDisable(false);
+							jobPackLenPeriodBox.setDisable(true);
+							jobPackLenPeriodAdd.setDisable(true);
+							jobPackLenPeriodEdit.setDisable(true);
+							jobPackLenPeriodDelete.setDisable(true);
 						}
 						break;
 					case "jobPackLenMDCheck":
@@ -747,33 +846,30 @@ public class WorkGenViewController {
 							jobPackLenMin.setDisable(true);
 							jobPackLenSeedLabel.setDisable(true);
 							jobPackLenSeed.setDisable(true);
-
+							
+							jobPackLenMDBox.setDisable(false);
+							jobPackLenMDAdd.setDisable(false);
+							
+							checkJobPackLenMDBoxStatus();
+							
 							jobPackLenPeriodCheck.setDisable(true);
 							jobPackLenPeriodBox.setDisable(true);
-							jobPackLenPeriodButton.setDisable(true);
+							jobPackLenPeriodAdd.setDisable(true);
+							
+							jobPackLenPeriodEdit.setDisable(true);
+							jobPackLenPeriodDelete.setDisable(true);
 						} else {
+							changeJobPackLenNodeStatus();
 							jobPackLenRefCheck.setDisable(false);
-							jobPackLenRefLabel.setDisable(false);
-							jobPackLenRefBox.setDisable(false);
-							jobPackLenExprLabel.setDisable(false);
-							jobPackLenExprText.setDisable(false);
 
 							jobPackLenDistLabel.setDisable(false);
 							jobPackLenDistribution.setDisable(false);
-							jobPackLenAvgLabel.setDisable(false);
-							jobPackLenAvg.setDisable(false);
-							jobPackLenStdevLabel.setDisable(false);
-							jobPackLenStdev.setDisable(false);
-							jobPackLenMaxLabel.setDisable(false);
-							jobPackLenMax.setDisable(false);
-							jobPackLenMinLabel.setDisable(false);
-							jobPackLenMin.setDisable(false);
-							jobPackLenSeedLabel.setDisable(false);
-							jobPackLenSeed.setDisable(false);
-
+							
+							jobPackLenMDBox.setDisable(true);
+							jobPackLenMDAdd.setDisable(true);
+							jobPackLenMDEdit.setDisable(true);
+							jobPackLenMDDelete.setDisable(true);
 							jobPackLenPeriodCheck.setDisable(false);
-							jobPackLenPeriodBox.setDisable(false);
-							jobPackLenPeriodButton.setDisable(false);
 						}
 						break;
 					case "jobPackLenPeriodCheck":
@@ -786,22 +882,35 @@ public class WorkGenViewController {
 
 							jobPackLenMDCheck.setDisable(true);
 							jobPackLenMDBox.setDisable(true);
-							jobPackLenMDButton.setDisable(true);
+							jobPackLenMDAdd.setDisable(true);
+							jobPackLenMDEdit.setDisable(true);
+							jobPackLenMDDelete.setDisable(true);
+							
+							jobPackLenPeriodBox.setDisable(false);
+							jobPackLenPeriodAdd.setDisable(false);
+							if(jobPackLenPeriodBox.getValue()!=null) {
+								jobPackLenPeriodEdit.setDisable(false);
+								jobPackLenPeriodDelete.setDisable(false);
+							} else {
+								jobPackLenPeriodEdit.setDisable(true);
+								jobPackLenPeriodDelete.setDisable(true);
+							}
 						} else {
+							changeJobPackLenNodeStatus();
 							jobPackLenRefCheck.setDisable(false);
-							jobPackLenRefLabel.setDisable(false);
-							jobPackLenRefBox.setDisable(false);
-							jobPackLenExprLabel.setDisable(false);
-							jobPackLenExprText.setDisable(false);
-
 							jobPackLenMDCheck.setDisable(false);
-							jobPackLenMDBox.setDisable(false);
-							jobPackLenMDButton.setDisable(false);
+							jobPackLenPeriodBox.setDisable(true);
+							jobPackLenPeriodAdd.setDisable(true);
+							jobPackLenPeriodEdit.setDisable(true);
+							jobPackLenPeriodDelete.setDisable(true);
+							
 						}
 						break;
 					case "jobIntervalRefCheck":
 						if (checkbox.isSelected()) {
+							jobIntervalRefLabel.setDisable(false);
 							jobIntervalRefBox.setDisable(false);
+							jobIntervalExprLabel.setDisable(false);
 							jobIntervalExprText.setDisable(false);
 
 							jobIntervalDistLabel.setDisable(true);
@@ -819,32 +928,37 @@ public class WorkGenViewController {
 
 							jobIntervalMDCheck.setDisable(true);
 							jobIntervalMDBox.setDisable(true);
-							jobIntervalMDButton.setDisable(true);
-
+							jobIntervalMDAdd.setDisable(true);
+							jobIntervalMDEdit.setDisable(true);
+							jobIntervalMDDelete.setDisable(true);
+							
 							jobIntervalPeriodCheck.setDisable(true);
 							jobIntervalPeriodBox.setDisable(true);
-							jobIntervalPeriodButton.setDisable(true);
+							jobIntervalPeriodAdd.setDisable(true);
+							jobIntervalPeriodEdit.setDisable(true);
+							jobIntervalPeriodDelete.setDisable(true);
 						} else {
+							
+							changeJobIntervalNodeStatus();
+							
+							jobIntervalRefBox.setDisable(true);
+							jobIntervalExprLabel.setDisable(true);
+							jobIntervalExprText.setDisable(true);
+							
 							jobIntervalDistLabel.setDisable(false);
 							jobIntervalDistribution.setDisable(false);
-							jobIntervalAvgLabel.setDisable(false);
-							jobIntervalAvg.setDisable(false);
-							jobIntervalStdevLabel.setDisable(false);
-							jobIntervalStdev.setDisable(false);
-							jobIntervalMaxLabel.setDisable(false);
-							jobIntervalMax.setDisable(false);
-							jobIntervalMinLabel.setDisable(false);
-							jobIntervalMin.setDisable(false);
-							jobIntervalSeedLabel.setDisable(false);
-							jobIntervalSeed.setDisable(false);
 
 							jobIntervalMDCheck.setDisable(false);
-							jobIntervalMDBox.setDisable(false);
-							jobIntervalMDButton.setDisable(false);
+							jobIntervalMDBox.setDisable(true);
+							jobIntervalMDAdd.setDisable(true);
+							jobIntervalMDEdit.setDisable(true);
+							jobIntervalMDDelete.setDisable(true);
 
 							jobIntervalPeriodCheck.setDisable(false);
-							jobIntervalPeriodBox.setDisable(false);
-							jobIntervalPeriodButton.setDisable(false);
+							jobIntervalPeriodBox.setDisable(true);
+							jobIntervalPeriodAdd.setDisable(true);
+							jobIntervalPeriodEdit.setDisable(true);
+							jobIntervalPeriodDelete.setDisable(true);
 						}
 						break;
 					case "jobIntervalMDCheck":
@@ -867,33 +981,30 @@ public class WorkGenViewController {
 							jobIntervalMin.setDisable(true);
 							jobIntervalSeedLabel.setDisable(true);
 							jobIntervalSeed.setDisable(true);
-
+							
+							jobIntervalMDBox.setDisable(false);
+							jobIntervalMDAdd.setDisable(false);
+							
+							checkJobIntervalMDBoxStatus();
+							
 							jobIntervalPeriodCheck.setDisable(true);
 							jobIntervalPeriodBox.setDisable(true);
-							jobIntervalPeriodButton.setDisable(true);
+							jobIntervalPeriodAdd.setDisable(true);
+							
+							jobIntervalPeriodEdit.setDisable(true);
+							jobIntervalPeriodDelete.setDisable(true);
 						} else {
+							changeJobIntervalNodeStatus();
 							jobIntervalRefCheck.setDisable(false);
-							jobIntervalRefLabel.setDisable(false);
-							jobIntervalRefBox.setDisable(false);
-							jobIntervalExprLabel.setDisable(false);
-							jobIntervalExprText.setDisable(false);
 
 							jobIntervalDistLabel.setDisable(false);
 							jobIntervalDistribution.setDisable(false);
-							jobIntervalAvgLabel.setDisable(false);
-							jobIntervalAvg.setDisable(false);
-							jobIntervalStdevLabel.setDisable(false);
-							jobIntervalStdev.setDisable(false);
-							jobIntervalMaxLabel.setDisable(false);
-							jobIntervalMax.setDisable(false);
-							jobIntervalMinLabel.setDisable(false);
-							jobIntervalMin.setDisable(false);
-							jobIntervalSeedLabel.setDisable(false);
-							jobIntervalSeed.setDisable(false);
-
+							
+							jobIntervalMDBox.setDisable(true);
+							jobIntervalMDAdd.setDisable(true);
+							jobIntervalMDEdit.setDisable(true);
+							jobIntervalMDDelete.setDisable(true);
 							jobIntervalPeriodCheck.setDisable(false);
-							jobIntervalPeriodBox.setDisable(false);
-							jobIntervalPeriodButton.setDisable(false);
 						}
 						break;
 					case "jobIntervalPeriodCheck":
@@ -906,22 +1017,35 @@ public class WorkGenViewController {
 
 							jobIntervalMDCheck.setDisable(true);
 							jobIntervalMDBox.setDisable(true);
-							jobIntervalMDButton.setDisable(true);
+							jobIntervalMDAdd.setDisable(true);
+							jobIntervalMDEdit.setDisable(true);
+							jobIntervalMDDelete.setDisable(true);
+							
+							jobIntervalPeriodBox.setDisable(false);
+							jobIntervalPeriodAdd.setDisable(false);
+							if(jobIntervalPeriodBox.getValue()!=null) {
+								jobIntervalPeriodEdit.setDisable(false);
+								jobIntervalPeriodDelete.setDisable(false);
+							} else {
+								jobIntervalPeriodEdit.setDisable(true);
+								jobIntervalPeriodDelete.setDisable(true);
+							}
 						} else {
+							changeJobIntervalNodeStatus();
 							jobIntervalRefCheck.setDisable(false);
-							jobIntervalRefLabel.setDisable(false);
-							jobIntervalRefBox.setDisable(false);
-							jobIntervalExprLabel.setDisable(false);
-							jobIntervalExprText.setDisable(false);
-
 							jobIntervalMDCheck.setDisable(false);
-							jobIntervalMDBox.setDisable(false);
-							jobIntervalMDButton.setDisable(false);
+							jobIntervalPeriodBox.setDisable(true);
+							jobIntervalPeriodAdd.setDisable(true);
+							jobIntervalPeriodEdit.setDisable(true);
+							jobIntervalPeriodDelete.setDisable(true);
+							
 						}
 						break;
 					case "cpucntRefCheck":
 						if (checkbox.isSelected()) {
+							cpucntRefLabel.setDisable(false);
 							cpucntRefBox.setDisable(false);
+							cpucntExprLabel.setDisable(false);
 							cpucntExprText.setDisable(false);
 
 							cpucntDistLabel.setDisable(true);
@@ -939,32 +1063,37 @@ public class WorkGenViewController {
 
 							cpucntMDCheck.setDisable(true);
 							cpucntMDBox.setDisable(true);
-							cpucntMDButton.setDisable(true);
-
+							cpucntMDAdd.setDisable(true);
+							cpucntMDEdit.setDisable(true);
+							cpucntMDDelete.setDisable(true);
+							
 							cpucntPeriodCheck.setDisable(true);
 							cpucntPeriodBox.setDisable(true);
-							cpucntPeriodButton.setDisable(true);
+							cpucntPeriodAdd.setDisable(true);
+							cpucntPeriodEdit.setDisable(true);
+							cpucntPeriodDelete.setDisable(true);
 						} else {
+							
+							changeCpucntNodeStatus();
+							
+							cpucntRefBox.setDisable(true);
+							cpucntExprLabel.setDisable(true);
+							cpucntExprText.setDisable(true);
+							
 							cpucntDistLabel.setDisable(false);
 							cpucntDistribution.setDisable(false);
-							cpucntAvgLabel.setDisable(false);
-							cpucntAvg.setDisable(false);
-							cpucntStdevLabel.setDisable(false);
-							cpucntStdev.setDisable(false);
-							cpucntMaxLabel.setDisable(false);
-							cpucntMax.setDisable(false);
-							cpucntMinLabel.setDisable(false);
-							cpucntMin.setDisable(false);
-							cpucntSeedLabel.setDisable(false);
-							cpucntSeed.setDisable(false);
 
 							cpucntMDCheck.setDisable(false);
-							cpucntMDBox.setDisable(false);
-							cpucntMDButton.setDisable(false);
+							cpucntMDBox.setDisable(true);
+							cpucntMDAdd.setDisable(true);
+							cpucntMDEdit.setDisable(true);
+							cpucntMDDelete.setDisable(true);
 
 							cpucntPeriodCheck.setDisable(false);
-							cpucntPeriodBox.setDisable(false);
-							cpucntPeriodButton.setDisable(false);
+							cpucntPeriodBox.setDisable(true);
+							cpucntPeriodAdd.setDisable(true);
+							cpucntPeriodEdit.setDisable(true);
+							cpucntPeriodDelete.setDisable(true);
 						}
 						break;
 					case "cpucntMDCheck":
@@ -987,33 +1116,30 @@ public class WorkGenViewController {
 							cpucntMin.setDisable(true);
 							cpucntSeedLabel.setDisable(true);
 							cpucntSeed.setDisable(true);
-
+							
+							cpucntMDBox.setDisable(false);
+							cpucntMDAdd.setDisable(false);
+							
+							checkCpucntMDBoxStatus();
+							
 							cpucntPeriodCheck.setDisable(true);
 							cpucntPeriodBox.setDisable(true);
-							cpucntPeriodButton.setDisable(true);
+							cpucntPeriodAdd.setDisable(true);
+							
+							cpucntPeriodEdit.setDisable(true);
+							cpucntPeriodDelete.setDisable(true);
 						} else {
+							changeCpucntNodeStatus();
 							cpucntRefCheck.setDisable(false);
-							cpucntRefLabel.setDisable(false);
-							cpucntRefBox.setDisable(false);
-							cpucntExprLabel.setDisable(false);
-							cpucntExprText.setDisable(false);
 
 							cpucntDistLabel.setDisable(false);
 							cpucntDistribution.setDisable(false);
-							cpucntAvgLabel.setDisable(false);
-							cpucntAvg.setDisable(false);
-							cpucntStdevLabel.setDisable(false);
-							cpucntStdev.setDisable(false);
-							cpucntMaxLabel.setDisable(false);
-							cpucntMax.setDisable(false);
-							cpucntMinLabel.setDisable(false);
-							cpucntMin.setDisable(false);
-							cpucntSeedLabel.setDisable(false);
-							cpucntSeed.setDisable(false);
-
+							
+							cpucntMDBox.setDisable(true);
+							cpucntMDAdd.setDisable(true);
+							cpucntMDEdit.setDisable(true);
+							cpucntMDDelete.setDisable(true);
 							cpucntPeriodCheck.setDisable(false);
-							cpucntPeriodBox.setDisable(false);
-							cpucntPeriodButton.setDisable(false);
 						}
 						break;
 					case "cpucntPeriodCheck":
@@ -1026,22 +1152,35 @@ public class WorkGenViewController {
 
 							cpucntMDCheck.setDisable(true);
 							cpucntMDBox.setDisable(true);
-							cpucntMDButton.setDisable(true);
+							cpucntMDAdd.setDisable(true);
+							cpucntMDEdit.setDisable(true);
+							cpucntMDDelete.setDisable(true);
+							
+							cpucntPeriodBox.setDisable(false);
+							cpucntPeriodAdd.setDisable(false);
+							if(cpucntPeriodBox.getValue()!=null) {
+								cpucntPeriodEdit.setDisable(false);
+								cpucntPeriodDelete.setDisable(false);
+							} else {
+								cpucntPeriodEdit.setDisable(true);
+								cpucntPeriodDelete.setDisable(true);
+							}
 						} else {
+							changeCpucntNodeStatus();
 							cpucntRefCheck.setDisable(false);
-							cpucntRefLabel.setDisable(false);
-							cpucntRefBox.setDisable(false);
-							cpucntExprLabel.setDisable(false);
-							cpucntExprText.setDisable(false);
-
 							cpucntMDCheck.setDisable(false);
-							cpucntMDBox.setDisable(false);
-							cpucntMDButton.setDisable(false);
+							cpucntPeriodBox.setDisable(true);
+							cpucntPeriodAdd.setDisable(true);
+							cpucntPeriodEdit.setDisable(true);
+							cpucntPeriodDelete.setDisable(true);
+							
 						}
 						break;
 					case "memoryRefCheck":
 						if (checkbox.isSelected()) {
+							memoryRefLabel.setDisable(false);
 							memoryRefBox.setDisable(false);
+							memoryExprLabel.setDisable(false);
 							memoryExprText.setDisable(false);
 
 							memoryDistLabel.setDisable(true);
@@ -1059,32 +1198,37 @@ public class WorkGenViewController {
 
 							memoryMDCheck.setDisable(true);
 							memoryMDBox.setDisable(true);
-							memoryMDButton.setDisable(true);
-
+							memoryMDAdd.setDisable(true);
+							memoryMDEdit.setDisable(true);
+							memoryMDDelete.setDisable(true);
+							
 							memoryPeriodCheck.setDisable(true);
 							memoryPeriodBox.setDisable(true);
-							memoryPeriodButton.setDisable(true);
+							memoryPeriodAdd.setDisable(true);
+							memoryPeriodEdit.setDisable(true);
+							memoryPeriodDelete.setDisable(true);
 						} else {
+							
+							changeMemoryNodeStatus();
+							
+							memoryRefBox.setDisable(true);
+							memoryExprLabel.setDisable(true);
+							memoryExprText.setDisable(true);
+							
 							memoryDistLabel.setDisable(false);
 							memoryDistribution.setDisable(false);
-							memoryAvgLabel.setDisable(false);
-							memoryAvg.setDisable(false);
-							memoryStdevLabel.setDisable(false);
-							memoryStdev.setDisable(false);
-							memoryMaxLabel.setDisable(false);
-							memoryMax.setDisable(false);
-							memoryMinLabel.setDisable(false);
-							memoryMin.setDisable(false);
-							memorySeedLabel.setDisable(false);
-							memorySeed.setDisable(false);
 
 							memoryMDCheck.setDisable(false);
-							memoryMDBox.setDisable(false);
-							memoryMDButton.setDisable(false);
+							memoryMDBox.setDisable(true);
+							memoryMDAdd.setDisable(true);
+							memoryMDEdit.setDisable(true);
+							memoryMDDelete.setDisable(true);
 
 							memoryPeriodCheck.setDisable(false);
-							memoryPeriodBox.setDisable(false);
-							memoryPeriodButton.setDisable(false);
+							memoryPeriodBox.setDisable(true);
+							memoryPeriodAdd.setDisable(true);
+							memoryPeriodEdit.setDisable(true);
+							memoryPeriodDelete.setDisable(true);
 						}
 						break;
 					case "memoryMDCheck":
@@ -1107,33 +1251,30 @@ public class WorkGenViewController {
 							memoryMin.setDisable(true);
 							memorySeedLabel.setDisable(true);
 							memorySeed.setDisable(true);
-
+							
+							memoryMDBox.setDisable(false);
+							memoryMDAdd.setDisable(false);
+							
+							checkMemoryMDBoxStatus();
+							
 							memoryPeriodCheck.setDisable(true);
 							memoryPeriodBox.setDisable(true);
-							memoryPeriodButton.setDisable(true);
+							memoryPeriodAdd.setDisable(true);
+							
+							memoryPeriodEdit.setDisable(true);
+							memoryPeriodDelete.setDisable(true);
 						} else {
+							changeMemoryNodeStatus();
 							memoryRefCheck.setDisable(false);
-							memoryRefLabel.setDisable(false);
-							memoryRefBox.setDisable(false);
-							memoryExprLabel.setDisable(false);
-							memoryExprText.setDisable(false);
 
 							memoryDistLabel.setDisable(false);
 							memoryDistribution.setDisable(false);
-							memoryAvgLabel.setDisable(false);
-							memoryAvg.setDisable(false);
-							memoryStdevLabel.setDisable(false);
-							memoryStdev.setDisable(false);
-							memoryMaxLabel.setDisable(false);
-							memoryMax.setDisable(false);
-							memoryMinLabel.setDisable(false);
-							memoryMin.setDisable(false);
-							memorySeedLabel.setDisable(false);
-							memorySeed.setDisable(false);
-
+							
+							memoryMDBox.setDisable(true);
+							memoryMDAdd.setDisable(true);
+							memoryMDEdit.setDisable(true);
+							memoryMDDelete.setDisable(true);
 							memoryPeriodCheck.setDisable(false);
-							memoryPeriodBox.setDisable(false);
-							memoryPeriodButton.setDisable(false);
 						}
 						break;
 					case "memoryPeriodCheck":
@@ -1146,17 +1287,28 @@ public class WorkGenViewController {
 
 							memoryMDCheck.setDisable(true);
 							memoryMDBox.setDisable(true);
-							memoryMDButton.setDisable(true);
+							memoryMDAdd.setDisable(true);
+							memoryMDEdit.setDisable(true);
+							memoryMDDelete.setDisable(true);
+							
+							memoryPeriodBox.setDisable(false);
+							memoryPeriodAdd.setDisable(false);
+							if(memoryPeriodBox.getValue()!=null) {
+								memoryPeriodEdit.setDisable(false);
+								memoryPeriodDelete.setDisable(false);
+							} else {
+								memoryPeriodEdit.setDisable(true);
+								memoryPeriodDelete.setDisable(true);
+							}
 						} else {
+							changeMemoryNodeStatus();
 							memoryRefCheck.setDisable(false);
-							memoryRefLabel.setDisable(false);
-							memoryRefBox.setDisable(false);
-							memoryExprLabel.setDisable(false);
-							memoryExprText.setDisable(false);
-
 							memoryMDCheck.setDisable(false);
-							memoryMDBox.setDisable(false);
-							memoryMDButton.setDisable(false);
+							memoryPeriodBox.setDisable(true);
+							memoryPeriodAdd.setDisable(true);
+							memoryPeriodEdit.setDisable(true);
+							memoryPeriodDelete.setDisable(true);
+							
 						}
 						break;
 					}
@@ -1563,9 +1715,13 @@ public class WorkGenViewController {
 		this.taskLengthSeed.setDisable(true);
 		
 		this.taskLengthMDBox.setDisable(true);
-		this.taskLengthMDAdd.setDisable(true);
+		taskLengthMDAdd.setDisable(true);
+		taskLengthMDEdit.setDisable(true);
+		taskLengthMDDelete.setDisable(true);
 		this.taskLengthPeriodBox.setDisable(true);
-		this.taskLengthPeriodAdd.setDisable(true);
+		taskLengthPeriodAdd.setDisable(true);
+		taskLengthPeriodEdit.setDisable(true);
+		taskLengthPeriodDelete.setDisable(true);
 		
 		/** JobPackageLength	*/
 		this.jobPackLenRefLabel.setDisable(true);
@@ -1583,9 +1739,13 @@ public class WorkGenViewController {
 		this.jobPackLenSeed.setDisable(true);
 		
 		this.jobPackLenMDBox.setDisable(true);
-		this.jobPackLenMDButton.setDisable(true);
+		jobPackLenMDAdd.setDisable(true);
+		jobPackLenMDEdit.setDisable(true);
+		jobPackLenMDDelete.setDisable(true);
 		this.jobPackLenPeriodBox.setDisable(true);
-		this.jobPackLenPeriodButton.setDisable(true);
+		jobPackLenPeriodAdd.setDisable(true);
+		jobPackLenPeriodEdit.setDisable(true);
+		jobPackLenPeriodDelete.setDisable(true);
 		
 		/** JobInterval	*/
 		this.jobIntervalRefLabel.setDisable(true);
@@ -1603,9 +1763,13 @@ public class WorkGenViewController {
 		this.jobIntervalSeed.setDisable(true);
 		
 		this.jobIntervalMDBox.setDisable(true);
-		this.jobIntervalMDButton.setDisable(true);
+		jobIntervalMDAdd.setDisable(true);
+		jobIntervalMDEdit.setDisable(true);
+		jobIntervalMDDelete.setDisable(true);
 		this.jobIntervalPeriodBox.setDisable(true);
-		this.jobIntervalPeriodButton.setDisable(true);
+		jobIntervalPeriodAdd.setDisable(true);
+		jobIntervalPeriodEdit.setDisable(true);
+		jobIntervalPeriodDelete.setDisable(true);
 		
 		/** CpuCount	*/
 		this.cpucntRefLabel.setDisable(true);
@@ -1623,9 +1787,13 @@ public class WorkGenViewController {
 		this.cpucntSeed.setDisable(true);
 		
 		this.cpucntMDBox.setDisable(true);
-		this.cpucntMDButton.setDisable(true);
+		cpucntMDAdd.setDisable(true);
+		cpucntMDEdit.setDisable(true);
+		cpucntMDDelete.setDisable(true);
 		this.cpucntPeriodBox.setDisable(true);
-		this.cpucntPeriodButton.setDisable(true);
+		cpucntPeriodAdd.setDisable(true);
+		cpucntPeriodEdit.setDisable(true);
+		cpucntPeriodDelete.setDisable(true);
 		
 		/** Memory	*/
 		this.memoryRefLabel.setDisable(true);
@@ -1643,9 +1811,13 @@ public class WorkGenViewController {
 		this.memorySeed.setDisable(true);
 		
 		this.memoryMDBox.setDisable(true);
-		this.memoryMDButton.setDisable(true);
+		memoryMDAdd.setDisable(true);
+		memoryMDEdit.setDisable(true);
+		memoryMDDelete.setDisable(true);
 		this.memoryPeriodBox.setDisable(true);
-		this.memoryPeriodButton.setDisable(true);
+		memoryPeriodAdd.setDisable(true);
+		memoryPeriodEdit.setDisable(true);
+		memoryPeriodDelete.setDisable(true);
 	}
 	
 	public void changeTaskCountNodeStatus() {
@@ -1687,6 +1859,318 @@ public class WorkGenViewController {
 		}
 	}
 	
+	public void changeTaskLengthNodeStatus() {
+		switch(taskLengthDistribution.getValue().toString()) {
+		case "constant":
+			taskLengthAvgLabel.setDisable(false);
+			taskLengthAvg.setDisable(false);
+			break;
+		case "normal":
+			taskLengthAvgLabel.setDisable(false);
+			taskLengthAvg.setDisable(false);
+			taskLengthStdevLabel.setDisable(false);
+			taskLengthStdev.setDisable(false);
+			taskLengthMaxLabel.setDisable(false);
+			taskLengthMax.setDisable(false);
+			taskLengthMinLabel.setDisable(false);
+			taskLengthMin.setDisable(false);
+			taskLengthSeedLabel.setDisable(false);
+			taskLengthSeed.setDisable(false);
+			break;
+		case "poisson":
+			taskLengthAvgLabel.setDisable(false);
+			taskLengthAvg.setDisable(false);
+			taskLengthMaxLabel.setDisable(false);
+			taskLengthMax.setDisable(false);
+			taskLengthMinLabel.setDisable(false);
+			taskLengthMin.setDisable(false);
+			taskLengthSeedLabel.setDisable(false);
+			taskLengthSeed.setDisable(false);
+			break;
+		case "uniform":
+			taskLengthMaxLabel.setDisable(false);
+			taskLengthMax.setDisable(false);
+			taskLengthMinLabel.setDisable(false);
+			taskLengthMin.setDisable(false);
+			taskLengthSeedLabel.setDisable(false);
+			taskLengthSeed.setDisable(false);
+			break;
+		}
+	}
+	
+	public void changeJobPackLenNodeStatus() {
+		switch(jobPackLenDistribution.getValue().toString()) {
+		case "constant":
+			jobPackLenAvgLabel.setDisable(false);
+			jobPackLenAvg.setDisable(false);
+			break;
+		case "normal":
+			jobPackLenAvgLabel.setDisable(false);
+			jobPackLenAvg.setDisable(false);
+			jobPackLenStdevLabel.setDisable(false);
+			jobPackLenStdev.setDisable(false);
+			jobPackLenMaxLabel.setDisable(false);
+			jobPackLenMax.setDisable(false);
+			jobPackLenMinLabel.setDisable(false);
+			jobPackLenMin.setDisable(false);
+			jobPackLenSeedLabel.setDisable(false);
+			jobPackLenSeed.setDisable(false);
+			break;
+		case "poisson":
+			jobPackLenAvgLabel.setDisable(false);
+			jobPackLenAvg.setDisable(false);
+			jobPackLenMaxLabel.setDisable(false);
+			jobPackLenMax.setDisable(false);
+			jobPackLenMinLabel.setDisable(false);
+			jobPackLenMin.setDisable(false);
+			jobPackLenSeedLabel.setDisable(false);
+			jobPackLenSeed.setDisable(false);
+			break;
+		case "uniform":
+			jobPackLenMaxLabel.setDisable(false);
+			jobPackLenMax.setDisable(false);
+			jobPackLenMinLabel.setDisable(false);
+			jobPackLenMin.setDisable(false);
+			jobPackLenSeedLabel.setDisable(false);
+			jobPackLenSeed.setDisable(false);
+			break;
+		}
+	}
+	
+	public void changeJobIntervalNodeStatus() {
+		switch(jobIntervalDistribution.getValue().toString()) {
+		case "constant":
+			jobIntervalAvgLabel.setDisable(false);
+			jobIntervalAvg.setDisable(false);
+			break;
+		case "normal":
+			jobIntervalAvgLabel.setDisable(false);
+			jobIntervalAvg.setDisable(false);
+			jobIntervalStdevLabel.setDisable(false);
+			jobIntervalStdev.setDisable(false);
+			jobIntervalMaxLabel.setDisable(false);
+			jobIntervalMax.setDisable(false);
+			jobIntervalMinLabel.setDisable(false);
+			jobIntervalMin.setDisable(false);
+			jobIntervalSeedLabel.setDisable(false);
+			jobIntervalSeed.setDisable(false);
+			break;
+		case "poisson":
+			jobIntervalAvgLabel.setDisable(false);
+			jobIntervalAvg.setDisable(false);
+			jobIntervalMaxLabel.setDisable(false);
+			jobIntervalMax.setDisable(false);
+			jobIntervalMinLabel.setDisable(false);
+			jobIntervalMin.setDisable(false);
+			jobIntervalSeedLabel.setDisable(false);
+			jobIntervalSeed.setDisable(false);
+			break;
+		case "uniform":
+			jobIntervalMaxLabel.setDisable(false);
+			jobIntervalMax.setDisable(false);
+			jobIntervalMinLabel.setDisable(false);
+			jobIntervalMin.setDisable(false);
+			jobIntervalSeedLabel.setDisable(false);
+			jobIntervalSeed.setDisable(false);
+			break;
+		}
+	}
+	
+	public void changeCpucntNodeStatus() {
+		switch(cpucntDistribution.getValue().toString()) {
+		case "constant":
+			cpucntAvgLabel.setDisable(false);
+			cpucntAvg.setDisable(false);
+			break;
+		case "normal":
+			cpucntAvgLabel.setDisable(false);
+			cpucntAvg.setDisable(false);
+			cpucntStdevLabel.setDisable(false);
+			cpucntStdev.setDisable(false);
+			cpucntMaxLabel.setDisable(false);
+			cpucntMax.setDisable(false);
+			cpucntMinLabel.setDisable(false);
+			cpucntMin.setDisable(false);
+			cpucntSeedLabel.setDisable(false);
+			cpucntSeed.setDisable(false);
+			break;
+		case "poisson":
+			cpucntAvgLabel.setDisable(false);
+			cpucntAvg.setDisable(false);
+			cpucntMaxLabel.setDisable(false);
+			cpucntMax.setDisable(false);
+			cpucntMinLabel.setDisable(false);
+			cpucntMin.setDisable(false);
+			cpucntSeedLabel.setDisable(false);
+			cpucntSeed.setDisable(false);
+			break;
+		case "uniform":
+			cpucntMaxLabel.setDisable(false);
+			cpucntMax.setDisable(false);
+			cpucntMinLabel.setDisable(false);
+			cpucntMin.setDisable(false);
+			cpucntSeedLabel.setDisable(false);
+			cpucntSeed.setDisable(false);
+			break;
+		}
+	}
+	
+	public void changeMemoryNodeStatus() {
+		switch(memoryDistribution.getValue().toString()) {
+		case "constant":
+			memoryAvgLabel.setDisable(false);
+			memoryAvg.setDisable(false);
+			break;
+		case "normal":
+			memoryAvgLabel.setDisable(false);
+			memoryAvg.setDisable(false);
+			memoryStdevLabel.setDisable(false);
+			memoryStdev.setDisable(false);
+			memoryMaxLabel.setDisable(false);
+			memoryMax.setDisable(false);
+			memoryMinLabel.setDisable(false);
+			memoryMin.setDisable(false);
+			memorySeedLabel.setDisable(false);
+			memorySeed.setDisable(false);
+			break;
+		case "poisson":
+			memoryAvgLabel.setDisable(false);
+			memoryAvg.setDisable(false);
+			memoryMaxLabel.setDisable(false);
+			memoryMax.setDisable(false);
+			memoryMinLabel.setDisable(false);
+			memoryMin.setDisable(false);
+			memorySeedLabel.setDisable(false);
+			memorySeed.setDisable(false);
+			break;
+		case "uniform":
+			memoryMaxLabel.setDisable(false);
+			memoryMax.setDisable(false);
+			memoryMinLabel.setDisable(false);
+			memoryMin.setDisable(false);
+			memorySeedLabel.setDisable(false);
+			memorySeed.setDisable(false);
+			break;
+		}
+	}
+	
+	/** Check MultiDistribution Combobox status	*/
+	public void checkTaskCountMDBoxStatus() {
+		if(taskCountMDBox.getItems().size() > 0) {
+			taskCountMDEdit.setDisable(false);
+			taskCountMDDelete.setDisable(false);
+		} else {
+			taskCountMDEdit.setDisable(true);
+			taskCountMDDelete.setDisable(true);
+		}
+	}
+	
+	public void checkTaskLengthMDBoxStatus() {
+		if(taskLengthMDBox.getItems().size() > 0) {
+			taskLengthMDEdit.setDisable(false);
+			taskLengthMDDelete.setDisable(false);
+		} else {
+			taskLengthMDEdit.setDisable(true);
+			taskLengthMDDelete.setDisable(true);
+		}
+	}
+	public void checkJobPackLenMDBoxStatus() {
+		if(jobPackLenMDBox.getItems().size() > 0) {
+			jobPackLenMDEdit.setDisable(false);
+			jobPackLenMDDelete.setDisable(false);
+		} else {
+			jobPackLenMDEdit.setDisable(true);
+			jobPackLenMDDelete.setDisable(true);
+		}
+	}
+	public void checkJobIntervalMDBoxStatus() {
+		if(jobIntervalMDBox.getItems().size() > 0) {
+			jobIntervalMDEdit.setDisable(false);
+			jobIntervalMDDelete.setDisable(false);
+		} else {
+			jobIntervalMDEdit.setDisable(true);
+			jobIntervalMDDelete.setDisable(true);
+		}
+	}
+	public void checkCpucntMDBoxStatus() {
+		if(cpucntMDBox.getItems().size() > 0) {
+			cpucntMDEdit.setDisable(false);
+			cpucntMDDelete.setDisable(false);
+		} else {
+			cpucntMDEdit.setDisable(true);
+			cpucntMDDelete.setDisable(true);
+		}
+	}
+	public void checkMemoryMDBoxStatus() {
+		if(memoryMDBox.getItems().size() > 0) {
+			memoryMDEdit.setDisable(false);
+			memoryMDDelete.setDisable(false);
+		} else {
+			memoryMDEdit.setDisable(true);
+			memoryMDDelete.setDisable(true);
+		}
+	}
+	
+	/** Check Period Combobox status	*/
+	public void checkTaskCountPeriodBoxStatus() {
+		if(taskCountPeriodBox.getItems().size() > 0) {
+			taskCountPeriodEdit.setDisable(false);
+			taskCountPeriodDelete.setDisable(false);
+		} else {
+			taskCountPeriodEdit.setDisable(true);
+			taskCountPeriodDelete.setDisable(true);
+		}
+	}
+	
+	public void checkTaskLengthPeriodBoxStatus() {
+		if(taskLengthPeriodBox.getItems().size() > 0) {
+			taskLengthPeriodEdit.setDisable(false);
+			taskLengthPeriodDelete.setDisable(false);
+		} else {
+			taskLengthPeriodEdit.setDisable(true);
+			taskLengthPeriodDelete.setDisable(true);
+		}
+	}
+
+	public void checkJobPackLenPeriodBoxStatus() {
+		if(jobPackLenPeriodBox.getItems().size() > 0) {
+			jobPackLenPeriodEdit.setDisable(false);
+			jobPackLenPeriodDelete.setDisable(false);
+		} else {
+			jobPackLenPeriodEdit.setDisable(true);
+			jobPackLenPeriodDelete.setDisable(true);
+		}
+	}
+	
+	public void checkJobIntervalPeriodBoxStatus() {
+		if(jobIntervalPeriodBox.getItems().size() > 0) {
+			jobIntervalPeriodEdit.setDisable(false);
+			jobIntervalPeriodDelete.setDisable(false);
+		} else {
+			jobIntervalPeriodEdit.setDisable(true);
+			jobIntervalPeriodDelete.setDisable(true);
+		}
+	}
+	
+	public void checkCpucntPeriodBoxStatus() {
+		if(cpucntPeriodBox.getItems().size() > 0) {
+			cpucntPeriodEdit.setDisable(false);
+			cpucntPeriodDelete.setDisable(false);
+		} else {
+			cpucntPeriodEdit.setDisable(true);
+			cpucntPeriodDelete.setDisable(true);
+		}
+	}
+	
+	public void checkMemoryPeriodBoxStatus() {
+		if(memoryPeriodBox.getItems().size() > 0) {
+			memoryPeriodEdit.setDisable(false);
+			memoryPeriodDelete.setDisable(false);
+		} else {
+			memoryPeriodEdit.setDisable(true);
+			memoryPeriodDelete.setDisable(true);
+		}
+	}
 	@FXML
 	void gotoSimulationWindow(ActionEvent event) {
 		((AnchorPane) functionList[0]).setVisible(true);
@@ -1703,7 +2187,11 @@ public class WorkGenViewController {
 		ConfigurationOptions configurationOptions = ConfigurationOptions.getConfiguration(workloadFilename.getText(),
 				outputFolder.getText());
 		if(checkWorkGenValue())
-			generator.run(configurationOptions, workloadWrapper());
+			generator.run(configurationOptions, workloadWrapper(), dependencyWrapper());
+	}
+
+	private Dependency dependencyWrapper() {
+		return null;
 	}
 
 	private boolean checkWorkGenValue() {
@@ -1724,13 +2212,14 @@ public class WorkGenViewController {
 		return true;
 	}
 
+	/** TaskCount Buttons	*/
 	@FXML
     void taskCountMDAddClick(ActionEvent event) throws Exception {
 
         // Show the scene containing the main layout.
         Scene scene = new Scene(loadMultiDistViewFXML());
         
-        multiDistController.setFlag("ADD");
+        multiDistController.setFlag("ADD", "TaskCount");
         
         Stage MDStage = new Stage();
 		MDStage.setTitle("MultiDistribution Settings");
@@ -1745,9 +2234,9 @@ public class WorkGenViewController {
         // Show the scene containing the main layout.
         Scene scene = new Scene(loadMultiDistViewFXML());
         
-        multiDistController.setFlag("EDIT");
+        multiDistController.setFlag("EDIT", "TaskCount");
         
-        multiDistController.loadDistributionData(this.getMDBoxIndex());
+        multiDistController.loadDistributionData(this.getTaskCountMDBoxIndex());
         
         Stage MDStage = new Stage();
 		MDStage.setTitle("MultiDistribution Settings");
@@ -1758,12 +2247,12 @@ public class WorkGenViewController {
 	
 	@FXML
     void taskCountMDDeleteClick(ActionEvent event) throws Exception {
-		taskCountListMD.removeDistAt(this.getMDBoxIndex());
-		taskCountMDBox.getItems().remove(this.getMDBoxIndex());
+		taskCountListMD.removeDistAt(this.getTaskCountMDBoxIndex());
+		taskCountMDBox.getItems().remove(this.getTaskCountMDBoxIndex());
 		checkTaskCountMDBoxStatus();
     }
 	
-	public int getMDBoxIndex() {
+	public int getTaskCountMDBoxIndex() {
         int index = 0;
         for (int i = 0; i < taskCountMDBox.getItems().size();i++) {
         	if(this.taskCountMDBox.getValue().equals(taskCountMDBox.getItems().get(i))) {
@@ -1774,23 +2263,13 @@ public class WorkGenViewController {
         return index;
 	}
 
-	public void checkTaskCountMDBoxStatus() {
-		if(taskCountMDBox.getItems().size() > 0) {
-			taskCountMDEdit.setDisable(false);
-			taskCountMDDelete.setDisable(false);
-		} else {
-			taskCountMDEdit.setDisable(true);
-			taskCountMDDelete.setDisable(true);
-		}
-	}
-	
 	@FXML
     void taskCountPeriodAddClick(ActionEvent event) throws IOException {
         
         // Show the scene containing the main layout.
         Scene scene = new Scene(loadPeriodDistViewFXML());
         
-        periodDistController.setFlag("ADD");
+        periodDistController.setFlag("ADD", "TaskCount");
         
 		Stage periodStage = new Stage();
 		periodStage.setTitle("PeriodDistribution Settings");
@@ -1805,9 +2284,9 @@ public class WorkGenViewController {
         // Show the scene containing the main layout.
         Scene scene = new Scene(loadPeriodDistViewFXML());
         // Show the scene containing the main layout.
-        periodDistController.setFlag("EDIT");
+        periodDistController.setFlag("EDIT", "TaskCount");
         
-        periodDistController.loadDistributionData(this.getPeriodBoxIndex());
+        periodDistController.loadDistributionData(this.getTaskCountPeriodBoxIndex());
         
 		Stage periodStage = new Stage();
 		periodStage.setTitle("PeriodDistribution Settings");
@@ -1818,18 +2297,30 @@ public class WorkGenViewController {
 	
 	@FXML
     void taskCountPeriodDeleteClick(ActionEvent event) throws IOException {
-		taskCountListRP.removePeriodicValidValuesAt(this.getPeriodBoxIndex());
-		taskCountPeriodBox.getItems().remove(this.getMDBoxIndex());
+		taskCountListRP.removePeriodicValidValuesAt(this.getTaskCountPeriodBoxIndex());
+		taskCountPeriodBox.getItems().remove(this.getTaskCountPeriodBoxIndex());
 		checkTaskCountPeriodBoxStatus();
     }
 	
+	public int getTaskCountPeriodBoxIndex() {
+        int index = 0;
+        for (int i = 0; i < taskCountPeriodBox.getItems().size();i++) {
+        	if(this.taskCountPeriodBox.getValue().equals(taskCountPeriodBox.getItems().get(i))) {
+        		index = i;
+        		break;
+        	}
+        }
+        return index;
+	}
+	
+	/** TaskLength Buttons	*/
 	@FXML
     void taskLengthMDAddClick(ActionEvent event) throws Exception {
 
         // Show the scene containing the main layout.
         Scene scene = new Scene(loadMultiDistViewFXML());
         
-        multiDistController.setFlag("ADD");
+        multiDistController.setFlag("ADD", "TaskLength");
         
         Stage MDStage = new Stage();
 		MDStage.setTitle("MultiDistribution Settings");
@@ -1844,9 +2335,9 @@ public class WorkGenViewController {
         // Show the scene containing the main layout.
         Scene scene = new Scene(loadMultiDistViewFXML());
         
-        multiDistController.setFlag("EDIT");
+        multiDistController.setFlag("EDIT", "TaskLength");
         
-        multiDistController.loadDistributionData(this.getMDBoxIndex());
+        multiDistController.loadDistributionData(this.getTaskLengthMDBoxIndex());
         
         Stage MDStage = new Stage();
 		MDStage.setTitle("MultiDistribution Settings");
@@ -1857,18 +2348,28 @@ public class WorkGenViewController {
 	
 	@FXML
     void taskLengthMDDeleteClick(ActionEvent event) throws Exception {
-		taskCountListMD.removeDistAt(this.getMDBoxIndex());
-		taskCountMDBox.getItems().remove(this.getMDBoxIndex());
-		checkTaskCountMDBoxStatus();
+		taskLengthListMD.removeDistAt(this.getTaskLengthMDBoxIndex());
+		taskLengthMDBox.getItems().remove(this.getTaskLengthMDBoxIndex());
+		checkTaskLengthMDBoxStatus();
     }
 	
+	public int getTaskLengthMDBoxIndex() {
+        int index = 0;
+        for (int i = 0; i < taskLengthMDBox.getItems().size();i++) {
+        	if(this.taskLengthMDBox.getValue().equals(taskLengthMDBox.getItems().get(i))) {
+        		index = i;
+        		break;
+        	}
+        }
+        return index;
+	}
 	@FXML
     void taskLengthPeriodAddClick(ActionEvent event) throws IOException {
         
         // Show the scene containing the main layout.
         Scene scene = new Scene(loadPeriodDistViewFXML());
         
-        periodDistController.setFlag("ADD");
+        periodDistController.setFlag("ADD", "TaskLength");
         
 		Stage periodStage = new Stage();
 		periodStage.setTitle("PeriodDistribution Settings");
@@ -1883,9 +2384,9 @@ public class WorkGenViewController {
         // Show the scene containing the main layout.
         Scene scene = new Scene(loadPeriodDistViewFXML());
         // Show the scene containing the main layout.
-        periodDistController.setFlag("EDIT");
+        periodDistController.setFlag("EDIT", "TaskLength");
         
-        periodDistController.loadDistributionData(this.getPeriodBoxIndex());
+        periodDistController.loadDistributionData(this.getTaskLengthPeriodBoxIndex());
         
 		Stage periodStage = new Stage();
 		periodStage.setTitle("PeriodDistribution Settings");
@@ -1896,32 +2397,421 @@ public class WorkGenViewController {
 	
 	@FXML
     void taskLengthPeriodDeleteClick(ActionEvent event) throws IOException {
-		taskCountListRP.removePeriodicValidValuesAt(this.getPeriodBoxIndex());
-		taskCountPeriodBox.getItems().remove(this.getMDBoxIndex());
-		checkTaskCountPeriodBoxStatus();
+		taskLengthListRP.removePeriodicValidValuesAt(this.getTaskLengthPeriodBoxIndex());
+		taskLengthPeriodBox.getItems().remove(this.getTaskLengthPeriodBoxIndex());
+		checkTaskLengthPeriodBoxStatus();
     }
 	
-	
-	public int getPeriodBoxIndex() {
+	public int getTaskLengthPeriodBoxIndex() {
         int index = 0;
-        for (int i = 0; i < taskCountPeriodBox.getItems().size();i++) {
-        	if(this.taskCountPeriodBox.getValue().equals(taskCountPeriodBox.getItems().get(i))) {
+        for (int i = 0; i < taskLengthPeriodBox.getItems().size();i++) {
+        	if(this.taskLengthPeriodBox.getValue().equals(taskLengthPeriodBox.getItems().get(i))) {
         		index = i;
         		break;
         	}
         }
         return index;
 	}
+	/** JobPackageLength Buttons	*/
+	
+	@FXML
+    void jobPackLenMDAddClick(ActionEvent event) throws Exception {
 
-	public void checkTaskCountPeriodBoxStatus() {
-		if(taskCountPeriodBox.getItems().size() > 0) {
-			taskCountPeriodEdit.setDisable(false);
-			taskCountPeriodDelete.setDisable(false);
-		} else {
-			taskCountPeriodEdit.setDisable(true);
-			taskCountPeriodDelete.setDisable(true);
-		}
+        // Show the scene containing the main layout.
+        Scene scene = new Scene(loadMultiDistViewFXML());
+        
+        multiDistController.setFlag("ADD", "JobPackageLength");
+        
+        Stage MDStage = new Stage();
+		MDStage.setTitle("MultiDistribution Settings");
+        MDStage.setScene(scene);
+        MDStage.initModality(Modality.APPLICATION_MODAL);
+        MDStage.show();
+    }
+	
+	@FXML
+    void jobPackLenMDEditClick(ActionEvent event) throws Exception {
+
+        // Show the scene containing the main layout.
+        Scene scene = new Scene(loadMultiDistViewFXML());
+        
+        multiDistController.setFlag("EDIT", "JobPackageLength");
+        
+        multiDistController.loadDistributionData(this.getJobPackLenMDBoxIndex());
+        
+        Stage MDStage = new Stage();
+		MDStage.setTitle("MultiDistribution Settings");
+        MDStage.setScene(scene);
+        MDStage.initModality(Modality.APPLICATION_MODAL);
+        MDStage.show();
+    }
+	
+	@FXML
+    void jobPackLenMDDeleteClick(ActionEvent event) throws Exception {
+		jobPackLenListMD.removeDistAt(this.getJobPackLenMDBoxIndex());
+		jobPackLenMDBox.getItems().remove(this.getJobPackLenMDBoxIndex());
+		checkJobPackLenMDBoxStatus();
+    }
+	
+	public int getJobPackLenMDBoxIndex() {
+        int index = 0;
+        for (int i = 0; i < jobPackLenMDBox.getItems().size();i++) {
+        	if(this.jobPackLenMDBox.getValue().equals(jobPackLenMDBox.getItems().get(i))) {
+        		index = i;
+        		break;
+        	}
+        }
+        return index;
 	}
+	@FXML
+    void jobPackLenPeriodAddClick(ActionEvent event) throws IOException {
+        
+        // Show the scene containing the main layout.
+        Scene scene = new Scene(loadPeriodDistViewFXML());
+        
+        periodDistController.setFlag("ADD", "JobPackageLength");
+        
+		Stage periodStage = new Stage();
+		periodStage.setTitle("PeriodDistribution Settings");
+        periodStage.setScene(scene);
+        periodStage.initModality(Modality.APPLICATION_MODAL);
+        periodStage.show();
+    }
+	
+	@FXML
+    void jobPackLenPeriodEditClick(ActionEvent event) throws IOException {
+        
+        // Show the scene containing the main layout.
+        Scene scene = new Scene(loadPeriodDistViewFXML());
+        // Show the scene containing the main layout.
+        periodDistController.setFlag("EDIT", "JobPackageLength");
+        
+        periodDistController.loadDistributionData(this.getJobPackLenPeriodBoxIndex());
+        
+		Stage periodStage = new Stage();
+		periodStage.setTitle("PeriodDistribution Settings");
+        periodStage.setScene(scene);
+        periodStage.initModality(Modality.APPLICATION_MODAL);
+        periodStage.show();
+    }
+	
+	@FXML
+    void jobPackLenPeriodDeleteClick(ActionEvent event) throws IOException {
+		jobPackLenListRP.removePeriodicValidValuesAt(this.getJobPackLenPeriodBoxIndex());
+		jobPackLenPeriodBox.getItems().remove(this.getJobPackLenPeriodBoxIndex());
+		checkJobPackLenPeriodBoxStatus();
+    }
+	
+	public int getJobPackLenPeriodBoxIndex() {
+        int index = 0;
+        for (int i = 0; i < jobPackLenPeriodBox.getItems().size();i++) {
+        	if(this.jobPackLenPeriodBox.getValue().equals(jobPackLenPeriodBox.getItems().get(i))) {
+        		index = i;
+        		break;
+        	}
+        }
+        return index;
+	}
+	/** JobInterval Buttons		*/
+	@FXML
+    void jobIntervalMDAddClick(ActionEvent event) throws Exception {
+
+        // Show the scene containing the main layout.
+        Scene scene = new Scene(loadMultiDistViewFXML());
+        
+        multiDistController.setFlag("ADD", "JobInterval");
+        
+        Stage MDStage = new Stage();
+		MDStage.setTitle("MultiDistribution Settings");
+        MDStage.setScene(scene);
+        MDStage.initModality(Modality.APPLICATION_MODAL);
+        MDStage.show();
+    }
+	
+	@FXML
+    void jobIntervalMDEditClick(ActionEvent event) throws Exception {
+
+        // Show the scene containing the main layout.
+        Scene scene = new Scene(loadMultiDistViewFXML());
+        
+        multiDistController.setFlag("EDIT", "JobInterval");
+        
+        multiDistController.loadDistributionData(this.getJobIntervalMDBoxIndex());
+        
+        Stage MDStage = new Stage();
+		MDStage.setTitle("MultiDistribution Settings");
+        MDStage.setScene(scene);
+        MDStage.initModality(Modality.APPLICATION_MODAL);
+        MDStage.show();
+    }
+	
+	@FXML
+    void jobIntervalMDDeleteClick(ActionEvent event) throws Exception {
+		jobIntervalListMD.removeDistAt(this.getJobIntervalMDBoxIndex());
+		jobIntervalMDBox.getItems().remove(this.getJobIntervalMDBoxIndex());
+		checkJobIntervalMDBoxStatus();
+    }
+	
+	public int getJobIntervalMDBoxIndex() {
+        int index = 0;
+        for (int i = 0; i < jobIntervalMDBox.getItems().size();i++) {
+        	if(this.jobIntervalMDBox.getValue().equals(jobIntervalMDBox.getItems().get(i))) {
+        		index = i;
+        		break;
+        	}
+        }
+        return index;
+	}
+	@FXML
+    void jobIntervalPeriodAddClick(ActionEvent event) throws IOException {
+        
+        // Show the scene containing the main layout.
+        Scene scene = new Scene(loadPeriodDistViewFXML());
+        
+        periodDistController.setFlag("ADD", "JobInterval");
+        
+		Stage periodStage = new Stage();
+		periodStage.setTitle("PeriodDistribution Settings");
+        periodStage.setScene(scene);
+        periodStage.initModality(Modality.APPLICATION_MODAL);
+        periodStage.show();
+    }
+	
+	@FXML
+    void jobIntervalPeriodEditClick(ActionEvent event) throws IOException {
+        
+        // Show the scene containing the main layout.
+        Scene scene = new Scene(loadPeriodDistViewFXML());
+        // Show the scene containing the main layout.
+        periodDistController.setFlag("EDIT", "JobInterval");
+        
+        periodDistController.loadDistributionData(this.getJobIntervalPeriodBoxIndex());
+        
+		Stage periodStage = new Stage();
+		periodStage.setTitle("PeriodDistribution Settings");
+        periodStage.setScene(scene);
+        periodStage.initModality(Modality.APPLICATION_MODAL);
+        periodStage.show();
+    }
+	
+	@FXML
+    void jobIntervalPeriodDeleteClick(ActionEvent event) throws IOException {
+		jobIntervalListRP.removePeriodicValidValuesAt(this.getJobIntervalPeriodBoxIndex());
+		jobIntervalPeriodBox.getItems().remove(this.getJobIntervalPeriodBoxIndex());
+		checkJobIntervalPeriodBoxStatus();
+    }
+	
+	public int getJobIntervalPeriodBoxIndex() {
+        int index = 0;
+        for (int i = 0; i < jobIntervalPeriodBox.getItems().size();i++) {
+        	if(this.jobIntervalPeriodBox.getValue().equals(jobIntervalPeriodBox.getItems().get(i))) {
+        		index = i;
+        		break;
+        	}
+        }
+        return index;
+	}
+	/** CpuCount Buttons	*/
+	
+	@FXML
+    void cpucntMDAddClick(ActionEvent event) throws Exception {
+
+        // Show the scene containing the main layout.
+        Scene scene = new Scene(loadMultiDistViewFXML());
+        
+        multiDistController.setFlag("ADD", "CpuCount");
+        
+        Stage MDStage = new Stage();
+		MDStage.setTitle("MultiDistribution Settings");
+        MDStage.setScene(scene);
+        MDStage.initModality(Modality.APPLICATION_MODAL);
+        MDStage.show();
+    }
+	
+	@FXML
+    void cpucntMDEditClick(ActionEvent event) throws Exception {
+
+        // Show the scene containing the main layout.
+        Scene scene = new Scene(loadMultiDistViewFXML());
+        
+        multiDistController.setFlag("EDIT", "CpuCount");
+        
+        multiDistController.loadDistributionData(this.getCpucntMDBoxIndex());
+        
+        Stage MDStage = new Stage();
+		MDStage.setTitle("MultiDistribution Settings");
+        MDStage.setScene(scene);
+        MDStage.initModality(Modality.APPLICATION_MODAL);
+        MDStage.show();
+    }
+	
+	@FXML
+    void cpucntMDDeleteClick(ActionEvent event) throws Exception {
+		cpucntListMD.removeDistAt(this.getCpucntMDBoxIndex());
+		cpucntMDBox.getItems().remove(this.getCpucntMDBoxIndex());
+		checkCpucntMDBoxStatus();
+    }
+	
+	public int getCpucntMDBoxIndex() {
+        int index = 0;
+        for (int i = 0; i < cpucntMDBox.getItems().size();i++) {
+        	if(this.cpucntMDBox.getValue().equals(cpucntMDBox.getItems().get(i))) {
+        		index = i;
+        		break;
+        	}
+        }
+        return index;
+	}
+	@FXML
+    void cpucntPeriodAddClick(ActionEvent event) throws IOException {
+        
+        // Show the scene containing the main layout.
+        Scene scene = new Scene(loadPeriodDistViewFXML());
+        
+        periodDistController.setFlag("ADD", "CpuCount");
+        
+		Stage periodStage = new Stage();
+		periodStage.setTitle("PeriodDistribution Settings");
+        periodStage.setScene(scene);
+        periodStage.initModality(Modality.APPLICATION_MODAL);
+        periodStage.show();
+    }
+	
+	@FXML
+    void cpucntPeriodEditClick(ActionEvent event) throws IOException {
+        
+        // Show the scene containing the main layout.
+        Scene scene = new Scene(loadPeriodDistViewFXML());
+        // Show the scene containing the main layout.
+        periodDistController.setFlag("EDIT", "CpuCount");
+        
+        periodDistController.loadDistributionData(this.getCpucntPeriodBoxIndex());
+        
+		Stage periodStage = new Stage();
+		periodStage.setTitle("PeriodDistribution Settings");
+        periodStage.setScene(scene);
+        periodStage.initModality(Modality.APPLICATION_MODAL);
+        periodStage.show();
+    }
+	
+	@FXML
+    void cpucntPeriodDeleteClick(ActionEvent event) throws IOException {
+		cpucntListRP.removePeriodicValidValuesAt(this.getCpucntPeriodBoxIndex());
+		cpucntPeriodBox.getItems().remove(this.getCpucntPeriodBoxIndex());
+		checkCpucntPeriodBoxStatus();
+    }
+	
+	public int getCpucntPeriodBoxIndex() {
+        int index = 0;
+        for (int i = 0; i < cpucntPeriodBox.getItems().size();i++) {
+        	if(this.cpucntPeriodBox.getValue().equals(cpucntPeriodBox.getItems().get(i))) {
+        		index = i;
+        		break;
+        	}
+        }
+        return index;
+	}
+	/** Memory Buttons		*/
+
+	@FXML
+    void memoryMDAddClick(ActionEvent event) throws Exception {
+
+        // Show the scene containing the main layout.
+        Scene scene = new Scene(loadMultiDistViewFXML());
+        
+        multiDistController.setFlag("ADD", "Memory");
+        
+        Stage MDStage = new Stage();
+		MDStage.setTitle("MultiDistribution Settings");
+        MDStage.setScene(scene);
+        MDStage.initModality(Modality.APPLICATION_MODAL);
+        MDStage.show();
+    }
+	
+	@FXML
+    void memoryMDEditClick(ActionEvent event) throws Exception {
+
+        // Show the scene containing the main layout.
+        Scene scene = new Scene(loadMultiDistViewFXML());
+        
+        multiDistController.setFlag("EDIT", "Memory");
+        
+        multiDistController.loadDistributionData(this.getMemoryMDBoxIndex());
+        
+        Stage MDStage = new Stage();
+		MDStage.setTitle("MultiDistribution Settings");
+        MDStage.setScene(scene);
+        MDStage.initModality(Modality.APPLICATION_MODAL);
+        MDStage.show();
+    }
+	
+	@FXML
+    void memoryMDDeleteClick(ActionEvent event) throws Exception {
+		memoryListMD.removeDistAt(this.getMemoryMDBoxIndex());
+		memoryMDBox.getItems().remove(this.getMemoryMDBoxIndex());
+		checkMemoryMDBoxStatus();
+    }
+	
+	public int getMemoryMDBoxIndex() {
+        int index = 0;
+        for (int i = 0; i < memoryMDBox.getItems().size();i++) {
+        	if(this.memoryMDBox.getValue().equals(memoryMDBox.getItems().get(i))) {
+        		index = i;
+        		break;
+        	}
+        }
+        return index;
+	}
+	@FXML
+    void memoryPeriodAddClick(ActionEvent event) throws IOException {
+        
+        // Show the scene containing the main layout.
+        Scene scene = new Scene(loadPeriodDistViewFXML());
+        
+        periodDistController.setFlag("ADD", "Memory");
+        
+		Stage periodStage = new Stage();
+		periodStage.setTitle("PeriodDistribution Settings");
+        periodStage.setScene(scene);
+        periodStage.initModality(Modality.APPLICATION_MODAL);
+        periodStage.show();
+    }
+	
+	@FXML
+    void memoryPeriodEditClick(ActionEvent event) throws IOException {
+        
+        // Show the scene containing the main layout.
+        Scene scene = new Scene(loadPeriodDistViewFXML());
+        // Show the scene containing the main layout.
+        periodDistController.setFlag("EDIT", "Memory");
+        
+        periodDistController.loadDistributionData(this.getMemoryPeriodBoxIndex());
+        
+		Stage periodStage = new Stage();
+		periodStage.setTitle("PeriodDistribution Settings");
+        periodStage.setScene(scene);
+        periodStage.initModality(Modality.APPLICATION_MODAL);
+        periodStage.show();
+    }
+	
+	@FXML
+    void memoryPeriodDeleteClick(ActionEvent event) throws IOException {
+		memoryListRP.removePeriodicValidValuesAt(this.getMemoryPeriodBoxIndex());
+		memoryPeriodBox.getItems().remove(this.getMemoryPeriodBoxIndex());
+		checkMemoryPeriodBoxStatus();
+    }
+	
+	public int getMemoryPeriodBoxIndex() {
+        int index = 0;
+        for (int i = 0; i < memoryPeriodBox.getItems().size();i++) {
+        	if(this.memoryPeriodBox.getValue().equals(memoryPeriodBox.getItems().get(i))) {
+        		index = i;
+        		break;
+        	}
+        }
+        return index;
+	}
+	/**********************************/
 	
 	private AnchorPane loadMultiDistViewFXML() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
@@ -1974,13 +2864,17 @@ public class WorkGenViewController {
 		if(this.taskCountMDCheck.isSelected() && taskCountListMD!= null) {
 			taskCount.setMultiDistribution(taskCountListMD);
 		}
-		if(this.taskCountListMD.getDist().length!=0 && this.taskCountMDCheck.isSelected()) {
+		if(this.taskCountRefCheck.isSelected()) {
+			 if(this.taskCountRefBox.getValue()!= null)
+				 taskCount.setRefElementId(this.taskCountRefBox.getValue().toString());
+			 if(this.taskCountExprText.getText()!=null && !this.taskCountExprText.equals(""))
+				 taskCount.setExpr(this.taskCountExprText.getText());
+		}
+			
+		if(this.taskCountListMD.getDist().length!=0 && this.taskCountMDCheck.isSelected())
 			taskCount.setMultiDistribution(taskCountListMD);
-		}
-		if(this.taskCountListRP.getPeriodicValidValues().length!=0 && this.taskCountPeriodCheck.isSelected()) {
+		if(this.taskCountListRP.getPeriodicValidValues().length!=0 && this.taskCountPeriodCheck.isSelected())
 			taskCount.setRandParamsSequence(taskCountListRP);
-		}
-//		taskCount.setExpr(expr);
 		
 		// TaskLength
 		TaskLength taskLength = new TaskLength();
@@ -1996,6 +2890,12 @@ public class WorkGenViewController {
 			taskLength.setMin(Double.parseDouble(this.taskLengthMin.getText()));
 		if(this.taskLengthSeed.getText()!=null && !this.taskLengthSeed.getText().equals(""))
 			taskLength.setSeed(Long.parseLong(this.taskLengthSeed.getText()));
+		if(this.taskLengthListMD.getDist().length!=0 && this.taskLengthMDCheck.isSelected()) {
+			taskLength.setMultiDistribution(taskLengthListMD);
+		}
+		if(this.taskLengthListRP.getPeriodicValidValues().length!=0 && this.taskLengthPeriodCheck.isSelected()) {
+			taskLength.setRandParamsSequence(taskLengthListRP);
+		}
 		
 		// JobPackageLength
 		JobPackageLength jobPackLen = new JobPackageLength();
@@ -2011,6 +2911,12 @@ public class WorkGenViewController {
 			jobPackLen.setMin(Double.parseDouble(this.jobPackLenMin.getText()));
 		if(this.jobPackLenSeed.getText()!=null && !this.jobPackLenSeed.getText().equals(""))
 			jobPackLen.setSeed(Long.parseLong(this.jobPackLenSeed.getText()));
+		if(this.jobPackLenListMD.getDist().length!=0 && this.jobPackLenMDCheck.isSelected()) {
+			jobPackLen.setMultiDistribution(jobPackLenListMD);
+		}
+		if(this.jobPackLenListRP.getPeriodicValidValues().length!=0 && this.jobPackLenPeriodCheck.isSelected()) {
+			jobPackLen.setRandParamsSequence(jobPackLenListRP);
+		}
 		
 		// JobInterval
 		JobInterval jobInterval = new JobInterval();
@@ -2026,6 +2932,12 @@ public class WorkGenViewController {
 			jobInterval.setMin(Double.parseDouble(this.jobIntervalMin.getText()));
 		if(this.jobIntervalSeed.getText()!=null && !this.jobIntervalSeed.getText().equals(""))
 			jobInterval.setSeed(Long.parseLong(this.jobIntervalSeed.getText()));
+		if(this.jobIntervalListMD.getDist().length!=0 && this.jobIntervalMDCheck.isSelected()) {
+			jobInterval.setMultiDistribution(jobIntervalListMD);
+		}
+		if(this.jobIntervalListRP.getPeriodicValidValues().length!=0 && this.jobIntervalPeriodCheck.isSelected()) {
+			jobInterval.setRandParamsSequence(jobIntervalListRP);
+		}
 		
 		// ComputingResourceHostParameter
 		// cpucount
@@ -2044,7 +2956,12 @@ public class WorkGenViewController {
 			cpucntValue.setMin(Double.parseDouble(this.cpucntMin.getText()));
 		if(this.cpucntSeed.getText()!=null && !this.cpucntSeed.getText().equals(""))
 			cpucntValue.setSeed(Long.parseLong(this.cpucntSeed.getText()));
-		
+		if(this.cpucntListMD.getDist().length!=0 && this.cpucntMDCheck.isSelected()) {
+			cpucntValue.setMultiDistribution(cpucntListMD);
+		}
+		if(this.cpucntListRP.getPeriodicValidValues().length!=0 && this.cpucntPeriodCheck.isSelected()) {
+			cpucntValue.setRandParamsSequence(cpucntListRP);
+		}
 		cpucnt.addValue(cpucntValue);
 		
 		// memory
@@ -2063,7 +2980,12 @@ public class WorkGenViewController {
 			memoryValue.setMin(Double.parseDouble(this.memoryMin.getText()));
 		if(this.memorySeed.getText()!=null && !this.memorySeed.getText().equals(""))
 			memoryValue.setSeed(Long.parseLong(this.memorySeed.getText()));
-		
+		if(this.memoryListMD.getDist().length!=0 && this.memoryMDCheck.isSelected()) {
+			memoryValue.setMultiDistribution(memoryListMD);
+		}
+		if(this.memoryListRP.getPeriodicValidValues().length!=0 && this.memoryPeriodCheck.isSelected()) {
+			memoryValue.setRandParamsSequence(memoryListRP);
+		}
 		memory.addValue(memoryValue);
 		
 		/** WorkloadConfiguration */

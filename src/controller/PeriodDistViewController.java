@@ -77,6 +77,8 @@ public class PeriodDistViewController {
 
 		private String windowFlag;
 
+		private String fieldName;
+		
 		private int indexDist;
 	    
 		public void init(WorkGenViewController controller) {
@@ -115,8 +117,29 @@ public class PeriodDistViewController {
 			} else if ("EDIT".equals(windowFlag)) {
 				Delete.setDisable(false);
 			}
-
-			PeriodicValidValues vPeriodicValidValues = workGenViewController.taskCountListRP.getPeriodicValidValues(index);
+			
+			PeriodicValidValues vPeriodicValidValues = null;
+			switch (this.fieldName) {
+			case "TaskCount":
+				vPeriodicValidValues = workGenViewController.taskCountListRP.getPeriodicValidValues(index);
+				break;
+			case "TaskLength":
+				vPeriodicValidValues = workGenViewController.taskLengthListRP.getPeriodicValidValues(index);
+				break;
+			case "JobPackageLength":
+				vPeriodicValidValues = workGenViewController.jobPackLenListRP.getPeriodicValidValues(index);
+				break;
+			case "JobInterval":
+				vPeriodicValidValues = workGenViewController.jobIntervalListRP.getPeriodicValidValues(index);
+				break;
+			case "CpuCount":
+				vPeriodicValidValues = workGenViewController.cpucntListRP.getPeriodicValidValues(index);
+				break;
+			case "Memory":
+				vPeriodicValidValues = workGenViewController.memoryListRP.getPeriodicValidValues(index);
+				break;
+			}
+			
 			Avg.setText(String.valueOf(vPeriodicValidValues.getAvg()));
 			Stdev.setText(String.valueOf(vPeriodicValidValues.getStdev()));
 			Max.setText(String.valueOf(vPeriodicValidValues.getMax()));
@@ -217,37 +240,144 @@ public class PeriodDistViewController {
 				}
 				vPeriodicValidValues.setEndValidTime(endValidTime);
 			}
-			if ("ADD".equals(this.windowFlag)) {
+			String valueString = this.PeriodBeginTime.getText().split("_")[1] + "-" + this.PeriodEndTime.getText().split("_")[1];
+			switch (this.fieldName) {
+			case "TaskCount":
+				if ("ADD".equals(this.windowFlag)) {
 
-				workGenViewController.taskCountListRP.addPeriodicValidValues(vPeriodicValidValues);
+					workGenViewController.taskCountListRP.addPeriodicValidValues(vPeriodicValidValues);
 
-//				String valueString = "Period-" + vPeriodicValidValues.getBeginValidTime().getHours() + ":" + 
-//				vPeriodicValidValues.getBeginValidTime().getMinutes() + "-" + 
-//						vPeriodicValidValues.getEndValidTime().getHours() + ":" + 
-//				vPeriodicValidValues.getEndValidTime().getMinutes();
-				String valueString = this.PeriodBeginTime.getText().split("_")[1] + "-" + this.PeriodEndTime.getText().split("_")[1];
-				workGenViewController.taskCountPeriodBox.getItems().add(valueString);
-				workGenViewController.taskCountPeriodBox.setValue(valueString);
+					workGenViewController.taskCountPeriodBox.getItems().add(valueString);
+					workGenViewController.taskCountPeriodBox.setValue(valueString);
 
-			} else if ("EDIT".equals(this.windowFlag)) {
+				} else if ("EDIT".equals(this.windowFlag)) {
 
-				workGenViewController.taskCountListRP.setPeriodicValidValues(this.indexDist, vPeriodicValidValues);
+					workGenViewController.taskCountListRP.setPeriodicValidValues(this.indexDist, vPeriodicValidValues);
+				}
+				workGenViewController.taskCountPeriodEdit.setDisable(false);
+				workGenViewController.taskCountPeriodDelete.setDisable(false);
+				break;
+			case "TaskLength":
+				if ("ADD".equals(this.windowFlag)) {
+
+					workGenViewController.taskLengthListRP.addPeriodicValidValues(vPeriodicValidValues);
+
+					workGenViewController.taskLengthPeriodBox.getItems().add(valueString);
+					workGenViewController.taskLengthPeriodBox.setValue(valueString);
+
+				} else if ("EDIT".equals(this.windowFlag)) {
+
+					workGenViewController.taskLengthListRP.setPeriodicValidValues(this.indexDist, vPeriodicValidValues);
+				}
+				workGenViewController.taskLengthPeriodEdit.setDisable(false);
+				workGenViewController.taskLengthPeriodDelete.setDisable(false);
+				break;
+			case "JobPackageLength":
+				if ("ADD".equals(this.windowFlag)) {
+
+					workGenViewController.jobPackLenListRP.addPeriodicValidValues(vPeriodicValidValues);
+
+					workGenViewController.jobPackLenPeriodBox.getItems().add(valueString);
+					workGenViewController.jobPackLenPeriodBox.setValue(valueString);
+
+				} else if ("EDIT".equals(this.windowFlag)) {
+
+					workGenViewController.jobPackLenListRP.setPeriodicValidValues(this.indexDist, vPeriodicValidValues);
+				}
+				workGenViewController.jobPackLenPeriodEdit.setDisable(false);
+				workGenViewController.jobPackLenPeriodDelete.setDisable(false);
+				break;
+			case "JobInterval":
+				if ("ADD".equals(this.windowFlag)) {
+
+					workGenViewController.jobIntervalListRP.addPeriodicValidValues(vPeriodicValidValues);
+
+					workGenViewController.jobIntervalPeriodBox.getItems().add(valueString);
+					workGenViewController.jobIntervalPeriodBox.setValue(valueString);
+
+				} else if ("EDIT".equals(this.windowFlag)) {
+
+					workGenViewController.jobIntervalListRP.setPeriodicValidValues(this.indexDist, vPeriodicValidValues);
+				}
+				workGenViewController.jobIntervalPeriodEdit.setDisable(false);
+				workGenViewController.jobIntervalPeriodDelete.setDisable(false);
+				break;
+			case "CpuCount":
+				if ("ADD".equals(this.windowFlag)) {
+
+					workGenViewController.cpucntListRP.addPeriodicValidValues(vPeriodicValidValues);
+
+					workGenViewController.cpucntPeriodBox.getItems().add(valueString);
+					workGenViewController.cpucntPeriodBox.setValue(valueString);
+
+				} else if ("EDIT".equals(this.windowFlag)) {
+
+					workGenViewController.cpucntListRP.setPeriodicValidValues(this.indexDist, vPeriodicValidValues);
+				}
+				workGenViewController.cpucntPeriodEdit.setDisable(false);
+				workGenViewController.cpucntPeriodDelete.setDisable(false);
+				break;
+			case "Memory":
+				if ("ADD".equals(this.windowFlag)) {
+
+					workGenViewController.memoryListRP.addPeriodicValidValues(vPeriodicValidValues);
+
+					workGenViewController.memoryPeriodBox.getItems().add(valueString);
+					workGenViewController.memoryPeriodBox.setValue(valueString);
+
+				} else if ("EDIT".equals(this.windowFlag)) {
+
+					workGenViewController.memoryListRP.setPeriodicValidValues(this.indexDist, vPeriodicValidValues);
+				}
+				workGenViewController.memoryPeriodEdit.setDisable(false);
+				workGenViewController.memoryPeriodDelete.setDisable(false);
+				break;
 			}
-
-			workGenViewController.taskCountPeriodEdit.setDisable(false);
-			workGenViewController.taskCountPeriodDelete.setDisable(false);
-
 			Stage stage = (Stage) Save.getScene().getWindow();
 			stage.close();
 		}
 		
 		@FXML
 		public void deleteButtonClick() {
-			workGenViewController.taskCountListRP.removePeriodicValidValuesAt(workGenViewController.getPeriodBoxIndex());
-			workGenViewController.taskCountPeriodBox.getItems().remove(workGenViewController.getPeriodBoxIndex());
-
-			workGenViewController.checkTaskCountPeriodBoxStatus();
 			
+			switch (this.fieldName) {
+			case "TaskCount":
+				workGenViewController.taskCountListRP.removePeriodicValidValuesAt(workGenViewController.getTaskLengthPeriodBoxIndex());
+				workGenViewController.taskCountPeriodBox.getItems().remove(workGenViewController.getTaskLengthPeriodBoxIndex());
+
+				workGenViewController.checkTaskCountPeriodBoxStatus();
+				break;
+			case "TaskLength":
+				workGenViewController.taskLengthListRP.removePeriodicValidValuesAt(workGenViewController.getTaskLengthPeriodBoxIndex());
+				workGenViewController.taskLengthPeriodBox.getItems().remove(workGenViewController.getTaskLengthPeriodBoxIndex());
+
+				workGenViewController.checkTaskLengthPeriodBoxStatus();
+				break;
+			case "JobPackageLength":
+				workGenViewController.jobPackLenListRP.removePeriodicValidValuesAt(workGenViewController.getTaskLengthPeriodBoxIndex());
+				workGenViewController.jobPackLenPeriodBox.getItems().remove(workGenViewController.getTaskLengthPeriodBoxIndex());
+
+				workGenViewController.checkJobPackLenPeriodBoxStatus();
+				break;
+			case "JobInterval":
+				workGenViewController.jobIntervalListRP.removePeriodicValidValuesAt(workGenViewController.getTaskLengthPeriodBoxIndex());
+				workGenViewController.jobIntervalPeriodBox.getItems().remove(workGenViewController.getTaskLengthPeriodBoxIndex());
+
+				workGenViewController.checkJobIntervalPeriodBoxStatus();
+				break;
+			case "CpuCount":
+				workGenViewController.cpucntListRP.removePeriodicValidValuesAt(workGenViewController.getTaskLengthPeriodBoxIndex());
+				workGenViewController.cpucntPeriodBox.getItems().remove(workGenViewController.getTaskLengthPeriodBoxIndex());
+
+				workGenViewController.checkCpucntPeriodBoxStatus();
+				break;
+			case "Memory":
+				workGenViewController.memoryListRP.removePeriodicValidValuesAt(workGenViewController.getTaskLengthPeriodBoxIndex());
+				workGenViewController.memoryPeriodBox.getItems().remove(workGenViewController.getTaskLengthPeriodBoxIndex());
+
+				workGenViewController.checkMemoryPeriodBoxStatus();
+				break;
+		}
 			Stage stage = (Stage) Save.getScene().getWindow();
 			stage.close();
 		}
@@ -257,8 +387,9 @@ public class PeriodDistViewController {
 		    stage.close();
 		}
 		
-		public void setFlag(String flag) {
+		public void setFlag(String flag, String field) {
 			this.windowFlag = flag;
+			this.fieldName = field;
 			if ("ADD".equals(windowFlag)) {
 				Delete.setDisable(true);
 			} else if ("EDIT".equals(windowFlag)) {
