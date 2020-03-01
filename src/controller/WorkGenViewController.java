@@ -46,6 +46,11 @@ public class WorkGenViewController {
 	private AnchorPane root;
 	
 	@FXML
+	private Button loadPatternButton;
+	@FXML
+	private Button helpButton;
+	
+	@FXML
 	private TextField workloadFilename;
 	@FXML
 	private TextField outputFolder;
@@ -70,7 +75,7 @@ public class WorkGenViewController {
 	@FXML
 	protected Label taskCountDistLabel;
 	@FXML
-	protected ComboBox<?> taskCountDistribution;
+	protected ComboBox<String> taskCountDistribution;
 	@FXML
 	protected Label taskCountAvgLabel;
 	@FXML
@@ -135,7 +140,7 @@ public class WorkGenViewController {
 	@FXML
 	protected Label taskLengthDistLabel;
 	@FXML
-	protected ComboBox<?> taskLengthDistribution;
+	protected ComboBox<String> taskLengthDistribution;
 	@FXML
 	protected Label taskLengthAvgLabel;
 	@FXML
@@ -199,7 +204,7 @@ public class WorkGenViewController {
 	@FXML
 	protected Label jobPackLenDistLabel;
 	@FXML
-	protected ComboBox<?> jobPackLenDistribution;
+	protected ComboBox<String> jobPackLenDistribution;
 	@FXML
 	protected Label jobPackLenAvgLabel;
 	@FXML
@@ -263,7 +268,7 @@ public class WorkGenViewController {
 	@FXML
 	protected Label jobIntervalDistLabel;
 	@FXML
-	protected ComboBox<?> jobIntervalDistribution;
+	protected ComboBox<String> jobIntervalDistribution;
 	@FXML
 	protected Label jobIntervalAvgLabel;
 	@FXML
@@ -327,7 +332,7 @@ public class WorkGenViewController {
 	@FXML
 	protected Label cpucntDistLabel;
 	@FXML
-	protected ComboBox<?> cpucntDistribution;
+	protected ComboBox<String> cpucntDistribution;
 	@FXML
 	protected Label cpucntAvgLabel;
 	@FXML
@@ -391,7 +396,7 @@ public class WorkGenViewController {
 	@FXML
 	protected Label memoryDistLabel;
 	@FXML
-	protected ComboBox<?> memoryDistribution;
+	protected ComboBox<String> memoryDistribution;
 	@FXML
 	protected Label memoryAvgLabel;
 	@FXML
@@ -466,29 +471,6 @@ public class WorkGenViewController {
 		
 		this.memoryListMD = new MultiDistribution();
 		this.memoryListRP = new RandParamsSequence();
-		
-		/** for debug */
-		this.outputFolder.setText("example/workload");
-		this.workloadFilename.setText("workload.swf");
-
-		this.simulationStartTime.setText("2009-01-15_10:00:00");
-		this.jobCount.setText("100");
-		this.taskCountAvg.setText("1");
-		
-		this.taskLengthAvg.setText("14400");
-		this.taskLengthMax.setText("18000");
-		this.taskLengthMin.setText("10800");
-		this.taskLengthStdev.setText("3600.0");
-		
-		this.jobPackLenAvg.setText("1.0");
-		
-		this.jobIntervalAvg.setText("50");
-		this.jobIntervalMax.setText("100");
-		this.jobIntervalMin.setText("0.0");
-		this.jobIntervalSeed.setText("21");
-		
-		this.cpucntAvg.setText("1");
-		this.memoryAvg.setText("1024");
 		
 		initComponentStatus();
 		
@@ -1660,6 +1642,7 @@ public class WorkGenViewController {
 	
 	private void initRefCombobox() {
 		ObservableList<String> options = FXCollections.observableArrayList(
+					"JobCount",
 			        "TaskLength",
 			        "JobPackageLength",
 			        "JobInterval",
@@ -2191,7 +2174,50 @@ public class WorkGenViewController {
 	}
 
 	private Dependency dependencyWrapper() {
-		return null;
+		Dependency dependencies = new Dependency();
+		if(taskCountRefCheck.isSelected() && taskCountRefBox.getValue()!=null) {
+			if(taskCountExprText.getText()!= null && !"".equals(taskCountExprText.getText())) {
+				dependencies.addIdExpMap("TaskCount", taskCountExprText.getText());
+				dependencies.addIdExpMap(taskCountRefBox.getValue(), "x");
+				dependencies.addIdDep(taskCountRefBox.getValue(), "TaskCount");
+			}
+		}
+		if(taskLengthRefCheck.isSelected() && taskLengthRefBox.getValue()!=null) {
+			if(taskLengthExprText.getText()!= null && !"".equals(taskLengthExprText.getText())) {
+				dependencies.addIdExpMap("TaskLength", taskLengthExprText.getText());
+				dependencies.addIdExpMap(taskLengthRefBox.getValue(), "x");
+				dependencies.addIdDep(taskLengthRefBox.getValue(), "TaskLength");
+			}
+		}
+		if(jobPackLenRefCheck.isSelected() && jobPackLenRefBox.getValue()!=null) {
+			if(jobPackLenExprText.getText()!= null && !"".equals(jobPackLenExprText.getText())) {
+				dependencies.addIdExpMap("JobPackageLength", jobPackLenExprText.getText());
+				dependencies.addIdExpMap(jobPackLenRefBox.getValue(), "x");
+				dependencies.addIdDep(jobPackLenRefBox.getValue(), "JobPackageLength");
+			}
+		}
+		if(jobIntervalRefCheck.isSelected() && jobIntervalRefBox.getValue()!=null) {
+			if(jobIntervalExprText.getText()!= null && !"".equals(jobIntervalExprText.getText())) {
+				dependencies.addIdExpMap("JobInterval", jobIntervalExprText.getText());
+				dependencies.addIdExpMap(jobIntervalRefBox.getValue(), "x");
+				dependencies.addIdDep(jobIntervalRefBox.getValue(), "JobInterval");
+			}
+		}
+		if(cpucntRefCheck.isSelected() && cpucntRefBox.getValue()!=null) {
+			if(cpucntExprText.getText()!= null && !"".equals(cpucntExprText.getText())) {
+				dependencies.addIdExpMap("CpuCount", cpucntExprText.getText());
+				dependencies.addIdExpMap(cpucntRefBox.getValue(), "x");
+				dependencies.addIdDep(cpucntRefBox.getValue(), "CpuCount");
+			}
+		}
+		if(memoryRefCheck.isSelected() && memoryRefBox.getValue()!=null) {
+			if(memoryExprText.getText()!= null && !"".equals(memoryExprText.getText())) {
+				dependencies.addIdExpMap("Memory", memoryExprText.getText());
+				dependencies.addIdExpMap(memoryRefBox.getValue(), "x");
+				dependencies.addIdDep(memoryRefBox.getValue(), "Memory");
+			}
+		}
+		return dependencies;
 	}
 
 	private boolean checkWorkGenValue() {
@@ -2212,6 +2238,44 @@ public class WorkGenViewController {
 		return true;
 	}
 
+	/** load Pattern Button */
+	@FXML
+	void loadPatternClick(ActionEvent event) {
+		this.outputFolder.setText("example/workload");
+		this.workloadFilename.setText("workload.swf");
+
+		this.simulationStartTime.setText("2009-01-15_10:00:00");
+		this.jobCount.setText("100");
+		
+		this.taskCountDistribution.setValue("constant");
+//		this.taskCountRefBox.setDisable(true);
+//		
+//		this.taskCountMDBox.setDisable(true);
+		this.taskCountAvg.setText("1");
+		
+		this.taskLengthDistribution.setValue("normal");
+		this.taskLengthAvg.setText("14400");
+		this.taskLengthMax.setText("18000");
+		this.taskLengthMin.setText("10800");
+		this.taskLengthStdev.setText("3600.0");
+		
+		this.jobPackLenDistribution.setValue("constant");
+		this.jobPackLenAvg.setText("1.0");
+		
+		this.jobIntervalDistribution.setValue("poisson");
+		this.jobIntervalAvg.setText("50");
+		this.jobIntervalMax.setText("100");
+		this.jobIntervalMin.setText("0.0");
+		this.jobIntervalSeed.setText("21");
+		
+		this.cpucntAvg.setText("1");
+		
+		this.memoryAvg.setText("1024");
+	}
+	
+	@FXML
+	void helpClick(ActionEvent event) {
+	}
 	/** TaskCount Buttons	*/
 	@FXML
     void taskCountMDAddClick(ActionEvent event) throws Exception {
@@ -2845,98 +2909,126 @@ public class WorkGenViewController {
 
 		// JobCount
 		JobCount jobCount = new JobCount();
+		jobCount.setId("JobCount");
 		jobCount.setAvg(Double.parseDouble(this.jobCount.getText()));
 		jobCount.setDistribution(ParameterAttributesDistributionType.valueOf("constant"));
 
 		// TaskCount
 		TaskCount taskCount = new TaskCount();
-		taskCount.setDistribution(
-				ParameterAttributesDistributionType.valueOf(this.taskCountDistribution.getValue().toString()));
-		taskCount.setAvg(Double.parseDouble(this.taskCountAvg.getText()));
-		if(this.taskCountStdev.getText()!=null && !this.taskCountStdev.getText().equals(""))
-			taskCount.setStdev(Double.parseDouble(this.taskCountStdev.getText()));
-		if(this.taskCountMax.getText()!=null && !this.taskCountMax.getText().equals(""))	
-			taskCount.setMax(Double.parseDouble(this.taskCountMax.getText()));
-		if(this.taskCountMin.getText()!=null && !this.taskCountMin.getText().equals(""))
-			taskCount.setMin(Double.parseDouble(this.taskCountMin.getText()));
-		if(this.taskCountSeed.getText()!=null && !this.taskCountSeed.getText().equals(""))
-			taskCount.setSeed(Long.parseLong(this.taskCountSeed.getText()));
-		if(this.taskCountMDCheck.isSelected() && taskCountListMD!= null) {
-			taskCount.setMultiDistribution(taskCountListMD);
-		}
+		taskCount.setId("TaskCount");
+		
 		if(this.taskCountRefCheck.isSelected()) {
 			 if(this.taskCountRefBox.getValue()!= null)
 				 taskCount.setRefElementId(this.taskCountRefBox.getValue().toString());
 			 if(this.taskCountExprText.getText()!=null && !this.taskCountExprText.equals(""))
 				 taskCount.setExpr(this.taskCountExprText.getText());
+		} else if(this.taskCountListMD.getDist().length!=0 && this.taskCountMDCheck.isSelected()) {
+			taskCount.setMultiDistribution(taskCountListMD);
+		} else {
+			taskCount.setDistribution(
+					ParameterAttributesDistributionType.valueOf(this.taskCountDistribution.getValue().toString()));
+			taskCount.setAvg(Double.parseDouble(this.taskCountAvg.getText()));
+			if(this.taskCountStdev.getText()!=null && !this.taskCountStdev.getText().equals(""))
+				taskCount.setStdev(Double.parseDouble(this.taskCountStdev.getText()));
+			if(this.taskCountMax.getText()!=null && !this.taskCountMax.getText().equals(""))	
+				taskCount.setMax(Double.parseDouble(this.taskCountMax.getText()));
+			if(this.taskCountMin.getText()!=null && !this.taskCountMin.getText().equals(""))
+				taskCount.setMin(Double.parseDouble(this.taskCountMin.getText()));
+			if(this.taskCountSeed.getText()!=null && !this.taskCountSeed.getText().equals(""))
+				taskCount.setSeed(Long.parseLong(this.taskCountSeed.getText()));
+			if(this.taskCountMDCheck.isSelected() && taskCountListMD!= null) {
+				taskCount.setMultiDistribution(taskCountListMD);
+			} 
+			if(this.taskCountListRP.getPeriodicValidValues().length!=0 && this.taskCountPeriodCheck.isSelected())
+				taskCount.setRandParamsSequence(taskCountListRP);
 		}
 			
-		if(this.taskCountListMD.getDist().length!=0 && this.taskCountMDCheck.isSelected())
-			taskCount.setMultiDistribution(taskCountListMD);
-		if(this.taskCountListRP.getPeriodicValidValues().length!=0 && this.taskCountPeriodCheck.isSelected())
-			taskCount.setRandParamsSequence(taskCountListRP);
 		
 		// TaskLength
 		TaskLength taskLength = new TaskLength();
-		taskLength.setDistribution(
-				ParameterAttributesDistributionType.valueOf(this.taskLengthDistribution.getValue().toString()));
-		if(this.taskLengthAvg.getText()!=null && !this.taskLengthAvg.getText().equals(""))
-			taskLength.setAvg(Double.parseDouble(this.taskLengthAvg.getText()));
-		if(this.taskLengthStdev.getText()!=null && !this.taskLengthStdev.getText().equals(""))
-			taskLength.setStdev(Double.parseDouble(this.taskLengthStdev.getText()));
-		if(this.taskLengthMax.getText()!=null && !this.taskLengthMax.getText().equals(""))
-			taskLength.setMax(Double.parseDouble(this.taskLengthMax.getText()));
-		if(this.taskLengthMin.getText()!=null && !this.taskLengthMin.getText().equals(""))	
-			taskLength.setMin(Double.parseDouble(this.taskLengthMin.getText()));
-		if(this.taskLengthSeed.getText()!=null && !this.taskLengthSeed.getText().equals(""))
-			taskLength.setSeed(Long.parseLong(this.taskLengthSeed.getText()));
-		if(this.taskLengthListMD.getDist().length!=0 && this.taskLengthMDCheck.isSelected()) {
+		taskLength.setId("TaskLength");
+		if(this.taskLengthRefCheck.isSelected()) {
+			 if(this.taskLengthRefBox.getValue()!= null)
+				 taskLength.setRefElementId(this.taskLengthRefBox.getValue().toString());
+			 if(this.taskLengthExprText.getText()!=null && !this.taskLengthExprText.equals(""))
+				 taskLength.setExpr(this.taskLengthExprText.getText());
+		} else if(this.taskLengthListMD.getDist().length!=0 && this.taskLengthMDCheck.isSelected()) {
 			taskLength.setMultiDistribution(taskLengthListMD);
-		}
-		if(this.taskLengthListRP.getPeriodicValidValues().length!=0 && this.taskLengthPeriodCheck.isSelected()) {
-			taskLength.setRandParamsSequence(taskLengthListRP);
+		} else {
+			taskLength.setDistribution(
+					ParameterAttributesDistributionType.valueOf(this.taskLengthDistribution.getValue().toString()));
+			if(this.taskLengthAvg.getText()!=null && !this.taskLengthAvg.getText().equals(""))
+				taskLength.setAvg(Double.parseDouble(this.taskLengthAvg.getText()));
+			if(this.taskLengthStdev.getText()!=null && !this.taskLengthStdev.getText().equals(""))
+				taskLength.setStdev(Double.parseDouble(this.taskLengthStdev.getText()));
+			if(this.taskLengthMax.getText()!=null && !this.taskLengthMax.getText().equals(""))
+				taskLength.setMax(Double.parseDouble(this.taskLengthMax.getText()));
+			if(this.taskLengthMin.getText()!=null && !this.taskLengthMin.getText().equals(""))	
+				taskLength.setMin(Double.parseDouble(this.taskLengthMin.getText()));
+			if(this.taskLengthSeed.getText()!=null && !this.taskLengthSeed.getText().equals(""))
+				taskLength.setSeed(Long.parseLong(this.taskLengthSeed.getText()));
+			if(this.taskLengthListRP.getPeriodicValidValues().length!=0 && this.taskLengthPeriodCheck.isSelected()) {
+				taskLength.setRandParamsSequence(taskLengthListRP);
+			}
 		}
 		
 		// JobPackageLength
 		JobPackageLength jobPackLen = new JobPackageLength();
-		jobPackLen.setDistribution(
-				ParameterAttributesDistributionType.valueOf(this.jobPackLenDistribution.getValue().toString()));
-		if(this.jobPackLenAvg.getText()!=null && !this.jobPackLenAvg.getText().equals(""))
-			jobPackLen.setAvg(Double.parseDouble(this.jobPackLenAvg.getText()));
-		if(this.jobPackLenStdev.getText()!=null && !this.jobPackLenStdev.getText().equals(""))
-			jobPackLen.setStdev(Double.parseDouble(this.jobPackLenStdev.getText()));
-		if(this.jobPackLenMax.getText()!=null && !this.jobPackLenMax.getText().equals(""))
-			jobPackLen.setMax(Double.parseDouble(this.jobPackLenMax.getText()));
-		if(this.jobPackLenMin.getText()!=null && !this.jobPackLenMin.getText().equals(""))
-			jobPackLen.setMin(Double.parseDouble(this.jobPackLenMin.getText()));
-		if(this.jobPackLenSeed.getText()!=null && !this.jobPackLenSeed.getText().equals(""))
-			jobPackLen.setSeed(Long.parseLong(this.jobPackLenSeed.getText()));
-		if(this.jobPackLenListMD.getDist().length!=0 && this.jobPackLenMDCheck.isSelected()) {
+		jobPackLen.setId("JobPackageLength");
+		if(this.jobPackLenRefCheck.isSelected()) {
+			 if(this.jobPackLenRefBox.getValue()!= null)
+				 jobPackLen.setRefElementId(this.jobPackLenRefBox.getValue().toString());
+			 if(this.jobPackLenExprText.getText()!=null && !this.jobPackLenExprText.equals(""))
+				 jobPackLen.setExpr(this.jobPackLenExprText.getText());
+		} else if(this.jobPackLenListMD.getDist().length!=0 && this.jobPackLenMDCheck.isSelected()) {
 			jobPackLen.setMultiDistribution(jobPackLenListMD);
-		}
-		if(this.jobPackLenListRP.getPeriodicValidValues().length!=0 && this.jobPackLenPeriodCheck.isSelected()) {
-			jobPackLen.setRandParamsSequence(jobPackLenListRP);
+		} else {
+			jobPackLen.setDistribution(
+					ParameterAttributesDistributionType.valueOf(this.jobPackLenDistribution.getValue().toString()));
+			if(this.jobPackLenAvg.getText()!=null && !this.jobPackLenAvg.getText().equals(""))
+				jobPackLen.setAvg(Double.parseDouble(this.jobPackLenAvg.getText()));
+			if(this.jobPackLenStdev.getText()!=null && !this.jobPackLenStdev.getText().equals(""))
+				jobPackLen.setStdev(Double.parseDouble(this.jobPackLenStdev.getText()));
+			if(this.jobPackLenMax.getText()!=null && !this.jobPackLenMax.getText().equals(""))
+				jobPackLen.setMax(Double.parseDouble(this.jobPackLenMax.getText()));
+			if(this.jobPackLenMin.getText()!=null && !this.jobPackLenMin.getText().equals(""))
+				jobPackLen.setMin(Double.parseDouble(this.jobPackLenMin.getText()));
+			if(this.jobPackLenSeed.getText()!=null && !this.jobPackLenSeed.getText().equals(""))
+				jobPackLen.setSeed(Long.parseLong(this.jobPackLenSeed.getText()));
+			
+			
+			if(this.jobPackLenListRP.getPeriodicValidValues().length!=0 && this.jobPackLenPeriodCheck.isSelected()) {
+				jobPackLen.setRandParamsSequence(jobPackLenListRP);
+			}
 		}
 		
 		// JobInterval
 		JobInterval jobInterval = new JobInterval();
-		jobInterval.setDistribution(
-				ParameterAttributesDistributionType.valueOf(this.jobIntervalDistribution.getValue().toString()));
-		if(this.jobIntervalAvg.getText()!=null && !this.jobIntervalAvg.getText().equals(""))
-			jobInterval.setAvg(Double.parseDouble(this.jobIntervalAvg.getText()));
-		if(this.jobIntervalStdev.getText()!=null && !this.jobIntervalStdev.getText().equals(""))
-			jobInterval.setStdev(Double.parseDouble(this.jobIntervalStdev.getText()));
-		if(this.jobIntervalMax.getText()!=null && !this.jobIntervalMax.getText().equals(""))
-			jobInterval.setMax(Double.parseDouble(this.jobIntervalMax.getText()));
-		if(this.jobIntervalMin.getText()!=null && !this.jobIntervalMin.getText().equals(""))
-			jobInterval.setMin(Double.parseDouble(this.jobIntervalMin.getText()));
-		if(this.jobIntervalSeed.getText()!=null && !this.jobIntervalSeed.getText().equals(""))
-			jobInterval.setSeed(Long.parseLong(this.jobIntervalSeed.getText()));
-		if(this.jobIntervalListMD.getDist().length!=0 && this.jobIntervalMDCheck.isSelected()) {
+		jobInterval.setId("JobInterval");
+		if(this.jobIntervalRefCheck.isSelected()) {
+			 if(this.jobIntervalRefBox.getValue()!= null)
+				 jobInterval.setRefElementId(this.jobIntervalRefBox.getValue().toString());
+			 if(this.jobIntervalExprText.getText()!=null && !this.jobIntervalExprText.equals(""))
+				 jobInterval.setExpr(this.jobIntervalExprText.getText());
+		} else if(this.jobIntervalListMD.getDist().length!=0 && this.jobIntervalMDCheck.isSelected()) {
 			jobInterval.setMultiDistribution(jobIntervalListMD);
-		}
-		if(this.jobIntervalListRP.getPeriodicValidValues().length!=0 && this.jobIntervalPeriodCheck.isSelected()) {
-			jobInterval.setRandParamsSequence(jobIntervalListRP);
+		} else {
+			jobInterval.setDistribution(
+					ParameterAttributesDistributionType.valueOf(this.jobIntervalDistribution.getValue().toString()));
+			if(this.jobIntervalAvg.getText()!=null && !this.jobIntervalAvg.getText().equals(""))
+				jobInterval.setAvg(Double.parseDouble(this.jobIntervalAvg.getText()));
+			if(this.jobIntervalStdev.getText()!=null && !this.jobIntervalStdev.getText().equals(""))
+				jobInterval.setStdev(Double.parseDouble(this.jobIntervalStdev.getText()));
+			if(this.jobIntervalMax.getText()!=null && !this.jobIntervalMax.getText().equals(""))
+				jobInterval.setMax(Double.parseDouble(this.jobIntervalMax.getText()));
+			if(this.jobIntervalMin.getText()!=null && !this.jobIntervalMin.getText().equals(""))
+				jobInterval.setMin(Double.parseDouble(this.jobIntervalMin.getText()));
+			if(this.jobIntervalSeed.getText()!=null && !this.jobIntervalSeed.getText().equals(""))
+				jobInterval.setSeed(Long.parseLong(this.jobIntervalSeed.getText()));
+			
+			if(this.jobIntervalListRP.getPeriodicValidValues().length!=0 && this.jobIntervalPeriodCheck.isSelected()) {
+				jobInterval.setRandParamsSequence(jobIntervalListRP);
+			}
 		}
 		
 		// ComputingResourceHostParameter
@@ -2944,23 +3036,30 @@ public class WorkGenViewController {
 		ComputingResourceHostParameter cpucnt = new ComputingResourceHostParameter();
 		cpucnt.setMetric("cpucount");
 		Value cpucntValue = new Value();
-		cpucntValue.setId("cpucnt");
-		cpucntValue.setDistribution(ParameterAttributesDistributionType.valueOf(this.cpucntDistribution.getValue().toString()));
-		if(this.cpucntAvg.getText()!=null && !this.cpucntAvg.getText().equals(""))
-			cpucntValue.setAvg(Double.parseDouble(this.cpucntAvg.getText()));
-		if(this.cpucntStdev.getText()!=null && !this.cpucntStdev.getText().equals(""))
-			cpucntValue.setStdev(Double.parseDouble(this.cpucntStdev.getText()));
-		if(this.cpucntMax.getText()!=null && !this.cpucntMax.getText().equals(""))
-			cpucntValue.setMax(Double.parseDouble(this.cpucntMax.getText()));
-		if(this.cpucntMin.getText()!=null && !this.cpucntMin.getText().equals(""))
-			cpucntValue.setMin(Double.parseDouble(this.cpucntMin.getText()));
-		if(this.cpucntSeed.getText()!=null && !this.cpucntSeed.getText().equals(""))
-			cpucntValue.setSeed(Long.parseLong(this.cpucntSeed.getText()));
-		if(this.cpucntListMD.getDist().length!=0 && this.cpucntMDCheck.isSelected()) {
+		cpucntValue.setId("CpuCount");
+		if(this.cpucntRefCheck.isSelected()) {
+			 if(this.cpucntRefBox.getValue()!= null)
+				 cpucntValue.setRefElementId(this.cpucntRefBox.getValue().toString());
+			 if(this.cpucntExprText.getText()!=null && !this.cpucntExprText.equals(""))
+				 cpucntValue.setExpr(this.cpucntExprText.getText());
+		} else if(this.cpucntListMD.getDist().length!=0 && this.cpucntMDCheck.isSelected()) {
 			cpucntValue.setMultiDistribution(cpucntListMD);
-		}
-		if(this.cpucntListRP.getPeriodicValidValues().length!=0 && this.cpucntPeriodCheck.isSelected()) {
-			cpucntValue.setRandParamsSequence(cpucntListRP);
+		} else {
+			cpucntValue.setDistribution(ParameterAttributesDistributionType.valueOf(this.cpucntDistribution.getValue().toString()));
+			if(this.cpucntAvg.getText()!=null && !this.cpucntAvg.getText().equals(""))
+				cpucntValue.setAvg(Double.parseDouble(this.cpucntAvg.getText()));
+			if(this.cpucntStdev.getText()!=null && !this.cpucntStdev.getText().equals(""))
+				cpucntValue.setStdev(Double.parseDouble(this.cpucntStdev.getText()));
+			if(this.cpucntMax.getText()!=null && !this.cpucntMax.getText().equals(""))
+				cpucntValue.setMax(Double.parseDouble(this.cpucntMax.getText()));
+			if(this.cpucntMin.getText()!=null && !this.cpucntMin.getText().equals(""))
+				cpucntValue.setMin(Double.parseDouble(this.cpucntMin.getText()));
+			if(this.cpucntSeed.getText()!=null && !this.cpucntSeed.getText().equals(""))
+				cpucntValue.setSeed(Long.parseLong(this.cpucntSeed.getText()));
+
+			if(this.cpucntListRP.getPeriodicValidValues().length!=0 && this.cpucntPeriodCheck.isSelected()) {
+				cpucntValue.setRandParamsSequence(cpucntListRP);
+			}
 		}
 		cpucnt.addValue(cpucntValue);
 		
@@ -2968,24 +3067,31 @@ public class WorkGenViewController {
 		ComputingResourceHostParameter memory = new ComputingResourceHostParameter();
 		memory.setMetric("memory");
 		Value memoryValue = new Value();
-		memoryValue.setId("memory");
-		memoryValue.setDistribution(ParameterAttributesDistributionType.valueOf(this.cpucntDistribution.getValue().toString()));
-		if(this.memoryAvg.getText()!=null && !this.memoryAvg.getText().equals(""))
-			memoryValue.setAvg(Double.parseDouble(this.memoryAvg.getText()));
-		if(this.memoryStdev.getText()!=null && !this.memoryStdev.getText().equals(""))
-			memoryValue.setStdev(Double.parseDouble(this.memoryStdev.getText()));
-		if(this.memoryMax.getText()!=null && !this.memoryMax.getText().equals(""))
-			memoryValue.setMax(Double.parseDouble(this.memoryMax.getText()));
-		if(this.memoryMin.getText()!=null && !this.memoryMin.getText().equals(""))
-			memoryValue.setMin(Double.parseDouble(this.memoryMin.getText()));
-		if(this.memorySeed.getText()!=null && !this.memorySeed.getText().equals(""))
-			memoryValue.setSeed(Long.parseLong(this.memorySeed.getText()));
-		if(this.memoryListMD.getDist().length!=0 && this.memoryMDCheck.isSelected()) {
+		memoryValue.setId("Memory");
+		if(this.memoryRefCheck.isSelected()) {
+			 if(this.memoryRefBox.getValue()!= null)
+				 memoryValue.setRefElementId(this.memoryRefBox.getValue().toString());
+			 if(this.memoryExprText.getText()!=null && !this.memoryExprText.equals(""))
+				 memoryValue.setExpr(this.memoryExprText.getText());
+		} else if(this.memoryListMD.getDist().length!=0 && this.memoryMDCheck.isSelected()) {
 			memoryValue.setMultiDistribution(memoryListMD);
+		} else {
+			memoryValue.setDistribution(ParameterAttributesDistributionType.valueOf(this.cpucntDistribution.getValue().toString()));
+			if(this.memoryAvg.getText()!=null && !this.memoryAvg.getText().equals(""))
+				memoryValue.setAvg(Double.parseDouble(this.memoryAvg.getText()));
+			if(this.memoryStdev.getText()!=null && !this.memoryStdev.getText().equals(""))
+				memoryValue.setStdev(Double.parseDouble(this.memoryStdev.getText()));
+			if(this.memoryMax.getText()!=null && !this.memoryMax.getText().equals(""))
+				memoryValue.setMax(Double.parseDouble(this.memoryMax.getText()));
+			if(this.memoryMin.getText()!=null && !this.memoryMin.getText().equals(""))
+				memoryValue.setMin(Double.parseDouble(this.memoryMin.getText()));
+			if(this.memorySeed.getText()!=null && !this.memorySeed.getText().equals(""))
+				memoryValue.setSeed(Long.parseLong(this.memorySeed.getText()));
+			if(this.memoryListRP.getPeriodicValidValues().length!=0 && this.memoryPeriodCheck.isSelected()) {
+				memoryValue.setRandParamsSequence(memoryListRP);
+			}
 		}
-		if(this.memoryListRP.getPeriodicValidValues().length!=0 && this.memoryPeriodCheck.isSelected()) {
-			memoryValue.setRandParamsSequence(memoryListRP);
-		}
+	
 		memory.addValue(memoryValue);
 		
 		/** WorkloadConfiguration */

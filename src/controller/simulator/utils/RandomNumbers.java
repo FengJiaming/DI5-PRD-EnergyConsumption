@@ -292,8 +292,12 @@ public class RandomNumbers {
 				ddg = (DetailDistGenerator)list.get(idx);
 				prcntSum = prcntSum + ddg.getPrcnt();
 				// this is to handle double numbers representation precision
-				if((prcntSum - prcnt) > 0.000000001)
+				if((prcntSum - prcnt) > 0.000000001) {
+					ddg.setLastGenerated(true);
 					break;
+				} else {
+					ddg.setLastGenerated(false);
+				}
 			}
 			
 			if(idx >= list.size())

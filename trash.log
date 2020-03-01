@@ -1,10 +1,26 @@
-0    [JavaFX Application Thread] INFO  controller.workload.generator.WorkloadGenerator  - Start workload generator.
-37   [JavaFX Application Thread] INFO  controller.workload.generator.WorkloadGenerator  - Generating workload.
-37   [JavaFX Application Thread] INFO  controller.workload.generator.impl.QcgJobGenerator  - Generate workload - start
-49   [JavaFX Application Thread] DEBUG controller.workload.generator.factory.JobRandomNubersFactory  - Creating genrator for JobCount. Generator id: 1849421164
-51   [JavaFX Application Thread] DEBUG controller.workload.generator.factory.JobRandomNubersFactory  - Creating genrator for TaskCount range.min. Generator id: 1052598710
-51   [JavaFX Application Thread] DEBUG controller.workload.generator.factory.JobRandomNubersFactory  - Creating genrator for TaskLength range.min. Generator id: 1483377219
-51   [JavaFX Application Thread] DEBUG controller.workload.generator.factory.JobRandomNubersFactory  - Creating genrator for JobInterval range.min. Generator id: 1034423227
-51   [JavaFX Application Thread] DEBUG controller.workload.generator.factory.JobRandomNubersFactory  - Creating genrator for JobPackageLength range.min. Generator id: 214548975
-52   [JavaFX Application Thread] DEBUG controller.workload.generator.factory.JobRandomNubersFactory  - Creating genrator for cpucount 0 value. Generator id: 680537150
-52   [JavaFX Application Thread] DEBUG controller.workload.generator.factory.JobRandomNubersFactory  - Creating genrator for memory 0 value. Generator id: 1788102266
+1    [JavaFX Application Thread] INFO  controller.workload.generator.WorkloadGenerator  - Start workload generator.
+672  [JavaFX Application Thread] INFO  controller.workload.generator.WorkloadGenerator  - Generating workload.
+672  [JavaFX Application Thread] INFO  controller.workload.generator.impl.QcgJobGenerator  - Generate workload - start
+979  [JavaFX Application Thread] DEBUG controller.workload.generator.factory.JobRandomNubersFactory  - Creating genrator for JobCount. Generator id: 130591359
+1008 [JavaFX Application Thread] DEBUG controller.workload.generator.factory.JobRandomNubersFactory  - Creating genrator for TaskCount range.min. Generator id: 1838958382
+1008 [JavaFX Application Thread] DEBUG controller.workload.generator.factory.JobRandomNubersFactory  - Creating genrator for TaskLength range.min. Generator id: 354956999
+1008 [JavaFX Application Thread] DEBUG controller.workload.generator.factory.JobRandomNubersFactory  - Creating genrator for JobInterval range.min. Generator id: 1808742008
+1009 [JavaFX Application Thread] DEBUG controller.workload.generator.factory.JobRandomNubersFactory  - Creating genrator for JobPackageLength range.min. Generator id: 689365548
+1009 [JavaFX Application Thread] DEBUG controller.workload.generator.factory.JobRandomNubersFactory  - Creating genrator for cpucount 0 value. Generator id: 1620600281
+1009 [JavaFX Application Thread] DEBUG controller.workload.generator.factory.JobRandomNubersFactory  - Creating genrator for memory 0 value. Generator id: 2122443876
+1088 [JavaFX Application Thread] INFO  controller.workload.generator.impl.QcgJobGenerator  - Generate workload - done
+1088 [JavaFX Application Thread] INFO  controller.workload.generator.WorkloadGenerator  - Performing postprocessing.
+1088 [JavaFX Application Thread] INFO  controller.workload.generator.WorkloadGenerator  - End workload generator.
+40410 [JavaFX Application Thread] INFO  controller.workload.generator.WorkloadGenerator  - Start workload generator.
+40413 [JavaFX Application Thread] INFO  controller.workload.generator.WorkloadGenerator  - Generating workload.
+40413 [JavaFX Application Thread] INFO  controller.workload.generator.impl.QcgJobGenerator  - Generate workload - start
+40415 [JavaFX Application Thread] DEBUG controller.workload.generator.factory.JobRandomNubersFactory  - Creating genrator for JobCount. Generator id: 999801869
+40415 [JavaFX Application Thread] DEBUG controller.workload.generator.factory.JobRandomNubersFactory  - Creating genrator for TaskCount range.min. Generator id: 1215120730
+40415 [JavaFX Application Thread] DEBUG controller.workload.generator.factory.JobRandomNubersFactory  - Creating genrator for TaskLength range.min. Generator id: 1632869217
+40415 [JavaFX Application Thread] DEBUG controller.workload.generator.factory.JobRandomNubersFactory  - Creating genrator for JobInterval range.min. Generator id: 1361798945
+40415 [JavaFX Application Thread] DEBUG controller.workload.generator.factory.JobRandomNubersFactory  - Creating genrator for JobPackageLength range.min. Generator id: 1410954917
+40415 [JavaFX Application Thread] DEBUG controller.workload.generator.factory.JobRandomNubersFactory  - Creating genrator for cpucount 0 value. Generator id: 1987886825
+40415 [JavaFX Application Thread] DEBUG controller.workload.generator.factory.JobRandomNubersFactory  - Creating genrator for memory 0 value. Generator id: 193575892
+40421 [JavaFX Application Thread] INFO  controller.workload.generator.impl.QcgJobGenerator  - Generate workload - done
+40421 [JavaFX Application Thread] INFO  controller.workload.generator.WorkloadGenerator  - Performing postprocessing.
+40421 [JavaFX Application Thread] INFO  controller.workload.generator.WorkloadGenerator  - End workload generator.

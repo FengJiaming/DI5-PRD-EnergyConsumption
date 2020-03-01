@@ -406,8 +406,8 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
             </GridPane>
-            <Button layoutX="157.0" layoutY="14.0" mnemonicParsing="false" text="Load Pattern" />
-            <Button layoutX="276.0" layoutY="14.0" mnemonicParsing="false" text="Help" />
+            <Button fx:id="loadPatternButton" layoutX="157.0" layoutY="14.0" mnemonicParsing="false" onAction="#loadPatternClick" text="Load Pattern" />
+            <Button fx:id="helpButton" layoutX="276.0" layoutY="14.0" mnemonicParsing="false" onAction="#helpClick" text="Help" />
          </children>
       </Pane>
       <Button fx:id="mainViewButton" layoutX="40.0" layoutY="9.0" mnemonicParsing="false" onAction="#gotoSimulationWindow" prefHeight="23.0" prefWidth="174.0" text="Simulation Arrangement" />
