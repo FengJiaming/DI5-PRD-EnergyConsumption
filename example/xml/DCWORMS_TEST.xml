@@ -1,0 +1,1077 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+			This is DEBB information (taken from PLM XML and DEBBComponent
+			files), updated by schedulers and estimators. Moreover, all elements
+			are sorted and appear in correct order, according to the schema.
+		-->
+<!--
+			Schedulers and estimators information is loaded from
+			../debb2dcworms/example1.xml
+			file
+		-->
+<environment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:noNamespaceSchemaLocation="DCWormsResSchema.xsd">
+   <timeEstimationPlugin>
+      <name>example.timeestimation.DefaultTimeEstimationPlugin</name>
+   </timeEstimationPlugin>
+   <resources>
+      <computingResource class="" name="room1">
+         <parameter name="product">
+            <value>Polytech - PolyTest-room</value>
+         </parameter>
+         <parameter name="label">
+            <value>room_inst20_1</value>
+         </parameter>
+         <parameter name="location">
+            <value>Polytech</value>
+         </parameter>
+         <parameter name="fullPath">
+            <value>/room1</value>
+         </parameter>
+         <computingResource class="" name="rack1">
+            <parameter name="manufacturer">
+               <value>Polytech</value>
+            </parameter>
+            <parameter name="product">
+               <value>Polytest_rack</value>
+            </parameter>
+            <parameter name="label">
+               <value>rack_inst27_1</value>
+            </parameter>
+            <parameter name="fullPath">
+               <value>/room1/rack1</value>
+            </parameter>
+            <computingResource class="NodeGroup" name="recs1">
+               <parameter name="product">
+                  <value>Polytech 6-node box</value>
+               </parameter>
+               <parameter name="maxPower">
+                  <value>0</value>
+               </parameter>
+               <parameter name="slot">
+                  <property name="number">
+                     <value>1</value>
+                  </property>
+                  <property name="connectorType">
+                     <value>PS</value>
+                  </property>
+                  <property name="label">
+                     <value>Slot_1</value>
+                  </property>
+               </parameter>
+               <parameter name="slot">
+                  <property name="number">
+                     <value>2</value>
+                  </property>
+                  <property name="connectorType">
+                     <value>PS</value>
+                  </property>
+                  <property name="label">
+                     <value>Slot_2</value>
+                  </property>
+               </parameter>
+               <parameter name="slot">
+                  <property name="number">
+                     <value>3</value>
+                  </property>
+                  <property name="connectorType">
+                     <value>PS</value>
+                  </property>
+                  <property name="label">
+                     <value>Slot_3</value>
+                  </property>
+               </parameter>
+               <parameter name="slot">
+                  <property name="number">
+                     <value>4</value>
+                  </property>
+                  <property name="connectorType">
+                     <value>PS</value>
+                  </property>
+                  <property name="label">
+                     <value>Slot_4</value>
+                  </property>
+               </parameter>
+               <parameter name="slot">
+                  <property name="number">
+                     <value>5</value>
+                  </property>
+                  <property name="connectorType">
+                     <value>PS</value>
+                  </property>
+                  <property name="label">
+                     <value>Slot_5</value>
+                  </property>
+               </parameter>
+               <parameter name="label">
+                  <value>recs_inst35_1</value>
+               </parameter>
+               <parameter name="fullPath">
+                  <value>/room1/rack1/recs1</value>
+               </parameter>
+               <computingResource class="ComputingNode" name="calcul_node01">
+                  <resourceUnit class="Memory">
+                     <amount>2048</amount>
+                     <parameter name="manufacturer">
+                        <value>Kingston</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>ValueRAM</value>
+                     </parameter>
+                  </resourceUnit>
+                  <parameter name="manufacturer">
+                     <value>Polytech</value>
+                  </parameter>
+                  <parameter name="product">
+                     <value>Polytest-001</value>
+                  </parameter>
+                  <parameter name="baseboard"><!--BasicDEBBPhysicalElementProperties--></parameter>
+                  <parameter name="label">
+                     <value>calcul_node_inst31_1</value>
+                  </parameter>
+                  <parameter name="fullPath">
+                     <value>/room1/rack1/recs1/calcul_node01</value>
+                  </parameter>
+                  <profile>
+                     <powerProfile>
+                        <energyEstimationPlugin>
+                           <name>example.energy.ComputingNodeEnergyEstimationPlugin</name>
+                        </energyEstimationPlugin>
+                     </powerProfile>
+                  </profile>
+                  <computingResource class="Processor">
+                     <parameter name="manufacturer">
+                        <value>Intel</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>Core i7 - 3615QE by test</value>
+                     </parameter>
+                     <parameter name="maxPower">
+                        <value>0</value>
+                     </parameter>
+                     <parameter name="speed">
+                        <value>3300</value>
+                     </parameter>
+                     <parameter name="fullPath">
+                        <value>/room1/rack1/recs1/calcul_node01/</value>
+                     </parameter>
+                     <profile>
+                        <powerProfile>
+                           <energyEstimationPlugin>
+                              <name>example.energy.CPUEnergyEstimationPlugin</name>
+                           </energyEstimationPlugin>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>1</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>13</value>
+                              </property>
+                           </parameter>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>2</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>0</value>
+                              </property>
+                           </parameter>
+                        </powerProfile>
+                     </profile>
+                  </computingResource>
+                  <computingResource class="Processor">
+                     <parameter name="manufacturer">
+                        <value>Intel</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>Core i7 - 3615QE by test</value>
+                     </parameter>
+                     <parameter name="maxPower">
+                        <value>0</value>
+                     </parameter>
+                     <parameter name="speed">
+                        <value>3300</value>
+                     </parameter>
+                     <parameter name="fullPath">
+                        <value>/room1/rack1/recs1/calcul_node01/</value>
+                     </parameter>
+                     <profile>
+                        <powerProfile>
+                           <energyEstimationPlugin>
+                              <name>example.energy.CPUEnergyEstimationPlugin</name>
+                           </energyEstimationPlugin>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>1</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>13</value>
+                              </property>
+                           </parameter>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>2</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>0</value>
+                              </property>
+                           </parameter>
+                        </powerProfile>
+                     </profile>
+                  </computingResource>
+                  <computingResource class="Processor">
+                     <parameter name="manufacturer">
+                        <value>Intel</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>Core i7 - 3615QE by test</value>
+                     </parameter>
+                     <parameter name="maxPower">
+                        <value>0</value>
+                     </parameter>
+                     <parameter name="speed">
+                        <value>3300</value>
+                     </parameter>
+                     <parameter name="fullPath">
+                        <value>/room1/rack1/recs1/calcul_node01/</value>
+                     </parameter>
+                     <profile>
+                        <powerProfile>
+                           <energyEstimationPlugin>
+                              <name>example.energy.CPUEnergyEstimationPlugin</name>
+                           </energyEstimationPlugin>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>1</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>13</value>
+                              </property>
+                           </parameter>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>2</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>0</value>
+                              </property>
+                           </parameter>
+                        </powerProfile>
+                     </profile>
+                  </computingResource>
+                  <computingResource class="Processor">
+                     <parameter name="manufacturer">
+                        <value>Intel</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>Core i7 - 3615QE by test</value>
+                     </parameter>
+                     <parameter name="maxPower">
+                        <value>0</value>
+                     </parameter>
+                     <parameter name="speed">
+                        <value>3300</value>
+                     </parameter>
+                     <parameter name="fullPath">
+                        <value>/room1/rack1/recs1/calcul_node01/</value>
+                     </parameter>
+                     <profile>
+                        <powerProfile>
+                           <energyEstimationPlugin>
+                              <name>example.energy.CPUEnergyEstimationPlugin</name>
+                           </energyEstimationPlugin>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>1</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>13</value>
+                              </property>
+                           </parameter>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>2</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>0</value>
+                              </property>
+                           </parameter>
+                        </powerProfile>
+                     </profile>
+                  </computingResource>
+               </computingResource>
+               <computingResource class="ComputingNode" name="calcul_node02">
+                  <resourceUnit class="Memory">
+                     <amount>2048</amount>
+                     <parameter name="manufacturer">
+                        <value>Kingston</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>ValueRAM</value>
+                     </parameter>
+                  </resourceUnit>
+                  <parameter name="manufacturer">
+                     <value>Polytech</value>
+                  </parameter>
+                  <parameter name="product">
+                     <value>Polytest-001</value>
+                  </parameter>
+                  <parameter name="baseboard"><!--BasicDEBBPhysicalElementProperties--></parameter>
+                  <parameter name="label">
+                     <value>calcul_node_inst31_1</value>
+                  </parameter>
+                  <parameter name="fullPath">
+                     <value>/room1/rack1/recs1/calcul_node02</value>
+                  </parameter>
+                  <profile>
+                     <powerProfile>
+                        <energyEstimationPlugin>
+                           <name>example.energy.ComputingNodeEnergyEstimationPlugin</name>
+                        </energyEstimationPlugin>
+                     </powerProfile>
+                  </profile>
+                  <computingResource class="Processor">
+                     <parameter name="manufacturer">
+                        <value>Intel</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>Core i7 - 3615QE by test</value>
+                     </parameter>
+                     <parameter name="maxPower">
+                        <value>0</value>
+                     </parameter>
+                     <parameter name="speed">
+                        <value>3300</value>
+                     </parameter>
+                     <parameter name="fullPath">
+                        <value>/room1/rack1/recs1/calcul_node02/</value>
+                     </parameter>
+                     <profile>
+                        <powerProfile>
+                           <energyEstimationPlugin>
+                              <name>example.energy.CPUEnergyEstimationPlugin</name>
+                           </energyEstimationPlugin>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>1</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>13</value>
+                              </property>
+                           </parameter>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>2</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>0</value>
+                              </property>
+                           </parameter>
+                        </powerProfile>
+                     </profile>
+                  </computingResource>
+                  <computingResource class="Processor">
+                     <parameter name="manufacturer">
+                        <value>Intel</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>Core i7 - 3615QE by test</value>
+                     </parameter>
+                     <parameter name="maxPower">
+                        <value>0</value>
+                     </parameter>
+                     <parameter name="speed">
+                        <value>3300</value>
+                     </parameter>
+                     <parameter name="fullPath">
+                        <value>/room1/rack1/recs1/calcul_node02/</value>
+                     </parameter>
+                     <profile>
+                        <powerProfile>
+                           <energyEstimationPlugin>
+                              <name>example.energy.CPUEnergyEstimationPlugin</name>
+                           </energyEstimationPlugin>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>1</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>13</value>
+                              </property>
+                           </parameter>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>2</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>0</value>
+                              </property>
+                           </parameter>
+                        </powerProfile>
+                     </profile>
+                  </computingResource>
+                  <computingResource class="Processor">
+                     <parameter name="manufacturer">
+                        <value>Intel</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>Core i7 - 3615QE by test</value>
+                     </parameter>
+                     <parameter name="maxPower">
+                        <value>0</value>
+                     </parameter>
+                     <parameter name="speed">
+                        <value>3300</value>
+                     </parameter>
+                     <parameter name="fullPath">
+                        <value>/room1/rack1/recs1/calcul_node02/</value>
+                     </parameter>
+                     <profile>
+                        <powerProfile>
+                           <energyEstimationPlugin>
+                              <name>example.energy.CPUEnergyEstimationPlugin</name>
+                           </energyEstimationPlugin>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>1</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>13</value>
+                              </property>
+                           </parameter>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>2</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>0</value>
+                              </property>
+                           </parameter>
+                        </powerProfile>
+                     </profile>
+                  </computingResource>
+                  <computingResource class="Processor">
+                     <parameter name="manufacturer">
+                        <value>Intel</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>Core i7 - 3615QE by test</value>
+                     </parameter>
+                     <parameter name="maxPower">
+                        <value>0</value>
+                     </parameter>
+                     <parameter name="speed">
+                        <value>3300</value>
+                     </parameter>
+                     <parameter name="fullPath">
+                        <value>/room1/rack1/recs1/calcul_node02/</value>
+                     </parameter>
+                     <profile>
+                        <powerProfile>
+                           <energyEstimationPlugin>
+                              <name>example.energy.CPUEnergyEstimationPlugin</name>
+                           </energyEstimationPlugin>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>1</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>13</value>
+                              </property>
+                           </parameter>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>2</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>0</value>
+                              </property>
+                           </parameter>
+                        </powerProfile>
+                     </profile>
+                  </computingResource>
+               </computingResource>
+               <computingResource class="ComputingNode" name="calcul_node03">
+                  <resourceUnit class="Memory">
+                     <amount>2048</amount>
+                     <parameter name="manufacturer">
+                        <value>Kingston</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>ValueRAM</value>
+                     </parameter>
+                  </resourceUnit>
+                  <parameter name="manufacturer">
+                     <value>Polytech</value>
+                  </parameter>
+                  <parameter name="product">
+                     <value>Polytest-001</value>
+                  </parameter>
+                  <parameter name="baseboard"><!--BasicDEBBPhysicalElementProperties--></parameter>
+                  <parameter name="label">
+                     <value>calcul_node_inst31_1</value>
+                  </parameter>
+                  <parameter name="fullPath">
+                     <value>/room1/rack1/recs1/calcul_node03</value>
+                  </parameter>
+                  <profile>
+                     <powerProfile>
+                        <energyEstimationPlugin>
+                           <name>example.energy.ComputingNodeEnergyEstimationPlugin</name>
+                        </energyEstimationPlugin>
+                     </powerProfile>
+                  </profile>
+                  <computingResource class="Processor">
+                     <parameter name="manufacturer">
+                        <value>Intel</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>Core i7 - 3615QE by test</value>
+                     </parameter>
+                     <parameter name="maxPower">
+                        <value>0</value>
+                     </parameter>
+                     <parameter name="speed">
+                        <value>3300</value>
+                     </parameter>
+                     <parameter name="fullPath">
+                        <value>/room1/rack1/recs1/calcul_node03/</value>
+                     </parameter>
+                     <profile>
+                        <powerProfile>
+                           <energyEstimationPlugin>
+                              <name>example.energy.CPUEnergyEstimationPlugin</name>
+                           </energyEstimationPlugin>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>1</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>13</value>
+                              </property>
+                           </parameter>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>2</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>0</value>
+                              </property>
+                           </parameter>
+                        </powerProfile>
+                     </profile>
+                  </computingResource>
+                  <computingResource class="Processor">
+                     <parameter name="manufacturer">
+                        <value>Intel</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>Core i7 - 3615QE by test</value>
+                     </parameter>
+                     <parameter name="maxPower">
+                        <value>0</value>
+                     </parameter>
+                     <parameter name="speed">
+                        <value>3300</value>
+                     </parameter>
+                     <parameter name="fullPath">
+                        <value>/room1/rack1/recs1/calcul_node03/</value>
+                     </parameter>
+                     <profile>
+                        <powerProfile>
+                           <energyEstimationPlugin>
+                              <name>example.energy.CPUEnergyEstimationPlugin</name>
+                           </energyEstimationPlugin>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>1</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>13</value>
+                              </property>
+                           </parameter>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>2</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>0</value>
+                              </property>
+                           </parameter>
+                        </powerProfile>
+                     </profile>
+                  </computingResource>
+                  <computingResource class="Processor">
+                     <parameter name="manufacturer">
+                        <value>Intel</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>Core i7 - 3615QE by test</value>
+                     </parameter>
+                     <parameter name="maxPower">
+                        <value>0</value>
+                     </parameter>
+                     <parameter name="speed">
+                        <value>3300</value>
+                     </parameter>
+                     <parameter name="fullPath">
+                        <value>/room1/rack1/recs1/calcul_node03/</value>
+                     </parameter>
+                     <profile>
+                        <powerProfile>
+                           <energyEstimationPlugin>
+                              <name>example.energy.CPUEnergyEstimationPlugin</name>
+                           </energyEstimationPlugin>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>1</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>13</value>
+                              </property>
+                           </parameter>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>2</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>0</value>
+                              </property>
+                           </parameter>
+                        </powerProfile>
+                     </profile>
+                  </computingResource>
+                  <computingResource class="Processor">
+                     <parameter name="manufacturer">
+                        <value>Intel</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>Core i7 - 3615QE by test</value>
+                     </parameter>
+                     <parameter name="maxPower">
+                        <value>0</value>
+                     </parameter>
+                     <parameter name="speed">
+                        <value>3300</value>
+                     </parameter>
+                     <parameter name="fullPath">
+                        <value>/room1/rack1/recs1/calcul_node03/</value>
+                     </parameter>
+                     <profile>
+                        <powerProfile>
+                           <energyEstimationPlugin>
+                              <name>example.energy.CPUEnergyEstimationPlugin</name>
+                           </energyEstimationPlugin>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>1</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>13</value>
+                              </property>
+                           </parameter>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>2</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>0</value>
+                              </property>
+                           </parameter>
+                        </powerProfile>
+                     </profile>
+                  </computingResource>
+               </computingResource>
+               <computingResource class="ComputingNode" name="calcul_node04">
+                  <resourceUnit class="Memory">
+                     <amount>2048</amount>
+                     <parameter name="manufacturer">
+                        <value>Kingston</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>ValueRAM</value>
+                     </parameter>
+                  </resourceUnit>
+                  <parameter name="manufacturer">
+                     <value>Polytech</value>
+                  </parameter>
+                  <parameter name="product">
+                     <value>Polytest-001</value>
+                  </parameter>
+                  <parameter name="baseboard"><!--BasicDEBBPhysicalElementProperties--></parameter>
+                  <parameter name="label">
+                     <value>calcul_node_inst31_1</value>
+                  </parameter>
+                  <parameter name="fullPath">
+                     <value>/room1/rack1/recs1/calcul_node04</value>
+                  </parameter>
+                  <profile>
+                     <powerProfile>
+                        <energyEstimationPlugin>
+                           <name>example.energy.ComputingNodeEnergyEstimationPlugin</name>
+                        </energyEstimationPlugin>
+                     </powerProfile>
+                  </profile>
+                  <computingResource class="Processor">
+                     <parameter name="manufacturer">
+                        <value>Intel</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>Core i7 - 3615QE by test</value>
+                     </parameter>
+                     <parameter name="maxPower">
+                        <value>0</value>
+                     </parameter>
+                     <parameter name="speed">
+                        <value>3300</value>
+                     </parameter>
+                     <parameter name="fullPath">
+                        <value>/room1/rack1/recs1/calcul_node04/</value>
+                     </parameter>
+                     <profile>
+                        <powerProfile>
+                           <energyEstimationPlugin>
+                              <name>example.energy.CPUEnergyEstimationPlugin</name>
+                           </energyEstimationPlugin>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>1</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>13</value>
+                              </property>
+                           </parameter>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>2</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>0</value>
+                              </property>
+                           </parameter>
+                        </powerProfile>
+                     </profile>
+                  </computingResource>
+                  <computingResource class="Processor">
+                     <parameter name="manufacturer">
+                        <value>Intel</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>Core i7 - 3615QE by test</value>
+                     </parameter>
+                     <parameter name="maxPower">
+                        <value>0</value>
+                     </parameter>
+                     <parameter name="speed">
+                        <value>3300</value>
+                     </parameter>
+                     <parameter name="fullPath">
+                        <value>/room1/rack1/recs1/calcul_node04/</value>
+                     </parameter>
+                     <profile>
+                        <powerProfile>
+                           <energyEstimationPlugin>
+                              <name>example.energy.CPUEnergyEstimationPlugin</name>
+                           </energyEstimationPlugin>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>1</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>13</value>
+                              </property>
+                           </parameter>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>2</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>0</value>
+                              </property>
+                           </parameter>
+                        </powerProfile>
+                     </profile>
+                  </computingResource>
+                  <computingResource class="Processor">
+                     <parameter name="manufacturer">
+                        <value>Intel</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>Core i7 - 3615QE by test</value>
+                     </parameter>
+                     <parameter name="maxPower">
+                        <value>0</value>
+                     </parameter>
+                     <parameter name="speed">
+                        <value>3300</value>
+                     </parameter>
+                     <parameter name="fullPath">
+                        <value>/room1/rack1/recs1/calcul_node04/</value>
+                     </parameter>
+                     <profile>
+                        <powerProfile>
+                           <energyEstimationPlugin>
+                              <name>example.energy.CPUEnergyEstimationPlugin</name>
+                           </energyEstimationPlugin>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>1</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>13</value>
+                              </property>
+                           </parameter>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>2</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>0</value>
+                              </property>
+                           </parameter>
+                        </powerProfile>
+                     </profile>
+                  </computingResource>
+                  <computingResource class="Processor">
+                     <parameter name="manufacturer">
+                        <value>Intel</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>Core i7 - 3615QE by test</value>
+                     </parameter>
+                     <parameter name="maxPower">
+                        <value>0</value>
+                     </parameter>
+                     <parameter name="speed">
+                        <value>3300</value>
+                     </parameter>
+                     <parameter name="fullPath">
+                        <value>/room1/rack1/recs1/calcul_node04/</value>
+                     </parameter>
+                     <profile>
+                        <powerProfile>
+                           <energyEstimationPlugin>
+                              <name>example.energy.CPUEnergyEstimationPlugin</name>
+                           </energyEstimationPlugin>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>1</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>13</value>
+                              </property>
+                           </parameter>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>2</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>0</value>
+                              </property>
+                           </parameter>
+                        </powerProfile>
+                     </profile>
+                  </computingResource>
+               </computingResource>
+               <computingResource class="ComputingNode" name="calcul_node05">
+                  <resourceUnit class="Memory">
+                     <amount>2048</amount>
+                     <parameter name="manufacturer">
+                        <value>Kingston</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>ValueRAM</value>
+                     </parameter>
+                  </resourceUnit>
+                  <parameter name="manufacturer">
+                     <value>Polytech</value>
+                  </parameter>
+                  <parameter name="product">
+                     <value>Polytest-001</value>
+                  </parameter>
+                  <parameter name="baseboard"><!--BasicDEBBPhysicalElementProperties--></parameter>
+                  <parameter name="label">
+                     <value>calcul_node_inst31_1</value>
+                  </parameter>
+                  <parameter name="fullPath">
+                     <value>/room1/rack1/recs1/calcul_node05</value>
+                  </parameter>
+                  <profile>
+                     <powerProfile>
+                        <energyEstimationPlugin>
+                           <name>example.energy.ComputingNodeEnergyEstimationPlugin</name>
+                        </energyEstimationPlugin>
+                     </powerProfile>
+                  </profile>
+                  <computingResource class="Processor">
+                     <parameter name="manufacturer">
+                        <value>Intel</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>Core i7 - 3615QE by test</value>
+                     </parameter>
+                     <parameter name="maxPower">
+                        <value>0</value>
+                     </parameter>
+                     <parameter name="speed">
+                        <value>3300</value>
+                     </parameter>
+                     <parameter name="fullPath">
+                        <value>/room1/rack1/recs1/calcul_node05/</value>
+                     </parameter>
+                     <profile>
+                        <powerProfile>
+                           <energyEstimationPlugin>
+                              <name>example.energy.CPUEnergyEstimationPlugin</name>
+                           </energyEstimationPlugin>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>1</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>13</value>
+                              </property>
+                           </parameter>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>2</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>0</value>
+                              </property>
+                           </parameter>
+                        </powerProfile>
+                     </profile>
+                  </computingResource>
+                  <computingResource class="Processor">
+                     <parameter name="manufacturer">
+                        <value>Intel</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>Core i7 - 3615QE by test</value>
+                     </parameter>
+                     <parameter name="maxPower">
+                        <value>0</value>
+                     </parameter>
+                     <parameter name="speed">
+                        <value>3300</value>
+                     </parameter>
+                     <parameter name="fullPath">
+                        <value>/room1/rack1/recs1/calcul_node05/</value>
+                     </parameter>
+                     <profile>
+                        <powerProfile>
+                           <energyEstimationPlugin>
+                              <name>example.energy.CPUEnergyEstimationPlugin</name>
+                           </energyEstimationPlugin>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>1</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>13</value>
+                              </property>
+                           </parameter>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>2</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>0</value>
+                              </property>
+                           </parameter>
+                        </powerProfile>
+                     </profile>
+                  </computingResource>
+                  <computingResource class="Processor">
+                     <parameter name="manufacturer">
+                        <value>Intel</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>Core i7 - 3615QE by test</value>
+                     </parameter>
+                     <parameter name="maxPower">
+                        <value>0</value>
+                     </parameter>
+                     <parameter name="speed">
+                        <value>3300</value>
+                     </parameter>
+                     <parameter name="fullPath">
+                        <value>/room1/rack1/recs1/calcul_node05/</value>
+                     </parameter>
+                     <profile>
+                        <powerProfile>
+                           <energyEstimationPlugin>
+                              <name>example.energy.CPUEnergyEstimationPlugin</name>
+                           </energyEstimationPlugin>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>1</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>13</value>
+                              </property>
+                           </parameter>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>2</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>0</value>
+                              </property>
+                           </parameter>
+                        </powerProfile>
+                     </profile>
+                  </computingResource>
+                  <computingResource class="Processor">
+                     <parameter name="manufacturer">
+                        <value>Intel</value>
+                     </parameter>
+                     <parameter name="product">
+                        <value>Core i7 - 3615QE by test</value>
+                     </parameter>
+                     <parameter name="maxPower">
+                        <value>0</value>
+                     </parameter>
+                     <parameter name="speed">
+                        <value>3300</value>
+                     </parameter>
+                     <parameter name="fullPath">
+                        <value>/room1/rack1/recs1/calcul_node05/</value>
+                     </parameter>
+                     <profile>
+                        <powerProfile>
+                           <energyEstimationPlugin>
+                              <name>example.energy.CPUEnergyEstimationPlugin</name>
+                           </energyEstimationPlugin>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>1</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>13</value>
+                              </property>
+                           </parameter>
+                           <parameter name="pState">
+                              <property name="name">
+                                 <value>2</value>
+                              </property>
+                              <property name="powerUsage">
+                                 <value>0</value>
+                              </property>
+                           </parameter>
+                        </powerProfile>
+                     </profile>
+                  </computingResource>
+               </computingResource>
+            </computingResource>
+         </computingResource>
+      </computingResource>
+      <scheduler class="Cluster" name="cluster">
+         <schedulingPlugin>
+            <name>example.localplugin.FCFSBF_LocalPlugin</name>
+         </schedulingPlugin>
+         <managedComputingResources include="false"/>
+      </scheduler>
+   </resources>
+</environment>

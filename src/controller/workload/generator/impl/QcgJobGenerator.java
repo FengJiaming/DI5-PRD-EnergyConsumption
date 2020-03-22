@@ -195,6 +195,7 @@ public class QcgJobGenerator extends AbstractJobGenerator implements JobGenerato
 		
 		if(log.isInfoEnabled())
 			log.info("Generate workload - start");
+		System.out.println("Generate workload - start");
 		
 		boolean creationResult = false;
 		File outputDirectory = prepareWorkloadDirectory(outputDirectoryName, overwriteExistingFiles);
@@ -354,6 +355,7 @@ public class QcgJobGenerator extends AbstractJobGenerator implements JobGenerato
 		
 		if(log.isInfoEnabled())
 			log.info("Generate workload - done");
+		System.out.println("Generate workload - done");
 	}
 
 	protected ExecutionType createExecution(WorkloadConfiguration workload, ExecutionType exec){

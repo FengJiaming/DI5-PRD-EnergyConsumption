@@ -6,17 +6,17 @@
 
 Version: SimJava 2.0
 
-Simulation date:         2020年2月25日
-Simulation start time:   下午09时30分29秒
-Simulation end time:     下午09时30分30秒
+Simulation date:         2020年3月22日
+Simulation start time:   下午11时24分49秒
+Simulation end time:     下午11时24分49秒
 
 ############################################################
 #            Overall simulation run information            #
 ############################################################
 
-Total simulated time:    57700.0
+Total simulated time:    46903.0
 Total transient time:    0.0
-Total steady state time: 57700.0
+Total steady state time: 46903.0
 Transient condition:     None
 Termination condition:   None
 Output analysis method:  None
@@ -42,10 +42,10 @@ Minimum:              0.0
 
 - Mean queue task count_0
 
-Sample mean:          0.9982668977469671
-Sample variance:      0.500863547483097
-Sample std deviation: 0.7077171380453472
-Maximum:              3.0
+Sample mean:          0.997803978423555
+Sample variance:      0.002191199065680882
+Sample std deviation: 0.04681024530677961
+Maximum:              1.0
 Minimum:              0.0
 
 - Paused tasks list length

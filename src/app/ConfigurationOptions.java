@@ -16,7 +16,7 @@ public class ConfigurationOptions {
 	public String inputWorkloadFileName = null;
 	public String workloadDescFileName = "example/WorkloadConfig2.xml";
 	public String outputFolder = null;
-	
+	public String schedulingplugin = null;
 	/**
 	 * the name of the .swf simulator.workload file into which the
 	 * simulator.workload is to be written (it will be stored in the
@@ -40,6 +40,7 @@ public class ConfigurationOptions {
 
 		co.inputWorkloadFileName = workloadPath;
 		
+		co.schedulingplugin = policy;
 //		co.outputFolder = "../result";
 		co.statsOutputSubfolderNameCreate ="/result/stats";
 		co.createjobsstatistics = true;

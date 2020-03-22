@@ -10,7 +10,6 @@
 	<classpathentry kind="lib" path="lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging.jar"/>
 	<classpathentry kind="lib" path="lib/gridsim.jar"/>
-	<classpathentry kind="lib" path="lib/qcg_job_schemas.jar"/>
 	<classpathentry kind="lib" path="lib/colt.jar"/>
 	<classpathentry kind="lib" path="lib/simjava.jar"/>
 	<classpathentry kind="lib" path="lib/castor-1.3.3-RC1.jar"/>
@@ -25,9 +24,13 @@
 	<classpathentry kind="lib" path="lib/jcommon-1.0.10.jar"/>
 	<classpathentry kind="lib" path="lib/TimetableChart.jar"/>
 	<classpathentry kind="lib" path="properties"/>
-	<classpathentry kind="lib" path="lib/xalan-2.6.jar"/>
 	<classpathentry kind="lib" path="lib/castor-xml-1.2.1-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="lib/gssim_workload3g.jar"/>
 	<classpathentry kind="lib" path="lib/bsh-2.0b4.jar"/>
+	<classpathentry kind="lib" path="lib/Saxon-HE-9.5.1-5.jar"/>
+	<classpathentry kind="lib" path="lib/saxon9-unpack.jar"/>
+	<classpathentry kind="lib" path="lib/xerces/xerces-2_9_0/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="lib/xerces/xerces-2_9_0/xml-apis.jar"/>
+	<classpathentry kind="lib" path="lib/xalan-2.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

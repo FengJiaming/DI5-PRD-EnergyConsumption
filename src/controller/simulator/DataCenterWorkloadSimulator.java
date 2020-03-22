@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -27,7 +28,7 @@ import model.Initializable;
 import cern.jet.random.Uniform;
 import cern.jet.random.engine.MersenneTwister64;
 
-public class DataCenterWorkloadSimulator {
+public class DataCenterWorkloadSimulator{
 
 	protected static AccumulatedStatistics accumulatedStatistics;
 
@@ -44,11 +45,12 @@ public class DataCenterWorkloadSimulator {
 	static {
 		DFAULT_NUMBER_FORMAT.setMaximumFractionDigits(MAXIMUM_FRACTION_DIGITS); // 0,001
 	}
+	
 	public DataCenterWorkloadSimulator() {
 	}
 
 	public void run(ConfigurationOptions configurationOptions) {
-		System.setErr(new PrintStream(new LogErrStream(log)));
+//		System.setErr(new PrintStream(new LogErrStream(log)));
 		int noOfSimulations = 1; // default value is one
 
 		if (log.isInfoEnabled())
@@ -170,13 +172,19 @@ public class DataCenterWorkloadSimulator {
 	private File prepareDirecotry(ConfigurationOptions options) throws Exception {
 		if (log.isInfoEnabled())
 			log.info("READING SCENARIO ::");
-		String prefix = null;
-		if (options.inputWorkloadFileName != null) {
-			prefix = new File(options.inputWorkloadFileName).getParent();
-		} else {
-			prefix = System.getProperty("user.dir");
-		}
-		statsOutputPath = prefix + File.separator + options.statsOutputSubfolderNameCreate;
+//		String prefix = null;
+//		if (options.inputWorkloadFileName != null) {
+//			prefix = new File(options.inputWorkloadFileName).getParent();
+//		} else {
+//			prefix = System.getProperty("user.dir");
+//		}
+		String prefix = "example";
+		Date date = new Date();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HH-mm-ss");
+        String simulationName= "/Experiment" + sdf.format(date);
+        
+		statsOutputPath = prefix + File.separator + simulationName + options.statsOutputSubfolderNameCreate;
+//		statsOutputPath = prefix + File.separator + options.statsOutputSubfolderNameCreate;
 		statsOutputPath += File.separator;
 
 		// create the output folder
@@ -234,5 +242,6 @@ public class DataCenterWorkloadSimulator {
 				return false;
 		}
 	}
+
 
 }

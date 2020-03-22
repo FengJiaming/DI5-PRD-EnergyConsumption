@@ -256,7 +256,7 @@
       </Pane>
       <Pane layoutX="25.0" layoutY="45.0" prefHeight="768.0" prefWidth="525.0">
          <children>
-            <TextArea layoutX="15.0" layoutY="581.0" prefHeight="150.0" prefWidth="496.0" />
+            <TextArea fx:id="workGenConsole" layoutX="15.0" layoutY="581.0" prefHeight="150.0" prefWidth="496.0" />
             <Label layoutX="14.0" layoutY="566.0" text="Console" />
             <GridPane fx:id="gridpane1" layoutX="41.0" layoutY="46.0" prefHeight="128.0" prefWidth="413.0">
               <columnConstraints>

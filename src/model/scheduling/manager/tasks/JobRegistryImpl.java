@@ -29,6 +29,8 @@ public class JobRegistryImpl extends AbstractJobRegistry {
 
 	//TO DO - consider data structure
 	protected static final ExecutablesList executables = new ExecutablesList();
+//	protected ExecutablesList executables = new ExecutablesList();
+	
 	//protected static final List<ExecTask> executables = Collections.synchronizedList(new ArrayList<ExecTask>());;
 	//protected static final List<ExecTaskInterface> executables = new CopyOnWriteArrayList<ExecTaskInterface>();
 

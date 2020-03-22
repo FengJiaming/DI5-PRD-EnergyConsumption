@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugins xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:noNamespaceSchemaLocation="../debb2dcworms.xsd">
+	<timeEstimationPlugin>
+		<name>example.timeestimation.DefaultTimeEstimationPlugin</name>
+	</timeEstimationPlugin>
+	
+	<schedulingPlugin>
+		<name>example.localplugin.FCFSBF_NodePowerManagementClusterPlugin</name>
+		<resources>
+			<class>ComputeBox1</class>
+		</resources>
+	</schedulingPlugin>
+	
+	<energyEstimationPlugin>
+		<name>example.energy.CPUEnergyEstimationPlugin</name>
+		<resources>
+			<class>Processor</class>
+		</resources>
+	</energyEstimationPlugin>
+	<energyEstimationPlugin>
+		<name>example.energy.ComputingNodeEnergyEstimationPlugin</name>
+		<resources>
+			<class>ComputingNode</class>
+		</resources>
+	</energyEstimationPlugin>
+</plugins>

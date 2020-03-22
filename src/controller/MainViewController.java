@@ -53,6 +53,7 @@ public class MainViewController {
 	private Menu MenuDEBB;
 
 	private Object[] functionList;
+
 	public void init(Object[] functionList) {
 		DEBBPath.setText("example/experiment1/resources1.xml");
 		swfPath.setText("example/experiment1/workload.swf");
@@ -63,6 +64,7 @@ public class MainViewController {
 	void DEBBChooseClick(ActionEvent event) {
 		FileChooser DEBBChooser = new FileChooser();
 		DEBBChooser.setTitle("Load DEBB Config");
+		DEBBChooser.setInitialDirectory(new File("example/xml/"));
 		File file = DEBBChooser.showOpenDialog(root.getScene().getWindow());
 		if (file != null) {
 //			System.out.println(file.getPath());
@@ -74,6 +76,7 @@ public class MainViewController {
 	void swfButtonClick(ActionEvent event) {
 		FileChooser swfChooser = new FileChooser();
 		swfChooser.setTitle("Select workload");
+		swfChooser.setInitialDirectory(new File("example/"));
 		File file = swfChooser.showOpenDialog(root.getScene().getWindow());
 		if (file != null) {
 			System.out.println(file.getPath());
@@ -87,37 +90,24 @@ public class MainViewController {
 		ConfigurationOptions configurationOptions = ConfigurationOptions.getConfiguration(DEBBPath.getText(),
 				swfPath.getText(), "FCFS");
 		DataCenterWorkloadSimulator simulator = new DataCenterWorkloadSimulator();
+		console.setText("");
 		System.setOut(new PrintStream(new Console(console)));
 		System.setErr(new PrintStream(new Console(console)));
+
 		simulator.run(configurationOptions);
 
 	}
 
-
 	@FXML
 	public void gotoWorkGenWindow(ActionEvent event) throws Exception {
-		((AnchorPane)functionList[0]).setVisible(false);
-		((AnchorPane)functionList[1]).setVisible(true);
+		((AnchorPane) functionList[0]).setVisible(false);
+		((AnchorPane) functionList[1]).setVisible(true);
 	}
-	
+
 	@FXML
 	public void gotoSimulationWindow(ActionEvent event) throws Exception {
 //		((AnchorPane)functionList[0]).setVisible(false);
 //		((AnchorPane)functionList[1]).setVisible(true);
 	}
-	public class Console extends OutputStream {
-		private TextArea console;
 
-		public Console(TextArea console) {
-			this.console = console;
-		}
-
-		public void appendText(String valueOf) {
-			Platform.runLater(() -> console.appendText(valueOf));
-		}
-
-		public void write(int b) throws IOException {
-			appendText(String.valueOf((char) b));
-		}
-	}
 }

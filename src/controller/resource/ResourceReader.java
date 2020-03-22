@@ -68,7 +68,8 @@ public class ResourceReader {
 	public ResourceReader(ConfigurationOptions options) throws IOException {
 
 		resDescFileName = options.resdescFileName;
-		globalSchedulingPluginName = "example.globalplugin.GridFCFSRoundRobinPlugin";
+//		globalSchedulingPluginName = "example.globalplugin.GridFCFSRoundRobinPlugin";
+		globalSchedulingPluginName = options.schedulingplugin;
 		prepareCalendar();
 		compResLayers = new LinkedHashSet<String>();
 	}
@@ -301,6 +302,13 @@ public class ResourceReader {
 				int resourceNameCount = mcr.getResourceNameCount();
 				for(int j = 0; j < resourceNameCount; j++) { 
 					managedCompResourcesIds.add(mcr.getResourceName(j));
+				}
+				//To correct the bug
+				String managedCompName = mainCompResourceList.get(0).getName();
+				if(managedCompResourcesIds.size() > 0) {
+					managedCompResourcesIds.set(0, managedCompName);
+				} else {
+					managedCompResourcesIds.add(managedCompName);
 				}
 				managedResources = matchResourcesForScheduler(mainCompResourceList, managedCompResourcesIds, mcr.getInclude());	
 				//managedResources = new ManagedResources(managedCompResources, new HashMap<ResourceUnitName, List<ResourceUnit>>());

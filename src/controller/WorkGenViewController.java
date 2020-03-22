@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,6 +12,7 @@ import app.ConfigurationOptions;
 import app.MainApplication;
 import controller.workload.generator.Dependency;
 import controller.workload.generator.WorkloadGenerator;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +26,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -49,6 +53,9 @@ public class WorkGenViewController {
 	private Button loadPatternButton;
 	@FXML
 	private Button helpButton;
+	
+	@FXML
+	private TextArea workGenConsole;
 	
 	@FXML
 	private TextField workloadFilename;
@@ -2169,10 +2176,31 @@ public class WorkGenViewController {
 		WorkloadGenerator generator = new WorkloadGenerator();
 		ConfigurationOptions configurationOptions = ConfigurationOptions.getConfiguration(workloadFilename.getText(),
 				outputFolder.getText());
-		if(checkWorkGenValue())
+		if(checkWorkGenValue()) {
+			System.setOut(new PrintStream(new Console(workGenConsole)));
+			System.setErr(new PrintStream(new Console(workGenConsole)));
+			
 			generator.run(configurationOptions, workloadWrapper(), dependencyWrapper());
+			
+		}
 	}
-
+	
+//	public class Console extends OutputStream {
+//		private TextArea console;
+//
+//		public Console(TextArea console) {
+//			this.console = console;
+//		}
+//
+//		public void appendText(String valueOf) {
+//			Platform.runLater(() -> console.appendText(valueOf));
+//		}
+//
+//		public void write(int b) throws IOException {
+//			appendText(String.valueOf((char) b));
+//		}
+//	}
+	
 	private Dependency dependencyWrapper() {
 		Dependency dependencies = new Dependency();
 		if(taskCountRefCheck.isSelected() && taskCountRefBox.getValue()!=null) {
@@ -2244,7 +2272,7 @@ public class WorkGenViewController {
 		this.outputFolder.setText("example/workload");
 		this.workloadFilename.setText("workload.swf");
 
-		this.simulationStartTime.setText("2009-01-15_10:00:00");
+		this.simulationStartTime.setText("2020-02-15_10:00:00");
 		this.jobCount.setText("100");
 		
 		this.taskCountDistribution.setValue("constant");
