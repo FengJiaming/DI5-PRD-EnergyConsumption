@@ -1,8 +1,9 @@
-/model/
-/app/
 /controller/
 /eduni/
 /example/
 /gridsim/
+/model/
 /org/
 /qcg/
+/app/
+/view/

@@ -2162,15 +2162,20 @@ public class WorkGenViewController {
 		}
 	}
 	@FXML
-	void gotoSimulationWindow(ActionEvent event) {
+	public void gotoSimulationWindow(ActionEvent event) {
 		((AnchorPane) functionList[0]).setVisible(true);
 		((AnchorPane) functionList[1]).setVisible(false);
 	}
 
 	@FXML
-	void gotoWorkGenWindow(ActionEvent event) {
+	public void gotoWorkGenWindow(ActionEvent event) {
 	}
 
+	@FXML
+	public void gotoDebbConfigurator(ActionEvent event) throws Exception {
+		
+	}
+	
 	@FXML
 	void generateButtonClick(ActionEvent event) {
 		WorkloadGenerator generator = new WorkloadGenerator();

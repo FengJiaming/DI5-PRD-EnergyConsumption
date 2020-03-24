@@ -1,204 +1,361 @@
 0    [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - :: Starting simulation ::
-1    [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - READING SCENARIO ::
-35   [JavaFX Application Thread] DEBUG controller.simulator.DataCenterWorkloadSimulator  - Shuffled initial seed: 2028058649
-292  [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - :: Starting simulation run: "Simulation 1" ::
-292  [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - :: In the the mode of 
-887  [JavaFX Application Thread] DEBUG org.joda.time.VCMilisProvider  - Cut start time milliseconds Sat Mar 21 21:43:00 CET 2020 (1584823380000) to Sat Mar 21 21:43:00 CET 2020 (1584823380000)
-887  [JavaFX Application Thread] INFO  org.joda.time.DateTimeUtilsExt  - org.joda.time PACKAGE IS USING SIMJAVA VIRTUAL CLOCK TO DETERMINE CURRENT TIME.
-1375 [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - started creating environment description
-1495 [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - finished creating environment description
-1495 [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - started creating resources
-1512 [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - finished creating resource
-1512 [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - started creating schedulers
-1577 [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - finished creating schedulers
-1615 [JavaFX Application Thread] INFO  gridsim.GridSimWrapper  - Starting GridSim version 4.0
-2298 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 1 at 2020-03-21T21:43:00.000+01:00
-2301 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 2 at 2020-03-21T21:43:00.000+01:00
-2301 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 3 at 2020-03-21T21:43:00.000+01:00
-2302 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 4 at 2020-03-21T21:43:00.000+01:00
-2302 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 5 at 2020-03-21T21:43:00.000+01:00
-2302 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 6 at 2020-03-21T21:43:00.000+01:00
-2302 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 7 at 2020-03-21T21:43:00.000+01:00
-2302 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 8 at 2020-03-21T21:43:00.000+01:00
-2332 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 1_1 starts executing on 2020-03-21T21:43:00.000+01:00 will finish after 2
-2337 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.05
-2338 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 2_2 starts executing on 2020-03-21T21:43:00.000+01:00 will finish after 2
-2339 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.1
-2340 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 3_3 starts executing on 2020-03-21T21:43:00.000+01:00 will finish after 2
-2341 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.15
-2341 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 4_4 starts executing on 2020-03-21T21:43:00.000+01:00 will finish after 2
-2341 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.2
-2341 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 5_5 starts executing on 2020-03-21T21:43:00.000+01:00 will finish after 2
-2342 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.25
-2342 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 6_6 starts executing on 2020-03-21T21:43:00.000+01:00 will finish after 3
-2343 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.3
-2343 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 7_7 starts executing on 2020-03-21T21:43:00.000+01:00 will finish after 4
-2344 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.35
-2344 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 8_8 starts executing on 2020-03-21T21:43:00.000+01:00 will finish after 9
-2345 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.4
-2359 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 1_1 finished execution on 2020-03-21T21:43:02.000+01:00
-2359 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.35
-2360 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 2_2 finished execution on 2020-03-21T21:43:02.000+01:00
-2360 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.3
-2361 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 3_3 finished execution on 2020-03-21T21:43:02.000+01:00
-2361 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.25
-2361 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 4_4 finished execution on 2020-03-21T21:43:02.000+01:00
-2361 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.2
-2362 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 5_5 finished execution on 2020-03-21T21:43:02.000+01:00
-2362 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.15
-2362 [Thread-12] INFO  gridsim.DCWormsUsers  - 7% 
-2363 [Thread-12] INFO  gridsim.DCWormsUsers  - 15% 
-2363 [Thread-12] INFO  gridsim.DCWormsUsers  - 23% 
-2363 [Thread-12] INFO  gridsim.DCWormsUsers  - 30% 
-2363 [Thread-12] INFO  gridsim.DCWormsUsers  - 38% 
-2367 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 6_6 finished execution on 2020-03-21T21:43:03.000+01:00
-2367 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.1
-2367 [Thread-12] INFO  gridsim.DCWormsUsers  - 46% 
-2369 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 7_7 finished execution on 2020-03-21T21:43:04.000+01:00
-2369 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.05
-2370 [Thread-12] INFO  gridsim.DCWormsUsers  - 53% 
-2371 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 8_8 finished execution on 2020-03-21T21:43:09.000+01:00
-2371 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-2371 [Thread-12] INFO  gridsim.DCWormsUsers  - 61% 
-2372 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 9 at 2020-03-21T22:43:00.000+01:00
-2372 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 9_9 starts executing on 2020-03-21T22:43:00.000+01:00 will finish after 2
-2372 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.05
-2374 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 9_9 finished execution on 2020-03-21T22:43:02.000+01:00
-2375 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-2375 [Thread-12] INFO  gridsim.DCWormsUsers  - 69% 
-2376 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 10 at 2020-03-22T03:43:00.000+01:00
-2376 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 10_10 starts executing on 2020-03-22T03:43:00.000+01:00 will finish after 7
-2377 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.05
-2378 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 10_10 finished execution on 2020-03-22T03:43:07.000+01:00
-2378 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-2379 [Thread-12] INFO  gridsim.DCWormsUsers  - 76% 
-2379 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 11 at 2020-03-22T04:43:00.000+01:00
-2380 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 11_11 starts executing on 2020-03-22T04:43:00.000+01:00 will finish after 8
-2380 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.05
-2382 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 11_11 finished execution on 2020-03-22T04:43:08.000+01:00
-2382 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-2383 [Thread-12] INFO  gridsim.DCWormsUsers  - 84% 
-2383 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 12 at 2020-03-22T08:43:00.000+01:00
-2384 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 12_12 starts executing on 2020-03-22T08:43:00.000+01:00 will finish after 4
-2384 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.05
-2386 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 12_12 finished execution on 2020-03-22T08:43:04.000+01:00
-2386 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-2386 [Thread-12] INFO  gridsim.DCWormsUsers  - 92% 
-2387 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 13 at 2020-03-22T10:43:00.000+01:00
-2387 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 13_13 starts executing on 2020-03-22T10:43:00.000+01:00 will finish after 3
-2387 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.05
-2389 [Thread-9] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 13_13 finished execution on 2020-03-22T10:43:03.000+01:00
-2389 [Thread-9] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-2389 [Thread-12] INFO  gridsim.DCWormsUsers  - 100% 
-2390 [Thread-12] INFO  gridsim.DCWormsUsers  - Users: Received all 13 jobs and 13 tasks
-2390 [Thread-12] INFO  gridsim.DCWormsUsers  - Missing tasks: 
-2601 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - Generating statistics...
-2601 [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - gatherResourceStatistics
-2691 [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - time in sec: 0
-2691 [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - gatherTaskStatistics
-2751 [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - time in sec: 0
-2751 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - The simulation run took 2 seconds
-2752 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - :: Finished simulation run: "Simulation 1" ::
-2752 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - Done :: Simulation has finished 1 simulation runs ::
-381357 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - :: Starting simulation ::
-381357 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - READING SCENARIO ::
-381360 [JavaFX Application Thread] DEBUG controller.simulator.DataCenterWorkloadSimulator  - Shuffled initial seed: 43220935
-381360 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - :: Starting simulation run: "Simulation 1" ::
-381360 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - :: In the the mode of 
-381414 [JavaFX Application Thread] DEBUG org.joda.time.VCMilisProvider  - Cut start time milliseconds Sun Mar 22 23:24:00 CET 2020 (1584915840000) to Sun Mar 22 23:24:00 CET 2020 (1584915840000)
-381414 [JavaFX Application Thread] INFO  org.joda.time.DateTimeUtilsExt  - org.joda.time PACKAGE IS USING SIMJAVA VIRTUAL CLOCK TO DETERMINE CURRENT TIME.
-381474 [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - started creating environment description
-381475 [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - finished creating environment description
-381475 [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - started creating resources
-381476 [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - finished creating resource
-381476 [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - started creating schedulers
-381476 [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - finished creating schedulers
-381477 [JavaFX Application Thread] INFO  gridsim.GridSimWrapper  - Starting GridSim version 4.0
-381521 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 1 at 2020-03-22T23:24:00.000+01:00
-381523 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 2 at 2020-03-22T23:24:00.000+01:00
-381523 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 3 at 2020-03-22T23:24:00.000+01:00
-381523 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 4 at 2020-03-22T23:24:00.000+01:00
-381523 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 5 at 2020-03-22T23:24:00.000+01:00
-381523 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 6 at 2020-03-22T23:24:00.000+01:00
-381523 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 7 at 2020-03-22T23:24:00.000+01:00
-381523 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 8 at 2020-03-22T23:24:00.000+01:00
-381523 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 1_1 starts executing on 2020-03-22T23:24:00.000+01:00 will finish after 2
-381524 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381525 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 2_2 starts executing on 2020-03-22T23:24:00.000+01:00 will finish after 2
-381525 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381525 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 3_3 starts executing on 2020-03-22T23:24:00.000+01:00 will finish after 2
-381526 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381526 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 4_4 starts executing on 2020-03-22T23:24:00.000+01:00 will finish after 2
-381526 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381527 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 5_5 starts executing on 2020-03-22T23:24:00.000+01:00 will finish after 2
-381527 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381527 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 6_6 starts executing on 2020-03-22T23:24:00.000+01:00 will finish after 3
-381527 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381528 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 7_7 starts executing on 2020-03-22T23:24:00.000+01:00 will finish after 4
-381528 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381528 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 8_8 starts executing on 2020-03-22T23:24:00.000+01:00 will finish after 9
-381529 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381530 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 1_1 finished execution on 2020-03-22T23:24:02.000+01:00
-381531 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381531 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 2_2 finished execution on 2020-03-22T23:24:02.000+01:00
-381531 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381531 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 3_3 finished execution on 2020-03-22T23:24:02.000+01:00
-381531 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381532 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 4_4 finished execution on 2020-03-22T23:24:02.000+01:00
-381532 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381532 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 5_5 finished execution on 2020-03-22T23:24:02.000+01:00
-381533 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381533 [Thread-23] INFO  gridsim.DCWormsUsers  - 7% 
-381533 [Thread-23] INFO  gridsim.DCWormsUsers  - 15% 
-381533 [Thread-23] INFO  gridsim.DCWormsUsers  - 23% 
-381533 [Thread-23] INFO  gridsim.DCWormsUsers  - 30% 
-381533 [Thread-23] INFO  gridsim.DCWormsUsers  - 38% 
-381534 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 6_6 finished execution on 2020-03-22T23:24:03.000+01:00
-381534 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381534 [Thread-23] INFO  gridsim.DCWormsUsers  - 46% 
-381535 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 7_7 finished execution on 2020-03-22T23:24:04.000+01:00
-381535 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381535 [Thread-23] INFO  gridsim.DCWormsUsers  - 53% 
-381536 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 8_8 finished execution on 2020-03-22T23:24:09.000+01:00
-381536 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381536 [Thread-23] INFO  gridsim.DCWormsUsers  - 61% 
-381536 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 9 at 2020-03-23T00:24:00.000+01:00
-381536 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 9_9 starts executing on 2020-03-23T00:24:00.000+01:00 will finish after 2
-381537 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381538 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 9_9 finished execution on 2020-03-23T00:24:02.000+01:00
-381538 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381538 [Thread-23] INFO  gridsim.DCWormsUsers  - 69% 
-381538 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 10 at 2020-03-23T05:24:00.000+01:00
-381538 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 10_10 starts executing on 2020-03-23T05:24:00.000+01:00 will finish after 7
-381539 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381540 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 10_10 finished execution on 2020-03-23T05:24:07.000+01:00
-381540 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381540 [Thread-23] INFO  gridsim.DCWormsUsers  - 76% 
-381540 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 11 at 2020-03-23T06:24:00.000+01:00
-381540 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 11_11 starts executing on 2020-03-23T06:24:00.000+01:00 will finish after 8
-381541 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381541 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 11_11 finished execution on 2020-03-23T06:24:08.000+01:00
-381541 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381542 [Thread-23] INFO  gridsim.DCWormsUsers  - 84% 
-381542 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 12 at 2020-03-23T10:24:00.000+01:00
-381542 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 12_12 starts executing on 2020-03-23T10:24:00.000+01:00 will finish after 4
-381542 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381543 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 12_12 finished execution on 2020-03-23T10:24:04.000+01:00
-381543 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381543 [Thread-23] INFO  gridsim.DCWormsUsers  - 92% 
-381543 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 13 at 2020-03-23T12:24:00.000+01:00
-381544 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 13_13 starts executing on 2020-03-23T12:24:00.000+01:00 will finish after 3
-381544 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381544 [Thread-20] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 13_13 finished execution on 2020-03-23T12:24:03.000+01:00
-381544 [Thread-20] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
-381545 [Thread-23] INFO  gridsim.DCWormsUsers  - 100% 
-381545 [Thread-23] INFO  gridsim.DCWormsUsers  - Users: Received all 13 jobs and 13 tasks
-381545 [Thread-23] INFO  gridsim.DCWormsUsers  - Missing tasks: 
-381548 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - Generating statistics...
-381548 [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - gatherResourceStatistics
-381559 [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - time in sec: 0
-381559 [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - gatherTaskStatistics
-381561 [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - time in sec: 0
-381561 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - The simulation run took 0 seconds
-381562 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - :: Finished simulation run: "Simulation 1" ::
-381562 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - Done :: Simulation has finished 1 simulation runs ::
+2    [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - READING SCENARIO ::
+15   [JavaFX Application Thread] DEBUG controller.simulator.DataCenterWorkloadSimulator  - Shuffled initial seed: 288725083
+30   [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - :: Starting simulation run: "Simulation 1" ::
+30   [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - :: In the the mode of 
+90   [JavaFX Application Thread] WARN  controller.workload.loader.WorkloadLoader  - Assuming default simulation start time - Thu Jan 01 01:00:00 CET 1970
+309  [JavaFX Application Thread] DEBUG org.joda.time.VCMilisProvider  - Cut start time milliseconds Thu Jan 01 01:00:00 CET 1970 (0) to Thu Jan 01 01:00:00 CET 1970 (0)
+309  [JavaFX Application Thread] INFO  org.joda.time.DateTimeUtilsExt  - org.joda.time PACKAGE IS USING SIMJAVA VIRTUAL CLOCK TO DETERMINE CURRENT TIME.
+310  [JavaFX Application Thread] DEBUG controller.resource.translator.DEBBTranslator  - inputFileName=D:\France\S9\PRD\PRD-Realisation\DI5-PRD-EnergyConsumption\example\experiment2\resources2.xml
+310  [JavaFX Application Thread] DEBUG controller.resource.translator.DEBBTranslator  - outputFileName=example/resources2.xml
+1012 [JavaFX Application Thread] ERROR controller.resource.translator.DEBBTranslator  - Non specific exception
+java.lang.NullPointerException
+	at controller.resource.translator.DEBBTranslator.translate(DEBBTranslator.java:122)
+	at controller.simulator.DataCenterWorkloadSimulator.performSimulation(DataCenterWorkloadSimulator.java:139)
+	at controller.simulator.DataCenterWorkloadSimulator.run(DataCenterWorkloadSimulator.java:79)
+	at controller.MainViewController.runButtonClick(MainViewController.java:102)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71)
+	at sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275)
+	at javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1769)
+	at javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1657)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Node.fireEvent(Node.java:8411)
+	at javafx.scene.control.Button.fire(Button.java:185)
+	at com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:182)
+	at com.sun.javafx.scene.control.skin.BehaviorSkinBase$1.handle(BehaviorSkinBase.java:96)
+	at com.sun.javafx.scene.control.skin.BehaviorSkinBase$1.handle(BehaviorSkinBase.java:89)
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3757)
+	at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485)
+	at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762)
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:394)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$353(GlassViewEventHandler.java:432)
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:431)
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:555)
+	at com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$null$147(WinApplication.java:177)
+	at java.lang.Thread.run(Thread.java:748)
+6761 [JavaFX Application Thread] ERROR controller.simulator.DataCenterWorkloadSimulator  - ERROR in simulation run "":
+java.io.FileNotFoundException: example\resources2.xml (系统找不到指定的文件。)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileReader.<init>(FileReader.java:72)
+	at controller.resource.ResourceReader.read(ResourceReader.java:83)
+	at controller.simulator.DataCenterWorkloadSimulator.performSimulation(DataCenterWorkloadSimulator.java:142)
+	at controller.simulator.DataCenterWorkloadSimulator.run(DataCenterWorkloadSimulator.java:79)
+	at controller.MainViewController.runButtonClick(MainViewController.java:102)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71)
+	at sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275)
+	at javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1769)
+	at javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1657)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Node.fireEvent(Node.java:8411)
+	at javafx.scene.control.Button.fire(Button.java:185)
+	at com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:182)
+	at com.sun.javafx.scene.control.skin.BehaviorSkinBase$1.handle(BehaviorSkinBase.java:96)
+	at com.sun.javafx.scene.control.skin.BehaviorSkinBase$1.handle(BehaviorSkinBase.java:89)
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3757)
+	at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485)
+	at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762)
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:394)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$353(GlassViewEventHandler.java:432)
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:431)
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:555)
+	at com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$null$147(WinApplication.java:177)
+	at java.lang.Thread.run(Thread.java:748)
+6788 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - Done :: Simulation has finished 1 simulation runs ::
+36907 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - :: Starting simulation ::
+36907 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - READING SCENARIO ::
+36909 [JavaFX Application Thread] DEBUG controller.simulator.DataCenterWorkloadSimulator  - Shuffled initial seed: 664337489
+36909 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - :: Starting simulation run: "Simulation 1" ::
+36910 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - :: In the the mode of 
+36922 [JavaFX Application Thread] WARN  controller.workload.loader.WorkloadLoader  - Assuming default simulation start time - Thu Jan 01 01:00:00 CET 1970
+36970 [JavaFX Application Thread] DEBUG org.joda.time.VCMilisProvider  - Cut start time milliseconds Thu Jan 01 01:00:00 CET 1970 (0) to Thu Jan 01 01:00:00 CET 1970 (0)
+36970 [JavaFX Application Thread] INFO  org.joda.time.DateTimeUtilsExt  - org.joda.time PACKAGE IS USING SIMJAVA VIRTUAL CLOCK TO DETERMINE CURRENT TIME.
+37085 [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - started creating environment description
+37101 [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - finished creating environment description
+37101 [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - started creating resources
+37141 [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - finished creating resource
+37141 [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - started creating schedulers
+37181 [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - finished creating schedulers
+37191 [JavaFX Application Thread] INFO  gridsim.GridSimWrapper  - Starting GridSim version 4.0
+37644 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 1 at 1970-01-01T01:00:00.000+01:00
+37651 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 2 at 1970-01-01T01:00:00.000+01:00
+37651 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 3 at 1970-01-01T01:00:00.000+01:00
+37651 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 4 at 1970-01-01T01:00:00.000+01:00
+37652 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 5 at 1970-01-01T01:00:00.000+01:00
+37652 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 6 at 1970-01-01T01:00:00.000+01:00
+37652 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 7 at 1970-01-01T01:00:00.000+01:00
+37652 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 8 at 1970-01-01T01:00:00.000+01:00
+37673 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 1_1 starts executing on 1970-01-01T01:00:00.000+01:00 will finish after 7200
+37680 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0625
+37681 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 2_2 starts executing on 1970-01-01T01:00:00.000+01:00 will finish after 7200
+37682 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.125
+37682 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 3_3 starts executing on 1970-01-01T01:00:00.000+01:00 will finish after 7200
+37683 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.1875
+37684 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 4_4 starts executing on 1970-01-01T01:00:00.000+01:00 will finish after 7200
+37684 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.25
+37685 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 5_5 starts executing on 1970-01-01T01:00:00.000+01:00 will finish after 7200
+37686 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.3125
+37686 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 6_6 starts executing on 1970-01-01T01:00:00.000+01:00 will finish after 10800
+37687 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.375
+37687 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 7_7 starts executing on 1970-01-01T01:00:00.000+01:00 will finish after 14400
+37688 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.4375
+37689 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 8_8 starts executing on 1970-01-01T01:00:00.000+01:00 will finish after 28800
+37689 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.5
+37695 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 9 at 1970-01-01T02:00:00.000+01:00
+37696 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 9_9 starts executing on 1970-01-01T02:00:00.000+01:00 will finish after 7200
+37697 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.5625
+37699 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 1_1 finished execution on 1970-01-01T03:00:00.000+01:00
+37699 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.5
+37700 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 2_2 finished execution on 1970-01-01T03:00:00.000+01:00
+37701 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.4375
+37702 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 3_3 finished execution on 1970-01-01T03:00:00.000+01:00
+37702 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.375
+37703 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 4_4 finished execution on 1970-01-01T03:00:00.000+01:00
+37703 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.3125
+37704 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 5_5 finished execution on 1970-01-01T03:00:00.000+01:00
+37705 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.25
+37705 [Thread-17] INFO  gridsim.DCWormsUsers  - 7% 
+37705 [Thread-17] INFO  gridsim.DCWormsUsers  - 15% 
+37705 [Thread-17] INFO  gridsim.DCWormsUsers  - 23% 
+37705 [Thread-17] INFO  gridsim.DCWormsUsers  - 30% 
+37705 [Thread-17] INFO  gridsim.DCWormsUsers  - 38% 
+37708 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 6_6 finished execution on 1970-01-01T04:00:00.000+01:00
+37708 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.1875
+37709 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 9_9 finished execution on 1970-01-01T04:00:00.000+01:00
+37709 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.125
+37710 [Thread-17] INFO  gridsim.DCWormsUsers  - 46% 
+37710 [Thread-17] INFO  gridsim.DCWormsUsers  - 53% 
+37711 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 7_7 finished execution on 1970-01-01T05:00:00.000+01:00
+37711 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0625
+37712 [Thread-17] INFO  gridsim.DCWormsUsers  - 61% 
+37712 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 10 at 1970-01-01T07:00:00.000+01:00
+37713 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 10_10 starts executing on 1970-01-01T07:00:00.000+01:00 will finish after 21600
+37713 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.125
+37714 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 11 at 1970-01-01T08:00:00.000+01:00
+37715 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 11_11 starts executing on 1970-01-01T08:00:00.000+01:00 will finish after 25200
+37715 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.1875
+37716 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 8_8 finished execution on 1970-01-01T09:00:00.000+01:00
+37716 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.125
+37717 [Thread-17] INFO  gridsim.DCWormsUsers  - 69% 
+37717 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 12 at 1970-01-01T12:00:00.000+01:00
+37717 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 12_12 starts executing on 1970-01-01T12:00:00.000+01:00 will finish after 14400
+37718 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.1875
+37719 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 10_10 finished execution on 1970-01-01T13:00:00.000+01:00
+37719 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.125
+37720 [Thread-17] INFO  gridsim.DCWormsUsers  - 76% 
+37720 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 13 at 1970-01-01T14:00:00.000+01:00
+37721 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 13_13 starts executing on 1970-01-01T14:00:00.000+01:00 will finish after 10800
+37721 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.1875
+37722 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 11_11 finished execution on 1970-01-01T15:00:00.000+01:00
+37722 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.125
+37723 [Thread-17] INFO  gridsim.DCWormsUsers  - 84% 
+37724 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 12_12 finished execution on 1970-01-01T16:00:00.000+01:00
+37724 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0625
+37725 [Thread-17] INFO  gridsim.DCWormsUsers  - 92% 
+37725 [Thread-14] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 13_13 finished execution on 1970-01-01T17:00:00.000+01:00
+37726 [Thread-14] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+37727 [Thread-17] INFO  gridsim.DCWormsUsers  - 100% 
+37727 [Thread-17] INFO  gridsim.DCWormsUsers  - Users: Received all 13 jobs and 13 tasks
+37727 [Thread-17] INFO  gridsim.DCWormsUsers  - Missing tasks: 
+37760 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - Generating statistics...
+37760 [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - gatherResourceStatistics
+39547 [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - time in sec: 1
+39547 [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - gatherTaskStatistics
+39560 [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - time in sec: 0
+39560 [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - saveSimulationStatistics
+39561 [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - time in sec: 0
+39561 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - The simulation run took 0 seconds
+39561 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - :: Finished simulation run: "Simulation 1" ::
+39561 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - Done :: Simulation has finished 1 simulation runs ::
+125956 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - :: Starting simulation ::
+125956 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - READING SCENARIO ::
+125959 [JavaFX Application Thread] DEBUG controller.simulator.DataCenterWorkloadSimulator  - Shuffled initial seed: 1955507482
+125959 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - :: Starting simulation run: "Simulation 1" ::
+125959 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - :: In the the mode of 
+125973 [JavaFX Application Thread] WARN  controller.workload.loader.WorkloadLoader  - Assuming default simulation start time - Thu Jan 01 01:00:00 CET 1970
+126019 [JavaFX Application Thread] DEBUG org.joda.time.VCMilisProvider  - Cut start time milliseconds Thu Jan 01 01:00:00 CET 1970 (0) to Thu Jan 01 01:00:00 CET 1970 (0)
+126019 [JavaFX Application Thread] INFO  org.joda.time.DateTimeUtilsExt  - org.joda.time PACKAGE IS USING SIMJAVA VIRTUAL CLOCK TO DETERMINE CURRENT TIME.
+126030 [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - started creating environment description
+126030 [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - finished creating environment description
+126030 [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - started creating resources
+126031 [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - finished creating resource
+126031 [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - started creating schedulers
+126032 [JavaFX Application Thread] INFO  controller.resource.ResourceReader  - finished creating schedulers
+126032 [JavaFX Application Thread] INFO  gridsim.GridSimWrapper  - Starting GridSim version 4.0
+126075 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 1 at 1970-01-01T01:00:00.000+01:00
+126076 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 2 at 1970-01-01T01:00:00.000+01:00
+126076 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 3 at 1970-01-01T01:00:00.000+01:00
+126076 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 4 at 1970-01-01T01:00:00.000+01:00
+126076 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 5 at 1970-01-01T01:00:00.000+01:00
+126076 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 6 at 1970-01-01T01:00:00.000+01:00
+126076 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 7 at 1970-01-01T01:00:00.000+01:00
+126077 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 8 at 1970-01-01T01:00:00.000+01:00
+126077 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 1_1 starts executing on 1970-01-01T01:00:00.000+01:00 will finish after 7200
+126077 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126077 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 2_2 starts executing on 1970-01-01T01:00:00.000+01:00 will finish after 7200
+126078 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126078 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 3_3 starts executing on 1970-01-01T01:00:00.000+01:00 will finish after 7200
+126078 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126079 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 4_4 starts executing on 1970-01-01T01:00:00.000+01:00 will finish after 7200
+126079 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126079 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 5_5 starts executing on 1970-01-01T01:00:00.000+01:00 will finish after 7200
+126080 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126080 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 6_6 starts executing on 1970-01-01T01:00:00.000+01:00 will finish after 10800
+126080 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126080 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 7_7 starts executing on 1970-01-01T01:00:00.000+01:00 will finish after 14400
+126081 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126081 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 8_8 starts executing on 1970-01-01T01:00:00.000+01:00 will finish after 28800
+126081 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126082 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 9 at 1970-01-01T02:00:00.000+01:00
+126083 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 9_9 starts executing on 1970-01-01T02:00:00.000+01:00 will finish after 7200
+126083 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126084 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 1_1 finished execution on 1970-01-01T03:00:00.000+01:00
+126084 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126084 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 2_2 finished execution on 1970-01-01T03:00:00.000+01:00
+126084 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126084 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 3_3 finished execution on 1970-01-01T03:00:00.000+01:00
+126084 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126085 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 4_4 finished execution on 1970-01-01T03:00:00.000+01:00
+126085 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126085 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 5_5 finished execution on 1970-01-01T03:00:00.000+01:00
+126085 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126086 [Thread-30] INFO  gridsim.DCWormsUsers  - 7% 
+126086 [Thread-30] INFO  gridsim.DCWormsUsers  - 15% 
+126086 [Thread-30] INFO  gridsim.DCWormsUsers  - 23% 
+126086 [Thread-30] INFO  gridsim.DCWormsUsers  - 30% 
+126086 [Thread-30] INFO  gridsim.DCWormsUsers  - 38% 
+126087 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 6_6 finished execution on 1970-01-01T04:00:00.000+01:00
+126087 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126087 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 9_9 finished execution on 1970-01-01T04:00:00.000+01:00
+126087 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126087 [Thread-30] INFO  gridsim.DCWormsUsers  - 46% 
+126087 [Thread-30] INFO  gridsim.DCWormsUsers  - 53% 
+126088 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 7_7 finished execution on 1970-01-01T05:00:00.000+01:00
+126088 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126088 [Thread-30] INFO  gridsim.DCWormsUsers  - 61% 
+126088 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 10 at 1970-01-01T07:00:00.000+01:00
+126089 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 10_10 starts executing on 1970-01-01T07:00:00.000+01:00 will finish after 21600
+126089 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126089 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 11 at 1970-01-01T08:00:00.000+01:00
+126090 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 11_11 starts executing on 1970-01-01T08:00:00.000+01:00 will finish after 25200
+126090 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126091 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 8_8 finished execution on 1970-01-01T09:00:00.000+01:00
+126091 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126091 [Thread-30] INFO  gridsim.DCWormsUsers  - 69% 
+126091 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 12 at 1970-01-01T12:00:00.000+01:00
+126091 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 12_12 starts executing on 1970-01-01T12:00:00.000+01:00 will finish after 14400
+126092 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126092 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 10_10 finished execution on 1970-01-01T13:00:00.000+01:00
+126092 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126093 [Thread-30] INFO  gridsim.DCWormsUsers  - 76% 
+126093 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Received job 13 at 1970-01-01T14:00:00.000+01:00
+126093 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 13_13 starts executing on 1970-01-01T14:00:00.000+01:00 will finish after 10800
+126093 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126094 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 11_11 finished execution on 1970-01-01T15:00:00.000+01:00
+126094 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126094 [Thread-30] INFO  gridsim.DCWormsUsers  - 84% 
+126094 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 12_12 finished execution on 1970-01-01T16:00:00.000+01:00
+126094 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126095 [Thread-30] INFO  gridsim.DCWormsUsers  - 92% 
+126095 [Thread-27] DEBUG model.scheduling.policy.local.LocalManagementSystem  - 13_13 finished execution on 1970-01-01T17:00:00.000+01:00
+126095 [Thread-27] INFO  model.scheduling.policy.local.LocalManagementSystem  - Resource's utilization: 0.0
+126095 [Thread-30] INFO  gridsim.DCWormsUsers  - 100% 
+126095 [Thread-30] INFO  gridsim.DCWormsUsers  - Users: Received all 13 jobs and 13 tasks
+126095 [Thread-30] INFO  gridsim.DCWormsUsers  - Missing tasks: 
+126099 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - Generating statistics...
+126099 [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - gatherResourceStatistics
+126731 [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - time in sec: 0
+126731 [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - gatherTaskStatistics
+126734 [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - time in sec: 0
+126734 [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - saveSimulationStatistics
+126734 [JavaFX Application Thread] INFO  controller.simulator.stats.implementation.DCWormsStatistics  - time in sec: 0
+126734 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - The simulation run took 0 seconds
+126734 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - :: Finished simulation run: "Simulation 1" ::
+126734 [JavaFX Application Thread] INFO  controller.simulator.DataCenterWorkloadSimulator  - Done :: Simulation has finished 1 simulation runs ::

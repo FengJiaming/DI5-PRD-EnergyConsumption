@@ -49,6 +49,7 @@ public abstract class AbstractManagementSystem {
 	protected ModuleList moduleList;
 	
 	protected SchedulingPlugin schedulingPlugin;
+	
 	protected ExecutionTimeEstimationPlugin execTimeEstimationPlugin;
 
 	protected Scheduler scheduler;
@@ -121,7 +122,7 @@ public abstract class AbstractManagementSystem {
 	public PluginConfiguration getSchedulingPluginConfiguration() {
 		return schedulingPlugin.getConfiguration();
 	}
-
+	
 	public boolean pluginSupportsEvent(int eventType){
 		return true;
 	}
@@ -206,6 +207,14 @@ public abstract class AbstractManagementSystem {
 			}
 		}
 		return false;
+	}
+	
+	public SchedulingPlugin getSchedulingPlugin() {
+		return schedulingPlugin;
+	}
+
+	public void setSchedulingPlugin(SchedulingPlugin schedulingPlugin) {
+		this.schedulingPlugin = schedulingPlugin;
 	}
 	
 	public abstract WorkloadUnitHandler getWorkloadUnitHandler();

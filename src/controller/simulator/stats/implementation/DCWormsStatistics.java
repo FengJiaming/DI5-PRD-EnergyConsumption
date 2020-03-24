@@ -1,10 +1,13 @@
 package controller.simulator.stats.implementation;
 
+import java.awt.Paint;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -13,8 +16,34 @@ import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartRenderingInfo;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.AxisLocation;
+import org.jfree.chart.axis.DateAxis;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.encoders.ImageFormat;
+import org.jfree.chart.labels.CategoryItemLabelGenerator;
+import org.jfree.chart.labels.ItemLabelAnchor;
+import org.jfree.chart.labels.ItemLabelPosition;
+import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.CombinedDomainXYPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.category.CategoryItemRenderer;
+import org.jfree.chart.renderer.xy.XYStepAreaRenderer;
+import org.jfree.chart.title.TextTitle;
+import org.jfree.chart.title.Title;
+import org.jfree.data.time.FixedMillisecond;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+import org.jfree.ui.TextAnchor;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeUtilsExt;
 
@@ -46,6 +75,11 @@ import model.scheduling.tasks.Job;
 import model.scheduling.tasks.JobInterface;
 import controller.simulator.stats.implementation.out.AbstractStringSerializer;
 import controller.simulator.stats.implementation.out.StringSerializer;
+import csiro.mit.utils.jfreechart.timetablechart.TimetableChartFactory;
+import csiro.mit.utils.jfreechart.timetablechart.data.Timetable;
+import csiro.mit.utils.jfreechart.timetablechart.data.TimetableEventGroup;
+import csiro.mit.utils.jfreechart.timetablechart.data.TimetableEventSource;
+import csiro.mit.utils.jfreechart.timetablechart.renderer.TimetableRenderer;
 import eduni.simjava.Sim_stat;
 import gridsim.DCWormsConstants;
 import gridsim.GenericUser;
@@ -68,6 +102,7 @@ public class DCWormsStatistics implements SimulationStatistics {
 	protected static final String RESOURCEUTILIZATION_STATISTICS_OUTPUT_FILE_NAME = "ResourceUtilization.txt";
 	protected static final String ENERGYUSAGE_STATISTICS_OUTPUT_FILE_NAME = "EnergyUsage.txt";
 
+	protected static final String DIAGRAMS_FILE_NAME_PREFIX = "Chart_";
 	protected static final String STATS_FILE_NAME_PREFIX = "Stats_";
 
 	protected static final String TASK_SEPARATOR = "	";
@@ -92,6 +127,11 @@ public class DCWormsStatistics implements SimulationStatistics {
 	protected Map<String, List<ResStat>> basicResStats;
 	protected Map<String, Double> basicResLoad;
 	
+	protected Map<String, TimetableEventSource> peGanttMap;
+	protected Map<String, TimetableEventGroup> taskGanttMap;
+	
+	protected Timetable ganttDiagramTimetable;
+	protected Map<ResourceType, List<XYDataset>> resourcePowerUsageDiagrams;
 	//TASKS
 	protected int numOfdelayedTasks = 0;
 	protected int numOfNotExecutedTasks = 0;
@@ -141,6 +181,12 @@ public class DCWormsStatistics implements SimulationStatistics {
 		gatherTaskStatistics();
 		e = System.currentTimeMillis();
 		log.info("time in sec: " + ((e - s) / MILLI_SEC));
+		
+		log.info("saveSimulationStatistics");
+		s = System.currentTimeMillis();
+		saveSimulationStatistics();
+		e = System.currentTimeMillis();
+		log.info("time in sec: " + ((e - s) / MILLI_SEC));
 
 	}
 
@@ -155,7 +201,27 @@ public class DCWormsStatistics implements SimulationStatistics {
 		statsData = new HashMap<String, GSSAccumulator>();
 	}
 
+	public void saveSimulationStatistics() {
+		PrintStream simulationStatsFile = null;
+		if (configuration.createsimulationstatistics) {
+			try {
+				File file = new File(outputFolderName + STATS_FILE_NAME_PREFIX + simulationIdentifier + "_"
+						+ SIMULATION_STATISTICS_OUTPUT_FILE_NAME);
+				simulationStatsFile = new PrintStream(new FileOutputStream(file));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		if (simulationStatsFile != null) {
+			Object txt = accStats.serialize(this.serializer);
+			simulationStatsFile.println(txt);
+		}
 
+		if (simulationStatsFile != null) {
+			simulationStatsFile.close();
+		}
+	}
+	
 	/************* RESOURCE STATISTICS SECTION **************/
 	private void gatherResourceStatistics() {
 		
@@ -165,8 +231,19 @@ public class DCWormsStatistics implements SimulationStatistics {
 			List<Stats> cStats = new ArrayList<Stats>();
 			cStats.add(Stats.textLoad);
 			cStats.add(Stats.textEnergy);
+			if(ArrayUtils.contains(configuration.resForEnergyChart, resourceName))
+				cStats.add(Stats.chartEnergy);
 			type_stats.put(resourceName, cStats);
 		}		
+		
+		peGanttMap = new HashMap<String, TimetableEventSource>();
+		taskGanttMap = new HashMap<String, TimetableEventGroup>();
+		
+		resourcePowerUsageDiagrams = new HashMap<ResourceType, List<XYDataset>>();
+		
+		ganttDiagramTimetable = new Timetable(new FixedMillisecond(
+				startSimulationTime), new FixedMillisecond(endSimulationTime));
+		
 		PrintStream resourceLoadStatsFile = null;
 		try {
 			File file = new File(outputFolderName + STATS_FILE_NAME_PREFIX
@@ -192,6 +269,10 @@ public class DCWormsStatistics implements SimulationStatistics {
 		peStatsPostProcessing(basicResStats);
 		basicResLoad = calculatePELoad( basicResStats);
 
+		if (configuration.creatediagrams_gantt) {
+			createPEGanttDiagram(basicResStats);
+		}
+		
 		for(String resourceName: resourceController.getComputingResourceLayers()){
 			List<ComputingResource> resources = null;
 
@@ -245,11 +326,18 @@ public class DCWormsStatistics implements SimulationStatistics {
 							energyStatsFile.println(txt);
 						}
 					}
+					if(type_stats.get(resourceName).contains(Stats.chartEnergy)){
+
+						if (configuration.creatediagrams_respowerusage) {
+							createResourceEnergyDiagramData(energyUsage);
+						}
+					}
 					
 				}
 			}
 		}
 		
+		saveResourceGanttDiagrams();
 		createAccumulatedResourceSimulationStatistic();
 		
 		if (energyStatsFile != null) {
@@ -446,7 +534,193 @@ public class DCWormsStatistics implements SimulationStatistics {
 		return resEnergyUsage;
 	}
 
+	private void createResourceEnergyDiagramData(ResourceDynamicStats powerConsumptionStats) {
 
+		XYDataset dataset = createResourceChartDataSet(powerConsumptionStats,
+				startSimulationTime, endSimulationTime);
+		
+		List<XYDataset> energyDiagramData = resourcePowerUsageDiagrams.get(powerConsumptionStats.getResourceType());
+		if(energyDiagramData == null){
+			energyDiagramData = new ArrayList<XYDataset>();
+			energyDiagramData.add(dataset);
+			resourcePowerUsageDiagrams.put(powerConsumptionStats.getResourceType(), energyDiagramData);
+		} else {
+			energyDiagramData.add(dataset);
+		}
+	}
+	
+	private XYDataset createResourceChartDataSet(
+			ResourceDynamicStats dynamicStats, long start, long end) {
+
+		Map<Long, Double> chartData = getResourceChartRawData(dynamicStats);
+		XYSeriesCollection dataset = new XYSeriesCollection();
+		XYSeries data = new XYSeries(dynamicStats.getResourceName(), false, true);
+		data.add(start, 0);
+		for (Long key : chartData.keySet()) {
+			Double val = chartData.get(key);
+			if(key >= startSimulationTime)
+				data.add(key, val);
+		}
+		data.add(end, 0);
+		dataset.addSeries(data);
+		return dataset;
+	}
+	
+	private Map<Long, Double> getResourceChartRawData(
+			ResourceDynamicStats dynamicStats) {
+
+		Map<Long, Double> history = dynamicStats.getHistory();
+		Map<Long, Double> chartData = new TreeMap<Long, Double>();
+		for (Long key : history.keySet()) {
+			chartData.put(key, history.get(key));
+		}
+		return chartData;
+	}
+	
+	private boolean saveResourceGanttDiagrams() {
+
+		if (!generateDiagrams)
+			return false;
+
+		String fileName = new File(outputFolderName, DIAGRAMS_FILE_NAME_PREFIX
+				+ simulationIdentifier + "_").getAbsolutePath();
+
+		String chartName = "Gantt diagram for "
+				+ DataCenterWorkloadSimulator.SIMULATOR_NAME;
+		String simulationTime = "Simulation time";
+		Title subtitle = new TextTitle("created for \"" + simulationIdentifier
+				+ "\" at " + Calendar.getInstance().getTime().toString());
+
+		JFreeChart peDiagram = null;
+		if (configuration.creatediagrams_gantt) {
+			peDiagram = getPEGanttDiagram(chartName, subtitle,
+					simulationTime);
+			if (!saveCategoryChart(peDiagram, fileName + "Gantt",
+					"{0}"))
+				return false;
+		}
+		
+		chartName = "Energy usage diagram for "
+			+ DataCenterWorkloadSimulator.SIMULATOR_NAME;
+		JFreeChart resourceEnergyDiagram = null;
+		if (configuration.creatediagrams_respowerusage) {
+			String axisName = "POWER [W]";
+			for(ResourceType resType: resourcePowerUsageDiagrams.keySet()){
+				resourceEnergyDiagram = getResourceDynamicDiagram(resourcePowerUsageDiagrams.get(resType), simulationTime, chartName,
+						subtitle, axisName);
+				if (!saveXYPlotChart(resourceEnergyDiagram, fileName + "Energy - "+resType.getName()))
+					return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	private JFreeChart getPEGanttDiagram(String chartName, Title subtitle,
+			String simulationTime) {
+		String processors = "Processing Elements";
+		boolean tooltip = true;
+		boolean legend = true;
+		JFreeChart chart = TimetableChartFactory.createTimetableChart(
+				chartName, processors, simulationTime,
+				ganttDiagramTimetable, legend, tooltip);
+		chart.addSubtitle(subtitle);
+		TimetableRenderer rend = (TimetableRenderer) chart.getCategoryPlot()
+				.getRenderer();
+		rend.setBackgroundBarPaint(null);
+		return chart;
+	}
+	
+	private JFreeChart getResourceDynamicDiagram(List<XYDataset> diagramData, String simulationTime, String chartName, Title subtitle,
+			String axisName) {
+		boolean urls = false;
+		boolean tooltip = true;
+		boolean legend = true;
+		CombinedDomainXYPlot cPlot = new CombinedDomainXYPlot();
+		DateAxis xAxis = new DateAxis(simulationTime);
+		JFreeChart chart = null;
+
+		for (XYDataset dataset : diagramData) {
+			JFreeChart tChart = ChartFactory.createXYStepAreaChart("", "",
+				null, dataset, PlotOrientation.VERTICAL, legend, tooltip, urls);
+			XYPlot tPlot = tChart.getXYPlot();
+			NumberAxis yAxis = new NumberAxis(axisName);
+			yAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+			tPlot.setRangeAxis(yAxis);
+			XYStepAreaRenderer rend = (XYStepAreaRenderer) tPlot.getRenderer();
+			rend.setShapesVisible(false);
+			cPlot.add(tPlot);
+		}
+		cPlot.setDomainAxis(xAxis);
+		cPlot.setDomainAxisLocation(AxisLocation.TOP_OR_LEFT);
+		chart = new JFreeChart(chartName, cPlot);
+		chart.addSubtitle(subtitle);
+		return chart;
+	}
+	
+	private boolean saveXYPlotChart(JFreeChart c, String fileName) {
+		c.setNotify(false);
+		c.setAntiAlias(true);
+		c.setTextAntiAlias(true);
+		c.setBorderVisible(false);
+
+		int height = 900;
+
+		CombinedDomainXYPlot cPlot = (CombinedDomainXYPlot) c.getPlot();
+		int nPlots = cPlot.getSubplots().size();
+
+		if (nPlots > 3) {
+			height = nPlots * 300;
+		}
+		int width = GANTT_WIDTH;
+
+		if (configuration.creatediagrams_resources_scale != -1)
+			width = (int) ((endSimulationTime - startSimulationTime) * configuration.creatediagrams_resources_scale);
+		ChartRenderingInfo info = new ChartRenderingInfo();
+		File f = new File(fileName + "." + ImageFormat.PNG);
+		final String dcwormsSubtitle = "Created by "
+				+ DataCenterWorkloadSimulator.SIMULATOR_NAME
+				+ " http://www.gssim.org/";
+		c.addSubtitle(new TextTitle(dcwormsSubtitle));
+		boolean encodeAlpha = false;
+		int compression = 9;// values 0-9
+		try {
+			ChartUtilities.saveChartAsPNG(f, c, width, height, info,
+					encodeAlpha, compression);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	private void createPEGanttDiagram(Map<String,List<ResStat>> basicResStats) {
+		for(String peName: basicResStats.keySet()){
+			TimetableEventSource pe = new TimetableEventSource(peName);
+			ganttDiagramTimetable.addEventSource(pe);
+			peGanttMap.put(peName, pe);
+			for(ResStat resStat: basicResStats.get(peName)){
+
+				pe = peGanttMap.get(resStat.getPeName());
+				if(pe == null){
+					//pe = new TimetableEventSource(resStat.getPeName());
+				//	ganttDiagramPeTimetable.addEventSource(pe);
+				//	peGanttMap.put(resStat.getPeName(), pe);
+				}
+				TimetableEventGroup task = taskGanttMap.get(resStat.getTaskID());
+				long startDate = resStat.getStartDate();
+				long endDate = resStat.getEndDate();
+				if (task == null) {
+					task = new TimetableEventGroup(resStat.getTaskID());
+					taskGanttMap.put(resStat.getTaskID(), task);
+					ganttDiagramTimetable.addEventGroup(task);
+				}
+				ganttDiagramTimetable.addEvent(pe, task,
+						new FixedMillisecond(startDate), new FixedMillisecond(endDate));
+			}
+		}
+	}
+	
 	//TO DO
 	private void createAccumulatedResourceSimulationStatistic() {
 
@@ -520,7 +794,6 @@ public class DCWormsStatistics implements SimulationStatistics {
 		}
 		return meanValue;
 	}
-	
 	
 
 	/************* TASK STATISTICS SECTION **************/
@@ -650,8 +923,77 @@ public class DCWormsStatistics implements SimulationStatistics {
 		maxCj = Math.max(maxCj, taskStats.getCompletionTime());
 	}
 
+	private boolean saveCategoryChart(JFreeChart c, String fileName, String labelFormat) {
+		c.setNotify(false);
+		c.setAntiAlias(true);
+		c.setTextAntiAlias(true);
+		c.setBorderVisible(false);
 
+		CategoryPlot categoryplot = (CategoryPlot) c.getPlot();
+		categoryplot.setDomainGridlinesVisible(true);
 
+		if (labelFormat != null) {
+			CategoryItemRenderer rend = categoryplot.getRenderer();
+			rend.setBaseItemLabelsVisible(true);
+			ItemLabelPosition position = new ItemLabelPosition(ItemLabelAnchor.CENTER, TextAnchor.CENTER);
+			rend.setBasePositiveItemLabelPosition(position);
+			NumberFormat nf = NumberFormat.getInstance();
+			CategoryItemLabelGenerator gen = new StandardCategoryItemLabelGenerator(labelFormat, nf);
+			rend.setBaseItemLabelGenerator(gen);
+		}
+
+		int rows = c.getCategoryPlot().getDataset().getColumnKeys().size();
+
+		int height = 900;
+		if (rows > 45) {
+			height = rows * 20;
+		}
+		int width = calculateChartWidth(c);
+		CategoryItemRenderer rend = c.getCategoryPlot().getRenderer();
+
+		for (int i = 0; i < c.getCategoryPlot().getDataset().getRowKeys().size(); i++) {
+			Paint collor = c.getCategoryPlot().getDrawingSupplier().getNextPaint();
+			rend.setSeriesOutlinePaint(i, collor);
+			rend.setSeriesPaint(i, collor);
+		}
+
+		ChartRenderingInfo info = new ChartRenderingInfo();
+		// info.setEntityCollection(null);
+		File f = new File(fileName + "." + ImageFormat.PNG);
+		final String dcwormsSubtitle = "Created by " + DataCenterWorkloadSimulator.SIMULATOR_NAME + " http://www.gssim.org/";
+		c.addSubtitle(new TextTitle(dcwormsSubtitle));
+		boolean encodeAlpha = false;
+		int compression = 9;
+		try {
+			ChartUtilities.saveChartAsPNG(f, c, width, height, info, encodeAlpha, compression);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		} catch (Exception e) {
+			if (log.isErrorEnabled())
+				log.error("The png file (" + fileName
+						+ ")\nwill not be generated (It can be too large data size problem)", e);
+		} catch (Throwable t) {
+			log.error("The png file (" + fileName + ")\nwill not be generated (It can be too large data size problem)",
+					t);
+		}
+
+		return true;
+	}
+
+	private int calculateChartWidth(JFreeChart c) {
+
+		int ganttWidth = GANTT_WIDTH;
+		int rows = c.getCategoryPlot().getDataset().getColumnKeys().size();
+
+		if (rows > 45) {
+			int height = rows * 20;
+			ganttWidth = Math.max((int) (height * 1.5), GANTT_WIDTH);
+		}
+		return ganttWidth;
+	}
+	
 	private static class JobIdComparator implements Comparator<JobInterface<?>> {
 
 		public int compare(JobInterface<?> o1, JobInterface<?> o2) {
@@ -753,11 +1095,6 @@ class ResStat{
 
 enum Stats{
 	textLoad,
-	chartLoad,
 	textEnergy,
-	chartEnergy,
-	textAirFlow,
-	chartAirFlow,
-	textTemperature,
-	chartTemperature;
+	chartEnergy;
 }

@@ -1,19 +1,15 @@
 package controller;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintStream;
 
 import app.ConfigurationOptions;
-import app.MainApplication;
 import controller.simulator.DataCenterWorkloadSimulator;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Menu;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -51,11 +47,16 @@ public class MainViewController {
 
 	@FXML
 	private Menu MenuDEBB;
+	
+	@FXML
+    private ComboBox<String> policyBox;
+	@FXML
+    private CheckBox isDebugCheckBox;
 
 	private Object[] functionList;
 
 	public void init(Object[] functionList) {
-		DEBBPath.setText("example/experiment1/resources1.xml");
+		DEBBPath.setText("example/xml/2020-03-15-02-43-44/PLMXML_PolytechPolyTestroom_20.xml");
 		swfPath.setText("example/experiment1/workload.swf");
 		this.functionList = functionList;
 	}
@@ -87,8 +88,12 @@ public class MainViewController {
 	@FXML
 	void runButtonClick(ActionEvent event) {
 		System.out.println(DEBBPath.getText());
+		boolean isDebug = false;
+		if (isDebugCheckBox.isSelected()) {
+			isDebug = true;
+		}
 		ConfigurationOptions configurationOptions = ConfigurationOptions.getConfiguration(DEBBPath.getText(),
-				swfPath.getText(), "FCFS");
+				swfPath.getText(), policyBox.getValue(), isDebug);
 		DataCenterWorkloadSimulator simulator = new DataCenterWorkloadSimulator();
 		console.setText("");
 		System.setOut(new PrintStream(new Console(console)));
@@ -110,4 +115,8 @@ public class MainViewController {
 //		((AnchorPane)functionList[1]).setVisible(true);
 	}
 
+	@FXML
+	public void gotoDebbConfigurator(ActionEvent event) throws Exception {
+		
+	}
 }

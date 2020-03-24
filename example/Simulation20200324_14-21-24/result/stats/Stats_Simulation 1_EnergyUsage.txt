@@ -1,0 +1,34 @@
+resourceName;timestamp;consumption;
+
+ComputingNode_0;1225666800000;750;
+ComputingNode_0;1225724500000;750;
+mean: 750.0 sum: 12020.833333333334
+
+ComputingNode_1;1225666800000;750;
+ComputingNode_1;1225724500000;750;
+mean: 750.0 sum: 12020.833333333334
+
+ComputingNode_2;1225666800000;850;
+ComputingNode_2;1225724500000;850;
+mean: 850.0 sum: 13623.611111111111
+
+ComputingNode_3;1225666800000;850;
+ComputingNode_3;1225724500000;850;
+mean: 850.0 sum: 13623.611111111111
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

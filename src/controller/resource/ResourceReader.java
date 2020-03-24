@@ -55,21 +55,23 @@ public class ResourceReader {
 	
 	private Log log = LogFactory.getLog(ResourceReader.class);
 	
-	protected String resDescFileName;
+	protected String resdescFilePath;
 
 	protected ResourceCalendar resourceCalendar;
 	protected List<Initializable> toInit = new ArrayList<Initializable>();
 	
 	private ExecutionTimeEstimationPlugin execTimeEstimationPlugin;
 	private String globalSchedulingPluginName;
+	private String localSchedulingPluginName;
 	
 	private Set<String> compResLayers;
 	
 	public ResourceReader(ConfigurationOptions options) throws IOException {
 
-		resDescFileName = options.resdescFileName;
-//		globalSchedulingPluginName = "example.globalplugin.GridFCFSRoundRobinPlugin";
-		globalSchedulingPluginName = options.schedulingplugin;
+		resdescFilePath = options.resdescFilePath;
+		globalSchedulingPluginName = "example.globalplugin.GridFCFSRoundRobinPlugin";
+		localSchedulingPluginName = matchSchedulingPlugin(options.schedulingplugin);
+		
 		prepareCalendar();
 		compResLayers = new LinkedHashSet<String>();
 	}
@@ -77,7 +79,7 @@ public class ResourceReader {
 	public ResourceController read() throws MarshalException, ValidationException, FileNotFoundException, Exception,
 			UnknownParameter {
 
-		File file = new File(resDescFileName);
+		File file = new File(resdescFilePath);
 		Environment env = Environment.unmarshal(new FileReader(file));
 		
 		log.info("started creating environment description");
@@ -251,6 +253,8 @@ public class ResourceReader {
 		Scheduler mainScheduler = null;
 		if(mainSchedulers.size() == 1 /*&& mainSchedulers.get(0).get_name().equals("grid")*/){
 			mainScheduler = mainSchedulers.get(0);
+			mainScheduler.setSchedulingPlugin((SchedulingPlugin) InstanceFactory.createInstance(localSchedulingPluginName,
+					SchedulingPlugin.class));
 		}
 		else{
 			SchedulingPlugin schedulingPlugin = (SchedulingPlugin) InstanceFactory.createInstance(globalSchedulingPluginName,
@@ -345,6 +349,26 @@ public class ResourceReader {
 		return scheduler;
 	}
 	
+	private String matchSchedulingPlugin(String policy) {
+		String schedulingPluginName = null;
+		switch (policy){
+			case "FCFS_BestFit":
+				schedulingPluginName = "example.localplugin.FCFSBF_LocalPlugin";
+				break;
+			case "LCFS_BestFit" :
+				schedulingPluginName = "example.localplugin.LCFS_LocalPlugin";
+				break;
+			case "LJF_BestFit" :
+				schedulingPluginName = "example.localplugin.LJF_LocalPlugin";
+				break;
+			case "SJF_BestFit" :
+				schedulingPluginName = "example.localplugin.SJF_LocalPlugin";
+				break;
+			case "FCFS_BestFit_NodeManagement" :
+				schedulingPluginName = "example.localplugin.FCFSBF_NodePowerManagementClusterPlugin";
+		}
+		return schedulingPluginName;
+	}
 	/*private List<ComputingResource> matchCompResourcesForScheduler(List<ComputingResource> mainCompResourceList, List<String> resIdList, boolean include){
 		List<ComputingResource> compResources = new ArrayList<ComputingResource>();
 		for(ComputingResource mainCompRes: mainCompResourceList){

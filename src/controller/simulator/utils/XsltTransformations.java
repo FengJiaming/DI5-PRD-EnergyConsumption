@@ -31,8 +31,8 @@ public class XsltTransformations {
 			//"org.apache.xalan.xsltc.trax.TransformerFactoryImpl";
 			"org.apache.xalan.processor.TransformerFactoryImpl";
 		Properties props = System.getProperties();
-		props.put(key, value);
-		System.setProperties(props);
+//		props.put(key, value);
+//		System.setProperties(props);
 		
 		INSTALLDIR = System.getProperty("gssim.install.dir");
 		if(INSTALLDIR != null)

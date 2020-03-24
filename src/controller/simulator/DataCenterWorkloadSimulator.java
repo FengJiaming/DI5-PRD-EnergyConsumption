@@ -17,6 +17,7 @@ import org.joda.time.DateTimeUtilsExt;
 import app.ConfigurationOptions;
 import controller.ResourceController;
 import controller.resource.ResourceReader;
+import controller.resource.translator.DEBBTranslator;
 import controller.simulator.stats.AccumulatedStatistics;
 import controller.simulator.stats.implementation.DCWormsStatistics;
 import controller.simulator.utils.LogErrStream;
@@ -30,6 +31,15 @@ import cern.jet.random.engine.MersenneTwister64;
 
 public class DataCenterWorkloadSimulator{
 
+	/**
+	 * The name of the simulator application
+	 */
+	public static final String SIMULATOR_NAME = "Data Center Workload Simulator";
+	
+	/**
+	 * Stores the statistical data of last run of the simulator (it may consist
+	 * of several runs of simulations)
+	 */
 	protected static AccumulatedStatistics accumulatedStatistics;
 
 	protected static int simulationRunNumber = 0;
@@ -124,6 +134,10 @@ public class DataCenterWorkloadSimulator{
 		GridSimWrapper.init(numUser, calendar, traceFlag, excludeFromFile, excludeFromProcessing, null);
 		DateTimeUtilsExt.initVirtualTimeAccess(calendar);
 
+		if(!options.isDebug) {
+			String[] args = {options.debbPLXMLPath, options.resdescFilePath};
+			DEBBTranslator.translate(args);
+		}
 		ResourceReader resourceReader = new ResourceReader(options);
 		ResourceController rc = resourceReader.read();
 
@@ -181,7 +195,7 @@ public class DataCenterWorkloadSimulator{
 		String prefix = "example";
 		Date date = new Date();
         SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HH-mm-ss");
-        String simulationName= "/Experiment" + sdf.format(date);
+        String simulationName= "/Simulation" + sdf.format(date);
         
 		statsOutputPath = prefix + File.separator + simulationName + options.statsOutputSubfolderNameCreate;
 //		statsOutputPath = prefix + File.separator + options.statsOutputSubfolderNameCreate;

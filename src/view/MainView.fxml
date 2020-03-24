@@ -22,16 +22,21 @@
                   <Label layoutX="22.0" layoutY="178.0" text="Select workload" />
                   <Button fx:id="DEBBButton" layoutX="331.0" layoutY="67.0" mnemonicParsing="false" onAction="#DEBBChooseClick" text="Choose" />
                   <Button fx:id="swfButton" layoutX="331.0" layoutY="193.0" mnemonicParsing="false" onAction="#swfButtonClick" text="Choose" />
-                  <ComboBox layoutX="22.0" layoutY="374.0" prefHeight="23.0" prefWidth="206.0">
+                  <ComboBox fx:id="policyBox" layoutX="22.0" layoutY="374.0" prefHeight="23.0" prefWidth="206.0">
                   	<items>
         				<FXCollections fx:factory="observableArrayList">
-            				<String fx:value="FCFS" />
+            				<String fx:value="FCFS_BestFit" />
+            				<String fx:value="LCFS_BestFit" />
+            				<String fx:value="LJF_BestFit" />
+            				<String fx:value="SJF_BestFit" />
+            				<String fx:value="FCFS_BestFit_NodeManagement" />
         				</FXCollections>
     				</items>
     				<value>
-   						<String fx:value="FCFS" />
+   						<String fx:value="FCFS_BestFit" />
    					</value>
     			  </ComboBox>
+                  <CheckBox fx:id="isDebugCheckBox" layoutX="22.0" layoutY="103.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="92.0" text="Debug" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="401.0" prefWidth="372.0">
@@ -42,8 +47,8 @@
             </AnchorPane>
         </items>
       </SplitPane>
-      <Button layoutX="331.0" layoutY="14.0" mnemonicParsing="false" text="DEBB Configurator" />
-      <Button fx:id="workGenerator" layoutX="197.0" layoutY="14.0" mnemonicParsing="false" onAction="#gotoWorkGenWindow" text="Workload Generator" />
-      <Button fx:id="mainViewButton" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#gotoSimulationWindow" prefHeight="23.0" prefWidth="174.0" text="Simulation Arrangement" />
+      <Button fx:id="mainViewButton" layoutX="40.0" layoutY="9.0" mnemonicParsing="false" onAction="#gotoSimulationWindow" prefHeight="23.0" prefWidth="174.0" text="Simulation Arrangement" />
+      <Button fx:id="workGenerator" layoutX="228.0" layoutY="9.0" mnemonicParsing="false" onAction="#gotoWorkGenWindow" text="Workload Generator" />
+      <Button fx:id="debbConfigurator" layoutX="374.0" layoutY="9.0" mnemonicParsing="false" onAction="#gotoDebbConfigurator" text="DEBB Configurator" />
    </children>
 </AnchorPane>

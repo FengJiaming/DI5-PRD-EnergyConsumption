@@ -1069,7 +1069,7 @@
       </computingResource>
       <scheduler class="Cluster" name="cluster">
          <schedulingPlugin>
-            <name>example.localplugin.FCFSBF_LocalPlugin</name>
+            <name>example.localplugin.FCFSBF_NodePowerManagementClusterPlugin</name>
          </schedulingPlugin>
          <managedComputingResources include="false"/>
       </scheduler>

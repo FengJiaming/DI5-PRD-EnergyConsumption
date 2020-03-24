@@ -43,12 +43,13 @@ public class DEBBTranslator {
 	// 3) Where to take information about sensors? There is something in PLM XML and DEBB Component file(s)
 
 	private static final String DEFAULT_DCWORMS_OUTPUT_FILE_NAME = "example/xml/DCWORMS_TEST.xml";
-	// private static final String DEFAULT_INPUT_FILE_NAME =
-	// "xml/PLMXML_PSNCRECS.xml";
-//	private static final String DEFAULT_PLMXML_INPUT_FILE_NAME = "example/xml/PLMXML_HLRSSmallServerRoom.xml";
+	// private static final String DEFAULT_INPUT_FILE_NAME =// "xml/PLMXML_PSNCRECS.xml";
 	private static final String DEFAULT_PLMXML_INPUT_FILE_NAME = "example/xml/2020-03-15-02-43-44/PLMXML_PolytechPolyTestroom_20.xml";
-	private static final String DEFAULT_DEBB_COMPONENT_INPUT_FILE_NAME = "example/xml/debb_component_hlrs_smallServerRoom.xml";
+//	private static final String DEFAULT_DEBB_COMPONENT_INPUT_FILE_NAME = "example/xml/debb_component_hlrs_smallServerRoom.xml";
+	private static final String DEFAULT_DEBB_COMPONENT_INPUT_FILE_NAME = null;
+	
 	private static final String DEFAULT_SCHEMA_NAME = "DCWormsResSchema.xsd";
+	
 	private static final String DEFAULT_DEBB_COMPONENT_TRANSFORMATION_FILE_NAME = "example/xml/DEBBComponentTranslator.xsl";
 	private static final String DEFAULT_NAMESPACE = "http://www.w3.org/2001/XMLSchema-instance";
 	
@@ -78,7 +79,7 @@ public class DEBBTranslator {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void translate(String[] args) {
 		String inputFileName = DEFAULT_PLMXML_INPUT_FILE_NAME;
 		String outputFileName = DEFAULT_DCWORMS_OUTPUT_FILE_NAME;
 
@@ -97,7 +98,7 @@ public class DEBBTranslator {
 				}
 			}
 		}
-		BasicConfigurator.configure();
+//		BasicConfigurator.configure();
 
 		logger.debug("inputFileName=" + inputFileName);
 		logger.debug("outputFileName=" + outputFileName);

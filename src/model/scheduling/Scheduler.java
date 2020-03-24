@@ -26,6 +26,7 @@ import model.resources.units.ResourceUnit;
 import model.resources.units.ResourceUnitName;
 import model.scheduling.manager.resources.ManagedComputingResources;
 import model.scheduling.manager.resources.ManagedResources;
+import model.scheduling.plugin.SchedulingPlugin;
 import model.scheduling.policy.AbstractManagementSystem;
 import model.scheduling.queue.QueueDescription;
 import model.scheduling.queue.TaskQueue;
@@ -298,5 +299,9 @@ public class Scheduler extends GridSimCore implements Resource, Initializable{
 
 	public void initiate() {
 
+	}
+	
+	public void setSchedulingPlugin(SchedulingPlugin plugin) {
+		managementSystem.setSchedulingPlugin(plugin);
 	}
 }

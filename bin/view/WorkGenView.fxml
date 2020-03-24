@@ -412,6 +412,6 @@
       </Pane>
       <Button fx:id="mainViewButton" layoutX="40.0" layoutY="9.0" mnemonicParsing="false" onAction="#gotoSimulationWindow" prefHeight="23.0" prefWidth="174.0" text="Simulation Arrangement" />
       <Button fx:id="workGenerator" layoutX="228.0" layoutY="9.0" mnemonicParsing="false" onAction="#gotoWorkGenWindow" text="Workload Generator" />
-      <Button layoutX="374.0" layoutY="9.0" mnemonicParsing="false" text="DEBB Configurator" />
+      <Button fx:id="debbConfigurator" layoutX="374.0" layoutY="9.0" mnemonicParsing="false" onAction="#gotoDebbConfigurator" text="DEBB Configurator" />
    </children>
 </AnchorPane>
