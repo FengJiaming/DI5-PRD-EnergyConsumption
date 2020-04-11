@@ -1,0 +1,14 @@
+Resource name	mean	stdev	variance	minimum	maximum	sum	count	
+Delayed tasks;0;0;0;0;0;0;1;
+Failed requests (tasks);0;0;0;0;0;0;1;
+Makespan;46,803;0;0;46,803;46,803;46,803;1;
+Resources queue length;0.998;0;0;0.998;0.998;0.998;1;
+Resources total load;0;0;0;0;0;0;1;
+Energy usage;521.144;0;0;521.144;521.144;2,605.722;5;
+Task completion time;10,526.923;16,252.026;264,128,341.917;2;46,803;136,850;13;
+Task execution time;3.846;2.413;5.822;2;9;50;13;
+Task start time;0;0;0;0;0;0;13;
+Task flow time;3.846;2.413;5.822;2;9;50;13;
+Task waiting time;0;0;0;0;0;0;13;
+Task lateness;0;0;0;0;0;0;13;
+Task tardiness;0;0;0;0;0;0;13;

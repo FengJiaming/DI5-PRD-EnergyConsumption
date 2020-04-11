@@ -1,8 +1,10 @@
 package controller;
 
+import java.awt.Desktop;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.net.URI;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -2173,7 +2175,7 @@ public class WorkGenViewController {
 
 	@FXML
 	public void gotoDebbConfigurator(ActionEvent event) throws Exception {
-		
+		Desktop.getDesktop().browse(new URI("http://localhost/DEBBConfigurator/web/app_dev.php/en/node/index"));
 	}
 	
 	@FXML

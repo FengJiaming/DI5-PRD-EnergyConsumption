@@ -1,0 +1,126 @@
+resourceName;timestamp;utilization;
+dataCenter;1225666800000;0.5;
+dataCenter;1225670400000;0.75;
+dataCenter;1225674000000;0.5;
+dataCenter;1225675800000;0.75;
+dataCenter;1225677600000;0.438;
+dataCenter;1225678400000;0.688;
+dataCenter;1225681200000;0.562;
+dataCenter;1225683000000;0.375;
+dataCenter;1225684800000;0.312;
+dataCenter;1225685600000;0.125;
+dataCenter;1225686600000;0.062;
+dataCenter;1225692800000;0;
+mean: 0.44134615384615383
+
+Rack_0;1225666800000;0.5;
+Rack_0;1225670400000;0.75;
+Rack_0;1225674000000;0.5;
+Rack_0;1225675800000;0.75;
+Rack_0;1225677600000;0.438;
+Rack_0;1225678400000;0.688;
+Rack_0;1225681200000;0.562;
+Rack_0;1225683000000;0.375;
+Rack_0;1225684800000;0.312;
+Rack_0;1225685600000;0.125;
+Rack_0;1225686600000;0.062;
+Rack_0;1225692800000;0;
+mean: 0.44134615384615383
+
+schedframe.resources.UserResourceType@7b2bbc3_0;1225666800000;1;
+schedframe.resources.UserResourceType@7b2bbc3_0;1225674000000;0.5;
+schedframe.resources.UserResourceType@7b2bbc3_0;1225675800000;1;
+schedframe.resources.UserResourceType@7b2bbc3_0;1225677600000;0.75;
+schedframe.resources.UserResourceType@7b2bbc3_0;1225678400000;1;
+schedframe.resources.UserResourceType@7b2bbc3_0;1225681200000;0.75;
+schedframe.resources.UserResourceType@7b2bbc3_0;1225683000000;0.5;
+schedframe.resources.UserResourceType@7b2bbc3_0;1225686600000;0.25;
+schedframe.resources.UserResourceType@7b2bbc3_0;1225692800000;0;
+mean: 0.6923076923076923
+
+schedframe.resources.UserResourceType@a1153bc_0;1225666800000;1;
+schedframe.resources.UserResourceType@a1153bc_0;1225674000000;0.5;
+schedframe.resources.UserResourceType@a1153bc_0;1225675800000;1;
+schedframe.resources.UserResourceType@a1153bc_0;1225677600000;0.75;
+schedframe.resources.UserResourceType@a1153bc_0;1225678400000;1;
+schedframe.resources.UserResourceType@a1153bc_0;1225681200000;0.75;
+schedframe.resources.UserResourceType@a1153bc_0;1225683000000;0.25;
+schedframe.resources.UserResourceType@a1153bc_0;1225685600000;0;
+mean: 0.5884615384615385
+
+schedframe.resources.UserResourceType@1aafa419_0;1225670400000;1;
+schedframe.resources.UserResourceType@1aafa419_0;1225677600000;0.25;
+schedframe.resources.UserResourceType@1aafa419_0;1225678400000;0.75;
+schedframe.resources.UserResourceType@1aafa419_0;1225684800000;0.5;
+schedframe.resources.UserResourceType@1aafa419_0;1225685600000;0;
+mean: 0.4846153846153846
+
+
+Processor_0;1225666800000;1;
+Processor_0;1225674000000;0;
+Processor_0;1225675800000;1;
+Processor_0;1225683000000;0;
+mean: 0.5538461538461539
+
+Processor_1;1225666800000;1;
+Processor_1;1225674000000;0;
+Processor_1;1225675800000;1;
+Processor_1;1225686600000;0;
+mean: 0.6923076923076923
+
+Processor_2;1225666800000;1;
+Processor_2;1225677600000;0;
+Processor_2;1225678400000;1;
+Processor_2;1225692800000;0;
+mean: 0.9692307692307693
+
+Processor_3;1225666800000;1;
+Processor_3;1225681200000;0;
+mean: 0.5538461538461539
+
+Processor_4;1225666800000;1;
+Processor_4;1225674000000;0;
+Processor_4;1225675800000;1;
+Processor_4;1225683000000;0;
+mean: 0.5538461538461539
+
+Processor_5;1225666800000;1;
+Processor_5;1225681200000;0;
+mean: 0.5538461538461539
+
+Processor_6;1225666800000;1;
+Processor_6;1225674000000;0;
+Processor_6;1225675800000;1;
+Processor_6;1225683000000;0;
+mean: 0.5538461538461539
+
+Processor_7;1225666800000;1;
+Processor_7;1225677600000;0;
+Processor_7;1225678400000;1;
+Processor_7;1225685600000;0;
+mean: 0.6923076923076923
+
+Processor_8;1225670400000;1;
+Processor_8;1225677600000;0;
+Processor_8;1225678400000;1;
+Processor_8;1225685600000;0;
+mean: 0.5538461538461539
+
+Processor_9;1225670400000;1;
+Processor_9;1225684800000;0;
+mean: 0.5538461538461539
+
+Processor_10;1225670400000;1;
+Processor_10;1225677600000;0;
+Processor_10;1225678400000;1;
+Processor_10;1225685600000;0;
+mean: 0.5538461538461539
+
+Processor_11;1225670400000;1;
+Processor_11;1225677600000;0;
+mean: 0.27692307692307694
+
+
+
+
+

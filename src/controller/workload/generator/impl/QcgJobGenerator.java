@@ -209,14 +209,7 @@ public class QcgJobGenerator extends AbstractJobGenerator implements JobGenerato
 			e2.printStackTrace();
 		}
 
-		// load workload configuration from xml file
-//		try {
-//			workload = WorkloadConfiguration.unmarshal(new FileReader(workloadConfigFileName));
-//		} catch (MarshalException e2) {
-//			e2.printStackTrace();
-//		} catch (ValidationException e2) {
-//			e2.printStackTrace();
-//		}
+
 		this.workload = workload;
 		// beginning of time FIXME the SIMULATION VIRTUAL TIME has not yet been tested
 		simulationVirtualTime = workload.getSimulationStartTime().getTime();

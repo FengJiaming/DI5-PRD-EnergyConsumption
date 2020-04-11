@@ -18,8 +18,6 @@ public class MainApplication extends Application {
     private Stage primaryStage;
     private AnchorPane mainLayout;
     private AnchorPane workLayout;
-    @FXML
-    private TextField DEBBPath;
     
     @Override
     public void start(Stage primaryStage) {

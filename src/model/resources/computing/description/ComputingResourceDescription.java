@@ -23,10 +23,10 @@ import model.resources.computing.profiles.energy.power.Transition;
 import model.resources.computing.profiles.energy.power.plugin.EnergyEstimationPlugin;
 import model.resources.units.ResourceUnit;
 import model.resources.units.ResourceUnitFactory;
+import plugins.energy.DefaultEnergyEstimationPlugin;
 import schemas.ComputingResource;
 import schemas.PowerUsage;
 import schemas.Profile;
-import example.energy.DefaultEnergyEstimationPlugin;
 
 public class ComputingResourceDescription extends ExecutingResourceDescription {
 

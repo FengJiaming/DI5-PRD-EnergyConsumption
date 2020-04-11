@@ -1,7 +1,9 @@
 package controller;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.PrintStream;
+import java.net.URI;
 
 import app.ConfigurationOptions;
 import controller.simulator.DataCenterWorkloadSimulator;
@@ -52,12 +54,16 @@ public class MainViewController {
     private ComboBox<String> policyBox;
 	@FXML
     private CheckBox isDebugCheckBox;
-
+	
+	@FXML
+    private TextArea schedulerText;
+	
 	private Object[] functionList;
 
 	public void init(Object[] functionList) {
 		DEBBPath.setText("example/xml/2020-03-15-02-43-44/PLMXML_PolytechPolyTestroom_20.xml");
 		swfPath.setText("example/experiment1/workload.swf");
+		schedulerText.setText("Tasks are scheduled in FCFS order and assigned to Nodes in the way BestFit.");
 		this.functionList = functionList;
 	}
 
@@ -117,6 +123,6 @@ public class MainViewController {
 
 	@FXML
 	public void gotoDebbConfigurator(ActionEvent event) throws Exception {
-		
+		Desktop.getDesktop().browse(new URI("http://localhost/DEBBConfigurator/web/app_dev.php/en/node/index"));
 	}
 }
