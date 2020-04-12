@@ -61,8 +61,8 @@ public class MainViewController {
 	private Object[] functionList;
 
 	public void init(Object[] functionList) {
-		DEBBPath.setText("example/xml/2020-03-15-02-43-44/PLMXML_PolytechPolyTestroom_20.xml");
-		swfPath.setText("example/experiment1/workload.swf");
+		DEBBPath.setText("test/DEBB/2020-03-15-02-43-44/PLMXML_PolytechPolyTestroom_20.xml");
+		swfPath.setText("test/normalResource/experiment1/workload.swf");
 		schedulerText.setText("Tasks are scheduled in FCFS order and assigned to Nodes in the way BestFit.");
 		this.functionList = functionList;
 	}
@@ -71,7 +71,7 @@ public class MainViewController {
 	void DEBBChooseClick(ActionEvent event) {
 		FileChooser DEBBChooser = new FileChooser();
 		DEBBChooser.setTitle("Load DEBB Config");
-		DEBBChooser.setInitialDirectory(new File("example/xml/"));
+		DEBBChooser.setInitialDirectory(new File("test/DEBB/"));
 		File file = DEBBChooser.showOpenDialog(root.getScene().getWindow());
 		if (file != null) {
 //			System.out.println(file.getPath());
@@ -83,7 +83,7 @@ public class MainViewController {
 	void swfButtonClick(ActionEvent event) {
 		FileChooser swfChooser = new FileChooser();
 		swfChooser.setTitle("Select workload");
-		swfChooser.setInitialDirectory(new File("example/"));
+		swfChooser.setInitialDirectory(new File("test/"));
 		File file = swfChooser.showOpenDialog(root.getScene().getWindow());
 		if (file != null) {
 			System.out.println(file.getPath());

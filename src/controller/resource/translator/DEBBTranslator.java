@@ -42,19 +42,19 @@ public class DEBBTranslator {
 	// 2) Where to take information about schedulers and estimators from?
 	// 3) Where to take information about sensors? There is something in PLM XML and DEBB Component file(s)
 
-	private static final String DEFAULT_DCWORMS_OUTPUT_FILE_NAME = "example/xml/DCWORMS_TEST.xml";
+	private static final String DEFAULT_DCWORMS_OUTPUT_FILE_NAME = "test/DEBB/resource/DCWORMS_TEST.xml";
 	// private static final String DEFAULT_INPUT_FILE_NAME =// "xml/PLMXML_PSNCRECS.xml";
-	private static final String DEFAULT_PLMXML_INPUT_FILE_NAME = "example/xml/2020-03-15-02-43-44/PLMXML_PolytechPolyTestroom_20.xml";
+	private static final String DEFAULT_PLMXML_INPUT_FILE_NAME = "test/DEBB/2020-03-15-02-43-44/PLMXML_PolytechPolyTestroom_20.xml";
 //	private static final String DEFAULT_DEBB_COMPONENT_INPUT_FILE_NAME = "example/xml/debb_component_hlrs_smallServerRoom.xml";
 	private static final String DEFAULT_DEBB_COMPONENT_INPUT_FILE_NAME = null;
 	
-	private static final String DEFAULT_SCHEMA_NAME = "DCWormsResSchema.xsd";
+	private static final String DEFAULT_SCHEMA_NAME = "simulator/DEBBTranslator/DCWormsResSchema.xsd";
 	
-	private static final String DEFAULT_DEBB_COMPONENT_TRANSFORMATION_FILE_NAME = "example/xml/DEBBComponentTranslator.xsl";
+	private static final String DEFAULT_DEBB_COMPONENT_TRANSFORMATION_FILE_NAME = "simulator/DEBBTranslator/DEBBComponentTranslator.xsl";
 	private static final String DEFAULT_NAMESPACE = "http://www.w3.org/2001/XMLSchema-instance";
 	
-	private static final String DEFAULT_UPDATE_TRANSFORMATION_FILE_NAME = "example/xml/DCWoRMSDEBBUpdater.xsl";
-	private static final String DEFAULT_SCHEDULERS_AND_ESTIMATORS_FILE_NAME = "../debb2dcworms/example1.xml";
+	private static final String DEFAULT_UPDATE_TRANSFORMATION_FILE_NAME = "simulator/DEBBTranslator/DCWoRMSDEBBUpdater.xsl";
+	private static final String DEFAULT_SCHEDULERS_AND_ESTIMATORS_FILE_NAME = "../../simulator/DEBBTranslator/debb2dcworms/example1.xml";
 	
 	
 	private static DocumentBuilder xmlDocumentBuilder;

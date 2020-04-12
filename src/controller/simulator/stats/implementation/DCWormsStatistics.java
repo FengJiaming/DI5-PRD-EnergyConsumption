@@ -244,15 +244,15 @@ public class DCWormsStatistics implements SimulationStatistics {
 		ganttDiagramTimetable = new Timetable(new FixedMillisecond(
 				startSimulationTime), new FixedMillisecond(endSimulationTime));
 		
-		PrintStream resourceLoadStatsFile = null;
-		try {
-			File file = new File(outputFolderName + STATS_FILE_NAME_PREFIX
-					+ simulationIdentifier + "_"
-					+ RESOURCEUTILIZATION_STATISTICS_OUTPUT_FILE_NAME);
-			resourceLoadStatsFile = new PrintStream(new FileOutputStream(file));
-		} catch (IOException e) {
-			resourceLoadStatsFile = null;
-		}
+//		PrintStream resourceLoadStatsFile = null;
+//		try {
+//			File file = new File(outputFolderName + STATS_FILE_NAME_PREFIX
+//					+ simulationIdentifier + "_"
+//					+ RESOURCEUTILIZATION_STATISTICS_OUTPUT_FILE_NAME);
+//			resourceLoadStatsFile = new PrintStream(new FileOutputStream(file));
+//		} catch (IOException e) {
+//			resourceLoadStatsFile = null;
+//		}
 		
 		PrintStream energyStatsFile = null;
 		try {
@@ -287,14 +287,14 @@ public class DCWormsStatistics implements SimulationStatistics {
 				for(ComputingResource resource: resources){
 					ResourceUsageStats resourceUsage = null;
 					ResourcePowerStats energyUsage = null;
-					if(type_stats.get(resourceName).contains(Stats.textLoad)){
-						resourceUsage = gatherResourceLoadStats(resource, basicResStats);
-						resourceUsage.setMeanValue(calculateMeanValue(resourceUsage));
-						if (resourceLoadStatsFile != null) {
-							Object txt = resourceUsage.serialize(serializer);
-							resourceLoadStatsFile.println(txt);
-						}
-					}
+//					if(type_stats.get(resourceName).contains(Stats.textLoad)){
+//						resourceUsage = gatherResourceLoadStats(resource, basicResStats);
+//						resourceUsage.setMeanValue(calculateMeanValue(resourceUsage));
+//						if (resourceLoadStatsFile != null) {
+//							Object txt = resourceUsage.serialize(serializer);
+//							resourceLoadStatsFile.println(txt);
+//						}
+//					}
 					if(type_stats.get(resourceName).contains(Stats.textEnergy)){
 						energyUsage = gatherResourcePowerConsumptionStats(resource);
 						energyUsage.setMeanValue(calculateMeanValue(energyUsage));
@@ -343,9 +343,9 @@ public class DCWormsStatistics implements SimulationStatistics {
 		if (energyStatsFile != null) {
 			energyStatsFile.close();
 		}
-		if (resourceLoadStatsFile != null) {
-			resourceLoadStatsFile.close();
-		}
+//		if (resourceLoadStatsFile != null) {
+//			resourceLoadStatsFile.close();
+//		}
 	}
 
 	

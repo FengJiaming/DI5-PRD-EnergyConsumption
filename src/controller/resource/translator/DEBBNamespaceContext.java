@@ -21,8 +21,6 @@ public class DEBBNamespaceContext implements NamespaceContext
         {
             if (prefix.equals("plm"))
                 return "http://www.plmxml.org/Schemas/PLMXMLSchema";
-            else if (prefix.equals("cim"))
-            	return "http://www.coolemall.eu/DEBBComponent";
             else
                 return XMLConstants.NULL_NS_URI;
         }

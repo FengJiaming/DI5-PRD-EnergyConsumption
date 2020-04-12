@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xsd_1:Room xmlns:xsd_1="http://www.coolemall.eu/DEBBComponent" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.coolemall.eu/DEBBComponent DEBBComponents.xsd" xmlns:version="8.1" >
-  <PartID>PolytechPolyTestroom_20</PartID>
-  <Product>Polytech - PolyTest-room</Product>
-  <ComponentId>PolytechPolyTestroom_20</ComponentId>
-</xsd_1:Room>

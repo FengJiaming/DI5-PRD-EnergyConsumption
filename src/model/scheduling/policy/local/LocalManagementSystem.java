@@ -134,8 +134,8 @@ public class LocalManagementSystem extends AbstractManagementSystem {
 				finalizeExecutable(execTask);
 				sendFinishedWorkloadUnit(execTask);
 				log.debug(execTask.getJobId() + "_" + execTask.getId() + " finished execution on " + new DateTime());
-				log.info(DCWormsConstants.USAGE_MEASURE_NAME + ": " + calculateTotalLoad(jobRegistry.getRunningTasks().size()));
-				System.out.println(DCWormsConstants.USAGE_MEASURE_NAME + ": " + calculateTotalLoad(jobRegistry.getRunningTasks().size()));
+//				log.info(DCWormsConstants.USAGE_MEASURE_NAME + ": " + calculateTotalLoad(jobRegistry.getRunningTasks().size()));
+//				System.out.println(DCWormsConstants.USAGE_MEASURE_NAME + ": " + calculateTotalLoad(jobRegistry.getRunningTasks().size()));
 				if (pluginSupportsEvent(tag)) {
 					SchedulingEvent event = new TaskFinishedEvent(execTask.getJobId(), execTask.getId());
 					SchedulingPlanInterface<?> decision = schedulingPlugin.schedule(event,

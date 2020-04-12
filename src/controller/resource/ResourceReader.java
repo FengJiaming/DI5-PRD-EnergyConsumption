@@ -69,7 +69,7 @@ public class ResourceReader {
 	public ResourceReader(ConfigurationOptions options) throws IOException {
 
 		resdescFilePath = options.resdescFilePath;
-		globalSchedulingPluginName = "example.globalplugin.GridFCFSRoundRobinPlugin";
+		globalSchedulingPluginName = "plugins.globalplugin.GridFCFSRoundRobinPlugin";
 		localSchedulingPluginName = matchSchedulingPlugin(options.schedulingplugin);
 		
 		prepareCalendar();
@@ -119,7 +119,7 @@ public class ResourceReader {
 			execTimeEstimationPlugin = (ExecutionTimeEstimationPlugin) InstanceFactory.createInstance(
 					execTimeEstimationPluginClassName, ExecutionTimeEstimationPlugin.class);
 			if(execTimeEstimationPlugin == null) {
-				execTimeEstimationPluginClassName = "example.timeestimation.DefaultTimeEstimationPlugin";
+				execTimeEstimationPluginClassName = "plugins.timeestimation.DefaultTimeEstimationPlugin";
 				execTimeEstimationPlugin = (ExecutionTimeEstimationPlugin) InstanceFactory.createInstance(
 						execTimeEstimationPluginClassName, ExecutionTimeEstimationPlugin.class);
 			} else {
@@ -353,19 +353,19 @@ public class ResourceReader {
 		String schedulingPluginName = null;
 		switch (policy){
 			case "FCFS_BestFit":
-				schedulingPluginName = "example.localplugin.FCFSBF_LocalPlugin";
+				schedulingPluginName = "plugins.localplugin.FCFSBF_LocalPlugin";
 				break;
 			case "LCFS_BestFit" :
-				schedulingPluginName = "example.localplugin.LCFS_LocalPlugin";
+				schedulingPluginName = "plugins.localplugin.LCFS_LocalPlugin";
 				break;
 			case "LJF_BestFit" :
-				schedulingPluginName = "example.localplugin.LJF_LocalPlugin";
+				schedulingPluginName = "plugins.localplugin.LJF_LocalPlugin";
 				break;
 			case "SJF_BestFit" :
-				schedulingPluginName = "example.localplugin.SJF_LocalPlugin";
+				schedulingPluginName = "plugins.localplugin.SJF_LocalPlugin";
 				break;
 			case "FCFS_BestFit_NodeManagement" :
-				schedulingPluginName = "example.localplugin.FCFSBF_NodePowerManagementClusterPlugin";
+				schedulingPluginName = "plugins.localplugin.FCFSBF_NodePowerManagementClusterPlugin";
 		}
 		return schedulingPluginName;
 	}

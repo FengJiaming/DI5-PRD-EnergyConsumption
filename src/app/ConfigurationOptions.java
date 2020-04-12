@@ -18,7 +18,7 @@ public class ConfigurationOptions {
 	public String dcwormsOutputFile = null;
 	
 	public String inputWorkloadFileName = null;
-	public String workloadDescFileName = "example/WorkloadConfig2.xml";
+	public String workloadDescFileName = "";
 	public String outputFolder = null;
 	public String schedulingplugin = null;
 	/**
@@ -61,7 +61,7 @@ public class ConfigurationOptions {
 			co.resdescFilePath = debbPLXMLPath;
 		}
 		else {
-			co.resdescFilePath = "example/" + co.dcwormsOutputFile;			
+			co.resdescFilePath =  co.dcwormsOutputFile;			
 		}
 		
 		co.inputWorkloadFileName = workloadPath;

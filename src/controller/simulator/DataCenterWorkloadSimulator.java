@@ -192,7 +192,7 @@ public class DataCenterWorkloadSimulator{
 //		} else {
 //			prefix = System.getProperty("user.dir");
 //		}
-		String prefix = "example";
+		String prefix = "SimulationResult";
 		Date date = new Date();
         SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HH-mm-ss");
         String simulationName= "/Simulation" + sdf.format(date);
